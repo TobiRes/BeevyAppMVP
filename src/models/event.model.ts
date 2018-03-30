@@ -1,0 +1,21 @@
+import {User} from "./user.model";
+import {Address} from "./address.model";
+
+export interface BeevyEvent {
+  admin: User;
+  title: string;
+  summary: string;
+  description: string;
+  type: BeevyEventType;
+  date: Date;
+  endDate?: Date;
+  address: Address;
+  registeredMembers: User[];
+  possibleMemberCount: number;
+  currentMemberCount: number;
+}
+
+export enum BeevyEventType {
+  event = <any> "Veranstaltung",
+  project = <any> "Projekt"
+}
