@@ -1,12 +1,15 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let event of events">
-      <p>{{event.title}}</p>
-    </ion-item>
+  <ion-list class="eventList">
+    <div *ngFor="let event of events">
+      <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>
+    </div>
   </ion-list>
 </ion-content>

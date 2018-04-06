@@ -1,0 +1,30 @@
+beevy-event {
+  .item {
+    padding: 0;
+  }
+
+  ion-item .item-inner {
+    border-bottom: 0 !important;
+    padding: 0 !important;
+    background-color: lightgray;
+
+    .eventContent {
+      p {
+        color: black;
+      }
+    }
+
+    .label {
+      margin: 0;
+    }
+
+    .openEventViewButton {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: transparent;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<ion-item>
+  <button class="openEventViewButton" (click)="openEventView($event)">
+  </button>
+  <div class="eventContent">
+    <p>
+      {{beevyEvent.title}}
+    </p>
+    <p>
+      {{beevyEvent.summary}}
+    </p>
+    <p>
+      {{getDate(beevyEvent.date)}}
+    </p>
+    <p>
+      {{beevyEvent.address.city}}
+    </p>
+  </div>
+</ion-item>
