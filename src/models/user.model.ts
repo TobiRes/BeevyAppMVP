@@ -1,3 +1,5 @@
+import {BeevyEvent} from "./event.model";
+
 export interface User {
   name: string;
   userID: string;
@@ -5,8 +7,8 @@ export interface User {
 }
 
 export interface Profile {
-  joinedEvents?: Event[];
-  createdEvents?: Event[];
+  joinedEvents?: BeevyEvent[];
+  createdEvents?: BeevyEvent[];
   mail: string;
   token: string;
 }

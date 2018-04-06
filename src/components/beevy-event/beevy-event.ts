@@ -16,7 +16,6 @@ export class BeevyEventComponent {
   clicked = new EventEmitter();
 
   constructor(private navCtrl: NavController) {
-    console.log('Hello BeevyEventComponent Component');
   }
 
   openEventView(){
