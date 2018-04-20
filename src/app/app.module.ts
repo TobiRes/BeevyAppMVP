@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
+import {CreateEventPage} from '../pages/create-event/create-event';
 import { ProfilePage } from '../pages/profile/profile';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -17,11 +17,11 @@ import {IonicStorageModule} from "@ionic/storage";
 import {ProfilePageModule} from "../pages/profile/profile.module";
 import {BeevyEventService} from "../services/event.service";
 import {HttpClientModule} from "@angular/common/http";
+import {CreateEventPageModule} from "../pages/create-event/create-event.module";
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     TabsPage
   ],
   imports: [
@@ -30,13 +30,14 @@ import {HttpClientModule} from "@angular/common/http";
     IonicStorageModule.forRoot(),
     ComponentsModule,
     HomePageModule,
+    CreateEventPageModule,
     ProfilePageModule,
     HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    CreateEventPage,
     ProfilePage,
     HomePage,
     TabsPage

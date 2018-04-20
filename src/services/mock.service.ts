@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BeevyEvent, BeevyEventType} from "../models/event.model";
 import {Address} from "../models/address.model";
-import {Profile, User} from "../models/user.model";
+import {Admin, Profile, User} from "../models/user.model";
 import {Storage} from "@ionic/storage";
 
 @Injectable()
@@ -15,14 +15,10 @@ export class MockService {
   }
 
   getMockEvent(): BeevyEvent {
-    let clarasProfile: Profile = {
-      mail: "cdeitmar@stud.hs-offenburg.de",
-      token: "12345"
-    }
-    let clara: User = {
+    let clara: Admin = {
       name: "Clara",
       userID: "123",
-      userProfile: clarasProfile
+      mail: "cdeitmar@stud.hs-offenburg.de"
     }
     let address: Address = {
       street: "Weingartenstraße 10",
@@ -42,15 +38,10 @@ export class MockService {
       possibleMemberCount: 7,
       currentMemberCount: 0
     }
-
-    let tobisProfile: Profile = {
-      mail: "treski@stud.hs-offenburg.de",
-      token: "67890"
-    }
-    let tobi: User = {
+    let tobi: Admin = {
       name: "Tobi",
       userID: "456",
-      userProfile: tobisProfile
+      mail: "treski@stud.hs-offenburg.de"
     }
     let address2: Address = {
       street: "Am Osterbach 26",
