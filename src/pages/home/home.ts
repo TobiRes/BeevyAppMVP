@@ -15,6 +15,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               private mockService: MockService,
               private eventService: BeevyEventService) {
+  }
+  ionViewDidEnter(){
     this.getEvents();
   }
 
@@ -27,9 +29,5 @@ export class HomePage {
       .then((existingEvents: BeevyEvent[]) => {
         this.events = existingEvents;
       })
-  }
-
-  private getMockEvent(): BeevyEvent {
-    return this.mockService.getMockEvent();
   }
 }

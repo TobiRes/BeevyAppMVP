@@ -1,6 +1,7 @@
 import {BeevyEvent} from "../models/event.model";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class BeevyEventService {
@@ -18,5 +19,9 @@ export class BeevyEventService {
           resolve(existingEvents);
         })
     }))
+  }
+
+  createBeevyEvents(beevent: BeevyEvent){
+    return this.http.post(BeevyEventService.BEEVY_SERVER_URL + "/create", beevent);
   }
 }

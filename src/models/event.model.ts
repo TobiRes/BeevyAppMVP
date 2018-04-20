@@ -10,12 +10,12 @@ export interface BeevyEvent {
   date: Date;
   endDate?: Date;
   address: Address;
-  registeredMembers: User[];
+  registeredMembers?: User[];
   possibleMemberCount: number;
-  currentMemberCount: number;
+  currentMemberCount?: number;
 }
 
 export enum BeevyEventType {
-  event = <any> "Veranstaltung",
-  project = <any> "Projekt"
+  event = <any> "Event",
+  project = <any> "Project"
 }

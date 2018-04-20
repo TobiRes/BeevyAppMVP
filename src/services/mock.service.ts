@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BeevyEvent, BeevyEventType} from "../models/event.model";
 import {Address} from "../models/address.model";
-import {Admin, Profile, User} from "../models/user.model";
+import {Admin, Profile} from "../models/user.model";
 import {Storage} from "@ionic/storage";
 
 @Injectable()

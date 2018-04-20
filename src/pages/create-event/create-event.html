@@ -1,22 +1,55 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Create Event
+      Create Event (Beevent)
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-item>
-    <ion-input placeholder="Title" clearInput></ion-input>
+    <ion-input placeholder="Title" clearInput [(ngModel)]="title"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Briefly summarize the event" clearInput></ion-input>
+    <ion-input placeholder="Briefly summarize the event" clearInput [(ngModel)]="summary"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Describe your event" clearInput></ion-input>
+    <ion-input placeholder="Describe your event" clearInput [(ngModel)]="description"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="When?" type="date" clearInput></ion-input>
+    <ion-label>Event Type</ion-label>
+    <ion-select [(ngModel)]="type">
+      <ion-option value="event">Event</ion-option>
+      <ion-option value="project">Project</ion-option>
+    </ion-select>
   </ion-item>
+  <ion-item>
+    <ion-label>Date?</ion-label>
+    <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="date"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Time?</ion-label>
+    <ion-datetime displayFormat="HH:mm" [(ngModel)]="time"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Street" clearInput [(ngModel)]="street"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="ZIP" clearInput [(ngModel)]="zip"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="City" clearInput [(ngModel)]="city"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Limit Members?</ion-label>
+    <ion-checkbox></ion-checkbox>
+  </ion-item>
+  <ion-item>
+    <ion-label>Possible Members</ion-label>
+    <ion-range min="1" max="100" [(ngModel)]="possibleMemberCount" color="secondary">
+      <ion-label range-left>1</ion-label>
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+  </ion-item>
+  <button ion-button (click)="createBeevent()" full>Create Event</button>
 </ion-content>
