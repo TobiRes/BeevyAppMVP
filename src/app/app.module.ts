@@ -15,6 +15,8 @@ import {ComponentsModule} from "../components/components.module";
 import {MockService} from "../services/mock.service";
 import {IonicStorageModule} from "@ionic/storage";
 import {ProfilePageModule} from "../pages/profile/profile.module";
+import {BeevyEventService} from "../services/event.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {ProfilePageModule} from "../pages/profile/profile.module";
     IonicStorageModule.forRoot(),
     ComponentsModule,
     HomePageModule,
-    ProfilePageModule
+    ProfilePageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +45,8 @@ import {ProfilePageModule} from "../pages/profile/profile.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MockService
+    MockService,
+    BeevyEventService
   ]
 })
 export class AppModule {}

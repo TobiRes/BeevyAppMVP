@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {BeevyEvent} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
+import {BeevyEventService} from "../../services/event.service";
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,9 @@ export class HomePage {
 
   events: BeevyEvent[] = [];
 
-  constructor(public navCtrl: NavController, private mockService: MockService) {
+  constructor(public navCtrl: NavController,
+              private mockService: MockService,
+              private eventService: BeevyEventService) {
     this.getEvents();
   }
 
@@ -20,11 +23,10 @@ export class HomePage {
   }
 
   private getEvents() {
-    for(let i = 0; i < 20; i++){
-      let event = this.getMockEvent();
-      this.events.push(event);
-    }
-    console.log(this.events);
+    this.eventService.getBeevyEvents()
+      .then((existingEvents: BeevyEvent[]) => {
+        this.events = existingEvents;
+      })
   }
 
   private getMockEvent(): BeevyEvent {

@@ -6,6 +6,12 @@ export interface User {
   userProfile: Profile;
 }
 
+export interface Admin {
+  name: string;
+  userID: string;
+  mail: string;
+}
+
 export interface Profile {
   joinedEvents?: BeevyEvent[];
   createdEvents?: BeevyEvent[];
