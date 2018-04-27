@@ -29,7 +29,11 @@ export class BeevyEventComponent {
     return DateUtil.getTime(date);
   }
 
-  getEventType(): string {
-    return "beevy-info-background-1";
+  changeColorOfInfoContainer(): string {
+    return "beevy-info-background-transparent-1";
+  }
+
+  changeColorOfInfoSubContainer(): string {
+    return "beevy-info-background-full-1";
   }
 }

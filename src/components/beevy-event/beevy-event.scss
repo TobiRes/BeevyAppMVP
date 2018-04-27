@@ -39,6 +39,26 @@ beevy-event {
       padding: 20px;
       position: relative;
 
+      .beevy-event-info{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        border-radius: 30px;
+        height: 75px;
+        padding-top: 8px;
+
+        .eventTitel{
+          color: white;
+          font-size: 25px;
+        }
+        .eventUnterTitel{
+          color: white;
+        }
+      }
+
+
       .beevy-event-info-date {
         position: absolute;
         bottom: 12px;
@@ -63,7 +83,11 @@ beevy-event {
   }
 
 
-  .beevy-info-background-1 {
+  .beevy-info-background-transparent-1 {
     background: linear-gradient(to bottom right, $beevy-orange-transparent, $beevy-pink-transparent);
+  }
+
+  .beevy-info-background-full-1 {
+    background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
   }
 }

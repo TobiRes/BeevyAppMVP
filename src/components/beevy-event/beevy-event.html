@@ -1,9 +1,10 @@
 <ion-item class="eventContainer">
   <button class="openEventViewButton" (click)="openEventView($event)">
   </button>
-  <div [ngClass]="['beevy-event-info-container', getEventType()]">
-    <div class="beevy-event-info">
+  <div [ngClass]="['beevy-event-info-container', changeColorOfInfoContainer()]">
+    <div [ngClass]="['beevy-event-info', changeColorOfInfoSubContainer()]">
       <p class="eventTitel">{{beevyEvent.title}}</p>
+      <p class="eventUnterTitel">{{beevyEvent.summary}}</p>
     </div>
     <div class="beevy-event-info-date">
       <div class="date-container">
