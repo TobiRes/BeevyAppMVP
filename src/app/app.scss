@@ -29,17 +29,37 @@
   margin: auto;
   border-radius: 50px;
   padding: 20px;
-}
 
-.beevy-event-info {
-}
+  .beevy-event-info {
+  }
 
-.beevy-event-info-date {
-  p{
-    color: white;
+  .beevy-event-info-date {
+    .eventDate{
+      float: left;
+      
+    }
+    .eventTime {
+      float: right;
+    }
+    p{
+      color: white;
+    }
   }
 }
 
+
+
 .beevy-info-background-1 {
   background: linear-gradient(to bottom right, $beevy-orange-transparent, $beevy-pink-transparent);
+}
+
+@font-face {
+  font-family: 'quicksand-regular';
+  src:url('../assets/fonts/Quicksand-regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ion-app {
+  font-family: quicksand-regular !important;
 }
