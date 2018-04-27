@@ -33,13 +33,13 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
-);
+
+$beevy-main-background-dark: #101a58;
+$beevy-main-background-light: #270f33;
+$beevy-pink: #e01767;
+$beevy-pink-transparent: rgba(224,23,103,0.5);
+$beevy-orange: #fc8535;
+$beevy-orange-transparent: rgba(255,133,53,0.5);
 
 
 // App iOS Variables

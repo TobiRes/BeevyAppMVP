@@ -14,3 +14,32 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+//GENERAL
+.main-background-gradient {
+  background: linear-gradient($beevy-main-background-light, $beevy-main-background-dark);
+}
+
+//BEEVY EVENT STYLES
+
+.beevy-event-info-container {
+  width: 85%;
+  height: 85%;
+  margin: auto;
+  border-radius: 50px;
+  padding: 20px;
+}
+
+.beevy-event-info {
+}
+
+.beevy-event-info-date {
+  p{
+    color: white;
+  }
+}
+
+.beevy-info-background-1 {
+  background: linear-gradient(to bottom right, $beevy-orange-transparent, $beevy-pink-transparent);
+}

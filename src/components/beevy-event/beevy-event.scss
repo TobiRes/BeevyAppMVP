@@ -2,11 +2,10 @@ beevy-event {
   .item {
     padding: 0;
   }
-
   ion-item .item-inner {
     border-bottom: 0 !important;
     padding: 0 !important;
-    background-color: lightgray;
+    background-color: transparent;
 
     .eventContent {
       p {
@@ -26,5 +25,14 @@ beevy-event {
       width: 100%;
       background-color: transparent;
     }
+  }
+
+  .eventContainer {
+    height: 30vh !important;
+    width: auto;
+    margin: 6px 7px 6px 7px;
+    background: transparent;
+    border-radius: 10px;
+    border: 3px solid $beevy-pink;
   }
 }

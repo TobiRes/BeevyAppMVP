@@ -6,7 +6,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="main-background-gradient">
   <ion-list class="eventList">
     <div *ngFor="let event of events">
       <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>

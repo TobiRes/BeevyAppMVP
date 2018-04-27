@@ -25,4 +25,11 @@ export class BeevyEventComponent {
   getDate(date: Date): string {
     return DateUtil.getDayMonthYearOfDate(date);
   }
+  getTime(date: Date): string {
+    return DateUtil.getTime(date);
+  }
+
+  getEventType(): string {
+    return "beevy-info-background-1";
+  }
 }
