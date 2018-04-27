@@ -3,10 +3,13 @@
   </button>
   <div [ngClass]="['beevy-event-info-container', getEventType()]">
     <div class="beevy-event-info">
+      <p class="eventTitel">{{beevyEvent.title}}</p>
     </div>
     <div class="beevy-event-info-date">
-      <p class="eventDate">{{getDate(beevyEvent.date)}}</p>
-      <p class="eventTime">{{getTime(beevyEvent.date)}}</p>
+      <div class="date-container">
+        <div class="eventTime">{{getTime(beevyEvent.date)}}</div>
+        <div class="eventDate">{{getDate(beevyEvent.date)}}</div>
+      </div>
     </div>
   </div>
 </ion-item>

@@ -1,22 +1,17 @@
 beevy-event {
+
   .item {
     padding: 0;
   }
+
   ion-item .item-inner {
     border-bottom: 0 !important;
     padding: 0 !important;
     background-color: transparent;
 
-    .eventContent {
-      p {
-        color: black;
-      }
-    }
-
     .label {
       margin: 0;
     }
-
     .openEventViewButton {
       position: absolute;
       top: 0;
@@ -34,5 +29,41 @@ beevy-event {
     background: transparent;
     border-radius: 10px;
     border: 3px solid $beevy-pink;
+    color: white !important;
+
+    .beevy-event-info-container {
+      width: 85%;
+      height: 120px;
+      margin: auto;
+      border-radius: 30px;
+      padding: 20px;
+      position: relative;
+
+      .beevy-event-info-date {
+        position: absolute;
+        bottom: 12px;
+        left: 22px;
+        right: 22px;
+
+        .date-container{
+          postion: relative;
+
+          .eventDate, .eventTime{
+            font-size: 25px;
+            position: absolute;
+            bottom: 0;
+          }
+
+          .eventTime { left: 0; }
+
+          .eventDate { right: 0; }
+        }
+      }
+    }
+  }
+
+
+  .beevy-info-background-1 {
+    background: linear-gradient(to bottom right, $beevy-orange-transparent, $beevy-pink-transparent);
   }
 }
