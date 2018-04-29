@@ -1,15 +1,21 @@
-<ion-header>
-  <ion-navbar>
+<ion-header class="navbar-oben">
+  <ion-navbar class="navbar-oben">
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon class="menuIcon" name="menu"></ion-icon>
     </button>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content class="main-background-gradient">
+  <div style="padding-top:60px"></div>
+  <img class="beevyFooter" src="../../assets/imgs/footer.svg"/>
+  <img class="beevyHeader" src="../../assets/imgs/footer.svg">
   <ion-list class="eventList">
     <div *ngFor="let event of events">
       <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>
     </div>
   </ion-list>
+  <div style="padding-bottom:80px"></div>
 </ion-content>
+

@@ -7,7 +7,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="main-background-gradient">
+  <img class="beevyFooter" src="../../assets/imgs/footer.svg">
+  <img class="beevyHeader" src="../../assets/imgs/footer.svg">
   <p>{{beevyEvent.admin.name}}</p>
   <p>{{beevyEvent.admin.userID}}</p>
   <p>{{beevyEvent.admin.mail}}</p>
@@ -19,5 +21,5 @@
   <p>{{beevyEvent.address.street}}</p>
   <p>{{beevyEvent.address.zip}}</p>
   <p>{{beevyEvent.address.city}}</p>
-  <button ion-button full (click)="joinEvent()">Join Event</button>
+  <button class="beevyButton"  ion-button full (click)="joinEvent()">Join Event</button>
 </ion-content>

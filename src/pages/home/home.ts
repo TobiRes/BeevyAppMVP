@@ -17,7 +17,8 @@ export class HomePage {
               private eventService: BeevyEventService) {
   }
   ionViewDidEnter(){
-    this.getEvents();
+    //this.getEvents();
+    this.getMockEvents();
   }
 
   openEventView(beevyEvent: BeevyEvent){
@@ -29,5 +30,11 @@ export class HomePage {
       .then((existingEvents: BeevyEvent[]) => {
         this.events = existingEvents;
       })
+  }
+
+  private getMockEvents() {
+    for(var i=0; i<10; i++){
+      this.events[i] = this.mockService.getMockEvent();
+    }
   }
 }

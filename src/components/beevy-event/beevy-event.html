@@ -1,10 +1,18 @@
-<ion-item class="eventContainer">
+<ion-item [ngClass]="['eventContainer', changeColorOfContainer(beevyEvent.type, 'border')]">
   <button class="openEventViewButton" (click)="openEventView($event)">
-  </button>
-  <div [ngClass]="['beevy-event-info-container', changeColorOfInfoContainer()]">
-    <div [ngClass]="['beevy-event-info', changeColorOfInfoSubContainer()]">
+  <div [ngClass]="['beevy-event-info-container', changeColorOfContainer(beevyEvent.type, 'transparent')]">
+    <div [ngClass]="['beevy-event-info', changeColorOfContainer(beevyEvent.type, 'full')]">
       <p class="eventTitel">{{beevyEvent.title}}</p>
       <p class="eventUnterTitel">{{beevyEvent.summary}}</p>
+      <p class="eventCity">
+        <img
+        class="locationIcon"
+        src="../../assets/icon/location.svg"
+        alt="triangle with all three sides equal"
+        height="12px"
+      />
+        {{beevyEvent.address.city}}
+      </p>
     </div>
     <div class="beevy-event-info-date">
       <div class="date-container">
@@ -13,4 +21,5 @@
       </div>
     </div>
   </div>
+  </button>
 </ion-item>

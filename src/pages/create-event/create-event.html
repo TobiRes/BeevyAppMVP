@@ -6,7 +6,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="main-background-gradient">
+  <img class="beevyFooter" src="../../assets/imgs/footer.svg">
+  <img class="beevyHeader" src="../../assets/imgs/footer.svg">
   <ion-item>
     <ion-input placeholder="Title" clearInput [(ngModel)]="title"></ion-input>
   </ion-item>
@@ -51,5 +53,5 @@
       <ion-label range-right>100</ion-label>
     </ion-range>
   </ion-item>
-  <button ion-button (click)="createBeevent()" full>Create Event</button>
+  <button class="beevyButton" ion-button (click)="createBeevent()" full>Create Event</button>
 </ion-content>
