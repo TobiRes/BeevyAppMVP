@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {BeevyEvent} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
@@ -16,12 +16,13 @@ export class HomePage {
               private mockService: MockService,
               private eventService: BeevyEventService) {
   }
-  ionViewDidEnter(){
+
+  ionViewDidEnter() {
     //this.getEvents();
     this.getMockEvents();
   }
 
-  openEventView(beevyEvent: BeevyEvent){
+  openEventView(beevyEvent: BeevyEvent) {
     this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
   }
 
@@ -33,7 +34,7 @@ export class HomePage {
   }
 
   private getMockEvents() {
-    for(var i=0; i<10; i++){
+    for (var i = 0; i < 10; i++) {
       this.events[i] = this.mockService.getMockEvent();
     }
   }

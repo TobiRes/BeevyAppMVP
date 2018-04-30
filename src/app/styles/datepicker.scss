@@ -5,6 +5,7 @@
   color: white;
   border: none;
 }
+
 .picker-ios .picker-prefix,
 .picker-ios .picker-suffix,
 .picker-ios .picker-opts,
@@ -33,22 +34,23 @@
   color: white;
 }
 
-
 //Fade über Zahlen
-.picker-ios .picker-above-highlight{
+.picker-ios .picker-above-highlight {
   background: linear-gradient(to bottom, $beevy-pink, $beevy-orange-transparent);
   border: none !important;
 }
-.picker-ios .picker-below-highlight{
+
+.picker-ios .picker-below-highlight {
   background: linear-gradient(to bottom, $beevy-orange-transparent, $beevy-pink);
   border: none !important;
 }
 
-.picker-wrapper{
+.picker-wrapper {
   background: linear-gradient(to bottom, $beevy-orange, $beevy-orange) !important;
   border: none !important;
 }
-.picker-toolbar{
+
+.picker-toolbar {
   background-color: $beevy-pink !important;
   border: none !important;
 }

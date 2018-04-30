@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {LoadingController, NavController} from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import {User} from "../../models/user.model";
@@ -33,15 +33,15 @@ export class CreateEventPage {
     let loader = this.startLoading();
     loader.present();
     this.storage.get("user")
-    .then((user: User) => {
-      let beevent: BeevyEvent = this.fillEventData(user);
-      this.eventService.createBeevyEvents(beevent)
-        .subscribe(() => {
-          loader.dismissAll()
-        }, () => {
-          loader.dismissAll();
-        })
-    })
+      .then((user: User) => {
+        let beevent: BeevyEvent = this.fillEventData(user);
+        this.eventService.createBeevyEvents(beevent)
+          .subscribe(() => {
+            loader.dismissAll()
+          }, () => {
+            loader.dismissAll();
+          })
+      })
   }
 
   private fillEventData(user: User): BeevyEvent {

@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
-import { BeevyEventComponent } from './beevy-event/beevy-event';
+import {NgModule} from '@angular/core';
+import {BeevyEventComponent} from './beevy-event/beevy-event';
 import {IonicModule} from "ionic-angular";
+
 @NgModule({
-	declarations: [BeevyEventComponent],
+  declarations: [BeevyEventComponent],
   imports: [IonicModule],
-	exports: [BeevyEventComponent]
+  exports: [BeevyEventComponent]
 })
-export class ComponentsModule {}
+export class ComponentsModule {
+}

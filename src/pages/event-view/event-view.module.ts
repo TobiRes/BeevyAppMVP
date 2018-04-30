@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { EventViewPage } from './event-view';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {EventViewPage} from './event-view';
 
 @NgModule({
   declarations: [
@@ -10,4 +10,5 @@ import { EventViewPage } from './event-view';
     IonicPageModule.forChild(EventViewPage),
   ],
 })
-export class EventViewPageModule {}
+export class EventViewPageModule {
+}

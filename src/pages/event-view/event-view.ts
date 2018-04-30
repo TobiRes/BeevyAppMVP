@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {BeevyEvent} from "../../models/event.model";
 import {Storage} from "@ionic/storage";
@@ -28,13 +28,13 @@ export class EventViewPage {
   joinEvent() {
     this.mockService.checkIfUserExists()
       .then((user: User) => {
-        if(!user) {
+        if (!user) {
           this.mockService.createMockUser()
             .then(() => {
               this.joinEvent()
             })
         } else {
-          if(!user.userProfile.joinedEvents){
+          if (!user.userProfile.joinedEvents) {
             user.userProfile.joinedEvents = [this.beevyEvent]
           } else {
             user.userProfile.joinedEvents.push(this.beevyEvent);

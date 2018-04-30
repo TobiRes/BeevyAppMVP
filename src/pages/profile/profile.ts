@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 
@@ -14,14 +14,14 @@ export class ProfilePage {
   constructor(public navCtrl: NavController, private mockService: MockService) {
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.loadMockUser();
   }
 
   private loadMockUser() {
     this.mockService.checkIfUserExists()
       .then((user: User) => {
-        if(!user){
+        if (!user) {
           this.mockService.createMockUser()
             .then(() => this.loadMockUser())
         } else {

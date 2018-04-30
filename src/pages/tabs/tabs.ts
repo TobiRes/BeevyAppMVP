@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 import {CreateEventPage} from '../create-event/create-event';
-import { ProfilePage } from '../profile/profile';
-import { HomePage } from '../home/home';
+import {ProfilePage} from '../profile/profile';
+import {HomePage} from '../home/home';
 
 @Component({
   templateUrl: 'tabs.html'

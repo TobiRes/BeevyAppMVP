@@ -82,23 +82,23 @@ export class MockService {
     }
 
     let random: number = Math.floor(Math.random() * 3 + 1);
-    if(random == 1)
+    if (random == 1)
       return event1;
-    if(random == 2)
+    if (random == 2)
       return event2;
     return event3
   }
 
   createMockUser() {
-      let leonsProfile: Profile = {
-        mail: "lschimpf@stud.hs-offenburg.de",
-        token: "abcdefg"
-      }
-      let mockUser = {
-        name: "Leon",
-        userID: "testID",
-        userProfile: leonsProfile
-      }
-      return this.storage.set("user", mockUser);
+    let leonsProfile: Profile = {
+      mail: "lschimpf@stud.hs-offenburg.de",
+      token: "abcdefg"
+    }
+    let mockUser = {
+      name: "Leon",
+      userID: "testID",
+      userProfile: leonsProfile
+    }
+    return this.storage.set("user", mockUser);
   }
 }
