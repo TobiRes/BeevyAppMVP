@@ -1,0 +1,7 @@
+//Don't know why it works, but it's needed...
+
+//Fix for header and footer having a background image that looks like a border
+.header-md::after,
+.tabbar::before {
+  background-image: none !important;
+}

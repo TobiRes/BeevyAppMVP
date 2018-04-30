@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,11 +12,10 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 //IMPORTS
-
 @import "styles/datepicker";
 @import "styles/icons";
+@import "styles/quirks";
 
 //GENERAL
 .main-background-gradient {
@@ -27,7 +24,7 @@
 
 @font-face {
   font-family: 'quicksand-regular';
-  src:url('../assets/fonts/Quicksand-Regular.ttf');
+  src: url('../assets/fonts/Quicksand-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -36,38 +33,25 @@ ion-app {
   font-family: quicksand-regular !important;
 }
 
-.tabs-ios .tabbar {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border-top: 0px solid rgb(0, 0, 0);
-  background-color: transparent;
-  padding-bottom: 10px;
-}
-
-
-.toolbar-background-ios {
+.toolbar-background {
   background-color: transparent !important;
   border: none !important;
   height: 20px;
 }
 
-
 .fixed-content, .scroll-content {
   margin: 0 !important;
 }
 
-.item-ios {
+.item {
   background-color: transparent;
   color: white;
 }
 
 //menuIcon
-.menuIcon{
+.menuIcon {
   color: white;
 }
-
 
 //FooterHeaderButton
 
@@ -77,6 +61,7 @@ ion-app {
   z-index: 1;
   width: 100%;
 }
+
 .beevyHeader {
   transform: rotate(180deg);
   position: fixed;

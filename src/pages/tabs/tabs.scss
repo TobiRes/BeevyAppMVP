@@ -1,6 +1,27 @@
 page-tabs {
 
-  .tabbar {
-    background-color: red !important;
+  .tabbar,
+  .tabbar.show-tabbar{
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-top: 0 !important;
+    background-color: transparent !important;
+  }
+
+  .tabs-ios {
+    .tabbar.show-tabbar{
+      padding-bottom: 7px;
+    }
+  }
+
+  .tab-button-icon {
+    font-size: 25px !important;
+  }
+
+  .tab-button-icon {
+    min-width: 35px;
+    height: 25px !important;
   }
 }

@@ -1,13 +1,10 @@
 //Eigene Icons
 
 //Home Icon
-//activiert
+//aktiviert
 .ion-ios-homewhite,
 .ion-md-homewhite {
-  content: url(../assets/icon/home-dark.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
+  content: url(../../assets/icon/home-dark.svg);
   opacity: 0.9;
 }
 
@@ -15,20 +12,14 @@
 .ion-ios-homewhite-outline,
 .ion-md-homewhite-outline {
   content: url(../../assets/icon/home-white.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
   opacity: 0.9;
 }
 
 //Add Icon
-//activiert
+//aktiviert
 .ion-ios-addEvent,
 .ion-md-addEvent {
   content: url(../../assets/icon/plus-dark.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
   opacity: 0.9;
 }
 
@@ -36,20 +27,14 @@
 .ion-ios-addEvent-outline,
 .ion-md-addEvent-outline {
   content: url(../../assets/icon/plus-white.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
   opacity: 0.9;
 }
 
 //Profile Icon
-//activiert
+//aktiviert
 .ion-ios-profile,
 .ion-md-profile {
   content: url(../../assets/icon/ninja-dark.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
   opacity: 0.9;
 }
 
@@ -57,8 +42,5 @@
 .ion-ios-profile-outline,
 .ion-md-profile-outline {
   content: url(../../assets/icon/ninja-white.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
   opacity: 0.9;
 }
