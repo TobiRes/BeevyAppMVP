@@ -1,0 +1,65 @@
+//Eigene Icons
+
+
+//Home Icon
+//activiert
+.ion-ios-homewhite,
+.ion-md-homewhite {
+  content: url(../assets/icon/home-dark.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+//deaktiviert
+.ion-ios-homewhite-outline,
+.ion-md-homewhite-outline {
+  content: url(../../assets/icon/home-white.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+
+//Add Icon
+//activiert
+.ion-ios-addEvent,
+.ion-md-addEvent {
+  content: url(../../assets/icon/plus-dark.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+//deaktiviert
+.ion-ios-addEvent-outline,
+.ion-md-addEvent-outline {
+  content: url(../../assets/icon/plus-white.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+
+
+
+//Profile Icon
+//activiert
+.ion-ios-profile,
+.ion-md-profile {
+  content: url(../../assets/icon/ninja-dark.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}
+//deaktiviert
+.ion-ios-profile-outline,
+.ion-md-profile-outline {
+  content: url(../../assets/icon/ninja-white.svg);
+  width: 24px;
+  height: 32px;
+  padding: 6px 4px 2px;
+  opacity: 0.9;
+}

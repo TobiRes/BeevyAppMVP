@@ -1,0 +1,55 @@
+//Farben von main.css Schriften überschreiben -> alles weoß
+
+.picker-ios .picker-button,
+.picker-ios .picker-button.activated {
+  color: white;
+  border: none;
+}
+.picker-ios .picker-prefix,
+.picker-ios .picker-suffix,
+.picker-ios .picker-opts,
+.picker-ios .picker-opt,
+.picker-md .picker-button,
+.picker-md .picker-button.activated,
+.picker-md .picker-prefix,
+.picker-md .picker-suffix,
+.picker-md .picker-opts,
+.picker-md .picker-opt,
+.picker-md .picker-prefix,
+.picker-md .picker-suffix,
+.picker-md .picker-opt.picker-opt-selected,
+.picker-wp .picker-button,
+.picker-wp .picker-button.activated,
+.picker-wp .picker-prefix,
+.picker-wp .picker-suffix,
+.picker-wp .picker-opts,
+.picker-wp .picker-opt,
+.picker-wp .picker-prefix,
+.picker-wp .picker-suffix,
+.picker-wp .picker-opt-selected,
+.content-ios, content-md, content-wp,
+.toolbar-title-ios, toolbar-title-wp, toolbar-title-md,
+.bar-button-default-ios, bar-button-default-md, bar-button-default-wp {
+  color: white;
+}
+
+
+//Fade über Zahlen
+.picker-ios .picker-above-highlight{
+  background: linear-gradient(to bottom, $beevy-pink, $beevy-orange-transparent);
+  border: none !important;
+}
+.picker-ios .picker-below-highlight{
+  background: linear-gradient(to bottom, $beevy-orange-transparent, $beevy-pink);
+  border: none !important;
+}
+
+.picker-wrapper{
+  background: linear-gradient(to bottom, $beevy-orange, $beevy-orange) !important;
+  border: none !important;
+}
+.picker-toolbar{
+  background-color: $beevy-pink !important;
+  border: none !important;
+}
+

@@ -15,6 +15,10 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+//IMPORTS
+
+@import "styles/datepicker";
+@import "styles/icons";
 
 //GENERAL
 .main-background-gradient {
@@ -23,7 +27,7 @@
 
 @font-face {
   font-family: 'quicksand-regular';
-  src:url('../assets/fonts/Quicksand-regular.ttf');
+  src:url('../assets/fonts/Quicksand-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -41,6 +45,31 @@ ion-app {
   background-color: transparent;
   padding-bottom: 10px;
 }
+
+
+.toolbar-background-ios {
+  background-color: transparent !important;
+  border: none !important;
+  height: 20px;
+}
+
+
+.fixed-content, .scroll-content {
+  margin: 0 !important;
+}
+
+.item-ios {
+  background-color: transparent;
+  color: white;
+}
+
+//menuIcon
+.menuIcon{
+  color: white;
+}
+
+
+//FooterHeaderButton
 
 .beevyFooter {
   position: fixed;
@@ -63,178 +92,6 @@ ion-app {
   margin: auto;
 }
 
-.toolbar-background-ios {
-  background-color: transparent !important;
-  border: none !important;
-  height: 20px;
-}
-
-
-.fixed-content, .scroll-content {
-  margin: 0 !important;
-}
-
-.item-ios {
-  background-color: transparent;
-  color: white;
-}
-
-//Fade über Zahlen
-.picker-ios .picker-above-highlight{
-  background: linear-gradient(to bottom, $beevy-pink, $beevy-orange-transparent);
-  border: none !important;
-}
-.picker-ios .picker-below-highlight{
-  background: linear-gradient(to bottom, $beevy-orange-transparent, $beevy-pink);
-  border: none !important;
-}
-
-.picker-wrapper{
-  background: linear-gradient(to bottom, $beevy-orange, $beevy-orange) !important;
-  border: none !important;
-}
-.picker-toolbar{
-  background-color: $beevy-pink !important;
-  border: none !important;
-}
-
-
-//Eigene Icons
-
-
-//Home Icon
-//activiert
-.ion-ios-homewhite,
-.ion-md-homewhite {
-  content: url(../assets/icon/home-dark.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9;
-}
-//deaktiviert
-.ion-ios-homewhite-outline,
-.ion-md-homewhite-outline {
-  content: url(../assets/icon/home-white.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9;
-}
-
-
-//Add Icon
-//activiert
-.ion-ios-addEvent,
-.ion-md-addEvent {
-  content: url(../assets/icon/plus-dark.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9;
-}
-//deaktiviert
-.ion-ios-addEvent-outline,
-.ion-md-addEvent-outline {
-  content: url(../assets/icon/plus-white.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9;
-}
 
 
 
-//Profile Icon
-//activiert
-.ion-ios-profile,
-.ion-md-profile {
-  content: url(../assets/icon/ninja-dark.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9;
-}
-//deaktiviert
-.ion-ios-profile-outline,
-.ion-md-profile-outline {
-  content: url(../assets/icon/ninja-white.svg);
-  width: 24px;
-  height: 32px;
-  padding: 6px 4px 2px;
-  opacity: 0.9;
-}
-
-
-//menuIcon
-.menuIcon{
-  color: white;
-}
-
-
-
-
-
-
-//Farben von main.css Schriften überschreiben -> alles weoß
-
-.picker-ios .picker-button,
-.picker-ios .picker-button.activated {
-  color: white;
-  border: none;
-}
-.picker-ios .picker-prefix,
-.picker-ios .picker-suffix,
-.picker-ios .picker-opts {
-  color: white;
-}
-.picker-ios .picker-opt {
-  color: white;
-}
-.picker-md .picker-button,
-.picker-md .picker-button.activated {
-  color: white;
-}
-.picker-md .picker-prefix,
-.picker-md .picker-suffix,
-.picker-md .picker-opts {
-  color: white;
-}
-.picker-md .picker-opt {
-  color: white;
-}
-.picker-md .picker-prefix,
-.picker-md .picker-suffix,
-.picker-md .picker-opt.picker-opt-selected {
-  color: white;
-}
-.picker-wp .picker-button,
-.picker-wp .picker-button.activated {
-  color: white;
-}
-.picker-wp .picker-prefix,
-.picker-wp .picker-suffix,
-.picker-wp .picker-opts {
-  color: white;
-}
-.picker-wp .picker-opt {
-  color: white;
-}
-
-.picker-wp .picker-prefix,
-.picker-wp .picker-suffix,
-.picker-wp .picker-opt-selected {
-  color: white;
-}
-
-
-.content-ios, content-md, content-wp {
-  color: white;
-}
-.toolbar-title-ios, toolbar-title-wp, toolbar-title-md{
-  color: white;
-}
-
-.bar-button-default-ios, bar-button-default-md, bar-button-default-wp{
-  color:white;
-}
