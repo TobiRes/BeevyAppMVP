@@ -16,6 +16,7 @@
 @import "styles/datepicker";
 @import "styles/icons";
 @import "styles/quirks";
+@import "styles/toolbar";
 
 //GENERAL
 .main-background-gradient {
@@ -31,12 +32,6 @@
 
 ion-app {
   font-family: quicksand-regular !important;
-}
-
-.toolbar-background {
-  background-color: transparent !important;
-  border: none !important;
-  height: 20px;
 }
 
 .fixed-content, .scroll-content {
@@ -75,6 +70,7 @@ ion-app {
   border-radius: 30px;
   width: 80%;
   margin: auto;
+  margin-top: 35px;
 }
 
 

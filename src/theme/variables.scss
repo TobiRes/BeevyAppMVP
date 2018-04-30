@@ -66,6 +66,12 @@ $beevy-lightBlue-transparent: rgba(112, 224, 220, 0.7);
 // so that the above variables are used and Ionic's
 // default are overridden.
 
+$text-input-placeholder-color: white;
+
+$range-ios-tick-active-background-color: $beevy-blue;
+$range-ios-bar-active-background-color: $beevy-blue;
+$range-md-bar-active-background-color: $beevy-blue;
+
 @import "ionic.theme.default";
 
 // Ionicons
