@@ -18,8 +18,8 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    //this.getEvents();
-    this.getMockEvents();
+    this.getEvents();
+    //this.getMockEvents();
   }
 
   openEventView(beevyEvent: BeevyEvent) {

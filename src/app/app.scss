@@ -23,6 +23,18 @@
   background: linear-gradient($beevy-main-background-light, $beevy-main-background-dark);
 }
 
+p {
+  color: white !important;
+}
+
+.back-button-icon {
+  color: white;
+}
+
+.infoHolder {
+  margin: 75px 0 0 15px;
+}
+
 @font-face {
   font-family: 'quicksand-regular';
   src: url('../assets/fonts/Quicksand-Regular.ttf');
@@ -47,6 +59,7 @@ ion-app {
 .menuIcon {
   color: white;
 }
+
 
 //FooterHeaderButton
 
