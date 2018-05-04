@@ -23,7 +23,7 @@ export class BeevyEventComponent {
   }
 
   getDate(date: Date): string {
-    return DateUtil.getDayMonthYearOfDate(date);
+    return DateUtil.getWeekday(date.getDay()) +" "+ DateUtil.getDayMonthOfDate(date);
   }
 
   getTime(date: Date): string {

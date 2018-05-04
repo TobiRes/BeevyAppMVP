@@ -1,3 +1,61 @@
 page-event-view {
+  .eventTitle{
+    text-align: center;
+  }
+  .eventTitle h1{
+    font-size: 40px;
+    margin: 0;
+  }
+  .eventTitle p{
+    font-size: 20px;
+    margin: 0;
+  }
+  .eventDate {
+    font-size: 30px;
+    margin: 0;
+  }
+  .eventTime {
+    font-size: 45px;
+    margin:0;
+  }
+  .eventCity{
+    margin:0;
+  }
+  .timeBox{
+    width: 40%;
+    display: inline-block
+  }
+  .locationBox{
+    width: 40%;
+    display: inline-block
+  }
 
+  //kopiert aus beevy-event.scss
+  .beevy-event-time-info{
+      position: relative;
+      top: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      border-radius: 30px;
+      height: 120px;
+      padding-top: 8px;
+  }
+
+  .beevy-info-background-full-0 {
+    background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
+  }
+  .beevy-info-background-full-1 {
+    background: linear-gradient(to bottom right, $beevy-yellow, $beevy-orange);
+  }
+  .beevy-info-background-full-2 {
+    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+  }
+
+  //überschreibt nadere ccs
+  .infoHolder{
+    margin: 0 !important;
+    padding: 20px;
+    padding-top: 60px;
+  }
 }

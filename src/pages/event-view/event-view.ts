@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {BeevyEvent} from "../../models/event.model";
+import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {Storage} from "@ionic/storage";
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
+import {DateUtil} from "../../utils/date-util";
 
 @IonicPage()
 @Component({
@@ -57,5 +58,21 @@ export class EventViewPage {
         });
         alert.present();
       })
+  }
+
+  //Methoden aus beevy-event.ts
+  getDate(date: Date): string {
+    return DateUtil.getWeekdayfull(date.getDay()) +" "+ DateUtil.getDayMonthYearOfDate(date);
+  }
+
+  getTime(date: Date): string {
+    return DateUtil.getTime(date);
+  }
+
+  changeColorOfContainer(type: BeevyEventType, opacity: string): string {
+    if (type == BeevyEventType.event) return "beevy-info-background-" + opacity + "-0";
+    if (type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-1";
+    if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-2";
+    return "beevy-info-background-" + opacity + "-0";
   }
 }
