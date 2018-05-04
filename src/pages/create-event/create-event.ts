@@ -49,7 +49,7 @@ export class CreateEventPage {
       admin: {
         name: user.name,
         userID: user.userID,
-        mail: user.userProfile.mail
+        mail: user.mail
       },
       title: this.title,
       summary: this.summary,

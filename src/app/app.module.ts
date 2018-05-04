@@ -18,6 +18,8 @@ import {ProfilePageModule} from "../pages/profile/profile.module";
 import {BeevyEventService} from "../services/event.service";
 import {HttpClientModule} from "@angular/common/http";
 import {CreateEventPageModule} from "../pages/create-event/create-event.module";
+import {UserService} from "../services/user.service";
+import {Device} from "@ionic-native/device";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import {CreateEventPageModule} from "../pages/create-event/create-event.module";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MockService,
-    BeevyEventService
+    BeevyEventService,
+    UserService,
+    Device
   ]
 })
 export class AppModule {}
