@@ -5,7 +5,8 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class BeevyEventService {
 
-  private static BEEVY_SERVER_URL = "https://beevy-server.herokuapp.com/beevy/event";
+  //https://beevy-server.herokuapp.com/beevy/event
+  private static BEEVY_SERVER_URL = "http://localhost:8080/beevy/event";
 
   constructor(private http: HttpClient) {
   }

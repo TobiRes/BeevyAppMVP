@@ -92,10 +92,10 @@ export class MockService {
   createMockUser() {
     let leonsProfile: Profile = {
       mail: "lschimpf@stud.hs-offenburg.de",
-      token: "abcdefg"
     }
     let mockUser = {
       name: "Leon",
+      token: "abcdefg",
       userID: "testID",
       userProfile: leonsProfile
     }
