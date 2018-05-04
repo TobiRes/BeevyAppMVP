@@ -19,6 +19,7 @@ import {BeevyEventService} from "../services/event.service";
 import {HttpClientModule} from "@angular/common/http";
 import {CreateEventPageModule} from "../pages/create-event/create-event.module";
 import {UserService} from "../services/user.service";
+import {Device} from "@ionic-native/device";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {UserService} from "../services/user.service";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MockService,
     BeevyEventService,
-    UserService
+    UserService,
+    Device
   ]
 })
 export class AppModule {}

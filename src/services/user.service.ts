@@ -1,11 +1,15 @@
 import {Injectable} from "@angular/core";
 import {Storage} from "@ionic/storage";
 import {User} from "../models/user.model";
+import {Device} from "@ionic-native/device";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class UserService{
 
-  constructor(private storage: Storage){}
+  constructor(private storage: Storage,
+              private device: Device,
+              private http: HttpClient){}
 
   handleUser(){
     this.checkIfUserExists()
@@ -30,23 +34,29 @@ export class UserService{
   }
 
   private createUser() {
-    /*  1. lokal User anlegen mit Username + UUID, in Zukunft über Mail handlen, falls Storage probleme macht damit ein User nicht mehrmals angelegt wird und seine Events verliert
+    /*  1. lokal User anlegen mit Username + UUID
       * 2. Server schicken
-      * 3. Token generieren, User+Token abspeichern
+      * 3. Schauen ob user bereits existiert (UUID = device ID = immer gleich), falls ja User holen und Daten zurück schicken
+      * 3. Falls nicht, Token generieren, User+Token abspeichern
       * 4. token zurück schicken
       * 5. User + token speichern
     */
     return new Promise((resolve, reject) => {
       let user: User = this.createUserData();
-
+      this.handleUserOnServerSide(user);
+      resolve();
     })
   }
 
   private createUserData() {
     return {
       name: "TestUser",
-      userID: "test",
+      userID: this.device.uuid,
       mail: "test@test.com"
     }
+  }
+
+  private handleUserOnServerSide(user: User){
+    console.log(user);
   }
 }
