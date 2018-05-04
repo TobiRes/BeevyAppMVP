@@ -34,10 +34,10 @@ export class EventViewPage {
               this.joinEvent()
             })
         } else {
-          if (!user.userProfile.joinedEvents) {
-            user.userProfile.joinedEvents = [this.beevyEvent]
+          if (!user.events.joinedEvents) {
+            user.events.joinedEvents = [this.beevyEvent]
           } else {
-            user.userProfile.joinedEvents.push(this.beevyEvent);
+            user.events.joinedEvents.push(this.beevyEvent);
           }
           this.saveUpdatedUser(user);
         }
