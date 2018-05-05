@@ -36,7 +36,6 @@
           {{beevyEvent.address.zip}}
           {{beevyEvent.address.city}}<br>
           {{beevyEvent.address.street}}
-          {{beevyEvent.address.street}}
         </p></div>
       </div>
     </div>
@@ -44,9 +43,9 @@
     <div class="eventType">
       <p>{{beevyEvent.type}}</p>
     </div>
-    <div class="eventTags">
-
-    </div>
+    <ion-list class="eventTags">
+      <div [ngClass]="['einzelnesTag', changeColorOfContainer(beevyEvent.type, 'transparent')]" *ngFor="let tag of tags"><p>{{tag}}</p></div>
+    </ion-list>
     <div class="eventMembers">
       <p>{{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}</p>
     </div>

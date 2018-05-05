@@ -13,6 +13,7 @@ export interface BeevyEvent {
   registeredMembers?: User[];
   possibleMemberCount: number;
   currentMemberCount?: number;
+  tags?: string[];
 }
 
 export enum BeevyEventType {

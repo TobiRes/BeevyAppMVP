@@ -36,7 +36,8 @@ export class MockService {
       address: address,
       registeredMembers: [],
       possibleMemberCount: 7,
-      currentMemberCount: 0
+      currentMemberCount: 0,
+      tags: ["Kunst", "Fußball", "Sport", "Aktivität", "Energie", "Pflanzen"]
     }
     let tobi: Admin = {
       name: "Tobi",
@@ -59,7 +60,8 @@ export class MockService {
       address: address2,
       registeredMembers: [],
       possibleMemberCount: 7,
-      currentMemberCount: 0
+      currentMemberCount: 0,
+      tags: ["Bar", "Feiern", "Musik"]
     }
 
     let address3: Address = {
@@ -78,7 +80,8 @@ export class MockService {
       address: address3,
       registeredMembers: [],
       possibleMemberCount: 7,
-      currentMemberCount: 0
+      currentMemberCount: 0,
+      tags: ["Fotografie"]
     }
 
     let random: number = Math.floor(Math.random() * 3 + 1);

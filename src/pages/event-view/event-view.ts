@@ -14,6 +14,7 @@ import {DateUtil} from "../../utils/date-util";
 export class EventViewPage {
 
   beevyEvent: BeevyEvent;
+  tags: string[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -21,6 +22,7 @@ export class EventViewPage {
               private alertCtrl: AlertController,
               private mockService: MockService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
+    this.tags = this.beevyEvent.tags;
   }
 
   ionViewDidLoad() {

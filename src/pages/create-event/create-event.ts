@@ -63,7 +63,8 @@ export class CreateEventPage {
         city: this.city
       },
       possibleMemberCount: this.possibleMemberCount,
-      currentMemberCount: 0;
+      currentMemberCount: 0,
+      tags : []
     }
   }
 

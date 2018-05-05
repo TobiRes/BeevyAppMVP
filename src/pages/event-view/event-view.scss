@@ -45,6 +45,27 @@ page-event-view {
     }
 
   }
+  .eventTags{
+    width: 40%;
+    height:40px;
+    display: flex;
+    overflow-x: auto;
+  }
+  .eventTags::-webkit-scrollbar {
+    display: none;
+  }
+  .einzelnesTag {
+    margin-right: 5px;
+    border-radius: 20px;
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 28px;
+
+    p{
+      margin:5px;
+    }
+  }
 
 
   //kopiert aus beevy-event.scss
@@ -57,16 +78,6 @@ page-event-view {
       border-radius: 30px;
       height: 120px;
       padding-top: 8px;
-  }
-
-  .beevy-info-background-full-0 {
-    background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
-  }
-  .beevy-info-background-full-1 {
-    background: linear-gradient(to bottom right, $beevy-yellow, $beevy-orange);
-  }
-  .beevy-info-background-full-2 {
-    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
   }
 
   //überschreibt nadere ccs
