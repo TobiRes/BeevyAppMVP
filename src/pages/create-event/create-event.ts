@@ -22,6 +22,7 @@ export class CreateEventPage {
   zip: number;
   city: string;
   possibleMemberCount: number;
+  currentMemberCount: number;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,
@@ -61,7 +62,8 @@ export class CreateEventPage {
         zip: this.zip,
         city: this.city
       },
-      possibleMemberCount: this.possibleMemberCount
+      possibleMemberCount: this.possibleMemberCount,
+      currentMemberCount: 0;
     }
   }
 

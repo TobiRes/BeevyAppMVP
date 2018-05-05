@@ -29,6 +29,23 @@ page-event-view {
     width: 40%;
     display: inline-block
   }
+  .eventAdmin{
+    position:absolute;
+    top:50px;
+    right: 10px;
+
+
+    .adminIcon{
+      display: inline-block;
+    }
+
+    p{
+     margin:0;
+      display: inline-block;
+    }
+
+  }
+
 
   //kopiert aus beevy-event.scss
   .beevy-event-time-info{
@@ -57,5 +74,6 @@ page-event-view {
     margin: 0 !important;
     padding: 20px;
     padding-top: 60px;
+    position: relative;
   }
 }
