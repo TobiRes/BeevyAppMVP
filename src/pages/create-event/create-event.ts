@@ -47,7 +47,7 @@ export class CreateEventPage {
   private fillEventData(user: User): BeevyEvent {
     return {
       admin: {
-        name: user.name,
+        name: user.username,
         userID: user.userID,
         mail: user.mail
       },
