@@ -14,7 +14,6 @@ import {DateUtil} from "../../utils/date-util";
 export class EventViewPage {
 
   beevyEvent: BeevyEvent;
-  tags: string[];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,7 +21,7 @@ export class EventViewPage {
               private alertCtrl: AlertController,
               private mockService: MockService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
-    this.tags = this.beevyEvent.tags;
+    console.log(this.beevyEvent);
   }
 
   ionViewDidLoad() {
@@ -62,7 +61,6 @@ export class EventViewPage {
       })
   }
 
-  //Methoden aus beevy-event.ts
   getDate(date: Date): string {
     return DateUtil.getWeekdayfull(date.getDay()) +" "+ DateUtil.getDayMonthYearOfDate(date);
   }

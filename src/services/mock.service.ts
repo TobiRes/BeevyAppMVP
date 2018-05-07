@@ -15,11 +15,6 @@ export class MockService {
   }
 
   getMockEvent(): BeevyEvent {
-    let clara: Admin = {
-      name: "Clara",
-      userID: "123",
-      mail: "cdeitmar@stud.hs-offenburg.de"
-    }
     let address: Address = {
       street: "Weingartenstraße 10",
       zip: 77654,
@@ -27,7 +22,7 @@ export class MockService {
     }
 
     let event1 = {
-      admin: clara,
+      admin: "clara",
       title: "Sketch Night",
       summary: "Sketch & Chill bei Clara",
       description: "Chilliger Abend mit Essen und zeichnen. Freu mich auf euch!",
@@ -51,7 +46,7 @@ export class MockService {
     }
 
     let event2 = {
-      admin: tobi,
+      admin: "tobi",
       title: "Zock-Projekt",
       summary: "Eine Woche Spiele testen",
       description: "Wir testen eine Woche lang verschiedene Spiele und machen eine Hausarbeit",
@@ -71,7 +66,7 @@ export class MockService {
     }
 
     let event3 = {
-      admin: clara,
+      admin: "clara",
       title: "Klettern",
       summary: "Wir klettern einen Hang hinauf",
       description: "Chilliger Abend mit Essen und zeichnen. Freu mich auf euch!",

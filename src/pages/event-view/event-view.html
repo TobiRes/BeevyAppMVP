@@ -10,7 +10,7 @@
   <img class="beevyHeader" src="../../assets/imgs/footer.svg">
   <div class="infoHolder">
     <div class="eventAdmin">
-      <p>{{beevyEvent.admin.name}}</p>
+      <p>{{beevyEvent.admin}}</p>
       <img
         class="adminIcon"
         src="../../assets/icon/ninja-white.svg"
@@ -44,7 +44,7 @@
       <p>{{beevyEvent.type}}</p>
     </div>
     <ion-list class="eventTags">
-      <div [ngClass]="['einzelnesTag', changeColorOfContainer(beevyEvent.type, 'transparent')]" *ngFor="let tag of tags"><p>{{tag}}</p></div>
+      <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]" *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
     </ion-list>
     <div class="eventMembers">
       <p>{{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}</p>

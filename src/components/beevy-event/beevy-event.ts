@@ -36,8 +36,4 @@ export class BeevyEventComponent {
     if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-2";
     return "beevy-info-background-" + opacity + "-0";
   }
-
-  /*changeColorOfInfoSubContainer(): string {
-    return "beevy-info-background-full-1";
-  }*/
 }

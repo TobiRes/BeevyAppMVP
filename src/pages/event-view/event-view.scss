@@ -54,7 +54,7 @@ page-event-view {
   .eventTags::-webkit-scrollbar {
     display: none;
   }
-  .einzelnesTag {
+  .singleTag {
     margin-right: 5px;
     border-radius: 20px;
     display: inline-block;
@@ -67,8 +67,6 @@ page-event-view {
     }
   }
 
-
-  //kopiert aus beevy-event.scss
   .beevy-event-time-info{
       position: relative;
       top: 0;

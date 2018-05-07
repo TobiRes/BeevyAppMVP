@@ -2,7 +2,8 @@ import {Admin, User} from "./user.model";
 import {Address} from "./address.model";
 
 export interface BeevyEvent {
-  admin: Admin;
+  eventID?: string;
+  admin: string;
   title: string;
   summary: string;
   description: string;
