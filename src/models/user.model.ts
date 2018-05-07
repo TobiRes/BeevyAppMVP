@@ -1,7 +1,7 @@
 import {BeevyEvent} from "./event.model";
 
 export interface User {
-  name: string;
+  username: string;
   userID: string;
   mail: string;
   token?: string;
