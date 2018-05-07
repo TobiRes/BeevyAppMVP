@@ -3,9 +3,13 @@ import {Storage} from "@ionic/storage";
 import {User} from "../models/user.model";
 import {Device} from "@ionic-native/device";
 import {HttpClient} from "@angular/common/http";
+import {AppConfig} from "../config/app-config";
+import {BeevyEvent} from "../models/event.model";
 
 @Injectable()
 export class UserService{
+
+  private static BEEVY_USER_BASE_URL = AppConfig.API_BASE_URL + "/user";
 
   constructor(private storage: Storage,
               private device: Device,
@@ -15,7 +19,6 @@ export class UserService{
     this.checkIfUserExists()
       .then((userExists: boolean) => {
         if(userExists) {
-          //check if token is available
           console.log("User exists!")
         } else {
           this.createUser();
@@ -27,36 +30,52 @@ export class UserService{
     return new Promise((resolve, reject) => {
       this.storage.get("user")
         .then((user: User) => {
-          user ? resolve(true) : resolve(false);
+          if(!user || !(user.token && user.userID)){
+            resolve(false);
+          } else {
+            resolve(true);
+          }
         })
         .catch(err => reject(err));
     })
   }
 
   private createUser() {
-    /*  1. lokal User anlegen mit Username + UUID
-      * 2. Server schicken
-      * 3. Schauen ob user bereits existiert (UUID = device ID = immer gleich), falls ja User holen und Daten zurück schicken
-      * 3. Falls nicht, Token generieren, User+Token abspeichern
-      * 4. token zurück schicken
-      * 5. User + token speichern
-    */
     return new Promise((resolve, reject) => {
       let user: User = this.createUserData();
-      this.handleUserOnServerSide(user);
-      resolve();
+      this.handleUserOnServerSide(user)
+        .then((token: string) => {
+          user.token = token;
+          return this.storage.set("user", user)
+            .then(() => resolve())
+        }).catch((err) => {
+          console.error(err);
+          reject();
+      });
     })
   }
 
   private createUserData() {
     return {
-      name: "TestUser",
-      userID: this.device.uuid,
+      username: "TestUser",
+      userID: this.device.uuid ? this.device.uuid : "testID",
       mail: "test@test.com"
     }
   }
 
   private handleUserOnServerSide(user: User){
-    console.log(user);
+    return new Promise(((resolve, reject) => {
+      this.http.post(UserService.BEEVY_USER_BASE_URL, user)
+        .subscribe(() => {
+          this.http.get(UserService.BEEVY_USER_BASE_URL + "/" + user.username + "/" + user.userID)
+            .subscribe((securityToken: any) => {
+              console.log(securityToken.token)
+              resolve(securityToken.token);
+            })
+        }, err => {
+          reject();
+          console.error("failed to create user")
+        })
+    }))
   }
 }

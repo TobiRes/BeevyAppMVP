@@ -1,4 +1,3 @@
-import {Admin, User} from "./user.model";
 import {Address} from "./address.model";
 
 export interface BeevyEvent {
@@ -11,7 +10,7 @@ export interface BeevyEvent {
   date: Date;
   endDate?: Date;
   address: Address;
-  registeredMembers?: User[];
+  registeredMembers?: string[];
   possibleMemberCount: number;
   currentMemberCount?: number;
   tags?: string[];
