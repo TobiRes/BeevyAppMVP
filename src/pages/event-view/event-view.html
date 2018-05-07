@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title class="eventViewTitle">{{beevyEvent.title}}</ion-title>
+    <!--<ion-title class="eventViewTitle">{{beevyEvent.title}}</ion-title>-->
   </ion-navbar>
 </ion-header>
 
@@ -9,11 +9,30 @@
   <img class="beevyFooter" src="../../assets/imgs/footer.svg">
   <img class="beevyHeader" src="../../assets/imgs/footer.svg">
   <div class="infoHolder">
+    <div class="eventTitle">
+      <h1>{{beevyEvent.title}}</h1>
+      <p>{{beevyEvent.summary}}</p>
+    </div>
+    <div>
+      <div [ngClass]="['beevy-event-time-info', changeColorOfContainer(beevyEvent.type, 'full')]">
+        <div><p class="eventDate">{{getDate(beevyEvent.date)}}</p></div>
+        <div class="timeBox"><p class="eventTime">{{getTime(beevyEvent.date)}}</p></div>
+        <div class="locationBox"><p class="eventCity">
+          <img
+            class="locationIcon"
+            src="../../assets/icon/location.svg"
+            alt="triangle with all three sides equal"
+            height="12px"
+          />
+          {{beevyEvent.address.zip}}
+          {{beevyEvent.address.city}}<br>
+          {{beevyEvent.address.street}}
+        </p></div>
+      </div>
+    </div>
     <p>{{beevyEvent.admin.name}}</p>
     <p>{{beevyEvent.admin.userID}}</p>
     <p>{{beevyEvent.admin.mail}}</p>
-    <p>{{beevyEvent.title}}</p>
-    <p>{{beevyEvent.summary}}</p>
     <p>{{beevyEvent.description}}</p>
     <p>{{beevyEvent.type}}</p>
     <p>{{beevyEvent.date}}</p>
