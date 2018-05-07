@@ -46,11 +46,7 @@ export class CreateEventPage {
 
   private fillEventData(user: User): BeevyEvent {
     return {
-      admin: {
-        name: user.username,
-        userID: user.userID,
-        mail: user.mail
-      },
+      admin: user.userID,
       title: this.title,
       summary: this.summary,
       description: this.description,

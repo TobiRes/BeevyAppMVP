@@ -1,7 +1,7 @@
 import {Address} from "./address.model";
 
 export interface BeevyEvent {
-  eventID: string;
+  eventID?: string;
   admin: string;
   title: string;
   summary: string;
