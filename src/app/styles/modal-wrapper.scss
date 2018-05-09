@@ -1,9 +1,9 @@
 .filterModal .modal-wrapper {
   position: absolute;
   overflow: hidden;
-  max-width: 93vw;
-  border-radius: 5px;
-  width: 70vw;
+  max-width: 95vw;
+  border-radius: 30px;
+  width: 120vw;
   height: 50vh !important;
   top: 0;
   bottom: 0;
@@ -14,7 +14,7 @@
   box-shadow: 0 16px 20px rgba(0, 0, 0, .4);
 
   .scroll-content {
-    background-color: white !important;
+    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
     padding: 0 !important;
   }
 

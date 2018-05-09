@@ -1,12 +1,32 @@
-<ion-header>
+<!--<ion-header>
 
   <ion-navbar>
-    <ion-title>filter-modal</ion-title>
+  <ion-title>Filter setzen</ion-title>
   </ion-navbar>
 
 </ion-header>
+-->
 
 
 <ion-content padding>
+
+  <ion-list class="typeFilter">
+    <ion-item>
+      <ion-label>Projekt</ion-label>
+      <ion-checkbox [(ngModel)]="typeProject"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Aktivität</ion-label>
+      <ion-checkbox [(ngModel)]="typeActivity"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Hangout</ion-label>
+      <ion-checkbox [(ngModel)]="typeHangout"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button (click)="applyFilter()">anwenden</button>
 
 </ion-content>

@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {Modal, ModalController, ModalOptions, NavController} from 'ionic-angular';
-import {BeevyEvent} from "../../models/event.model";
+import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
+import {SetFilters} from "../../models/setFilters.model";
 
 @Component({
   selector: 'page-home',
@@ -11,6 +12,8 @@ import {BeevyEventService} from "../../services/event.service";
 export class HomePage {
 
   events: BeevyEvent[] = [];
+  filteredEvents: BeevyEvent[] = [];
+  filter: SetFilters;
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
@@ -47,8 +50,24 @@ export class HomePage {
     }
     const filterModal: Modal = this.modalCtrl.create("FilterModalPage", {test1: "test", test2: "test2"}, filterModalOptions);
     filterModal.present();
-    filterModal.onWillDismiss((filterOptions) => {
-
+    filterModal.onWillDismiss((setFilter: SetFilters) => {
+      this.filter= setFilter;
+      console.log(this.filter);
+      this.changeToFilteredEvents();
     })
+  }
+  changeToFilteredEvents(){
+    console.log(this.events.length);
+    for(var i=0; i<this.events.length; i ++){
+      if(this.checkFiltermatch(this.events[i])){
+
+      }
+    }
+    this.filteredEvents[0] = this.events[0];
+    this.events = this.filteredEvents;
+  }
+  checkFiltermatch(event: BeevyEvent){
+    var matches = true;
+    return true;
   }
 }

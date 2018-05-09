@@ -9,8 +9,14 @@
 <ion-content class="main-background-gradient">
   <img class="beevyFooter" src="../../assets/imgs/footer.svg">
   <img class="beevyHeader" src="../../assets/imgs/footer.svg">
-  <div class="infoHolder ">
-    <p>Name: {{user?.username}}</p>
+
+  <div>
+    <img class="avatarBig" src="../../assets/icon/ninja-white.svg" height="40%" width="40%">
+    <!-- <img src="../../assets/avatars/anonymous"> -->
+  </div>
+  <p class="userName">{{user?.username}}Leon</p>
+
+  <div class="infoHolder">
     <p>ID: {{user?.userID}}</p>
     <p>Mail: {{user?.events.mail}}</p>
     <p>Token: {{user?.events.token}}</p>
