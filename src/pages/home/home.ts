@@ -13,17 +13,23 @@ export class HomePage {
 
   events: BeevyEvent[] = [];
   filteredEvents: BeevyEvent[] = [];
-  filter: SetFilters;
+  allEvents: BeevyEvent[] = [];
+  filter: SetFilters = {types: []};
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
               private eventService: BeevyEventService,
               private modalCtrl: ModalController) {
+    this.filter.types[0] = true;
+    this.filter.types[1] = true;
+    this.filter.types[2] = true;
   }
 
   ionViewDidEnter() {
     //this.getEvents();
+    this.allEvents = [];
     this.getMockEvents();
+    this.events = this.allEvents;
   }
 
   openEventView(beevyEvent: BeevyEvent) {
@@ -33,13 +39,13 @@ export class HomePage {
   private getEvents() {
     this.eventService.getBeevyEvents()
       .then((existingEvents: BeevyEvent[]) => {
-        this.events = existingEvents;
+        this.allEvents = existingEvents;
       })
   }
 
   private getMockEvents() {
-    for (var i = 0; i < 10; i++) {
-      this.events[i] = this.mockService.getMockEvent();
+    for (var i = 1; i <= 5; i++) {
+      this.allEvents.push(this.mockService.getMockEvent(i));
     }
   }
 
@@ -48,7 +54,7 @@ export class HomePage {
       cssClass: "filterModal",
       showBackdrop: true
     }
-    const filterModal: Modal = this.modalCtrl.create("FilterModalPage", {test1: "test", test2: "test2"}, filterModalOptions);
+    const filterModal: Modal = this.modalCtrl.create("FilterModalPage", {filter: this.filter}, filterModalOptions);
     filterModal.present();
     filterModal.onWillDismiss((setFilter: SetFilters) => {
       this.filter= setFilter;
@@ -57,17 +63,20 @@ export class HomePage {
     })
   }
   changeToFilteredEvents(){
-    console.log(this.events.length);
-    for(var i=0; i<this.events.length; i ++){
-      if(this.checkFiltermatch(this.events[i])){
-
+    this.filteredEvents = [];
+    for(var i=0; i<this.allEvents.length; i ++){
+      if(this.checkFiltermatch(this.allEvents[i])){
+        this.filteredEvents.push(this.allEvents[i]);
       }
     }
-    this.filteredEvents[0] = this.events[0];
     this.events = this.filteredEvents;
   }
   checkFiltermatch(event: BeevyEvent){
     var matches = true;
-    return true;
+    if(this.filter.types[0]== false && event.type == BeevyEventType.project) matches = false;
+    if(this.filter.types[1]== false && event.type == BeevyEventType.activity) matches = false;
+    if(this.filter.types[2]== false && event.type == BeevyEventType.hangout) matches = false;
+
+    return matches;
   }
 }

@@ -13,19 +13,21 @@
   <ion-list class="typeFilter">
     <ion-item>
       <ion-label>Projekt</ion-label>
-      <ion-checkbox [(ngModel)]="typeProject"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="filter.types[0]"></ion-checkbox>
     </ion-item>
 
     <ion-item>
       <ion-label>Aktivität</ion-label>
-      <ion-checkbox [(ngModel)]="typeActivity"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="filter.types[1]"></ion-checkbox>
     </ion-item>
 
     <ion-item>
       <ion-label>Hangout</ion-label>
-      <ion-checkbox [(ngModel)]="typeHangout"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="filter.types[2]"></ion-checkbox>
     </ion-item>
   </ion-list>
+  
+
 
   <button ion-button (click)="applyFilter()">anwenden</button>
 
