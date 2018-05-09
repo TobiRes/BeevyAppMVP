@@ -36,7 +36,8 @@ export class EventViewPage {
               this.joinEvent()
             })
         } else {
-          if (!user.events.joinedEvents) {
+          if (!user.events) {
+            user.events = {};
             user.events.joinedEvents = [this.beevyEvent]
           } else {
             user.events.joinedEvents.push(this.beevyEvent);
@@ -44,8 +45,8 @@ export class EventViewPage {
           this.saveUpdatedUser(user);
         }
       })
-      .catch(() => {
-
+      .catch((err) => {
+        console.error(err)
       })
   }
 
@@ -62,7 +63,10 @@ export class EventViewPage {
   }
 
   getDate(date: Date): string {
-    return DateUtil.getWeekdayfull(date.getDay()) +" "+ DateUtil.getDayMonthYearOfDate(date);
+    if (typeof date == "string") {
+      date = new Date(date);
+    }
+    return DateUtil.getWeekdayfull(new Date(date).getDay()) +" "+ DateUtil.getDayMonthYearOfDate(date);
   }
 
   getTime(date: Date): string {

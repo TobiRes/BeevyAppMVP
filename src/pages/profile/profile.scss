@@ -10,6 +10,32 @@ page-profile {
   .userName{
     text-align: center;
     font-size: 28px;
-    margin-top: 5px;
+    margin: 5px;
+    font-weight: bold;
+  }
+
+  .userMail{
+    text-align: center;
+    font-size: 15px;
+    margin: 5px;
+  }
+
+  .eventToggle {
+    zoom: 0.6;
+    margin: 5% auto 0 auto;
+  }
+
+  .toggleDesc{
+    font-size: 15px;
+    text-align: center;
+    margin-top: 1%;
+  }
+
+  .joinedButton{
+    margin-top: 0;
+  }
+
+  .createdButton{
+    margin-top: 3%;
   }
 }

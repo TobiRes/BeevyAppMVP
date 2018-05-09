@@ -14,16 +14,15 @@
     <img class="avatarBig" src="../../assets/icon/ninja-white.svg" height="40%" width="40%">
     <!-- <img src="../../assets/avatars/anonymous"> -->
   </div>
-  <p class="userName">{{user?.username}}Leon</p>
+  <p class="userName">{{user?.username}}</p>
+  <p class="userMail">{{user?.mail}}</p>
 
-  <div class="infoHolder">
-    <p>ID: {{user?.userID}}</p>
-    <p>Mail: {{user?.events.mail}}</p>
-    <p>Token: {{user?.events.token}}</p>
+  <button class="beevyButton joinedButon" ion-button full (click) ="listJoined()">Joined events</button>
+  <button class="beevyButton createdButton" ion-button full (click) ="listCreated()">Created events</button>
+
     <ion-list>
-      <div *ngFor="let event of user?.events.joinedEvents">
+      <div *ngFor="let event of user?.events?.joinedEvents">
         <beevy-event [beevyEvent]="event"></beevy-event>
       </div>
     </ion-list>
-  </div>
 </ion-content>
