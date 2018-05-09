@@ -35,6 +35,7 @@ export class CreateEventPage {
     loader.present();
     this.storage.get("user")
       .then((user: User) => {
+        console.log(user)
         let beevent: BeevyEvent = this.fillEventData(user);
         this.eventService.createBeevyEvents(beevent)
           .subscribe(() => {
@@ -47,7 +48,11 @@ export class CreateEventPage {
 
   private fillEventData(user: User): BeevyEvent {
     return {
-      admin: user.userID,
+      admin: {
+        username: user.username,
+        userID: user.userID,
+        token: user.token
+      },
       title: this.title,
       summary: this.summary,
       description: this.description,

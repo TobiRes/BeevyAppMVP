@@ -48,9 +48,10 @@ export class UserService{
       this.createUserOnServer(user)
         .then((token: string) => {
           user.token = token;
-          this.getUserEvents(user)
+          this.storage.set("user", user);
+          /*this.getUserEvents(user)
             .then((userWithEvents: User) => this.storage.set("user", userWithEvents))
-            .then(() => resolve());
+            .then(() => resolve());*/
         }).catch((err) => {
           console.error(err);
           reject();

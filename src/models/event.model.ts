@@ -2,7 +2,7 @@ import {Address} from "./address.model";
 
 export interface BeevyEvent {
   eventID?: string;
-  admin: string;
+  admin: Admin;
   title: string;
   summary: string;
   description: string;
@@ -14,6 +14,12 @@ export interface BeevyEvent {
   possibleMemberCount: number;
   currentMemberCount?: number;
   tags?: string[];
+}
+
+export interface Admin {
+  username: string;
+  userID: string;
+  token: string;
 }
 
 export enum BeevyEventType {

@@ -10,12 +10,6 @@ export interface User {
   events?: UserEvents;
 }
 
-export interface Admin {
-  name: string;
-  userID: string;
-  mail: string;
-}
-
 export interface UserEvents {
   joinedEvents?: BeevyEvent[];
   createdEvents?: BeevyEvent[];
