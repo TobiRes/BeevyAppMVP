@@ -4,7 +4,8 @@ import {User} from "../models/user.model";
 import {Device} from "@ionic-native/device";
 import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "../config/app-config";
-import {BeevyEvent} from "../models/event.model";
+import {SecurityUtil} from "../utils/security-util";
+import {SecurityUserData} from "../models/security-user-data.model";
 
 @Injectable()
 export class UserService{
@@ -34,6 +35,7 @@ export class UserService{
             resolve(false);
           } else {
             resolve(true);
+            this.getUserEvents(user);
           }
         })
         .catch(err => reject(err));
@@ -43,11 +45,12 @@ export class UserService{
   private createUser() {
     return new Promise((resolve, reject) => {
       let user: User = this.createUserData();
-      this.handleUserOnServerSide(user)
+      this.createUserOnServer(user)
         .then((token: string) => {
           user.token = token;
-          return this.storage.set("user", user)
-            .then(() => resolve())
+          this.getUserEvents(user)
+            .then((userWithEvents: User) => this.storage.set("user", userWithEvents))
+            .then(() => resolve());
         }).catch((err) => {
           console.error(err);
           reject();
@@ -63,19 +66,44 @@ export class UserService{
     }
   }
 
-  private handleUserOnServerSide(user: User){
+  private createUserOnServer(user: User){
+    let userAccessData: SecurityUserData = this.generateUserAccessData(user);
     return new Promise(((resolve, reject) => {
       this.http.post(UserService.BEEVY_USER_BASE_URL, user)
         .subscribe(() => {
-          this.http.get(UserService.BEEVY_USER_BASE_URL + "/" + user.username + "/" + user.userID)
-            .subscribe((securityToken: any) => {
-              console.log(securityToken.token)
-              resolve(securityToken.token);
+          this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
+            .subscribe(() => {
+              this.http.get(UserService.BEEVY_USER_BASE_URL + "/" + user.username + "/" + user.userID + "/" + userAccessData.tempToken)
+                .subscribe((securityToken: any) => {
+                  console.log(securityToken.token)
+                  resolve(securityToken.token);
+                })
             })
         }, err => {
           reject();
           console.error("failed to create user")
         })
     }))
+  }
+
+  private getUserEvents(user: User) {
+    let userAccessData: SecurityUserData =  this.generateUserAccessData(user);
+    return new Promise(((resolve, reject) => {
+      this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
+        .subscribe(() => {
+          this.http.get(UserService.BEEVY_USER_BASE_URL + "/events/" + "/" + user.userID + "/" + userAccessData.tempToken)
+            .subscribe((user: User) => {
+              resolve(user);
+            }, err => reject(err));
+        })
+    }))
+  }
+
+  private generateUserAccessData(user: User): SecurityUserData {
+    return {
+      username: user.username,
+      userID: user.userID,
+      tempToken: SecurityUtil.generateRandomToken()
+    };
   }
 }

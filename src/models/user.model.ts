@@ -5,6 +5,8 @@ export interface User {
   userID: string;
   mail: string;
   token?: string;
+  joinedEvents?: BeevyEvent[];
+  createdEvents?: BeevyEvent[];
   events?: UserEvents;
 }
 
