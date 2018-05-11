@@ -20,6 +20,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {CreateEventPageModule} from "../pages/create-event/create-event.module";
 import {UserService} from "../services/user.service";
 import {Device} from "@ionic-native/device";
+import {RlTagInputModule} from 'angular2-tag-input';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import {Device} from "@ionic-native/device";
     HomePageModule,
     CreateEventPageModule,
     ProfilePageModule,
-    HttpClientModule
+    HttpClientModule,
+    RlTagInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

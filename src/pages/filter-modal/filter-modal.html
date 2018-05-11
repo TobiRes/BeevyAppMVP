@@ -10,23 +10,36 @@
 
 <ion-content padding>
 
-  <ion-list class="typeFilter">
+  <!--<ion-list class="typeFilter">
     <ion-item>
       <ion-label>Projekt</ion-label>
-      <ion-checkbox [(ngModel)]="filter.types[0]"></ion-checkbox>
+      <ion-checkbox class="project" [(ngModel)]="filter.types[0]"></ion-checkbox>
     </ion-item>
 
     <ion-item>
       <ion-label>Aktivität</ion-label>
-      <ion-checkbox [(ngModel)]="filter.types[1]"></ion-checkbox>
+      <ion-checkbox class="activity" [(ngModel)]="filter.types[1]"></ion-checkbox>
     </ion-item>
 
     <ion-item>
       <ion-label>Hangout</ion-label>
-      <ion-checkbox [(ngModel)]="filter.types[2]"></ion-checkbox>
+      <ion-checkbox  class="hangout" [(ngModel)]="filter.types[2]"></ion-checkbox>
     </ion-item>
-  </ion-list>
-  
+  </ion-list>-->
+  <div class="buttonContainer">
+    <button id="projectButton" [ngClass]="['typeButton',buttonColour(0)]" (click)="setType(0, 'projectButton')" >Projekt</button>
+    <button id="activityButton"  [ngClass]="['typeButton', buttonColour(1)]" (click)="setType(1, 'activityButton')" >Aktivität</button>
+    <button id="hangoutButton" [ngClass]="['typeButton', buttonColour(2)]" (click)="setType(2, 'hangoutButton')" >Hangout</button>
+  </div>
+  <rl-tag-input
+    [(ngModel)]="tags"
+    [addOnBlur]="false"
+    [autocomplete]="false"
+    placeholder="+ Tags"
+  >
+  </rl-tag-input>
+
+
 
 
   <button ion-button (click)="applyFilter()">anwenden</button>

@@ -14,7 +14,7 @@ export class HomePage {
   events: BeevyEvent[] = [];
   filteredEvents: BeevyEvent[] = [];
   allEvents: BeevyEvent[] = [];
-  filter: SetFilters = {types: []};
+  filter: SetFilters = {types: [], tags: []};
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
@@ -57,9 +57,11 @@ export class HomePage {
     const filterModal: Modal = this.modalCtrl.create("FilterModalPage", {filter: this.filter}, filterModalOptions);
     filterModal.present();
     filterModal.onWillDismiss((setFilter: SetFilters) => {
-      this.filter= setFilter;
-      console.log(this.filter);
-      this.changeToFilteredEvents();
+      if(setFilter != null){
+        this.filter= setFilter;
+        console.log(this.filter);
+        this.changeToFilteredEvents();
+      }
     })
   }
   changeToFilteredEvents(){
@@ -72,10 +74,19 @@ export class HomePage {
     this.events = this.filteredEvents;
   }
   checkFiltermatch(event: BeevyEvent){
-    var matches = true;
+    var matches = false;
+    if(this.filter.tags.length < 1 || this.filter.tags == undefined) matches = true;
+    else{
+      for(var i=0; i< this.filter.tags.length; i++){
+        for(var i2=0; i2< event.tags.length; i2++){
+          if(this.filter.tags[i]==event.tags[i2]) matches = true;
+        }
+      }
+    }
     if(this.filter.types[0]== false && event.type == BeevyEventType.project) matches = false;
     if(this.filter.types[1]== false && event.type == BeevyEventType.activity) matches = false;
     if(this.filter.types[2]== false && event.type == BeevyEventType.hangout) matches = false;
+
 
     return matches;
   }

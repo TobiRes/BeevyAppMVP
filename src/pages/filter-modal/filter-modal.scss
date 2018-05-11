@@ -2,4 +2,20 @@ page-filter-modal {
   .typFilter{
     margin-top: 20px;
   }
+  .typeButton{
+    width: 30%;
+    border-radius: 30px;
+    height: 30px;
+    font-size: 18px;
+    margin: 2px;
+  }
+  .buttonContainer{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    margin: 0;
+    display: flex;
+    justify-content: center;
+
+  }
 }

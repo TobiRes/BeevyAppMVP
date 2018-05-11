@@ -32,9 +32,9 @@ export class BeevyEventComponent {
   }
 
   changeColorOfContainer(type: BeevyEventType, opacity: string): string {
-    if (type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-0";
-    if (type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-1";
-    if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-2";
+    if (type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1";
+    if (type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
+    if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
     return "beevy-info-background-" + opacity + "-0";
   }
 }
