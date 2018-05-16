@@ -32,8 +32,9 @@ export class UserService{
     let userAccessData: SecurityUserData =  this.generateUserAccessData(user);
       this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
         .subscribe(() => {
-          this.http.get(UserService.BEEVY_USER_BASE_URL + "/events/" + "/" + user.userID + "/" + userAccessData.tempToken)
+          this.http.get(AppConfig.API_BASE_URL + "/event/" + user.userID + "/" + userAccessData.tempToken)
             .subscribe((userEvents: UserEvents) => {
+              console.log("userEvents:", userEvents)
                 let updatedUser: User = user;
                 updatedUser.userEvents = userEvents;
                 this.storage.set("user", updatedUser);

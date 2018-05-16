@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'page-profile',
@@ -11,11 +12,14 @@ export class ProfilePage {
 
   user: User;
 
-  constructor(public navCtrl: NavController, private mockService: MockService) {
+  constructor(public navCtrl: NavController,
+              private mockService: MockService,
+              private storage: Storage) {
   }
 
   ionViewDidEnter() {
-    this.loadMockUser();
+    this.loadUser();
+    //this.loadMockUser();
   }
 
   private loadMockUser() {
@@ -29,5 +33,13 @@ export class ProfilePage {
         }
       })
       .catch((err) => console.error(err))
+  }
+
+  private loadUser() {
+    this.storage.get("user")
+      .then((user: User) => {
+        this.user = user;
+        console.log(this.user);
+      })
   }
 }

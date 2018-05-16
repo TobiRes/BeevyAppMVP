@@ -15,7 +15,7 @@
     <p>Mail: {{user?.mail}}</p>
     <p>Token: {{user?.token}}</p>
     <ion-list>
-      <div *ngFor="let event of user?.userEvents.createdEvents">
+      <div *ngFor="let event of user?.userEvents.joinedEvents">
         <beevy-event [beevyEvent]="event"></beevy-event>
       </div>
     </ion-list>
