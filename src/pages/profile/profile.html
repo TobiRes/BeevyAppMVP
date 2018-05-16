@@ -12,10 +12,10 @@
   <div class="infoHolder ">
     <p>Name: {{user?.username}}</p>
     <p>ID: {{user?.userID}}</p>
-    <p>Mail: {{user?.events.mail}}</p>
-    <p>Token: {{user?.events.token}}</p>
+    <p>Mail: {{user?.mail}}</p>
+    <p>Token: {{user?.token}}</p>
     <ion-list>
-      <div *ngFor="let event of user?.events.joinedEvents">
+      <div *ngFor="let event of user?.joinedEvents">
         <beevy-event [beevyEvent]="event"></beevy-event>
       </div>
     </ion-list>

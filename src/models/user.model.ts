@@ -7,11 +7,13 @@ export interface User {
   token?: string;
   joinedEvents?: BeevyEvent[];
   createdEvents?: BeevyEvent[];
-  events?: UserEvents;
 }
 
+/*
 export interface UserEvents {
   joinedEvents?: BeevyEvent[];
   createdEvents?: BeevyEvent[];
 }
+*/
+
 

@@ -36,10 +36,10 @@ export class EventViewPage {
               this.joinEvent()
             })
         } else {
-          if (!user.events.joinedEvents) {
-            user.events.joinedEvents = [this.beevyEvent]
+          if (!user.joinedEvents) {
+            user.joinedEvents = [this.beevyEvent]
           } else {
-            user.events.joinedEvents.push(this.beevyEvent);
+            user.joinedEvents.push(this.beevyEvent);
           }
           this.saveUpdatedUser(user);
         }
@@ -62,7 +62,7 @@ export class EventViewPage {
   }
 
   getDate(date: Date): string {
-    return DateUtil.getWeekdayfull(date.getDay()) +" "+ DateUtil.getDayMonthYearOfDate(date);
+    return DateUtil.getWeekdayfull(new Date(date).getDay()) +" "+ DateUtil.getDayMonthYearOfDate(date);
   }
 
   getTime(date: Date): string {

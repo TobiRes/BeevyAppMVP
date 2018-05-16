@@ -19,7 +19,7 @@ export interface BeevyEvent {
 export interface Admin {
   username: string;
   userID: string;
-  token: string;
+  token?: string;
 }
 
 export enum BeevyEventType {

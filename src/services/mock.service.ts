@@ -21,7 +21,10 @@ export class MockService {
     }
 
     let event1 = {
-      admin: "clara",
+      admin: {
+        username: "clara",
+        userID: "1234"
+      },
       title: "Sketch Night",
       summary: "Sketch & Chill bei Clara",
       description: "Chilliger Abend mit Essen und zeichnen. Freu mich auf euch!",
@@ -40,7 +43,10 @@ export class MockService {
     }
 
     let event2 = {
-      admin: "tobi",
+      admin: {
+        username: "tobi",
+        userID: "5678"
+      },
       title: "Zock-Projekt",
       summary: "Eine Woche Spiele testen",
       description: "Wir testen eine Woche lang verschiedene Spiele und machen eine Hausarbeit",
@@ -60,7 +66,10 @@ export class MockService {
     }
 
     let event3 = {
-      admin: "clara",
+      admin: {
+        username: "clara",
+        userID: "1234"
+      },
       title: "Klettern",
       summary: "Wir klettern einen Hang hinauf",
       description: "Chilliger Abend mit Essen und zeichnen. Freu mich auf euch!",
