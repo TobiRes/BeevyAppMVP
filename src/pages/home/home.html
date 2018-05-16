@@ -9,8 +9,8 @@
 
 <ion-content class="main-background-gradient">
   <div style="padding-top:60px"></div>
-  <img class="beevyFooter" src="../../assets/imgs/footer.svg"/>
-  <img class="beevyHeader" src="../../assets/imgs/footer.svg">
+  <img class="beevyFooter" src="assets/imgs/footer.svg"/>
+  <img class="beevyHeader" src="assets/imgs/footer.svg">
   <ion-list class="eventList">
     <div *ngFor="let event of events">
       <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>
