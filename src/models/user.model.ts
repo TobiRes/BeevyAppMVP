@@ -5,15 +5,13 @@ export interface User {
   userID: string;
   mail: string;
   token?: string;
-  joinedEvents?: BeevyEvent[];
-  createdEvents?: BeevyEvent[];
+  userEvents?: UserEvents;
 }
 
-/*
+
 export interface UserEvents {
-  joinedEvents?: BeevyEvent[];
-  createdEvents?: BeevyEvent[];
+  joinedEvents: BeevyEvent[];
+  createdEvents: BeevyEvent[];
 }
-*/
 
 

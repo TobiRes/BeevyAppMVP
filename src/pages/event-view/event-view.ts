@@ -5,6 +5,8 @@ import {Storage} from "@ionic/storage";
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {DateUtil} from "../../utils/date-util";
+import {UserService} from "../../services/user.service";
+import {BeevyEventService} from "../../services/event.service";
 
 @IonicPage()
 @Component({
@@ -19,7 +21,8 @@ export class EventViewPage {
               public navParams: NavParams,
               private storage: Storage,
               private alertCtrl: AlertController,
-              private mockService: MockService) {
+              private mockService: MockService,
+              private eventService: BeevyEventService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     console.log(this.beevyEvent);
   }
@@ -28,7 +31,11 @@ export class EventViewPage {
   }
 
   joinEvent() {
-    this.mockService.checkIfUserExists()
+    this.eventService.joinBeevyEvent(this.beevyEvent);
+
+
+
+    /*this.mockService.checkIfUserExists()
       .then((user: User) => {
         if (!user) {
           this.mockService.createMockUser()
@@ -46,7 +53,7 @@ export class EventViewPage {
       })
       .catch(() => {
 
-      })
+      })*/
   }
 
   private saveUpdatedUser(user: User) {

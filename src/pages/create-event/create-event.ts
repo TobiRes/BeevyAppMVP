@@ -4,6 +4,7 @@ import {Storage} from "@ionic/storage";
 import {User} from "../../models/user.model";
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {BeevyEventService} from "../../services/event.service";
+import {UserService} from "../../services/user.service";
 
 
 @Component({
@@ -22,11 +23,11 @@ export class CreateEventPage {
   zip: number;
   city: string;
   possibleMemberCount: number;
-  currentMemberCount: number;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,
               private eventService: BeevyEventService,
+              private userService: UserService,
               private loadingCtrl: LoadingController) {
   }
 
@@ -35,10 +36,10 @@ export class CreateEventPage {
     loader.present();
     this.storage.get("user")
       .then((user: User) => {
-        console.log(user)
         let beevent: BeevyEvent = this.fillEventData(user);
         this.eventService.createBeevyEvents(beevent)
           .subscribe(() => {
+            this.userService.getUserEvents(user)
             loader.dismissAll()
           }, () => {
             loader.dismissAll();

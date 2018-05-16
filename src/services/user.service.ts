@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Storage} from "@ionic/storage";
-import {User} from "../models/user.model";
+import {User, UserEvents} from "../models/user.model";
 import {Device} from "@ionic-native/device";
 import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "../config/app-config";
@@ -27,6 +27,20 @@ export class UserService{
       })
   }
 
+
+  getUserEvents(user: User) {
+    let userAccessData: SecurityUserData =  this.generateUserAccessData(user);
+      this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
+        .subscribe(() => {
+          this.http.get(UserService.BEEVY_USER_BASE_URL + "/events/" + "/" + user.userID + "/" + userAccessData.tempToken)
+            .subscribe((userEvents: UserEvents) => {
+                let updatedUser: User = user;
+                updatedUser.userEvents = userEvents;
+                this.storage.set("user", updatedUser);
+            }, err => console.error(err));
+        })
+  }
+
   private checkIfUserExists(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.storage.get("user")
@@ -35,7 +49,6 @@ export class UserService{
             resolve(false);
           } else {
             resolve(true);
-            this.getUserEvents(user);
           }
         })
         .catch(err => reject(err));
@@ -49,9 +62,13 @@ export class UserService{
         .then((token: string) => {
           user.token = token;
           this.storage.set("user", user);
-          /*this.getUserEvents(user)
-            .then((userWithEvents: User) => this.storage.set("user", userWithEvents))
-            .then(() => resolve());*/
+          //TODO: FIND A BETTER WAY TO GET USER EVENTS WHEN A USER DOES A FRESH INSTALL SO THIS ISN'T CALLED ON EVERY APP START
+/*          this.getUserEvents(user)
+            .then((userEvents: UserEvents) => {
+              user.userEvents  = userEvents;
+              this.storage.set("user", user)
+                .then(() => resolve());
+            })*/
         }).catch((err) => {
           console.error(err);
           reject();
@@ -83,19 +100,6 @@ export class UserService{
         }, err => {
           reject();
           console.error("failed to create user")
-        })
-    }))
-  }
-
-  private getUserEvents(user: User) {
-    let userAccessData: SecurityUserData =  this.generateUserAccessData(user);
-    return new Promise(((resolve, reject) => {
-      this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
-        .subscribe(() => {
-          this.http.get(UserService.BEEVY_USER_BASE_URL + "/events/" + "/" + user.userID + "/" + userAccessData.tempToken)
-            .subscribe((user: User) => {
-              resolve(user);
-            }, err => reject(err));
         })
     }))
   }

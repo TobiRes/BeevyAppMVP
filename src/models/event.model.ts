@@ -22,6 +22,12 @@ export interface Admin {
   token?: string;
 }
 
+export interface JoinEventData {
+  userID: string;
+  eventID: string;
+  token: string;
+}
+
 export enum BeevyEventType {
   event = <any> "event",
   project = <any> "project",
