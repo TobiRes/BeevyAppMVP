@@ -23,6 +23,11 @@
     <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="latestDate"></ion-datetime>
   </ion-item>
 
+  <ion-item>
+    <ion-label floating>Ort</ion-label>
+    <ion-input [(ngModel)]="citySearch"></ion-input>
+  </ion-item>
+
 
   <button ion-button (click)="applyFilter()">anwenden</button>
 

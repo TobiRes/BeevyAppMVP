@@ -17,6 +17,7 @@ export class FilterModalPage {
   earliestDate: string;
   latestDate: string;
   suchInput: string;
+  citySearch: string;
 
   defaultEndDate: string ="2018-12-31T24:24:24.335Z";
 
@@ -26,6 +27,7 @@ export class FilterModalPage {
     this.filter = this.navParams.get("filter");
     this.tags = this.filter.tags;
     this.suchInput  = this.filter.search;
+    this.citySearch = this.filter.city;
     if(this.filter.earliestDate != null){
       this.earliestDate = this.filter.earliestDate;
     }
@@ -38,7 +40,6 @@ export class FilterModalPage {
     else{
       this.latestDate = this.defaultEndDate;
     }
-    console.log(this.earliestDate<this.latestDate);
   }
 
   setType(n: number, id: string){
@@ -57,10 +58,8 @@ export class FilterModalPage {
     this.filter.tags = this.tags;
     this.filter.earliestDate = this.earliestDate;
     this.filter.latestDate = this.latestDate;
+    this.filter.city = this.citySearch;
     this.filter.search = null;
-
-    console.log(this.filter.earliestDate);
-    console.log(this.filter.latestDate);
 
     this.viewCtrl.dismiss(this.filter);
   }

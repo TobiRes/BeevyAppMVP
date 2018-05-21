@@ -30,9 +30,12 @@ export class HomePage {
     this.allEvents = [];
     this.getMockEvents();
     this.events = this.allEvents;
+
+    //nur damit wo sich jetzt bei den MockEvents bei jedem eintreten die Events ändern auch der Filter gelöscht wird
     this.filter = {};
     this.filter.tags = [];
     this.filter.types = [true,true,true];
+    this.filter.city = null;
   }
 
   openEventView(beevyEvent: BeevyEvent) {
@@ -101,6 +104,9 @@ export class HomePage {
     //check for date
     if(event.date.toISOString()< this.filter.earliestDate) matches = false;
     if(event.date.toISOString()> this.filter.latestDate) matches = false;
+
+    //Check for City
+    if(event.address.city.toLowerCase() != this.filter.city.toLowerCase()) matches = false;
 
     //check for Types
     if(this.filter.types[0]== false && event.type == BeevyEventType.project) matches = false;
