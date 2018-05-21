@@ -14,12 +14,14 @@ export class FilterModalPage {
   filter: SetFilters = {types: [], tags: []};
 
   tags = [];
+  suchInput: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl: ViewController) {
     this.filter = this.navParams.get("filter");
     this.tags = this.filter.tags;
+    this.suchInput  = this.filter.search;
   }
 
   setType(n: number, id: string){
@@ -32,11 +34,17 @@ export class FilterModalPage {
       this.filter.types[n] = false;
       document.getElementById(id).style.opacity = "0.5";
     }
-    console.log(this.filter.types[n]);
   }
 
   applyFilter() {
     this.filter.tags = this.tags;
+    this.filter.search = null;
+    this.viewCtrl.dismiss(this.filter);
+  }
+  searchEvents(){
+    this.filter.tags = [];
+    this.filter.types = [true,true,true];
+    this.filter.search = this.suchInput;
     this.viewCtrl.dismiss(this.filter);
   }
 

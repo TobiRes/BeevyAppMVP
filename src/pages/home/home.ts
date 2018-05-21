@@ -66,9 +66,18 @@ export class HomePage {
   }
   changeToFilteredEvents(){
     this.filteredEvents = [];
-    for(var i=0; i<this.allEvents.length; i ++){
-      if(this.checkFiltermatch(this.allEvents[i])){
-        this.filteredEvents.push(this.allEvents[i]);
+    if(this.filter.search != null){
+      for(var i=0; i<this.allEvents.length; i ++){
+        if(this.checkSearchMatch(this.allEvents[i])){
+          this.filteredEvents.push(this.allEvents[i]);
+        }
+      }
+    }
+    else{
+      for(var i2=0; i2<this.allEvents.length; i2 ++){
+        if(this.checkFiltermatch(this.allEvents[i2])){
+          this.filteredEvents.push(this.allEvents[i2]);
+        }
       }
     }
     this.events = this.filteredEvents;
@@ -79,7 +88,7 @@ export class HomePage {
     else{
       for(var i=0; i< this.filter.tags.length; i++){
         for(var i2=0; i2< event.tags.length; i2++){
-          if(this.filter.tags[i]==event.tags[i2]) matches = true;
+          if(this.filter.tags[i].toLowerCase()==event.tags[i2].toLowerCase()) matches = true;
         }
       }
     }
@@ -89,5 +98,10 @@ export class HomePage {
 
 
     return matches;
+  }
+  checkSearchMatch(event: BeevyEvent){
+    var beevyEventString = JSON.stringify(event).toLowerCase();
+    if(beevyEventString.includes(this.filter.search.toLowerCase())) return true;
+    else return false;
   }
 }
