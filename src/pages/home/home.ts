@@ -30,6 +30,9 @@ export class HomePage {
     this.allEvents = [];
     this.getMockEvents();
     this.events = this.allEvents;
+    this.filter = {};
+    this.filter.tags = [];
+    this.filter.types = [true,true,true];
   }
 
   openEventView(beevyEvent: BeevyEvent) {
@@ -83,6 +86,8 @@ export class HomePage {
     this.events = this.filteredEvents;
   }
   checkFiltermatch(event: BeevyEvent){
+
+    //check for Tags
     var matches = false;
     if(this.filter.tags.length < 1 || this.filter.tags == undefined) matches = true;
     else{
@@ -92,6 +97,12 @@ export class HomePage {
         }
       }
     }
+
+    //check for date
+    if(event.date.toISOString()< this.filter.earliestDate) matches = false;
+    if(event.date.toISOString()> this.filter.latestDate) matches = false;
+
+    //check for Types
     if(this.filter.types[0]== false && event.type == BeevyEventType.project) matches = false;
     if(this.filter.types[1]== false && event.type == BeevyEventType.activity) matches = false;
     if(this.filter.types[2]== false && event.type == BeevyEventType.hangout) matches = false;

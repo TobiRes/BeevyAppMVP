@@ -14,6 +14,16 @@
     placeholder="+ Tags"
   >
   </rl-tag-input>
+  <ion-item>
+    <ion-label>Von</ion-label>
+    <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="earliestDate"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label>Bis</ion-label>
+    <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="latestDate"></ion-datetime>
+  </ion-item>
+
+
   <button ion-button (click)="applyFilter()">anwenden</button>
 
   <ion-searchbar [(ngModel)]="suchInput"

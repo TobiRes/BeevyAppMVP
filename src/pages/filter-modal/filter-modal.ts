@@ -14,7 +14,11 @@ export class FilterModalPage {
   filter: SetFilters = {types: [], tags: []};
 
   tags = [];
+  earliestDate: string;
+  latestDate: string;
   suchInput: string;
+
+  defaultEndDate: string ="2018-12-31T24:24:24.335Z";
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -22,6 +26,19 @@ export class FilterModalPage {
     this.filter = this.navParams.get("filter");
     this.tags = this.filter.tags;
     this.suchInput  = this.filter.search;
+    if(this.filter.earliestDate != null){
+      this.earliestDate = this.filter.earliestDate;
+    }
+    else{
+      this.earliestDate = new Date().toISOString();
+    }
+    if(this.filter.latestDate != null){
+      this.latestDate = this.filter.latestDate;
+    }
+    else{
+      this.latestDate = this.defaultEndDate;
+    }
+    console.log(this.earliestDate<this.latestDate);
   }
 
   setType(n: number, id: string){
@@ -38,12 +55,20 @@ export class FilterModalPage {
 
   applyFilter() {
     this.filter.tags = this.tags;
+    this.filter.earliestDate = this.earliestDate;
+    this.filter.latestDate = this.latestDate;
     this.filter.search = null;
+
+    console.log(this.filter.earliestDate);
+    console.log(this.filter.latestDate);
+
     this.viewCtrl.dismiss(this.filter);
   }
   searchEvents(){
     this.filter.tags = [];
     this.filter.types = [true,true,true];
+    this.filter.earliestDate = new Date().toISOString();
+    this.filter.latestDate = this.defaultEndDate;
     this.filter.search = this.suchInput;
     this.viewCtrl.dismiss(this.filter);
   }

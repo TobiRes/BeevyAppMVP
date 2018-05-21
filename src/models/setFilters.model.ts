@@ -1,9 +1,8 @@
 export interface SetFilters {
   types?: boolean[];
-  category?: string;
   tags?: string[];
-  earliestDate?: Date;
-  latestDate?: Date;
+  earliestDate?: string;
+  latestDate?: string;
   city?: string;
   search?: string;
 }
