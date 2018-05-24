@@ -1,6 +1,9 @@
-ion-alert {
+.alert-top{
+  padding: 0 !important;
+  align-items: center !important;
+}
 
-  .alert-top {
-    padding-top: 0 !important;
-  }
+.alert-wrapper {
+  background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
+
 }

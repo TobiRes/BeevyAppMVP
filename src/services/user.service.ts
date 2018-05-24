@@ -23,6 +23,7 @@ export class UserService {
   }
 
   handleUser() {
+    //this.confirmRegistration()
     this.checkIfUserExists()
       .then((userExists: boolean) => {
         if (userExists) {
@@ -92,7 +93,7 @@ export class UserService {
         cssClass: "registrationModal",
         showBackdrop: false
       }
-      const registrationModal: Modal = this.modalCtrl.create("FilterModalPage", {}, registrationModalOption);
+      const registrationModal: Modal = this.modalCtrl.create("RegistrationModalPage", {}, registrationModalOption);
       registrationModal.present();
       registrationModal.onWillDismiss((registrationData) => {
         if (registrationData) {
