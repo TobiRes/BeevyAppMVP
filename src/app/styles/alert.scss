@@ -10,7 +10,11 @@
     }
 
     .alert-input {
-      color: $beevy-darkViolett
+      color: $beevy-darkViolett;
     }
   }
+}
+
+.alert-md .alert-input {
+  color: white !important;
 }

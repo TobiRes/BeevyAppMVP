@@ -8,6 +8,7 @@ page-registration-modal {
     .description {
       padding: 25px 15px 0px 15px;
       text-align: center;
+      color: white;
     }
 
     .item {
@@ -32,4 +33,20 @@ page-registration-modal {
       }
     }
   }
+
+  .toolbar-title-md {
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  .item-input-has-focus {
+    .item-inner {
+      box-shadow: none !important;
+      border-bottom: 1px solid $beevy-blue !important;
+    }
+    .label-md {
+      color: $beevy-blue !important;
+    }
+  }
+
 }
