@@ -20,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {CreateEventPageModule} from "../pages/create-event/create-event.module";
 import {UserService} from "../services/user.service";
 import {Device} from "@ionic-native/device";
+import {ToastService} from "../services/toast.service";
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {Device} from "@ionic-native/device";
     MockService,
     BeevyEventService,
     UserService,
+    ToastService,
     Device
   ]
 })

@@ -13,15 +13,15 @@
     <div>
       <ion-item>
         <ion-label floating>Name</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="name"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>E-Mail</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="email"></ion-input>
       </ion-item>
     </div>
     <div class="button-wrapper halfButton">
-      <button class="actionsButton" ion-button (click)="applyFilter()">Registrieren</button>
+      <button class="actionsButton" ion-button (click)="register()" [disabled]="isDisabled()">Registrieren</button>
     </div>
   </div>
 </ion-content>
