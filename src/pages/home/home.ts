@@ -3,6 +3,7 @@ import {Modal, ModalController, ModalOptions, NavController} from 'ionic-angular
 import {BeevyEvent} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               private mockService: MockService,
               private eventService: BeevyEventService,
-              private modalCtrl: ModalController) {
+              private modalCtrl: ModalController,
+              private userService: UserService) {
   }
 
   ionViewDidEnter() {
@@ -25,6 +27,17 @@ export class HomePage {
 
   openEventView(beevyEvent: BeevyEvent) {
     this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
+  }
+
+  openFilter() {
+    const filterModalOptions: ModalOptions = {
+      cssClass: "filterModal",
+      showBackdrop: true
+    }
+    const filterModal: Modal = this.modalCtrl.create("FilterModalPage", {test1: "test", test2: "test2"}, filterModalOptions);
+    filterModal.present();
+    filterModal.onWillDismiss((filterOptions) => {
+    })
   }
 
   private getEvents() {
@@ -38,17 +51,5 @@ export class HomePage {
     for (var i = 0; i < 10; i++) {
       this.events[i] = this.mockService.getMockEvent();
     }
-  }
-
-  openFilter() {
-    const filterModalOptions: ModalOptions = {
-      cssClass: "filterModal",
-      showBackdrop: true
-    }
-    const filterModal: Modal = this.modalCtrl.create("FilterModalPage", {test1: "test", test2: "test2"}, filterModalOptions);
-    filterModal.present();
-    filterModal.onWillDismiss((filterOptions) => {
-
-    })
   }
 }
