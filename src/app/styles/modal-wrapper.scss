@@ -4,7 +4,6 @@
   max-width: 95vw;
   border-radius: 30px;
   width: 120vw;
-  height: 50vh !important;
   top: 0;
   bottom: 0;
   left: 0;
@@ -12,9 +11,17 @@
   margin: auto;
   border: 0;
   box-shadow: 0 16px 20px rgba(0, 0, 0, .4);
+  height: auto;
+  .ion-page{
+    //height: auto;
+    position: relative;
+    .content{
+      position: relative;
+    }
+  }
 
   .scroll-content {
-    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+    background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
     padding: 0 !important;
   }
 
@@ -25,6 +32,6 @@
 
 ion-backdrop {
   visibility: visible !important;
-  background: black !important;
-  opacity: 0.5 !important;
+  background: linear-gradient($beevy-pink, $beevy-orange) !important;
+  opacity: 0.7 !important;
 }

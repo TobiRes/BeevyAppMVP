@@ -65,26 +65,16 @@ export class HomePage {
     filterModal.onWillDismiss((setFilter: SetFilters) => {
       if(setFilter != null){
         this.filter= setFilter;
-        console.log(this.filter);
         this.changeToFilteredEvents();
       }
     })
   }
   changeToFilteredEvents(){
     this.filteredEvents = [];
-    if(this.filter.search != null){
-      for(var i=0; i<this.allEvents.length; i ++){
-        if(this.checkSearchMatch(this.allEvents[i])){
-          this.filteredEvents.push(this.allEvents[i]);
-        }
-      }
-    }
-    else{
-      for(var i2=0; i2<this.allEvents.length; i2 ++){
+    for(var i2=0; i2<this.allEvents.length; i2 ++){
         if(this.checkFiltermatch(this.allEvents[i2])){
           this.filteredEvents.push(this.allEvents[i2]);
         }
-      }
     }
     this.events = this.filteredEvents;
   }
@@ -101,12 +91,16 @@ export class HomePage {
       }
     }
 
+    //check for search
+    var beevyEventString = JSON.stringify(event).toLowerCase();
+    if(this.filter.search != null && !(beevyEventString.includes(this.filter.search.toLowerCase()))) matches = false;
+
     //check for date
     if(event.date.toISOString()< this.filter.earliestDate) matches = false;
     if(event.date.toISOString()> this.filter.latestDate) matches = false;
 
     //Check for City
-    if(event.address.city.toLowerCase() != this.filter.city.toLowerCase()) matches = false;
+    if(this.filter.city != null && event.address.city.toLowerCase() != this.filter.city.toLowerCase()) matches = false;
 
     //check for Types
     if(this.filter.types[0]== false && event.type == BeevyEventType.project) matches = false;

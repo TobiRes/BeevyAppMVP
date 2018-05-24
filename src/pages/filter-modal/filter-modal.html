@@ -1,39 +1,56 @@
 
 <ion-content padding>
 
-
-  <div class="buttonContainer">
-    <button id="projectButton" [ngClass]="['typeButton',buttonColour(0)]" (click)="setType(0, 'projectButton')" >Projekt</button>
-    <button id="activityButton"  [ngClass]="['typeButton', buttonColour(1)]" (click)="setType(1, 'activityButton')" >Aktivität</button>
-    <button id="hangoutButton" [ngClass]="['typeButton', buttonColour(2)]" (click)="setType(2, 'hangoutButton')" >Hangout</button>
-  </div>
-  <rl-tag-input
-    [(ngModel)]="tags"
-    [addOnBlur]="false"
-    [autocomplete]="false"
-    placeholder="+ Tags"
-  >
-  </rl-tag-input>
-  <ion-item>
-    <ion-label>Von</ion-label>
-    <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="earliestDate"></ion-datetime>
-  </ion-item>
-  <ion-item>
-    <ion-label>Bis</ion-label>
-    <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="latestDate"></ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label floating>Ort</ion-label>
-    <ion-input [(ngModel)]="citySearch"></ion-input>
-  </ion-item>
-
-
-  <button ion-button (click)="applyFilter()">anwenden</button>
-
   <ion-searchbar [(ngModel)]="suchInput"
-                 placeholder="Suchen">
+                 placeholder="Suchen"
+                 class="suchBar"
+  id = "suchBalken">
   </ion-searchbar>
 
-  <button ion-button (click)="searchEvents()">suchen</button>
+  <div class="filterContainer" id="filterContainer">
+    <div class="buttonContainer">
+      <button id="typeButton0" [ngClass]="['typeButton',buttonColour(0)]" (click)="setType(0, 'typeButton0')" >Projekt</button>
+      <button id="typeButton1"  [ngClass]="['typeButton', buttonColour(1)]" (click)="setType(1, 'typeButton1')" >Aktivität</button>
+      <button id="typeButton2" [ngClass]="['typeButton', buttonColour(2)]" (click)="setType(2, 'typeButton2')" >Hangout</button>
+    </div>
+
+
+    <rl-tag-input
+      [(ngModel)]="tags"
+      [addOnBlur]="false"
+      [autocomplete]="false"
+      placeholder="+ Tags"
+      class="tagInput"
+    >
+    </rl-tag-input>
+
+
+    <div class="dateInputs">
+      <ion-item class="dateInput">
+        <ion-label class="dateInputLabel">Von</ion-label>
+        <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="earliestDate"></ion-datetime>
+      </ion-item>
+      <ion-item class="dateInput">
+        <ion-label class="dateInputLabel">Bis</ion-label>
+        <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="latestDate"></ion-datetime>
+      </ion-item>
+    </div>
+
+    <ion-item class="ortInput">
+      <ion-label fixed class="dateInputLabel">Ort</ion-label>
+      <ion-input [(ngModel)]="citySearch"></ion-input>
+    </ion-item>
+
+
+
+
+    <div class="butteonWrapping halberButton">
+      <button class="actionsButton" ion-button (click)="deleteFilter()">zurücksetzen</button>
+    </div>
+
+    <div class="butteonWrapping halberButton">
+    <button class="actionsButton" ion-button (click)="applyFilter()">anwenden</button>
+    </div>
+
+  </div>
 </ion-content>

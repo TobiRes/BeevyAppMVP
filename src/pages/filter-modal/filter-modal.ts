@@ -38,8 +38,9 @@ export class FilterModalPage {
       this.latestDate = this.filter.latestDate;
     }
     else{
-      this.latestDate = this.defaultEndDate;
+      this.latestDate =   this.defaultEndDate;
     }
+
   }
 
   setType(n: number, id: string){
@@ -59,24 +60,31 @@ export class FilterModalPage {
     this.filter.earliestDate = this.earliestDate;
     this.filter.latestDate = this.latestDate;
     this.filter.city = this.citySearch;
-    this.filter.search = null;
+    this.filter.search = this.suchInput;
 
     this.viewCtrl.dismiss(this.filter);
   }
-  searchEvents(){
-    this.filter.tags = [];
+
+  deleteFilter(){
     this.filter.types = [true,true,true];
+    for(var n=0; n<3; n++){
+      document.getElementById("typeButton"+n).style.opacity = "1.0";
+    }
+    this.filter.tags = [];
     this.filter.earliestDate = new Date().toISOString();
     this.filter.latestDate = this.defaultEndDate;
-    this.filter.search = this.suchInput;
-    this.viewCtrl.dismiss(this.filter);
+    this.filter.city= null;
+    this.filter.search= null;
+    this.tags = [];
+    this.earliestDate=new Date().toISOString();
+    this.latestDate= this.defaultEndDate;
+    this.suchInput=null;
+    this.citySearch= null;
   }
 
   buttonColour(n: number): string{
-    var active = "full;"
-    if(this.filter.types[n]) active = "full";
-    else active = "transparent"
-    return "beevy-info-background-"+active+"-"+n;
+    if(this.filter.types[n]) return "beevy-info-background-full-"+n;
+    else return "beevy-info-background-more-transparent-"+n;
   }
 
 }
