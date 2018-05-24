@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {ToastService} from "../../services/toast.service";
 
 
@@ -16,13 +16,12 @@ export class FilterModalPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl: ViewController,
-              private toastService: ToastService) {
-
-  }
+              private toastService: ToastService) { }
 
   register() {
-    console.log("test")
-    this.validateData();
+    if(this.validateData()){
+      this.viewCtrl.dismiss({username: this.name, mail: this.email})
+    }
   }
 
   isDisabled(){

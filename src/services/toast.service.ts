@@ -26,4 +26,14 @@ export class ToastService {
 
     toast.present();
   }
+
+  successfullyRegistered(username: string) {
+    let toast = this.toastCtrl.create({
+      message: 'Du hast dich erfolgreich registriert, ' + username + "!",
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
 }
