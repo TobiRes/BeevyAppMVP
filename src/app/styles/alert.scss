@@ -1,9 +1,16 @@
 .alert-top{
   padding: 0 !important;
   align-items: center !important;
-}
 
-.alert-wrapper {
-  background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
+  .alert-wrapper {
+    background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
 
+    .button-inner{
+      color: $beevy-blue;
+    }
+
+    .alert-input {
+      color: $beevy-darkViolett
+    }
+  }
 }

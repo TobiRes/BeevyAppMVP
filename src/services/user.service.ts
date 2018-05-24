@@ -23,7 +23,6 @@ export class UserService {
   }
 
   handleUser() {
-    //this.confirmRegistration()
     this.checkIfUserExists()
       .then((userExists: boolean) => {
         if (userExists) {
@@ -116,7 +115,7 @@ export class UserService {
   private createUserData(registrationData: any): User {
     return {
       username: registrationData.username,
-      userID: this.device.uuid ? this.device.uuid : "aqasddasd",
+      userID: this.device.uuid ? this.device.uuid : "1237",
       mail: registrationData.mail
     }
   }
@@ -135,8 +134,8 @@ export class UserService {
           {
             text: 'Abbrechen',
             role: 'cancel',
-            handler: data => {
-              reject();
+            handler: () => {
+              reject("Canceled confirmation");
             }
           },
           {
@@ -145,8 +144,7 @@ export class UserService {
               if (token) {
                 resolve(token);
               } else {
-                reject()
-                return false;
+                reject("No data entered in confirmation");
               }
             }
           }
@@ -157,7 +155,6 @@ export class UserService {
   }
 
   private confirmRegistrationWithServer(newUser: User, token: string) {
-    console.log(token);
     return new Promise((resolve, reject) => {
       this.http.get(UserService.BEEVY_USER_BASE_URL + "/" + newUser.username + "/" + newUser.userID + "/" + token)
         .subscribe((userToken: any) => {
