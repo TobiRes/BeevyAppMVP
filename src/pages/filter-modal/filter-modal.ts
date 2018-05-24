@@ -12,8 +12,6 @@ export class FilterModalPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl: ViewController) {
-    let test1 = this.navParams.get("test1");
-    let test2 = this.navParams.get("test2");
 
   }
 

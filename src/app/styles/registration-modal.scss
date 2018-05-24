@@ -1,31 +1,35 @@
-.registrationModal .modal-wrapper {
-  position: absolute;
-  overflow: hidden;
-  max-width: 93vw;
-  border-radius: 5px;
-  width: 70vw;
-  height: 50vh !important;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  border: 0;
-  box-shadow: 0 16px 20px rgba(0, 0, 0, .4);
+.registrationModal {
+  .modal-wrapper {
+    position: absolute;
+    overflow: hidden;
+    max-width: 90vw;
+    border-radius: 30px;
+    width: 530px;
+    height: 315px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: 0;
+    box-shadow: 0 16px 20px rgba(0, 0, 0, .4);
 
-  .scroll-content {
-    background-color: white !important;
-    padding: 0 !important;
-  }
+    .scroll-content {
+      background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
+      padding: 0 !important;
+    }
 
-  button {
-    color: white;
+    button {
+      color: black;
+    }
   }
 }
 
+
+
 .registrationModal ion-backdrop {
   visibility: visible !important;
-  background: black !important;
+  background: linear-gradient($beevy-pink, $beevy-orange) !important;
   opacity: 0.5 !important;
 }
 

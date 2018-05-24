@@ -1,12 +1,27 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>filter-modal</ion-title>
+    <ion-title>Registrierung</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-
+  <div class="registrationContent">
+    <div class="description">
+      Um alle Funktionen der App zu nutzen, musst du dich mit deiner Hochschul-Email registrieren!
+    </div>
+    <div>
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>E-Mail</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </div>
+    <div class="button-wrapper halfButton">
+      <button class="actionsButton" ion-button (click)="applyFilter()">Registrieren</button>
+    </div>
+  </div>
 </ion-content>
