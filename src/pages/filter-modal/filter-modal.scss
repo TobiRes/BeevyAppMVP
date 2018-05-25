@@ -2,6 +2,7 @@ page-filter-modal {
   .filterContainer{
     background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
     border-radius: 30px;
+    padding-bottom: 5px;
   }
   .typFilter{
     margin-top: 20px;
@@ -86,6 +87,7 @@ page-filter-modal {
   //Dateanzeige
   .dateInputs{
     margin-left: 20px;
+    padding-top: 10px;
   }
   .dateInput{
     width: 45%;
@@ -143,6 +145,7 @@ page-filter-modal {
   //Suchen
   .suchBar{
     background:transparent;
+    padding-top: 10px;
   }
   .searchbar-input{
     background-color: blue;
