@@ -115,7 +115,7 @@ export class UserService {
   private createUserData(registrationData: any): User {
     return {
       username: registrationData.username,
-      userID: this.device.uuid ? this.device.uuid : "1237",
+      userID: this.device.uuid ? this.device.uuid : "1104",
       mail: registrationData.mail
     }
   }

@@ -12,12 +12,15 @@ import {UserService} from "../../services/user.service";
 export class HomePage {
 
   events: BeevyEvent[] = [];
+  private userExists: boolean = false;
+  private retryUserCheck: boolean = true;
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
               private eventService: BeevyEventService,
               private modalCtrl: ModalController,
               private userService: UserService) {
+    this.checkForUserStatus();
   }
 
   ionViewDidEnter() {
@@ -26,7 +29,11 @@ export class HomePage {
   }
 
   openEventView(beevyEvent: BeevyEvent) {
-    this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
+    if(this.userExists){
+      this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
+    } else {
+      this.manageUserStatus();
+    }
   }
 
   openFilter() {
@@ -51,5 +58,24 @@ export class HomePage {
     for (var i = 0; i < 10; i++) {
       this.events[i] = this.mockService.getMockEvent();
     }
+  }
+
+  private manageUserStatus() {
+    if(this.retryUserCheck){
+      this.checkForUserStatus();
+      this.retryUserCheck = false;
+    } else {
+      this.userService.handleUser();
+      this.retryUserCheck = true;
+    }
+  }
+
+  private checkForUserStatus(){
+    this.userService.checkIfUserExists()
+      .then((userStatus: boolean) => this.userExists = userStatus)
+      .catch((err)=> {
+        console.error(err);
+        this.userExists = false;
+      })
   }
 }
