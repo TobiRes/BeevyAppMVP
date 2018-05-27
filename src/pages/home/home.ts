@@ -47,11 +47,23 @@ export class HomePage {
     })
   }
 
+  refreshEvents(refresher){
+    setTimeout(() => {
+      this.eventService.getBeevyEvents()
+        .then((existingEvents: BeevyEvent[]) => {
+          refresher.complete();
+          this.events = existingEvents;
+        })
+        .catch(err => console.error(err));
+    }, 2000);
+  }
+
   private getEvents() {
     this.eventService.getBeevyEvents()
       .then((existingEvents: BeevyEvent[]) => {
         this.events = existingEvents;
       })
+      .catch(err => console.error(err));
   }
 
   private getMockEvents() {

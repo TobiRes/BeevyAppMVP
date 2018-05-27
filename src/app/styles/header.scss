@@ -1,0 +1,16 @@
+.navbar {
+  z-index: 10;
+  position: relative;
+  button {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.headerImage {
+  transform: rotate(180deg);
+  position: fixed;
+  top: -50px;
+  z-index: 1;
+  width: 100%;
+}
