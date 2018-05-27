@@ -8,6 +8,12 @@ export interface User {
   userEvents?: UserEvents;
 }
 
+export interface UnregisteredUser {
+  username: string;
+  userID: string;
+  mail: string;
+}
+
 
 export interface UserEvents {
   joinedEvents: BeevyEvent[];

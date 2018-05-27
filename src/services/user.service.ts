@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Storage} from "@ionic/storage";
-import {User, UserEvents} from "../models/user.model";
+import {UnregisteredUser, User, UserEvents} from "../models/user.model";
 import {Device} from "@ionic-native/device";
 import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "../config/app-config";
@@ -63,18 +63,37 @@ export class UserService {
   }
 
   private createUser(): Promise<string> {
-    //TODO: Save state, so if the user cancels but an email was already sent they can go right here
     //TODO: Make it possible to resend email. Maybe handle in .catch down below
     //TODO: What if is already in use?
     //TODO: What if wrong token?
 
     return new Promise((resolve, reject) => {
-      let user: User;
+      this.storage.get("unregisteredUser")
+        .then((unregUser: UnregisteredUser) => {
+          if(!unregUser){
+            //If the process wasn't interrupted, just start it and send an email confirmation
+            this.startNormalRegistration()
+              .then((username: string) => resolve(username))
+              .catch(err => reject(err))
+          } else {
+            //If it was interrupted, an email was already sent and the code can be entered now.
+            this.restartInterruptedRegistration(unregUser)
+              .then((username: string) => resolve(username))
+              .catch(err => reject(err));
+          }
+      })
+    })
+  }
+
+  private startNormalRegistration(){
+    let user: User;
+    return new Promise(((resolve, reject) => {
       this.openRegistrationPage()
         .then(registrationData => this.registerUser(registrationData))
-        .then((newUser: User) => {
+        .then((newUser: UnregisteredUser) => {
+          this.storage.set("unregisteredUser", newUser);
           user = newUser;
-          return this.confirmRegistration()
+          return this.confirmRegistrationLocally()
         })
         .then((token: any) => this.confirmRegistrationWithServer(user, token.token))
         .then((user: User) => {
@@ -82,8 +101,20 @@ export class UserService {
           resolve(user.username);
         })
         .catch(err => reject(err))
+    }))
+  }
 
-    })
+  private restartInterruptedRegistration(unregUser: UnregisteredUser) {
+    return new Promise(((resolve, reject) => {
+      this.confirmRegistrationLocally()
+        .then((token: any) => this.confirmRegistrationWithServer(unregUser, token.token))
+        .then((user: User) => {
+          this.storage.set("unregisteredUser", null);
+          this.storage.set("user", user);
+          resolve(user.username);
+        })
+        .catch(err => reject(err))
+    }))
   }
 
   private openRegistrationPage(): Promise<any> {
@@ -106,21 +137,21 @@ export class UserService {
 
   private registerUser(registrationData: any): Promise<User> {
     return new Promise(((resolve, reject) => {
-      let newUser: User = this.createUserData(registrationData);
+      let newUser: UnregisteredUser = this.createUserData(registrationData);
       this.http.post(UserService.BEEVY_USER_BASE_URL + "/register", newUser)
         .subscribe(() => resolve(newUser), err => reject(err))
     }))
   }
 
-  private createUserData(registrationData: any): User {
+  private createUserData(registrationData: any): UnregisteredUser {
     return {
       username: registrationData.username,
-      userID: this.device.uuid ? this.device.uuid : "1104",
+      userID: this.device.uuid ? this.device.uuid : "1123049",
       mail: registrationData.mail
     }
   }
 
-  private confirmRegistration(): Promise<string> {
+  private confirmRegistrationLocally(): Promise<string> {
     return new Promise((resolve, reject) => {
       let alert = this.alertCtrl.create({
         title: 'Registrierung',
