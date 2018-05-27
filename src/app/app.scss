@@ -22,14 +22,31 @@
 @import "styles/toast.scss";
 @import "styles/alert.scss";
 @import "styles/header.scss";
+
 //GENERAL
-.main-background-gradient {
-  background: linear-gradient($beevy-main-background-light, $beevy-main-background-dark);
+@font-face {
+  font-family: 'quicksand-regular';
+  src: url('../assets/fonts/Quicksand-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+ion-app {
+  font-family: quicksand-regular !important;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
   color: white !important;
 }
+
+.scroll-content {
+  border-top: 0 !important;
+  background-color: transparent !important;
+}
+.main-background-gradient {
+  background: linear-gradient($beevy-main-background-light, $beevy-main-background-dark);
+}
+
 .fliessText {
   font-size:18px;
 }
@@ -40,17 +57,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .infoHolder {
   margin: 75px 0 0 15px;
-}
-
-@font-face {
-  font-family: 'quicksand-regular';
-  src: url('../assets/fonts/Quicksand-Regular.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
-
-ion-app {
-  font-family: quicksand-regular !important;
 }
 
 .fixed-content, .scroll-content {
@@ -67,8 +73,14 @@ ion-app {
   color: white;
 }
 
+//Refresher
 
-//FooterHeaderButton
+ion-refresher {
+  top: 45px !important;
+  z-index: 10;
+}
+
+  //FooterHeaderButton
 
 .beevyFooter {
   position: fixed;
