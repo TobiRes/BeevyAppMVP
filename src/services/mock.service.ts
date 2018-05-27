@@ -27,6 +27,7 @@ export class MockService {
       description: "Chilliger Abend mit Essen und zeichnen. Freu mich auf euch!",
       type: BeevyEventType.hangout,
       date: new Date(2018, 6, 4, 10, 20, 0, 0),
+      eventID: "12345",
       address: address,
       registeredMembers: [],
       possibleMemberCount: 7,
@@ -49,6 +50,7 @@ export class MockService {
       address: address2,
       registeredMembers: [],
       possibleMemberCount: 7,
+      eventID: "12346",
       currentMemberCount: 0,
       tags: ["Bar", "Feiern", "Musik"]
     }
@@ -69,6 +71,7 @@ export class MockService {
       address: address3,
       registeredMembers: [],
       possibleMemberCount: 7,
+      eventID: "12347",
       currentMemberCount: 0,
       tags: ["Fotografie"]
     }
@@ -88,6 +91,7 @@ export class MockService {
       date: new Date(2018, 11, 28, 9, 30, 0, 0),
       address: address4,
       registeredMembers: [],
+      eventID: "12348",
       possibleMemberCount: 7,
       currentMemberCount: 0,
       tags: ["Malen"]
@@ -108,6 +112,7 @@ export class MockService {
       address: address5,
       registeredMembers: [],
       possibleMemberCount: 7,
+      eventID: "123459",
       currentMemberCount: 0,
       tags: ["Malen"]
     }
