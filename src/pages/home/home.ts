@@ -4,6 +4,7 @@ import {BeevyEvent} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'page-home',
@@ -19,12 +20,17 @@ export class HomePage {
               private mockService: MockService,
               private eventService: BeevyEventService,
               private modalCtrl: ModalController,
-              private userService: UserService) {
+              private userService: UserService,
+              private storage: Storage) {
     this.checkForUserStatus();
   }
 
   ionViewDidEnter() {
-    this.getEvents();
+    this.storage.get("events")
+      .then((events: BeevyEvent[]) => {
+        this.events = events;
+        this.getEvents();
+      })
     //this.getMockEvents();
   }
 
@@ -49,21 +55,27 @@ export class HomePage {
 
   refreshEvents(refresher){
     setTimeout(() => {
-      this.eventService.getBeevyEvents()
-        .then((existingEvents: BeevyEvent[]) => {
-          refresher.complete();
-          this.events = existingEvents;
-        })
-        .catch(err => console.error(err));
+      this.getEvents();
     }, 2000);
   }
 
   private getEvents() {
-    this.eventService.getBeevyEvents()
-      .then((existingEvents: BeevyEvent[]) => {
-        this.events = existingEvents;
-      })
-      .catch(err => console.error(err));
+    return new Promise(((resolve, reject) => {
+      this.eventService.getBeevyEvents()
+        .then((existingEvents: BeevyEvent[]) => {
+          this.setAndSaveEvents(existingEvents);
+          resolve();
+        })
+        .catch(err => {
+          reject;
+          console.error(err);
+        });
+    }))
+  }
+
+  private setAndSaveEvents(beevents: BeevyEvent[]) {
+    this.events = beevents;
+    this.storage.set("events", this.events);
   }
 
   private getMockEvents() {
