@@ -1,9 +1,12 @@
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="suchInput"
+  <ion-searchbar #q
+    [(ngModel)]="suchInput"
                  placeholder="Suchen"
                  class="suchBar"
+                 (keyup.enter)="search(q.value)"
+
   id = "suchBalken">
   </ion-searchbar>
 

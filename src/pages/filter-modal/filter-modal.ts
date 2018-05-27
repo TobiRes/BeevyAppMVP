@@ -86,5 +86,13 @@ export class FilterModalPage {
     if(this.filter.types[n]) return "beevy-info-background-full-"+n;
     else return "beevy-info-background-more-transparent-"+n;
   }
+  search(q: string) {
+    this.filter.tags = this.tags;
+    this.filter.earliestDate = this.earliestDate;
+    this.filter.latestDate = this.latestDate;
+    this.filter.city = this.citySearch;
+    this.filter.search = q;
 
+    this.viewCtrl.dismiss(this.filter);
+  }
 }
