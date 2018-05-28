@@ -2,9 +2,12 @@ page-event-view {
 
 
   .infoHolder{
-    margin: 0 !important;
-    padding: 20px;
-    padding-top: 60px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+    padding: 0px;
+    padding-top: 70px;
     position: relative;
 
     .eventAdmin{
@@ -48,6 +51,7 @@ page-event-view {
       height: 120px;
       padding-top: 8px;
       margin-top: 15px;
+      width: 100% !important;
 
       .eventDate {
         font-size: 30px;
@@ -74,8 +78,15 @@ page-event-view {
       }
 
     }
+    .fliessText{
+      text-align: center;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
 
     #extraInfoLine{
+
+      height: 28px;
 
       .eventType{
         display: inline-block;
@@ -85,8 +96,11 @@ page-event-view {
         border-style: solid;
         border-width: 2px;
         height: 28px;
+        width: 25%;
+        text-align:center;
         p{
           margin:0;
+          padding-top: 2px;
         }
       }
 
@@ -132,12 +146,41 @@ page-event-view {
         border-style: solid;
         border-width: 2px;
         height: 28px;
+        width: 25%;
+        text-align: center;
         p{
           margin:0;
+          padding-top: 2px;
         }
       }
 
 
+    }
+    .joinEventButton{
+
+    }
+    .kommentarBox{
+      opacity: 0.7; //opacity runter für wenn man nicht angemeldet ist
+      border-radius: 30px;
+      border-style: solid;
+      border-width: 2px;
+      text-align: center;
+      margin-top: 35px;
+
+      .kommentarTitelBox{
+        border-top: none;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        height: 30px;
+        h5{
+          margin:0;
+          padding-top:2px;
+        }
+      }
+      p{
+        padding-left: 5px;
+        padding-right: 5px;
+      }
     }
   }
 

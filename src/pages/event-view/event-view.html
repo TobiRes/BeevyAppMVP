@@ -56,7 +56,7 @@
     <div id="extraInfoLine">
 
       <div [ngClass]="['eventType', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <p>{{beevyEvent.type}}</p>
+        <p>{{beevyEventType}}</p>
       </div>
 
       <div id="eventTagsdiv">
@@ -78,7 +78,15 @@
         </p>
       </div>
     </div>
+    <button [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]" ion-button full (click)="joinEvent()">Join Event</button>
+
+    <div [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <h5>Kommentare</h5>
+      </div>
+      <p>Kommentare sind nur für Teilnehmer des Events sichtbar.</p>
+
+    </div>
 
   </div>
-  <button [ngClass]="['beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]" ion-button full (click)="joinEvent()">Join Event</button>
 </ion-content>
