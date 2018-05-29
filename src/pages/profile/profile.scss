@@ -1,10 +1,17 @@
 page-profile {
 
   .avatarBig{
+    width: 160px;
+    height: 160px;
     margin: 20% 30% 0 30%;
     padding: 5%;
     border: 3px solid white;
     border-radius: 50%;
+  }
+
+  .avatarCircle {
+    width: 40%;
+    height: 50%;
   }
 
   .userName{
@@ -32,10 +39,18 @@ page-profile {
   }
 
   .joinedButton{
-    margin-top: 0;
+    margin-left: 5%;
+    float: left;
+    width: 160px;
   }
 
   .createdButton{
-    margin-top: 3%;
+    margin-right: 5%;
+    float: right;
+    width: 160px;
+  }
+
+  .profileEvents{
+    margin-top: 30%;
   }
 }

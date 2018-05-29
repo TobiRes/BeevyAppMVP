@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler, PopoverCmp} from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import {CreateEventPage} from '../pages/create-event/create-event';
@@ -20,11 +20,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {CreateEventPageModule} from "../pages/create-event/create-event.module";
 import {UserService} from "../services/user.service";
 import {Device} from "@ionic-native/device";
+import {PopoverComponent} from "../components/popover/popover";
 
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage
+    TabsPage,
+    PopoverComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {Device} from "@ionic-native/device";
     CreateEventPage,
     ProfilePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    PopoverComponent
   ],
   providers: [
     StatusBar,

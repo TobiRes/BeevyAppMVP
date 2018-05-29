@@ -6,6 +6,7 @@ export interface User {
   mail: string;
   token?: string;
   events?: UserEvents;
+  currentAvatar?: string;
 }
 
 export interface Admin {
