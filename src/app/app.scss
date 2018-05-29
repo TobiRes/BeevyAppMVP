@@ -154,6 +154,17 @@ ion-refresher {
   border-color: $beevy-pink;
 }
 
+.popover-viewport{
+  background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+}
+
+.custom-popover{
+  width: 50%;
+}
+
+.popover-content{
+  left: 10px;
+}
 
 
 

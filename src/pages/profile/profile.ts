@@ -1,45 +1,50 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {Storage} from "@ionic/storage";
+import {PopoverComponent} from "../../components/popover/popover";
 
 @Component({
   selector: 'page-profile',
-  templateUrl: 'profile.html'
+  templateUrl: 'profile.html',
 })
 export class ProfilePage {
 
   user: User;
+  joinedEventsActive?: boolean = true;
+  avatar1: string="../../assets/imgs/avatar_1.svg";
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
-              private storage: Storage) {
-  }
+              public popoverCtrl: PopoverController,
+              private storage: Storage) {  }
 
   ionViewDidEnter() {
     this.loadUser();
-    //this.loadMockUser();
-  }
-
-  private loadMockUser() {
-    this.mockService.checkIfUserExists()
-      .then((user: User) => {
-        if (!user) {
-          this.mockService.createMockUser()
-            .then(() => this.loadMockUser())
-        } else {
-          this.user = user;
-        }
-      })
-      .catch((err) => console.error(err))
   }
 
   private loadUser() {
     this.storage.get("user")
       .then((user: User) => {
         this.user = user;
+        if (this.user.currentAvatar == null) this.user.currentAvatar = this.avatar1;
         console.log(this.user);
       })
+  }
+
+   listJoined() {
+    this.joinedEventsActive = true;
+  }
+
+   listCreated() {
+    this.joinedEventsActive = false;
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverComponent);
+    popover.present({
+      ev: myEvent
+    });
   }
 }

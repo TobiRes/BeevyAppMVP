@@ -36,40 +36,16 @@ export class EventViewPage {
 
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
-
-
-
-    /*this.mockService.checkIfUserExists()
-      .then((user: User) => {
-        if (!user) {
-          this.mockService.createMockUser()
-            .then(() => {
-              this.joinEvent()
-            })
-        } else {
-          if (!user.joinedEvents) {
-            user.joinedEvents = [this.beevyEvent]
-          } else {
-            user.joinedEvents.push(this.beevyEvent);
-          }
-          this.saveUpdatedUser(user);
-        }
-      })
-      .catch(() => {
-
-      })*/
+    this.alertOfJoin()
   }
 
-  private saveUpdatedUser(user: User) {
-    this.storage.set("user", user)
-      .then(() => {
-        let alert = this.alertCtrl.create({
-          title: 'Event beigetreten',
-          subTitle: 'Du nimmst jetzt an diesem Event teil!',
-          buttons: ['OK']
-        });
-        alert.present();
-      })
+  private alertOfJoin() {
+      let alert = this.alertCtrl.create({
+        title: 'Event beigetreten',
+        subTitle: 'Du nimmst jetzt an diesem Event teil!',
+        buttons: ['OK']
+      });
+      alert.present();
   }
 
   getDate(date: Date): string {

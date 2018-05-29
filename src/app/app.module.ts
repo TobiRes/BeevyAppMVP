@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import {CreateEventPage} from '../pages/create-event/create-event';
@@ -22,11 +22,13 @@ import {UserService} from "../services/user.service";
 import {Device} from "@ionic-native/device";
 import {ToastService} from "../services/toast.service";
 import {RlTagInputModule} from 'angular2-tag-input';
+import {PopoverComponent} from "../components/popover/popover";
 
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage
+    TabsPage,
+    PopoverComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import {RlTagInputModule} from 'angular2-tag-input';
     CreateEventPage,
     ProfilePage,
     HomePage,
-    TabsPage
+    TabsPage,
+    PopoverComponent
   ],
   providers: [
     StatusBar,
