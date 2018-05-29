@@ -8,24 +8,35 @@
 <ion-content class="main-background-gradient">
   <img class="beevyFooter" src="../../assets/imgs/footer.svg">
   <img class="beevyHeader" src="../../assets/imgs/footer.svg">
+
+
   <div class="infoHolder">
     <div class="eventAdmin">
-      <p>{{beevyEvent.admin}}</p>
-      <img
-        class="adminIcon"
-        src="../../assets/icon/ninja-white.svg"
-        alt="triangle with all three sides equal"
-        height="12px"
-      />
+      <div id="adminDiv">
+        <p>{{beevyEvent.admin}}</p>
+        <img
+          class="adminIcon"
+          src="../../assets/icon/ninja-white.svg"
+          alt="triangle with all three sides equal"
+          height="12px"
+        />
+      </div>
+      <p>id: {{beevyEvent.eventID}} </p>
     </div>
+
     <div class="eventTitle">
       <h1>{{beevyEvent.title}}</h1>
       <p>{{beevyEvent.summary}}</p>
     </div>
+
     <div>
       <div [ngClass]="['beevy-event-time-info', changeColorOfContainer(beevyEvent.type, 'full')]">
-        <div><p class="eventDate">{{getDate(beevyEvent.date)}}</p></div>
-        <div class="timeBox"><p class="eventTime">{{getTime(beevyEvent.date)}}</p></div>
+        <div>
+          <p class="eventDate">{{getDate(beevyEvent.date)}}</p>
+        </div>
+        <div class="timeBox">
+          <p class="eventTime">{{getTime(beevyEvent.date)}}</p>
+        </div>
         <div class="locationBox"><p class="eventCity">
           <img
             class="locationIcon"
@@ -40,15 +51,42 @@
       </div>
     </div>
     <p class="fliessText">{{beevyEvent.description}}</p>
-    <div class="eventType">
-      <p>{{beevyEvent.type}}</p>
+
+
+    <div id="extraInfoLine">
+
+      <div [ngClass]="['eventType', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <p>{{beevyEventType}}</p>
+      </div>
+
+      <div id="eventTagsdiv">
+        <ion-list class="eventTags">
+          <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeLeft">-->
+          <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]" *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
+          <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeRight">-->
+        </ion-list>
+      </div>
+      <div [ngClass]="['eventMembers', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <p>
+        <img
+          class="adminIcon"
+          src="../../assets/icon/ninja-white.svg"
+          alt="triangle with all three sides equal"
+          height="12px"
+        />
+          {{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}
+        </p>
+      </div>
     </div>
-    <ion-list class="eventTags">
-      <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]" *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
-    </ion-list>
-    <div class="eventMembers">
-      <p>{{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}</p>
+    <button [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]" ion-button full (click)="joinEvent()">Join Event</button>
+
+    <div [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <h5>Kommentare</h5>
+      </div>
+      <p>Kommentare sind nur für Teilnehmer des Events sichtbar.</p>
+
     </div>
+
   </div>
-  <button class="beevyButton" ion-button full (click)="joinEvent()">Join Event</button>
 </ion-content>

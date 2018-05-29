@@ -17,7 +17,7 @@ export interface BeevyEvent {
 }
 
 export enum BeevyEventType {
-  event = <any> "event",
+  activity = <any> "activity",
   project = <any> "project",
   hangout = <any> "hangout"
 }

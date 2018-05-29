@@ -51,7 +51,7 @@ export class CreateEventPage {
       title: this.title,
       summary: this.summary,
       description: this.description,
-      type: this.type == "event" ? BeevyEventType.event : BeevyEventType.project,
+      type: this.type == "event" ? BeevyEventType.activity : BeevyEventType.project,
       date: new Date(this.date + "," + this.time),
       address: {
         street: this.street,

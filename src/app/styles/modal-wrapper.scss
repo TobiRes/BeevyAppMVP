@@ -1,0 +1,104 @@
+/*.filterModal .modal-wrapper {
+  position: absolute;
+  overflow: hidden;
+  max-width: 95vw;
+  border-radius: 30px;
+  width: 120vw;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 0;
+  box-shadow: 0 16px 20px rgba(0, 0, 0, .4);
+  height: auto;
+  .ion-page{
+    //height: auto;
+    position: relative;
+    .content, .fixed-content, .scroll-content{
+      //position: relative;
+    }
+
+  }
+
+  .scroll-content {
+    background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
+    padding: 0 !important;
+  }
+
+  button {
+    color: white;
+  }
+}
+
+ion-backdrop {
+  visibility: visible !important;
+  background: linear-gradient($beevy-pink, $beevy-orange) !important;
+  opacity: 0.7 !important;
+}*/
+
+.filterModal {
+  @media (min-height: 500px) {
+    ion-backdrop {
+      visibility: visible;
+    }
+  }
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-overlay;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  contain: strict;
+  .modal-wrapper {
+    &,
+    .ion-page,
+    .ion-page .content,
+    .ion-page .content .scroll-content {
+      contain: content;
+      position: relative;
+      top: auto;
+      left: auto;
+      padding:0;
+      box-shadow: 0 16px 20px $beevy-darkViolett-more-transparent;
+    }
+
+    z-index: $z-index-overlay-wrapper;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    min-width: 88vw;
+    max-height: $alert-max-height;
+    opacity: 0;
+    height: auto;
+    max-width: 88vw;
+    border-radius: $alert-md-border-radius;
+    background-color: $alert-md-background-color;
+    box-shadow: $alert-md-box-shadow;
+    border-radius: 30px;
+    padding:5px;
+    button {
+      color: white;
+    }
+
+
+    .ion-page .content {
+      background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
+      padding: 0 !important;
+
+    }
+  }
+}
+
+ion-backdrop {
+  visibility: visible !important;
+  background: linear-gradient($beevy-pink, $beevy-orange) !important;
+  opacity: 0.7 !important;
+}
