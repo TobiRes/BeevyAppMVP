@@ -21,7 +21,7 @@ export class CreateEventPage {
   street: string;
   zip: number;
   city: string;
-  possibleMemberCount: number;
+  possibleMemberCount: number=1;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,

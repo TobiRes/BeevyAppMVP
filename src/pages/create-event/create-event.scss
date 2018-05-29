@@ -3,13 +3,287 @@ page-create-event {
     margin-top: 56px;
   }
 
+  .item-inner{
+    border: none !important;
+    $text-input-highlight-color-valid: #000;
+  }
+
+
+
   ion-input {
     color: white;
   }
 
+  ion-input:active{
+    border: none !important;
+  }
+
+  .titlecreate{
+    margin-top: 35px;
+    .text-input::-moz-placeholder {
+      text-indent: 0;
+      color: white;
+      font-size: 20px;
+      text-align:center;
+    }
+    .text-input:-ms-input-placeholder {
+      text-indent: 0;
+      color: white;
+      font-size: 20px;
+      text-align:center;
+    }
+    .text-input::-webkit-input-placeholder {
+      text-indent: 0;
+      color: white;
+      font-size: 20px;
+      text-align:center;
+    }
+    .text-input{
+      text-indent: 0;
+      color: white;
+      font-size: 20px;
+      text-align:center;
+    }
+  }
+
+  .subtitlecreate, .beschreibungcreate{
+    .text-input::-moz-placeholder {
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+    .text-input:-ms-input-placeholder {
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+    .text-input::-webkit-input-placeholder {
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+    .text-input{
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+  }
+
+  .streetcreate, .plzcreate, .ortcreate{
+    .text-input::-moz-placeholder {
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+    .text-input:-ms-input-placeholder {
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+    .text-input::-webkit-input-placeholder {
+      text-indent: 0;
+      color: white;
+      text-align:center;
+    }
+    .text-input{
+      text-indent: 0;
+      color: white;
+      font-size: 20px;
+      text-align:center;
+    }
+  }
+
+  .streetcreate{
+    margin-bottom: 10px;
+  }
+
+  .eventtypecreate{
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  }
+
+  .eventtypelabel{
+    padding-left: 25px;
+    margin:0px;
+  }
+
+  .limitmemberscreate{
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+  }
+
+  ion-select{
+    right: 50px;
+  }
+
+  .beschreibung{
+    margin-left: 25px;
+    margin-right: 25px;
+    background: linear-gradient(to bottom right, $beevy-lightBlue-transparent, $beevy-blue-transparent);
+    border-radius: 30px;
+  }
+
+  .beschreibungcreate{
+    :focus{
+      transform: translate(0px, -30px);
+      -webkit-transform: translate(0px, -30px);
+      -ms-transform: translate(0px, -30px);
+      -webkit-transition-duration: 0.5s;
+      -moz-transition-duration: 0.5s;
+      -o-transition-duration: 0.5s;
+      transition-duration: 0.5s;
+    }
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 25px;
+  }
+
+  .beschreibungcreate[target=_blank]{
+    background-color: black;
+  }
+
+
+  .subtitlecreate{
+    top: -10px;
+  }
+
+  .datecreate{
+    text-align:center;
+    font-size: 20px;
+  }
+
+  .text-input{
+    padding: 0px !important;
+  }
+
+   .plzcreatebox, .ortcreatebox{
+    width: 49%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+     height: 30px;
+  }
+
+  .datecreatebox, .timecreatebox{
+    width: 49%;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    height: 30px;
+  }
+
+  .timecreate{
+    text-align:center;
+    font-size: 20px;
+  }
+
+
+  .selectcreate{
+    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+  }
+
+
+  .basicinfos{
+    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+    border-radius: 30px;
+  }
+
+  ion-item{
+    border: 0;
+  }
+
   .item-datetime .label,
   .item-select .label {
-    margin-left: 8px;
+    margin-left: 0px;
+    color: white;
+    padding: 0px !important;
+  }
+
+
+
+}
+
+.range-bar-active, .range-knob{
+  background: $beevy-lightBlue !important;
+}
+
+.checkbox-icon{
+  border: 2px white !important;
+  border-radius: 5px !important;
+  background-color: white;
+}
+
+.checkbox-icon:checked{
+  border: 2px white !important;
+  border-radius: 5px !important;
+  background-color: black !important;
+}
+
+
+ion-checkbox {
+  margin-right: 15px !important;
+  margin-left: 0px !important;
+  .checkbox-icon {
+    .checkbox-checked {
+      background-color: $beevy-lightBlue;
+    }
+  }
+}
+
+
+.memberscreate{
+  padding-top: 20px !important;
+  .item-inner {
+    margin: 0px !important;
+    padding: 0px !important;
+    text-align: left;
+  }
+  .memeberslabel{
+    margin-left: 25px;
+    position:absolute;
+    left:0;
+    top: 0;
+  }
+  .membersrange{
+    margin-top: 10px;
+    position:relative;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+.datetime-placeholder{
+  padding:0px;
+  font-size: 20px !important;
+  color: white !important;
+  text-align: center;
+}
+
+.datetime-text{
+  font-size: 20px;
+  text-align: center;
+}
+
+.datetime{
+  margin:auto;
+}
+
+ion-item{
+  padding:0px !important;
+}
+
+.eventtypecreate{
+  padding-left: 25px;
+}
+
+.alert-button{
+  .button-inner{
     color: white;
   }
+}
+
+.item-inner{
+  padding:0px !important;
 }

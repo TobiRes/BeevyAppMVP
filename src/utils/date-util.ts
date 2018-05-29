@@ -4,7 +4,7 @@ export class DateUtil {
     if (typeof date == "string") {
       date = new Date(date);
     }
-    return date.getDate() + "." + (date.getMonth() + 1).toString();
+    return date.getDate() + "." + (date.getMonth() + 1).toString() + ".";
   }
   static getDayMonthYearOfDate(date: Date): string {
     if (typeof date == "string") {
@@ -21,7 +21,7 @@ export class DateUtil {
   }
 
   static getWeekday(dayOfWeek: number): string {
-    let weekday: string[] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let weekday: string[] = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
     return weekday[dayOfWeek];
   }
   static getWeekdayfull(dayOfWeek: number): string {
