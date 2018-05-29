@@ -1,20 +1,20 @@
 page-filter-modal {
-  .filterContainer{
+  .filterContainer {
     background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
     border-radius: 30px;
     padding-bottom: 5px;
   }
-  .typFilter{
+  .typFilter {
     margin-top: 20px;
   }
-  .typeButton{
+  .typeButton {
     width: 30%;
     border-radius: 30px;
     height: 30px;
     font-size: 18px;
     margin: 2px;
   }
-  .buttonContainer{
+  .buttonContainer {
     padding-top: 20px;
     padding-bottom: 20px;
 
@@ -24,72 +24,69 @@ page-filter-modal {
 
   }
 
-
-  .tagInput{
+  .tagInput {
     margin-left: 20px;
     margin-right: 20px;
   }
+
   //Tags
-  [_nghost-c1]{
+  [_nghost-c1] {
     background: transparent;
     border-radius: 30px;
     border: 2px solid;
     border-color: $beevy-pink;
-    color:white;
+    color: white;
     height: 34px;
     margin-bottom: 10px;
   }
+
   //Wegklickbutton
-  [_nghost-c1] .ng2-tag-input-remove[_ngcontent-c1]{
+  [_nghost-c1] .ng2-tag-input-remove[_ngcontent-c1] {
     background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
     color: white;
   }
+
   //Eingabefeld
-  [_nghost-c0]{
+  [_nghost-c0] {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-    .ng2-tag-input-field .ng-valid, .ng-dirty, .ng-touched{
+    .ng2-tag-input-field .ng-valid, .ng-dirty, .ng-touched {
       height: 34px !important;
     }
-    .ng2-tag-input-field > input, .ng-valid > input, .ng-dirty > input, .ng-touched >input{
-      /*background: transparent;
-      border-radius: 30px;
-      border: 2px solid;
-      border-color: $beevy-pink;
-      padding: 0;
-      width: 70px !important;
-      height: 50px !important;
-      min-height: 50px !important;
-      box-sizing: content-box !important;*/
+    .ng2-tag-input-field > input, .ng-valid > input, .ng-dirty > input, .ng-touched > input {
       background-color: transparent;
       height: 34px;
-      padding:0 0 0 7px !important;
+      padding: 0 0 0 7px !important;
       border-radius: 30px;
       border: 2px solid !important;
       border-color: $beevy-pink !important;
       width: 70px !important;
     }
   }
-  .ng2-tag-input-focus[_nghost-c0]{
+
+  .ng2-tag-input-focus[_nghost-c0] {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
   }
-  [_nghost-c0] .ng2-tag-input-field[_ngcontent-c0]{
-    color:white !important;
+
+  [_nghost-c0] .ng2-tag-input-field[_ngcontent-c0] {
+    color: white !important;
     font-family: quicksand-regular !important;
   }
-  [_nghost-c0] .ng2-tag-input-form[_ngcontent-c0]{
-    color:white !important;
+
+  [_nghost-c0] .ng2-tag-input-form[_ngcontent-c0] {
+    color: white !important;
   }
 
   //Dateanzeige
-  .dateInputs{
+  .dateInputs {
     margin-left: 20px;
     padding-top: 10px;
   }
-  .dateInput{
+
+  .dateInput {
     width: 45%;
     display: inline-block;
     -webkit-box-shadow: none;
@@ -97,26 +94,25 @@ page-filter-modal {
     box-shadow: none;
     padding: 0;
   }
-  .dateInput .item-inner{
 
-  }
-  .dateInputLabel{
+  .dateInputLabel {
     color: white !important;
   }
-  .dateInput button{
-    padding:0;
+
+  .dateInput button {
+    padding: 0;
   }
-  .dateInput .dateInputLabel{
-    padding:0;
+
+  .dateInput .dateInputLabel {
+    padding: 0;
     margin: 0;
     max-width: 35px;
   }
-  .dateInput span {
 
+  .dateInput .datetime {
+    padding: 0;
   }
-  .dateInput .datetime{
-    padding:0;
-  }
+
   .dateInput .datetime-text {
     background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
     border-radius: 30px;
@@ -126,37 +122,39 @@ page-filter-modal {
   }
 
   //Ort
-  .ortInput{
+  .ortInput {
     margin-left: 20px;
     padding: 0;
-    .dateInputLabel{
+    .dateInputLabel {
       margin-right: 0;
       width: 35px !important;
       max-width: 35px !important;
       min-width: 30px !important;
-      flex: 0 0 0 ;
+      flex: 0 0 0;
     }
-    .item-inner{
+    .item-inner {
       border: none !important;
       box-shadow: none !important;
     }
   }
 
   //Suchen
-  .suchBar{
-    background:transparent;
+  .suchBar {
+    background: transparent;
     padding-top: 10px;
   }
-  .searchbar-input{
+
+  .searchbar-input {
     background-color: blue;
   }
-  .searchbar-md .searchbar-input{
-    background-color: rgba(255,255,255,1.0);
+
+  .searchbar-md .searchbar-input {
+    background-color: rgba(255, 255, 255, 1.0);
     border-radius: 30px;
   }
 
   //Buttons
-  .butteonWrapping{
+  .butteonWrapping {
     padding: 10px;
   }
   .actionsButton {
@@ -166,11 +164,10 @@ page-filter-modal {
     box-shadow: none;
     background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
   }
-  .halberButton{
+  .halberButton {
     width: 49%;
     display: inline-block;
   }
-
 
   .item-md.item-block .item-inner,
   .item-md.item-input.input-has-focus .item-inner,
