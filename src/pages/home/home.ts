@@ -95,14 +95,14 @@ export class HomePage {
 
     //check for search
     let beevyEventString = JSON.stringify(event).toLowerCase();
-    if (this.filter.search != null && !(beevyEventString.includes(this.filter.search.toLowerCase()))) matches = false;
+    if (this.filter.search != "" && !(beevyEventString.indexOf(this.filter.search.toLowerCase()) > -1)) matches = false;
 
     //check for date
     if (new Date(event.date).toISOString() < this.filter.earliestDate) matches = false;
     if (new Date(event.date).toISOString() > this.filter.latestDate) matches = false;
 
     //Check for City
-    if (this.filter.city != null && event.address.city.toLowerCase() != this.filter.city.toLowerCase()) matches = false;
+    if (this.filter.city != "" && event.address.city.toLowerCase() != this.filter.city.toLowerCase()) matches = false;
 
     //check for Types
     if (this.filter.types[0] == false && event.type == BeevyEventType.project) matches = false;

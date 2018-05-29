@@ -63,13 +63,12 @@ export class FilterModalPage {
     this.filter.latestDate = this.latestDate;
     this.filter.city = this.citySearch;
     this.filter.search = this.suchInput;
-
     this.viewCtrl.dismiss(this.filter);
   }
 
   deleteFilter(){
     this.filter.types = [true,true,true];
-    for(var n=0; n<3; n++){
+    for(let n=0; n<3; n++){
       document.getElementById("typeButton"+n).style.opacity = "1.0";
     }
     this.filter.tags = [];
@@ -82,6 +81,7 @@ export class FilterModalPage {
     this.latestDate= this.defaultEndDate;
     this.suchInput="";
     this.citySearch= "";
+    this.viewCtrl.dismiss(this.filter);
   }
 
   buttonColour(n: number): string{
