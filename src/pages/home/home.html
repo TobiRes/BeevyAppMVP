@@ -14,7 +14,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-list class="eventList">
-    <div *ngFor="let event of events">
+    <div *ngFor="let event of displayedEvents">
       <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>
     </div>
   </ion-list>

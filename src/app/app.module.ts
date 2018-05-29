@@ -21,6 +21,7 @@ import {CreateEventPageModule} from "../pages/create-event/create-event.module";
 import {UserService} from "../services/user.service";
 import {Device} from "@ionic-native/device";
 import {ToastService} from "../services/toast.service";
+import {RlTagInputModule} from 'angular2-tag-input';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {ToastService} from "../services/toast.service";
     HomePageModule,
     CreateEventPageModule,
     ProfilePageModule,
-    HttpClientModule
+    HttpClientModule,
+    RlTagInputModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -16,7 +16,7 @@ export class CreateEventPage {
   title: string;
   summary: string;
   description: string;
-  type: string;
+  type: BeevyEventType;
   date: Date;
   time: Date;
   street: string;
@@ -32,6 +32,7 @@ export class CreateEventPage {
   }
 
   createBeevent() {
+    //TODO: Return to home page
     let loader = this.startLoading();
     loader.present();
     this.storage.get("user")
@@ -57,7 +58,7 @@ export class CreateEventPage {
       title: this.title,
       summary: this.summary,
       description: this.description,
-      type: this.type == "event" ? BeevyEventType.event : BeevyEventType.project,
+      type: this.type,
       date: new Date(this.date + "," + this.time),
       address: {
         street: this.street,

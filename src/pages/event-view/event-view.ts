@@ -16,6 +16,7 @@ import {BeevyEventService} from "../../services/event.service";
 export class EventViewPage {
 
   beevyEvent: BeevyEvent;
+  beevyEventType: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -24,7 +25,10 @@ export class EventViewPage {
               private mockService: MockService,
               private eventService: BeevyEventService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
-    console.log(this.beevyEvent);
+    if(this.beevyEvent.type == BeevyEventType.project) this.beevyEventType = "Projekt";
+    if(this.beevyEvent.type == BeevyEventType.activity) this.beevyEventType = "Aktivität";
+    if(this.beevyEvent.type == BeevyEventType.hangout) this.beevyEventType = "Hangout";
+
   }
 
   ionViewDidLoad() {
@@ -77,9 +81,9 @@ export class EventViewPage {
   }
 
   changeColorOfContainer(type: BeevyEventType, opacity: string): string {
-    if (type == BeevyEventType.event) return "beevy-info-background-" + opacity + "-0";
-    if (type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-1";
-    if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-2";
+    if (type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1";
+    if (type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
+    if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
     return "beevy-info-background-" + opacity + "-0";
   }
 }

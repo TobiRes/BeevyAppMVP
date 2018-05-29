@@ -1,73 +1,47 @@
 page-event-view {
-  .eventTitle{
-    text-align: center;
-  }
-  .eventTitle h1{
-    font-size: 40px;
-    margin: 0;
-  }
-  .eventTitle p{
-    font-size: 20px;
-    margin: 0;
-  }
-  .eventDate {
-    font-size: 30px;
-    margin: 0;
-  }
-  .eventTime {
-    font-size: 45px;
-    margin:0;
-  }
-  .eventCity{
-    margin:0;
-  }
-  .timeBox{
-    width: 40%;
-    display: inline-block
-  }
-  .locationBox{
-    width: 40%;
-    display: inline-block
-  }
-  .eventAdmin{
-    position:absolute;
-    top:50px;
-    right: 10px;
 
 
-    .adminIcon{
-      display: inline-block;
+  .infoHolder{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+    padding: 0px;
+    padding-top: 70px;
+    position: relative;
+
+    .eventAdmin{
+      position:absolute;
+      top:50px;
+      right: 10px;
+      text-align: right;
+
+      #adminDiv{
+        position: relative;
+      }
+      .adminIcon{
+        display: inline-block;
+      }
+
+      p{
+        margin:0;
+        display: inline-block;
+      }
+
     }
-
-    p{
-     margin:0;
-      display: inline-block;
+    .eventTitle{
+      text-align: center;
+      h1 {
+        font-size: 40px;
+        margin: 0;
+        padding-top: 20px;
+      }
+      p{
+        font-size: 20px;
+        margin: 0;
+      }
     }
-
-  }
-  .eventTags{
-    width: 40%;
-    height:40px;
-    display: flex;
-    overflow-x: auto;
-  }
-  .eventTags::-webkit-scrollbar {
-    display: none;
-  }
-  .singleTag {
-    margin-right: 5px;
-    border-radius: 20px;
-    display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
-    height: 28px;
-
-    p{
-      margin:5px;
-    }
-  }
-
-  .beevy-event-time-info{
+    .beevy-event-time-info{
       position: relative;
       top: 0;
       left: 0;
@@ -76,13 +50,138 @@ page-event-view {
       border-radius: 30px;
       height: 120px;
       padding-top: 8px;
+      margin-top: 15px;
+      width: 100% !important;
+
+      .eventDate {
+        font-size: 30px;
+        margin: 0;
+      }
+
+      .timeBox{
+        width: 40%;
+        display: inline-block;
+
+        .eventTime {
+          font-size: 45px;
+          margin:0;
+        }
+      }
+
+      .locationBox{
+        width: 40%;
+        display: inline-block;
+
+        .eventCity{
+          margin:0;
+        }
+      }
+
+    }
+    .fliessText{
+      text-align: center;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    #extraInfoLine{
+
+      height: 28px;
+
+      .eventType{
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        border-radius: 30px;
+        border-style: solid;
+        border-width: 2px;
+        height: 28px;
+        width: 25%;
+        text-align:center;
+        p{
+          margin:0;
+          padding-top: 2px;
+        }
+      }
+
+      #eventTagsdiv{
+        display:inline-block;
+        position: absolute;
+        left: 30%;
+        right: 30%;
+        width: 40%;
+
+        .eventTags{
+          width: 100%;
+          height:28px;
+          display: flex;
+          overflow-x: auto;
+          border-radius: 15px;
+          margin: 0;
+
+
+        }
+        .eventTags::-webkit-scrollbar {
+          display: none;
+        }
+        .singleTag {
+          margin-right: 5px;
+          border-radius: 20px;
+          display: inline-block;
+          padding-left: 5px;
+          padding-right: 5px;
+          height: 28px;
+
+          p{
+            margin:5px;
+          }
+        }
+
+      }
+      .eventMembers{
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        border-radius: 30px;
+        border-style: solid;
+        border-width: 2px;
+        height: 28px;
+        width: 25%;
+        text-align: center;
+        p{
+          margin:0;
+          padding-top: 2px;
+        }
+      }
+
+
+    }
+    .joinEventButton{
+
+    }
+    .kommentarBox{
+      opacity: 0.7; //opacity runter für wenn man nicht angemeldet ist
+      border-radius: 30px;
+      border-style: solid;
+      border-width: 2px;
+      text-align: center;
+      margin-top: 35px;
+
+      .kommentarTitelBox{
+        border-top: none;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        height: 30px;
+        h5{
+          margin:0;
+          padding-top:2px;
+        }
+      }
+      p{
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
   }
 
-  //überschreibt nadere ccs
-  .infoHolder{
-    margin: 0 !important;
-    padding: 20px;
-    padding-top: 60px;
-    position: relative;
-  }
 }
