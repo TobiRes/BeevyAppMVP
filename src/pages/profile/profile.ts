@@ -47,4 +47,9 @@ export class ProfilePage {
       ev: myEvent
     });
   }
+
+  checkClickedState() {
+    if(this.joinedEventsActive) return "beevy-info-background-more-transparent-0";
+    else return "";
+  }
 }

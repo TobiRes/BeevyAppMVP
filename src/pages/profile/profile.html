@@ -17,8 +17,8 @@
   <p class="userName">{{user?.username}}</p>
   <p class="userMail">{{user?.mail}}</p>
 
-  <button class="beevyButton joinedButton" ion-button full (click) ="listJoined()">Joined events</button>
-  <button class="beevyButton createdButton" ion-button full (click) ="listCreated()">Created events</button>
+  <button class="beevyButton joinedButton" [ngClass]="[joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']" ion-button full (click) ="listJoined()">Joined events</button>
+  <button class="beevyButton createdButton"[ngClass]="[!joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']" ion-button full (click) ="listCreated()">Created events</button>
 
   <div class="profileEvents">
     <div *ngIf="joinedEventsActive">
