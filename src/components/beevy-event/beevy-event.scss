@@ -5,7 +5,7 @@ beevy-event {
   }
 
   ion-item .item-inner {
-    border-bottom: 0 !important;
+    border: 0 !important;
     padding: 0 !important;
     background-color: transparent;
 
@@ -28,7 +28,7 @@ beevy-event {
     width: auto;
     margin: 6px 7px 6px 7px;
     background: transparent;
-    border-radius: 10px;
+    border-radius: 30px;
     border: 3px solid;
     color: white !important;
 
@@ -81,11 +81,11 @@ beevy-event {
           }
 
           .eventTime {
-            left: 0;
+            right: 0;
           }
 
           .eventDate {
-            right: 0;
+            left: 0;
           }
         }
       }

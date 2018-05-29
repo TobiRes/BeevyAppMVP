@@ -8,53 +8,64 @@
 </ion-header>
 
 <ion-content class="main-background-gradient">
-  <div class="input-holder">
+  <div class="input-holder"></div>
     <ion-item>
-      <ion-input placeholder="Title" clearInput [(ngModel)]="title"></ion-input>
+      <ion-input class="titlecreate" placeholder="Name des Events" clearInput [(ngModel)]="title"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input placeholder="Briefly summarize the event" clearInput [(ngModel)]="summary"></ion-input>
+      <ion-input class="subtitlecreate" placeholder="Fasse dein Event kurz zusammen" clearInput [(ngModel)]="summary"></ion-input>
     </ion-item>
+  <div class="beschreibung">
+    <div class="basicinfos">
+    <div class="datecreatebox">
+      <ion-item>
+        <ion-datetime class="datetimecreate" displayFormat="DD/MM/YY" [(ngModel)]="date" placeholder="Datum"></ion-datetime>
+      </ion-item>
+    </div>
+      <div class="timecreatebox">
+      <ion-item>
+        <ion-datetime class="datetimecreate" displayFormat="HH:mm" [(ngModel)]="time" placeholder="Uhrzeit"></ion-datetime>
+      </ion-item>
+      </div>
+      <div class="plzcreatebox">
+      <ion-item>
+        <ion-input class="plzcreate" placeholder="PLZ" clearInput [(ngModel)]="zip"></ion-input>
+      </ion-item>
+      </div>
+      <div class="ortcreatebox">
+      <ion-item>
+        <ion-input class="ortcreate" placeholder="Ort" clearInput [(ngModel)]="city"></ion-input>
+      </ion-item>
+      </div>
+      <ion-item>
+        <ion-input class="streetcreate" placeholder="Straße" clearInput [(ngModel)]="street"></ion-input>
+      </ion-item>
+    </div>
+
     <ion-item>
-      <ion-input placeholder="Describe your event" clearInput [(ngModel)]="description"></ion-input>
+      <ion-textarea class="beschreibungcreate" placeholder="Beschreibe dein Event" clearInput [(ngModel)]="description" rows="3"></ion-textarea>
     </ion-item>
-    <ion-item>
-      <ion-label>Event Type</ion-label>
+
+  </div>
+    <ion-item class="eventtypecreate">
+      <ion-label class="eventtypelabel">Event Typ</ion-label>
       <ion-select [(ngModel)]="type">
         <ion-option value="activity">Activität</ion-option>
         <ion-option value="project">Projekt</ion-option>
         <ion-option value="hangout">Hangout</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <ion-label>Date?</ion-label>
-      <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="date"></ion-datetime>
+    <ion-item class="limitmemberscreate">
+      <ion-label class="limitmembers123">Limit Members?</ion-label>
+      <ion-checkbox class="checkboxcreate"></ion-checkbox>
     </ion-item>
-    <ion-item>
-      <ion-label>Time?</ion-label>
-      <ion-datetime displayFormat="HH:mm" [(ngModel)]="time"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-input placeholder="Street" clearInput [(ngModel)]="street"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input placeholder="ZIP" clearInput [(ngModel)]="zip"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input placeholder="City" clearInput [(ngModel)]="city"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Limit Members?</ion-label>
-      <ion-checkbox></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Possible Members</ion-label>
-      <ion-range min="1" max="100" [(ngModel)]="possibleMemberCount" color="secondary">
+    <ion-item  class="memberscreate">
+      <ion-label class="memeberslabel">Possible Members: &nbsp; {{possibleMemberCount}}</ion-label>
+      <ion-range class="membersrange" min="1" max="100" [(ngModel)]="possibleMemberCount" color="secondary">
         <ion-label range-left>1</ion-label>
         <ion-label range-right>100</ion-label>
       </ion-range>
     </ion-item>
-  </div>
   <button class="beevyButton" ion-button (click)="createBeevent()" full>Create Event</button>
 </ion-content>
 <ion-footer>

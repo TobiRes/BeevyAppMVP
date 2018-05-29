@@ -1,4 +1,4 @@
-//Farben von main.css Schriften überschreiben -> alles weoß
+//Farben von main.css Schriften überschreiben -> alles weiß
 
 .picker-ios .picker-button,
 .picker-ios .picker-button.activated {
@@ -36,22 +36,26 @@
 
 //Fade über Zahlen
 .picker-ios .picker-above-highlight {
-  background: linear-gradient(to bottom, $beevy-pink, $beevy-orange-transparent);
+  background: linear-gradient(to bottom, $beevy-lightBlue, $beevy-blue) !important;
   border: none !important;
 }
 
 .picker-ios .picker-below-highlight {
-  background: linear-gradient(to bottom, $beevy-orange-transparent, $beevy-pink);
+  background: linear-gradient(to bottom, $beevy-lightBlue, $beevy-blue) !important;
   border: none !important;
 }
 
 .picker-wrapper {
-  background: linear-gradient(to bottom, $beevy-orange, $beevy-orange) !important;
+  background: linear-gradient(to bottom, $beevy-lightBlue, $beevy-blue) !important;
   border: none !important;
 }
 
 .picker-toolbar {
-  background-color: $beevy-pink !important;
+  background-color: $beevy-blue !important;
   border: none !important;
 }
 
+.picker-opt-selected{
+  font-size: 25px !important;
+  font-weight: bold;
+}

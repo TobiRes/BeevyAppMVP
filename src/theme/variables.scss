@@ -80,6 +80,17 @@ $range-ios-tick-active-background-color: $beevy-blue;
 $range-ios-bar-active-background-color: $beevy-blue;
 $range-md-bar-active-background-color: $beevy-blue;
 
+$text-input-md-show-focus-highlight: false !default;
+$text-input-md-show-valid-highlight: $text-input-md-show-focus-highlight !default;
+$text-input-md-show-invalid-highlight: $text-input-md-show-focus-highlight !default;
+
+$select-ios-icon-color: #70e0ca;
+
+$checkbox-ios-background-color-off: #70e0ca !important;
+$checkbox-ios-background-color-on: #218ba1;
+$checkbox-ios-icon-border-color-off: #70e0ca;
+$checkbox-ios-icon-border-color-on: #218ba1;
+
 @import "ionic.theme.default";
 
 // Ionicons
