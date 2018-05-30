@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-import {NavController, PopoverController} from 'ionic-angular';
+import {NavController, PopoverController, Tabs} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {Storage} from "@ionic/storage";
 import {PopoverComponent} from "../../components/popover/popover";
+import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-profile',

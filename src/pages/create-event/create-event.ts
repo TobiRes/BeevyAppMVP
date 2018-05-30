@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController} from 'ionic-angular';
+import {LoadingController, NavController, Tabs} from 'ionic-angular';
 import {Storage} from "@ionic/storage";
 import {User} from "../../models/user.model";
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
@@ -40,7 +40,8 @@ export class CreateEventPage {
         let beevent: BeevyEvent = this.fillEventData(user);
         this.eventService.createBeevyEvents(beevent)
           .subscribe(() => {
-            this.userService.getUserEvents(user)
+            this.userService.getUserEvents(user);
+            this.jumpToHomePage();
             loader.dismissAll()
           }, () => {
             loader.dismissAll();
@@ -75,5 +76,10 @@ export class CreateEventPage {
     return this.loadingCtrl.create({
       spinner: 'crescent',
     });
+  }
+
+  private jumpToHomePage() {
+    let lastTab: Tabs = this.navCtrl.parent;
+    lastTab.select(0);
   }
 }
