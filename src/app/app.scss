@@ -44,12 +44,13 @@ p, h1, h2, h3, h4, h5, h6 {
   border-top: 0 !important;
   background-color: transparent !important;
 }
+
 .main-background-gradient {
   background: linear-gradient($beevy-main-background-light, $beevy-main-background-dark);
 }
 
 .fliessText {
-  font-size:18px;
+  font-size: 18px;
 }
 
 .back-button-icon {
@@ -96,7 +97,7 @@ ion-refresher {
   z-index: 10;
 }
 
-  //FooterHeaderButton
+//FooterHeaderButton
 
 .beevyFooter {
   position: fixed;
@@ -120,21 +121,22 @@ ion-refresher {
   margin: auto;
   margin-top: 35px;
 }
-.beevyButton-withoutColor{
+
+.beevyButton-withoutColor {
   border-radius: 30px;
   width: 100%;
   margin: auto;
   margin-top: 35px;
 }
 
-
-
 .beevy-info-background-transparent-2 {
   background: linear-gradient(to bottom right, $beevy-orange-transparent, $beevy-pink-transparent);
 }
+
 .beevy-info-background-transparent-1 {
   background: linear-gradient(to bottom right, $beevy-yellow-transparent, $beevy-orange-transparent);
 }
+
 .beevy-info-background-transparent-0 {
   background: linear-gradient(to bottom right, $beevy-lightBlue-transparent, $beevy-blue-transparent);
 }
@@ -142,9 +144,11 @@ ion-refresher {
 .beevy-info-background-more-transparent-2 {
   background: linear-gradient(to bottom right, $beevy-orange-more-transparent, $beevy-pink-more-transparent);
 }
+
 .beevy-info-background-more-transparent-1 {
   background: linear-gradient(to bottom right, $beevy-yellow-more-transparent, $beevy-orange-more-transparent);
 }
+
 .beevy-info-background-more-transparent-0 {
   background: linear-gradient(to bottom right, $beevy-lightBlue-more-transparent, $beevy-blue-more-transparent);
 }
@@ -152,9 +156,11 @@ ion-refresher {
 .beevy-info-background-full-2 {
   background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
 }
+
 .beevy-info-background-full-1 {
   background: linear-gradient(to bottom right, $beevy-yellow, $beevy-orange);
 }
+
 .beevy-info-background-full-0 {
   background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
 }
@@ -162,22 +168,24 @@ ion-refresher {
 .beevy-info-background-border-0 {
   border-color: $beevy-blue;
 }
+
 .beevy-info-background-border-1 {
   border-color: $beevy-orange;
 }
+
 .beevy-info-background-border-2 {
   border-color: $beevy-pink;
 }
 
-.popover-viewport{
+.popover-viewport {
   background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
 }
 
-.custom-popover{
+.custom-popover {
   width: 50%;
 }
 
-.popover-content{
+.popover-content {
   left: 10px;
 }
 

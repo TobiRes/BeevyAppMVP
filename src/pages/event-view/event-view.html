@@ -58,23 +58,26 @@
       <div id="eventTagsdiv">
         <ion-list class="eventTags">
           <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeLeft">-->
-          <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]" *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
+          <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]"
+               *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
           <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeRight">-->
         </ion-list>
       </div>
       <div [ngClass]="['eventMembers', changeColorOfContainer(beevyEvent.type, 'border')]">
         <p>
-        <img
-          class="adminIcon"
-          src="../../assets/icon/ninja-white.svg"
-          alt="triangle with all three sides equal"
-          height="12px"
-        />
+          <img
+            class="adminIcon"
+            src="../../assets/icon/ninja-white.svg"
+            alt="triangle with all three sides equal"
+            height="12px"
+          />
           {{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}
         </p>
       </div>
     </div>
-    <button [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]" ion-button full (click)="joinEvent()">Join Event</button>
+    <button [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
+            ion-button full (click)="joinEvent()">Join Event
+    </button>
 
     <div [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
       <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">

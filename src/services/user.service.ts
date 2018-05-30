@@ -70,7 +70,7 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.storage.get("unregisteredUser")
         .then((unregUser: UnregisteredUser) => {
-          if(!unregUser){
+          if (!unregUser) {
             //If the process wasn't interrupted, just start it and send an email confirmation
             this.startNormalRegistration()
               .then((username: string) => resolve(username))
@@ -81,11 +81,11 @@ export class UserService {
               .then((username: string) => resolve(username))
               .catch(err => reject(err));
           }
-      })
+        })
     })
   }
 
-  private startNormalRegistration(){
+  private startNormalRegistration() {
     let user: User;
     return new Promise(((resolve, reject) => {
       this.openRegistrationPage()

@@ -39,14 +39,14 @@ export class HomePage {
   }
 
   openEventView(beevyEvent: BeevyEvent) {
-    if(this.userExists){
+    if (this.userExists) {
       this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
     } else {
       this.manageUserStatus();
     }
   }
 
-  refreshEvents(refresher){
+  refreshEvents(refresher) {
     setTimeout(() => {
       this.getEvents()
         .then(() => refresher.complete());
@@ -107,7 +107,7 @@ export class HomePage {
   }
 
   private manageUserStatus() {
-    if(this.retryUserCheck){
+    if (this.retryUserCheck) {
       this.checkForUserStatus();
       this.retryUserCheck = false;
     } else {
@@ -116,10 +116,10 @@ export class HomePage {
     }
   }
 
-  private checkForUserStatus(){
+  private checkForUserStatus() {
     this.userService.checkIfUserExists()
       .then((userStatus: boolean) => this.userExists = userStatus)
-      .catch((err)=> {
+      .catch((err) => {
         console.error(err);
         this.userExists = false;
       })

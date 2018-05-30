@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController, PopoverController, Tabs} from 'ionic-angular';
+import {NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {Storage} from "@ionic/storage";
 import {PopoverComponent} from "../../components/popover/popover";
-import {HomePage} from "../home/home";
 
 @Component({
   selector: 'page-profile',
@@ -14,31 +13,23 @@ export class ProfilePage {
 
   user: User;
   joinedEventsActive?: boolean = true;
-  avatar1: string="../../assets/imgs/avatar_1.svg";
+  avatar1: string = "../../assets/imgs/avatar_1.svg";
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
               public popoverCtrl: PopoverController,
-              private storage: Storage) {  }
+              private storage: Storage) {
+  }
 
   ionViewDidEnter() {
     this.loadUser();
   }
 
-  private loadUser() {
-    this.storage.get("user")
-      .then((user: User) => {
-        this.user = user;
-        if (this.user.currentAvatar == null) this.user.currentAvatar = this.avatar1;
-        console.log(this.user);
-      })
-  }
-
-   listJoined() {
+  listJoined() {
     this.joinedEventsActive = true;
   }
 
-   listCreated() {
+  listCreated() {
     this.joinedEventsActive = false;
   }
 
@@ -50,7 +41,16 @@ export class ProfilePage {
   }
 
   checkClickedState() {
-    if(this.joinedEventsActive) return "beevy-info-background-more-transparent-0";
+    if (this.joinedEventsActive) return "beevy-info-background-more-transparent-0";
     else return "";
+  }
+
+  private loadUser() {
+    this.storage.get("user")
+      .then((user: User) => {
+        this.user = user;
+        if (this.user.currentAvatar == null) this.user.currentAvatar = this.avatar1;
+        console.log(this.user);
+      })
   }
 }

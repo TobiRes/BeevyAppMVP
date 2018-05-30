@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {User} from "../../models/user.model";
 
 @Component({
@@ -13,8 +13,8 @@ export class PopoverComponent {
   constructor() {
   }
 
-  selectAvatar(src){
-    this.user.currentAvatar=src;
+  selectAvatar(src) {
+    this.user.currentAvatar = src;
   }
 
 }

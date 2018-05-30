@@ -138,11 +138,11 @@ export class MockService {
     if (random == 2)
       return event2;
     return event3*/
-    if(i==1) return event1;
-    if(i==2) return event2;
-    if(i==3) return event3;
-    if(i==4) return event4;
-    if(i==5) return event5;
+    if (i == 1) return event1;
+    if (i == 2) return event2;
+    if (i == 3) return event3;
+    if (i == 4) return event4;
+    if (i == 5) return event5;
   }
 
   createMockUser() {

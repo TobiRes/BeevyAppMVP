@@ -1,7 +1,6 @@
 page-event-view {
 
-
-  .infoHolder{
+  .infoHolder {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     margin-left: 20px !important;
@@ -10,38 +9,38 @@ page-event-view {
     padding-top: 70px;
     position: relative;
 
-    .eventAdmin{
-      position:absolute;
-      top:50px;
+    .eventAdmin {
+      position: absolute;
+      top: 50px;
       right: 10px;
       text-align: right;
 
-      #adminDiv{
+      #adminDiv {
         position: relative;
       }
-      .adminIcon{
+      .adminIcon {
         display: inline-block;
       }
 
-      p{
-        margin:0;
+      p {
+        margin: 0;
         display: inline-block;
       }
 
     }
-    .eventTitle{
+    .eventTitle {
       text-align: center;
       h1 {
         font-size: 40px;
         margin: 0;
         padding-top: 20px;
       }
-      p{
+      p {
         font-size: 20px;
         margin: 0;
       }
     }
-    .beevy-event-time-info{
+    .beevy-event-time-info {
       position: relative;
       top: 0;
       left: 0;
@@ -58,37 +57,37 @@ page-event-view {
         margin: 0;
       }
 
-      .timeBox{
+      .timeBox {
         width: 40%;
         display: inline-block;
 
         .eventTime {
           font-size: 45px;
-          margin:0;
+          margin: 0;
         }
       }
 
-      .locationBox{
+      .locationBox {
         width: 40%;
         display: inline-block;
 
-        .eventCity{
-          margin:0;
+        .eventCity {
+          margin: 0;
         }
       }
 
     }
-    .fliessText{
+    .fliessText {
       text-align: center;
       padding-left: 5px;
       padding-right: 5px;
     }
 
-    #extraInfoLine{
+    #extraInfoLine {
 
       height: 28px;
 
-      .eventType{
+      .eventType {
         display: inline-block;
         position: absolute;
         left: 0;
@@ -97,28 +96,27 @@ page-event-view {
         border-width: 2px;
         height: 28px;
         width: 25%;
-        text-align:center;
-        p{
-          margin:0;
+        text-align: center;
+        p {
+          margin: 0;
           padding-top: 2px;
         }
       }
 
-      #eventTagsdiv{
-        display:inline-block;
+      #eventTagsdiv {
+        display: inline-block;
         position: absolute;
         left: 30%;
         right: 30%;
         width: 40%;
 
-        .eventTags{
+        .eventTags {
           width: 100%;
-          height:28px;
+          height: 28px;
           display: flex;
           overflow-x: auto;
           border-radius: 15px;
           margin: 0;
-
 
         }
         .eventTags::-webkit-scrollbar {
@@ -132,13 +130,13 @@ page-event-view {
           padding-right: 5px;
           height: 28px;
 
-          p{
-            margin:5px;
+          p {
+            margin: 5px;
           }
         }
 
       }
-      .eventMembers{
+      .eventMembers {
         display: inline-block;
         position: absolute;
         right: 0;
@@ -148,18 +146,17 @@ page-event-view {
         height: 28px;
         width: 25%;
         text-align: center;
-        p{
-          margin:0;
+        p {
+          margin: 0;
           padding-top: 2px;
         }
       }
 
+    }
+    .joinEventButton {
 
     }
-    .joinEventButton{
-
-    }
-    .kommentarBox{
+    .kommentarBox {
       opacity: 0.7; //opacity runter für wenn man nicht angemeldet ist
       border-radius: 30px;
       border-style: solid;
@@ -167,17 +164,17 @@ page-event-view {
       text-align: center;
       margin-top: 35px;
 
-      .kommentarTitelBox{
+      .kommentarTitelBox {
         border-top: none;
         border-bottom-width: 2px;
         border-bottom-style: solid;
         height: 30px;
-        h5{
-          margin:0;
-          padding-top:2px;
+        h5 {
+          margin: 0;
+          padding-top: 2px;
         }
       }
-      p{
+      p {
         padding-left: 5px;
         padding-right: 5px;
       }

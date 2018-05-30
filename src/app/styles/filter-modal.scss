@@ -44,12 +44,11 @@
     background-color: $alert-md-background-color;
     box-shadow: $alert-md-box-shadow;
     border-radius: 30px;
-    padding:5px;
+    padding: 5px;
 
     button {
       color: white;
     }
-
 
     .ion-page .content {
       background: linear-gradient($beevy-darkBlue-transparent, $beevy-darkViolett-transparent);
