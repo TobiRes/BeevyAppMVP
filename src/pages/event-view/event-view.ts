@@ -7,6 +7,7 @@ import {MockService} from "../../services/mock.service";
 import {DateUtil} from "../../utils/date-util";
 import {UserService} from "../../services/user.service";
 import {BeevyEventService} from "../../services/event.service";
+import { Clipboard } from '@ionic-native/clipboard';
 
 @IonicPage()
 @Component({
@@ -23,7 +24,8 @@ export class EventViewPage {
               private storage: Storage,
               private alertCtrl: AlertController,
               private mockService: MockService,
-              private eventService: BeevyEventService) {
+              private eventService: BeevyEventService,
+              private clipboard: Clipboard) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     if(this.beevyEvent.type == BeevyEventType.project) this.beevyEventType = "Projekt";
     if(this.beevyEvent.type == BeevyEventType.activity) this.beevyEventType = "Aktivität";
@@ -61,5 +63,9 @@ export class EventViewPage {
     if (type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
     if (type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
     return "beevy-info-background-" + opacity + "-0";
+  }
+
+  copyEventID(){
+    this.clipboard.copy(this.beevyEvent.eventID);
   }
 }

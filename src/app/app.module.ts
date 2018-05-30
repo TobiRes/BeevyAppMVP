@@ -23,6 +23,7 @@ import {Device} from "@ionic-native/device";
 import {ToastService} from "../services/toast.service";
 import {RlTagInputModule} from 'angular2-tag-input';
 import {PopoverComponent} from "../components/popover/popover";
+import {Clipboard} from "@ionic-native/clipboard";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {PopoverComponent} from "../components/popover/popover";
     BeevyEventService,
     UserService,
     ToastService,
-    Device
+    Device,
+    Clipboard
   ]
 })
 export class AppModule {}
