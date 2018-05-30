@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {SetFilters} from "../../models/setFilters.model";
+import {DateUtil} from "../../utils/date-util";
 
 
 @IonicPage()
@@ -15,89 +16,100 @@ export class FilterModalPage {
 
   tags = [];
   earliestDate: string;
-  latestDate: string;
+  lastDate: string;
   suchInput: string;
   citySearch: string;
+  defaultTypeFilterButtons: boolean[] = [true, true, true];
+  setTypeFilterButtons: boolean[] = [true, true, true];
 
-  //TODO: Set automatically and put it in config
-  defaultEndDate: string ="2018-12-31T24:24:24.335Z";
+  //Default dates for datepicker
+  defaultStartDate: string = new Date().toISOString();
+  defaultEndDate: string = DateUtil.getLastPossibleDateInTheFuture();
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private viewCtrl: ViewController) {
-    this.filter = this.navParams.get("filter");
-    this.tags = this.filter.tags;
-    this.suchInput  = this.filter.search;
-    this.citySearch = this.filter.city;
-    if(this.filter.earliestDate != null){
-      this.earliestDate = this.filter.earliestDate;
-    }
-    else{
-      this.earliestDate = new Date().toISOString();
-    }
-    if(this.filter.latestDate != null){
-      this.latestDate = this.filter.latestDate;
-    }
-    else{
-      this.latestDate =   this.defaultEndDate;
-    }
-
+    this.resetFilterToLastOpenedState();
   }
 
-  setType(n: number, id: string){
-    //TODO: Work with classes instead of document
-    console.log(this.filter.types[n]);
-    if(this.filter.types[n] == null || this.filter.types[n] == false){
+  setType(n: number) {
+    if (!this.filter.types[n] || this.filter.types[n] == false) {
       this.filter.types[n] = true;
-      document.getElementById(id).style.opacity = "1.0";
+      this.setTypeFilterButtons[n] = true;
     }
-    else{
+    else {
       this.filter.types[n] = false;
-      document.getElementById(id).style.opacity = "0.5";
+      this.setTypeFilterButtons[n] = false;
     }
   }
 
   applyFilter() {
     this.filter.tags = this.tags;
     this.filter.earliestDate = this.earliestDate;
-    this.filter.latestDate = this.latestDate;
+    this.filter.lastDate = this.lastDate;
     this.filter.city = this.citySearch;
     this.filter.search = this.suchInput;
     this.viewCtrl.dismiss(this.filter);
   }
 
-  deleteFilter(){
-    this.filter.types = [true,true,true];
-    for(let n=0; n<3; n++){
-      document.getElementById("typeButton"+n).style.opacity = "1.0";
-    }
+  deleteFilter() {
+    this.setTypeFilterButtons = this.defaultTypeFilterButtons;
+    this.filter.types = [true, true, true];
     this.filter.tags = [];
     this.filter.earliestDate = new Date().toISOString();
-    this.filter.latestDate = this.defaultEndDate;
-    this.filter.city= "";
-    this.filter.search= "";
+    this.filter.lastDate = this.defaultEndDate;
+    this.filter.city = "";
+    this.filter.search = "";
     this.tags = [];
-    this.earliestDate=new Date().toISOString();
-    this.latestDate= this.defaultEndDate;
-    this.suchInput="";
-    this.citySearch= "";
+    this.earliestDate = this.defaultStartDate;
+    this.lastDate = this.defaultEndDate;
+    this.suchInput = "";
+    this.citySearch = "";
     this.viewCtrl.dismiss(this.filter);
   }
 
-  buttonColour(n: number): string{
+  buttonColour(n: number): string {
     let cssClass: string = "beevy-info-background-more-transparent-" + n.toString();
-    if(this.filter.types[n])
+    if (this.filter.types[n])
       cssClass = "beevy-info-background-full-" + n.toString();
     return cssClass;
   }
 
-  search(q: string) {
-    this.filter.tags = this.tags;
-    this.filter.earliestDate = this.earliestDate;
-    this.filter.latestDate = this.latestDate;
-    this.filter.city = this.citySearch;
-    this.filter.search = q;
+  search() {
+    this.applyFilter();
+  }
 
-    this.viewCtrl.dismiss(this.filter);
+  getDateAfterChosenStartDate(): string {
+    //Making sure the second datepicker can't set a time before the first datepicker
+    if (new Date(this.earliestDate) > new Date(this.defaultStartDate)) {
+      return this.earliestDate;
+    }
+    return this.defaultStartDate;
+  }
+
+  getDateBeforeChosenEndDate(): string {
+    //Making sure the first datepicker can't set a time after the second datepicker
+    if (new Date(this.lastDate) < new Date(this.defaultEndDate)) {
+      return this.lastDate;
+    }
+    return this.defaultEndDate;
+  }
+
+  private resetFilterToLastOpenedState() {
+    this.filter = this.navParams.get("filter");
+    this.setTypeFilterButtons = this.filter.types;
+    this.tags = this.filter.tags;
+    this.suchInput = this.filter.search;
+    this.citySearch = this.filter.city;
+    if (this.filter.earliestDate) {
+      this.earliestDate = this.filter.earliestDate;
+    } else {
+      this.earliestDate = this.defaultStartDate;
+    }
+    if (this.filter.lastDate) {
+      this.lastDate = this.filter.lastDate;
+    } else {
+      this.lastDate = this.defaultEndDate;
+    }
   }
 }
