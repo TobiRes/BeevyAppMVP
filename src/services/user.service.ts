@@ -35,6 +35,7 @@ export class UserService {
                 this.toastService.successfullyRegistered(username);
                 resolve();
               })
+              .catch(err=> reject(err));
           }
         })
         .catch(err => reject(err));
@@ -152,7 +153,7 @@ export class UserService {
   private createUserData(registrationData: any): UnregisteredUser {
     return {
       username: registrationData.username,
-      userID: this.device.uuid ? this.device.uuid : "1123049",
+      userID: this.device.uuid ? this.device.uuid : "12354",
       mail: registrationData.mail
     }
   }

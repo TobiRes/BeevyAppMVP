@@ -48,7 +48,11 @@ export class HomePage {
       this.currentlyLoading = true;
       this.userService.handleUser()
         .then(() => this.checkForUserStatus())
-        .catch(err => console.error(err));
+        .catch(err => {
+          this.currentlyLoading = false;
+          this.userExists = false;
+          console.error(err)
+        });
     } else if(this.currentlyLoading){
       //TODO: Show alert;
     }
@@ -127,11 +131,7 @@ export class HomePage {
           }
           resolve();
         })
-        .catch(err => {
-          this.currentlyLoading = false;
-          this.userExists = false;
-          reject(err);
-        });
+        .catch(err => reject(err));
     })
   }
 

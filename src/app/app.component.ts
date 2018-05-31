@@ -14,7 +14,8 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, userService: UserService) {
     platform.ready().then(() => {
-      userService.handleUser();
+      userService.handleUser()
+        .catch(err => console.error(err));
       statusBar.styleDefault();
       splashScreen.hide();
     });
