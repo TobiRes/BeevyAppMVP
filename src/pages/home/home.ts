@@ -7,6 +7,7 @@ import {UserService} from "../../services/user.service";
 import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
 import {FilterUtil} from "../../utils/filter-util";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'page-home',
@@ -21,6 +22,7 @@ export class HomePage {
 
   private userExists: boolean = false;
   private retryUserCheck: boolean = true;
+  private user: User;
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
@@ -40,7 +42,7 @@ export class HomePage {
 
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {
-      this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
+      this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent, user: this.user}, {animation: "ios-transition"});
     } else {
       this.manageUserStatus();
     }
@@ -107,6 +109,7 @@ export class HomePage {
   }
 
   private manageUserStatus() {
+    //TODO: Handle async
     if (this.retryUserCheck) {
       this.checkForUserStatus();
       this.retryUserCheck = false;
@@ -117,16 +120,30 @@ export class HomePage {
   }
 
   private checkForUserStatus() {
-    this.userService.checkIfUserExists()
-      .then((userStatus: boolean) => this.userExists = userStatus)
+    return new Promise((resolve, reject) => {
+      this.storage.get("user")
+        .then((user: User) => {
+          if (!user || !(user.token && user.userID)) {
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        })
+        .catch(err => reject(err));
+    })
+
+/*    this.userService.checkIfUserExists()
+      .then((userStatus: boolean) => {
+        this.storage.get("user")
+          .then((user: User) => {
+            this.userExists = userStatus;
+            this.user = user
+          })
+      })
       .catch((err) => {
         console.error(err);
         this.userExists = false;
-      })
-    this.eventService.getBeevyEvents()
-      .then((existingEvents: BeevyEvent[]) => {
-        this.allEvents = existingEvents;
-      })
+      })*/
   }
 
   private resetFilter() {

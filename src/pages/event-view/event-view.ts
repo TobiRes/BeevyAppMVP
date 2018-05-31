@@ -5,6 +5,7 @@ import {Storage} from "@ionic/storage";
 import {MockService} from "../../services/mock.service";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
+import {User} from "../../models/user.model";
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class EventViewPage {
 
   beevyEvent: BeevyEvent;
   beevyEventType: string;
+  private user: User;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -23,10 +25,10 @@ export class EventViewPage {
               private mockService: MockService,
               private eventService: BeevyEventService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
+    this.user = this.navParams.get("user");
     if (this.beevyEvent.type == BeevyEventType.project) this.beevyEventType = "Projekt";
     if (this.beevyEvent.type == BeevyEventType.activity) this.beevyEventType = "Aktivität";
     if (this.beevyEvent.type == BeevyEventType.hangout) this.beevyEventType = "Hangout";
-
   }
 
   ionViewDidLoad() {
@@ -35,6 +37,14 @@ export class EventViewPage {
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
     this.alertOfJoin()
+  }
+
+  notAlreadyJoinedByUser(): boolean {
+    //TODO: Add user to registeredMembers in the front end, then get overwritten by backend
+    if(this.beevyEvent.registeredMembers.find((user: string) => user == this.user.userID) || this.beevyEvent.admin.userID == this.user.userID){
+      return false;
+    }
+    return true;
   }
 
   getDate(date: Date): string {

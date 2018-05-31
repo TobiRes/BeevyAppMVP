@@ -1,4 +1,5 @@
 import {Address} from "./address.model";
+import {EventComment} from "./comment.model";
 
 export interface BeevyEvent {
   eventID?: string;
@@ -14,6 +15,7 @@ export interface BeevyEvent {
   possibleMemberCount: number;
   currentMemberCount?: number;
   tags?: string[];
+  comments?: EventComment[];
 }
 
 export interface Admin {
