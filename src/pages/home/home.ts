@@ -21,7 +21,7 @@ export class HomePage {
   filter: SetFilters = {types: [true, true, true], tags: []};
 
   private userExists: boolean = false;
-  private retryUserCheck: boolean = true;
+  private currentlyLoading: boolean = true;
   private user: User;
 
   constructor(public navCtrl: NavController,
@@ -30,7 +30,8 @@ export class HomePage {
               private modalCtrl: ModalController,
               private userService: UserService,
               private storage: Storage) {
-    this.checkForUserStatus();
+    this.checkForUserStatus()
+      .catch(err => console.error(err));
     this.resetFilter();
     this.storage.get("events")
       .then((events: BeevyEvent[]) => {
@@ -43,8 +44,13 @@ export class HomePage {
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {
       this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent, user: this.user}, {animation: "ios-transition"});
-    } else {
-      this.manageUserStatus();
+    } else if(!this.userExists && !this.currentlyLoading){
+      this.currentlyLoading = true;
+      this.userService.handleUser()
+        .then(() => this.checkForUserStatus())
+        .catch(err => console.error(err));
+    } else if(this.currentlyLoading){
+      //TODO: Show alert;
     }
   }
 
@@ -108,42 +114,25 @@ export class HomePage {
     this.storage.set("events", this.allEvents);
   }
 
-  private manageUserStatus() {
-    //TODO: Handle async
-    if (this.retryUserCheck) {
-      this.checkForUserStatus();
-      this.retryUserCheck = false;
-    } else {
-      this.userService.handleUser();
-      this.retryUserCheck = true;
-    }
-  }
-
   private checkForUserStatus() {
     return new Promise((resolve, reject) => {
       this.storage.get("user")
         .then((user: User) => {
+          this.currentlyLoading = false;
           if (!user || !(user.token && user.userID)) {
-            resolve(false);
+            this.userExists = false;
           } else {
-            resolve(true);
+            this.userExists = true;
+            this.user = user;
           }
+          resolve();
         })
-        .catch(err => reject(err));
+        .catch(err => {
+          this.currentlyLoading = false;
+          this.userExists = false;
+          reject(err);
+        });
     })
-
-/*    this.userService.checkIfUserExists()
-      .then((userStatus: boolean) => {
-        this.storage.get("user")
-          .then((user: User) => {
-            this.userExists = userStatus;
-            this.user = user
-          })
-      })
-      .catch((err) => {
-        console.error(err);
-        this.userExists = false;
-      })*/
   }
 
   private resetFilter() {

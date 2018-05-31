@@ -75,7 +75,7 @@
         </p>
       </div>
     </div>
-    <button *ngIf="notAlreadyJoinedByUser()" [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
+    <button *ngIf="showJoinButton" [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
             ion-button full (click)="joinEvent()">Join Event
     </button>
 

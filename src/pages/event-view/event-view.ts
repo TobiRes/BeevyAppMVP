@@ -16,6 +16,8 @@ export class EventViewPage {
 
   beevyEvent: BeevyEvent;
   beevyEventType: string;
+  showJoinButton: boolean;
+
   private user: User;
 
   constructor(public navCtrl: NavController,
@@ -26,6 +28,7 @@ export class EventViewPage {
               private eventService: BeevyEventService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
+    this.showJoinButton = this.checkIfUserAlreadyJoinedEvent();
     if (this.beevyEvent.type == BeevyEventType.project) this.beevyEventType = "Projekt";
     if (this.beevyEvent.type == BeevyEventType.activity) this.beevyEventType = "Aktivität";
     if (this.beevyEvent.type == BeevyEventType.hangout) this.beevyEventType = "Hangout";
@@ -37,14 +40,6 @@ export class EventViewPage {
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
     this.alertOfJoin()
-  }
-
-  notAlreadyJoinedByUser(): boolean {
-    //TODO: Add user to registeredMembers in the front end, then get overwritten by backend
-    if(this.beevyEvent.registeredMembers.find((user: string) => user == this.user.userID) || this.beevyEvent.admin.userID == this.user.userID){
-      return false;
-    }
-    return true;
   }
 
   getDate(date: Date): string {
@@ -69,5 +64,10 @@ export class EventViewPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  private checkIfUserAlreadyJoinedEvent(): boolean {
+    //TODO: Add user to registeredMembers in the front end, then get overwritten by backend
+    return(!this.beevyEvent.registeredMembers || (this.beevyEvent.registeredMembers.indexOf(this.user.userID) == -1 || this.beevyEvent.admin.userID == this.user.userID))
   }
 }

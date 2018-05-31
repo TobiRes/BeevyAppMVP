@@ -23,16 +23,22 @@ export class UserService {
   }
 
   handleUser() {
-    this.checkIfUserExists()
-      .then((userExists: boolean) => {
-        if (userExists) {
-          console.log("User exists!")
-        } else {
-          this.createUser()
-            .then((username: string) => this.toastService.successfullyRegistered(username))
-            .catch(err => console.error(err));
-        }
-      })
+    return new Promise(((resolve, reject) => {
+      this.checkIfUserExists()
+        .then((userExists: boolean) => {
+          if (userExists) {
+            console.log("User exists!");
+            resolve();
+          } else {
+            this.createUser()
+              .then((username: string) => {
+                this.toastService.successfullyRegistered(username);
+                resolve();
+              })
+          }
+        })
+        .catch(err => reject(err));
+    }))
   }
 
   getUserEvents(user: User) {
