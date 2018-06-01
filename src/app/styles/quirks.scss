@@ -5,3 +5,7 @@
 .tabbar::before {
   background-image: none !important;
 }
+
+.button-md:hover:not(.disable-hover) {
+  background: linear-gradient(to bottom right, $beevy-lightBlue-more-transparent, $beevy-blue-more-transparent) !important;
+}
