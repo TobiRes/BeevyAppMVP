@@ -6,6 +6,8 @@ import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
 import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
+import {FilterUtil} from "../../utils/filter-util";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'page-home',
@@ -31,7 +33,8 @@ export class HomePage {
   filter: SetFilters = {types: [true, true, true], tags: []};
 
   private userExists: boolean = false;
-  private retryUserCheck: boolean = true;
+  private currentlyLoading: boolean = true;
+  private user: User;
 
   constructor(public navCtrl: NavController,
               private mockService: MockService,
@@ -40,7 +43,8 @@ export class HomePage {
               private userService: UserService,
               private storage: Storage) {
     this.tabBarElement = document.querySelector('.tabbar');
-    this.checkForUserStatus();
+    this.checkForUserStatus()
+      .catch(err => console.error(err));
     this.resetFilter();
     this.storage.get("events")
       .then((events: BeevyEvent[]) => {
@@ -50,18 +54,24 @@ export class HomePage {
       });
   }
 
-  ionViewDidEnter() {
-  }
-
   openEventView(beevyEvent: BeevyEvent) {
-    if(this.userExists){
-      this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent}, {animation: "ios-transition"});
-    } else {
-      this.manageUserStatus();
+    if (this.userExists) {
+      this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent, user: this.user}, {animation: "ios-transition"});
+    } else if(!this.userExists && !this.currentlyLoading){
+      this.currentlyLoading = true;
+      this.userService.handleUser()
+        .then(() => this.checkForUserStatus())
+        .catch(err => {
+          this.currentlyLoading = false;
+          this.userExists = false;
+          console.error(err)
+        });
+    } else if(this.currentlyLoading){
+      //TODO: Show alert;
     }
   }
 
-  refreshEvents(refresher){
+  refreshEvents(refresher) {
     setTimeout(() => {
       this.getEvents()
         .then(() => refresher.complete());
@@ -78,51 +88,27 @@ export class HomePage {
     filterModal.onWillDismiss((setFilter: SetFilters) => {
       if (setFilter != null) {
         this.filter = setFilter;
-        this.changeToFilteredEvents();
+        this.onlyShowFilteredEvents();
       }
     })
   }
 
-  changeToFilteredEvents() {
+  onlyShowFilteredEvents() {
     this.filteredEvents = [];
     for (let i = 0; i < this.allEvents.length; i++) {
-      if (this.checkFiltermatch(this.allEvents[i])) {
+      if (this.checkIfEventPassesFilter(this.allEvents[i])) {
         this.filteredEvents.push(this.allEvents[i]);
       }
     }
     this.displayedEvents = this.filteredEvents;
   }
 
-  checkFiltermatch(event: BeevyEvent) {
-    //check for Tags
-    let matches = false;
-    if (this.filter.tags.length < 1 || this.filter.tags == undefined)
-      matches = true;
-    else {
-      for (let i = 0; i < this.filter.tags.length; i++) {
-        for (let i2 = 0; i2 < event.tags.length; i2++) {
-          if (this.filter.tags[i].toLowerCase() == event.tags[i2].toLowerCase()) matches = true;
-        }
-      }
-    }
-
-    //check for search
-    let beevyEventString = JSON.stringify(event).toLowerCase();
-    if (this.filter.search != "" && !(beevyEventString.indexOf(this.filter.search.toLowerCase()) > -1)) matches = false;
-
-    //check for date
-    if (new Date(event.date).toISOString() < this.filter.earliestDate) matches = false;
-    if (new Date(event.date).toISOString() > this.filter.latestDate) matches = false;
-
-    //Check for City
-    if (this.filter.city != "" && event.address.city.toLowerCase() != this.filter.city.toLowerCase()) matches = false;
-
-    //check for Types
-    if (this.filter.types[0] == false && event.type == BeevyEventType.project) matches = false;
-    if (this.filter.types[1] == false && event.type == BeevyEventType.activity) matches = false;
-    if (this.filter.types[2] == false && event.type == BeevyEventType.hangout) matches = false;
-
-    return matches;
+  checkIfEventPassesFilter(event: BeevyEvent) {
+    return (this.checkForTagMatch(event.tags)
+      && this.checkForSearchMatch(event)
+      && this.checkForDateMatch(event.date)
+      && this.checkForCityMatch(event.address.city)
+      && this.checkForTypeMatch(event.type));
   }
 
   private getEvents() {
@@ -145,43 +131,62 @@ export class HomePage {
     this.storage.set("events", this.allEvents);
   }
 
-  private getMockEvents() {
-    for (let i = 1; i <= 5; i++) {
-      this.allEvents.push(this.mockService.getMockEvent(i));
-    }
-  }
-
-  private manageUserStatus() {
-    if(this.retryUserCheck){
-      this.checkForUserStatus();
-      this.retryUserCheck = false;
-    } else {
-      this.userService.handleUser();
-      this.retryUserCheck = true;
-    }
-  }
-
-  private checkForUserStatus(){
-    this.userService.checkIfUserExists()
-      .then((userStatus: boolean) => this.userExists = userStatus)
-      .catch((err)=> {
-        console.error(err);
-        this.userExists = false;
-      })
-    this.eventService.getBeevyEvents()
-      .then((existingEvents: BeevyEvent[]) => {
-        this.allEvents = existingEvents;
-      })
+  private checkForUserStatus() {
+    return new Promise((resolve, reject) => {
+      this.storage.get("user")
+        .then((user: User) => {
+          this.currentlyLoading = false;
+          if (!user || !(user.token && user.userID)) {
+            this.userExists = false;
+          } else {
+            this.userExists = true;
+            this.user = user;
+          }
+          resolve();
+        })
+        .catch(err => reject(err));
+    })
   }
 
   private resetFilter() {
     this.filter = {};
     this.filter.tags = [];
     this.filter.earliestDate = new Date().toISOString();
-    this.filter.latestDate = "2018-12-31T24:24:24.335Z";
+    this.filter.lastDate = "2018-12-31T24:24:24.335Z";
     this.filter.types = [true, true, true];
     this.filter.city = "";
     this.filter.search = "";
+  }
+
+  //Filter checking
+  private checkForTagMatch(eventTags: string[]): boolean {
+    if (this.filter.tags.length < 1 || !this.filter.tags)
+      return true;
+    else {
+      for (let i = 0; i < this.filter.tags.length; i++) {
+        for (let i2 = 0; i2 < eventTags.length; i2++) {
+          if (this.filter.tags[i].toLowerCase() == eventTags[i2].toLowerCase()) return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  private checkForSearchMatch(event: BeevyEvent): boolean {
+    let beevyEventString = JSON.stringify(event).toLowerCase();
+    return !(FilterUtil.eventDoesNotContainSearchString(this.filter.search, beevyEventString));
+  }
+
+  private checkForDateMatch(eventDate): boolean {
+    return !(FilterUtil.eventDateIsBeforeOrAfterSpecifiedFilterDate(eventDate, this.filter.earliestDate, this.filter.lastDate));
+  }
+
+  private checkForCityMatch(eventCity: string): boolean {
+    return !(FilterUtil.eventIsInDifferentCity(this.filter.city, eventCity));
+  }
+
+  private checkForTypeMatch(eventType: BeevyEventType): boolean {
+    return !(FilterUtil.eventTypeDoesNotMatchFilteredEventTypes(this.filter.types, eventType));
   }
 }
 

@@ -24,7 +24,7 @@ export class BeevyEventComponent {
   }
 
   getDate(date: Date): string {
-    return DateUtil.getWeekday(new Date(date).getDay()) +" "+ DateUtil.getDayMonthOfDate(date);
+    return DateUtil.getWeekday(new Date(date).getDay()) + " " + DateUtil.getDayMonthOfDate(date);
   }
 
   getTime(date: Date): string {

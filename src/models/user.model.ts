@@ -6,6 +6,7 @@ export interface User {
   mail: string;
   token?: string;
   userEvents?: UserEvents;
+  currentAvatar?: string;
 }
 
 export interface UnregisteredUser {

@@ -10,14 +10,15 @@ import {UserService} from "../services/user.service";
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage: any = TabsPage;
   filter: string[] = ["Videospiele", "Kunst", "Unterhaltung", "Projekte"];
 
   showSplash = true;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, userService: UserService) {
     platform.ready().then(() => {
-      userService.handleUser();
+      userService.handleUser()
+        .catch(err => console.error(err));
       statusBar.styleDefault();
       splashScreen.hide();
 

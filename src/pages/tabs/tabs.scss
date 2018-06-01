@@ -1,7 +1,7 @@
 page-tabs {
 
   .tabbar,
-  .tabbar.show-tabbar{
+  .tabbar.show-tabbar {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
@@ -11,7 +11,7 @@ page-tabs {
   }
 
   .tabs-ios {
-    .tabbar.show-tabbar{
+    .tabbar.show-tabbar {
       padding-bottom: 7px;
     }
   }

@@ -33,12 +33,13 @@ export class BeevyEventService {
   joinBeevyEvent(beevent: BeevyEvent) {
     this.storage.get("user")
       .then((user: User) => {
-        if(!user || !(user.userID && user.token)){
+        if (!user || !(user.userID && user.token)) {
           console.log("Can't join event", user);
         } else {
           this.handleJoiningOnServerSide(beevent, user)
             .then(() => this.userService.getUserEvents(user))
-        }})
+        }
+      })
       .catch(err => console.error(err))
   }
 

@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-navbar>
+  <img class="headerImage" src="assets/imgs/footer.svg">
+  <ion-navbar class="navbar">
     <ion-title>
       Profil
     </ion-title>
@@ -7,23 +8,41 @@
 </ion-header>
 
 <ion-content class="main-background-gradient">
-  <img class="beevyFooter" src="../../assets/imgs/footer.svg">
-  <img class="beevyHeader" src="../../assets/imgs/footer.svg">
 
-  <div>
-    <img class="avatarBig" src="../../assets/icon/ninja-white.svg" height="40%" width="40%">
-    <!-- <img src="../../assets/avatars/anonymous"> -->
+  <div id="avatarCircle">
+    <img class="avatarBig" src="{{user?.currentAvatar}}" (click)="presentPopover($event)">
   </div>
-  <p class="userName">{{user?.username}}Leon</p>
 
-  <div class="infoHolder">
-    <p>ID: {{user?.userID}}</p>
-    <p>Mail: {{user?.mail}}</p>
-    <p>Token: {{user?.token}}</p>
-    <ion-list>
-      <div *ngFor="let event of user?.userEvents.joinedEvents">
-        <beevy-event [beevyEvent]="event"></beevy-event>
-      </div>
-    </ion-list>_
+  <p class="userName">{{user?.username}}</p>
+  <p class="userMail">{{user?.mail}}</p>
+
+  <button class="beevyButton joinedButton"
+          [ngClass]="[joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']" ion-button full
+          (click)="listJoined()">Joined events
+  </button>
+  <button class="beevyButton createdButton"
+          [ngClass]="[!joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']" ion-button full
+          (click)="listCreated()">Created events
+  </button>
+
+  <div class="profileEvents">
+    <div *ngIf="joinedEventsActive">
+      <ion-list>
+        <div *ngFor="let event of user?.userEvents?.joinedEvents">
+          <beevy-event [beevyEvent]="event"></beevy-event>
+        </div>
+      </ion-list>
+    </div>
+
+    <div *ngIf="!joinedEventsActive">
+      <ion-list>
+        <div *ngFor="let event of user?.userEvents?.createdEvents">
+          <beevy-event [beevyEvent]="event"></beevy-event>
+        </div>
+      </ion-list>
+    </div>
   </div>
 </ion-content>
+<ion-footer>
+  <img class="beevyFooter" src="assets/imgs/footer.svg"/>
+</ion-footer>

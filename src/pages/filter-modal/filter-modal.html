@@ -1,19 +1,28 @@
 <ion-content padding>
 
   <ion-searchbar #q
-    [(ngModel)]="suchInput"
+                 [(ngModel)]="suchInput"
                  placeholder="Suchen"
                  class="suchBar"
-                 (keyup.enter)="search(q.value)"
+                 (keyup.enter)="search()"
 
-  id = "suchBalken">
+                 id="suchBalken">
   </ion-searchbar>
 
   <div class="filterContainer" id="filterContainer">
     <div class="buttonContainer">
-      <button id="typeButton0" [ngClass]="['typeButton', buttonColour(0)]" (click)="setType(0, 'typeButton0')" >Projekt</button>
-      <button id="typeButton1"  [ngClass]="['typeButton', buttonColour(1)]" (click)="setType(1, 'typeButton1')" >Aktivität</button>
-      <button id="typeButton2" [ngClass]="['typeButton', buttonColour(2)]" (click)="setType(2, 'typeButton2')" >Hangout</button>
+      <button id="typeButton0"
+              [ngClass]="['typeButton', buttonColour(0), setTypeFilterButtons[0] ? 'filter-button-active' : 'filter-button-inactive']"
+              (click)="setType(0, 'typeButton0')">Projekt
+      </button>
+      <button id="typeButton1"
+              [ngClass]="['typeButton', buttonColour(1), setTypeFilterButtons[1] ? 'filter-button-active' : 'filter-button-inactive']"
+              (click)="setType(1, 'typeButton1')">Aktivität
+      </button>
+      <button id="typeButton2"
+              [ngClass]="['typeButton', buttonColour(2), setTypeFilterButtons[2] ? 'filter-button-active' : 'filter-button-inactive']"
+              (click)="setType(2, 'typeButton2')">Hangout
+      </button>
     </div>
 
 
@@ -30,11 +39,13 @@
     <div class="dateInputs">
       <ion-item class="dateInput">
         <ion-label class="dateInputLabel">Von</ion-label>
-        <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="earliestDate"></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YY" [min]="defaultStartDate" [max]="getDateBeforeChosenEndDate()"
+                      [(ngModel)]="earliestDate"></ion-datetime>
       </ion-item>
       <ion-item class="dateInput">
         <ion-label class="dateInputLabel">Bis</ion-label>
-        <ion-datetime displayFormat="DD/MM/YY" [(ngModel)]="latestDate"></ion-datetime>
+        <ion-datetime displayFormat="DD/MM/YY" [min]="getDateAfterChosenStartDate()" [max]="defaultEndDate"
+                      [(ngModel)]="lastDate"></ion-datetime>
       </ion-item>
     </div>
 
@@ -44,14 +55,12 @@
     </ion-item>
 
 
-
-
     <div class="butteonWrapping halberButton">
       <button class="actionsButton" ion-button (click)="deleteFilter()">zurücksetzen</button>
     </div>
 
     <div class="butteonWrapping halberButton">
-    <button class="actionsButton" ion-button (click)="applyFilter()">anwenden</button>
+      <button class="actionsButton" ion-button (click)="applyFilter()">anwenden</button>
     </div>
 
   </div>

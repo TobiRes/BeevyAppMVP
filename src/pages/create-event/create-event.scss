@@ -3,128 +3,126 @@ page-create-event {
     margin-top: 56px;
   }
 
-  .item-inner{
+  .item-inner {
     border: none !important;
     $text-input-highlight-color-valid: #000;
   }
-
-
 
   ion-input {
     color: white;
   }
 
-  ion-input:active{
+  ion-input:active {
     border: none !important;
   }
 
-  .titlecreate{
+  .titlecreate {
     margin-top: 35px;
     .text-input::-moz-placeholder {
       text-indent: 0;
       color: white;
       font-size: 20px;
-      text-align:center;
+      text-align: center;
     }
     .text-input:-ms-input-placeholder {
       text-indent: 0;
       color: white;
       font-size: 20px;
-      text-align:center;
+      text-align: center;
     }
     .text-input::-webkit-input-placeholder {
       text-indent: 0;
       color: white;
       font-size: 20px;
-      text-align:center;
+      text-align: center;
     }
-    .text-input{
+    .text-input {
       text-indent: 0;
       color: white;
       font-size: 20px;
-      text-align:center;
+      text-align: center;
     }
   }
 
-  .subtitlecreate, .beschreibungcreate{
+  .subtitlecreate, .beschreibungcreate {
     .text-input::-moz-placeholder {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
     .text-input:-ms-input-placeholder {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
     .text-input::-webkit-input-placeholder {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
-    .text-input{
+    .text-input {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
   }
 
-  .streetcreate, .plzcreate, .ortcreate{
+  .streetcreate, .plzcreate, .ortcreate {
     .text-input::-moz-placeholder {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
     .text-input:-ms-input-placeholder {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
     .text-input::-webkit-input-placeholder {
       text-indent: 0;
       color: white;
-      text-align:center;
+      text-align: center;
     }
-    .text-input{
+    .text-input {
       text-indent: 0;
       color: white;
       font-size: 20px;
-      text-align:center;
+      text-align: center;
     }
   }
 
-  .streetcreate{
+  .streetcreate {
     margin-bottom: 10px;
   }
 
-  .eventtypecreate{
+  .eventtypecreate {
     padding-left: 25px !important;
     padding-right: 25px !important;
   }
 
-  .eventtypelabel{
+  .eventtypelabel {
     padding-left: 25px;
-    margin:0px;
+    margin: 0px;
   }
 
-  .limitmemberscreate{
+  .limitmemberscreate {
     padding-left: 25px !important;
     padding-right: 25px !important;
   }
 
-  ion-select{
+  ion-select {
     right: 50px;
   }
 
-  .beschreibung{
+  .beschreibung {
     margin-left: 25px;
     margin-right: 25px;
     background: linear-gradient(to bottom right, $beevy-lightBlue-transparent, $beevy-blue-transparent);
     border-radius: 30px;
   }
 
-  .beschreibungcreate{
-    :focus{
+  .beschreibungcreate {
+    :focus {
       transform: translate(0px, -30px);
       -webkit-transform: translate(0px, -30px);
       -ms-transform: translate(0px, -30px);
@@ -138,33 +136,32 @@ page-create-event {
     margin-top: 25px;
   }
 
-  .beschreibungcreate[target=_blank]{
+  .beschreibungcreate[target=_blank] {
     background-color: black;
   }
 
-
-  .subtitlecreate{
+  .subtitlecreate {
     top: -10px;
   }
 
-  .datecreate{
-    text-align:center;
+  .datecreate {
+    text-align: center;
     font-size: 20px;
   }
 
-  .text-input{
+  .text-input {
     padding: 0px !important;
   }
 
-   .plzcreatebox, .ortcreatebox{
+  .plzcreatebox, .ortcreatebox {
     width: 49%;
     display: inline-block;
     align-items: center;
     justify-content: center;
-     height: 30px;
+    height: 30px;
   }
 
-  .datecreatebox, .timecreatebox{
+  .datecreatebox, .timecreatebox {
     width: 49%;
     display: inline-block;
     align-items: center;
@@ -174,23 +171,21 @@ page-create-event {
     height: 30px;
   }
 
-  .timecreate{
-    text-align:center;
+  .timecreate {
+    text-align: center;
     font-size: 20px;
   }
 
-
-  .selectcreate{
+  .selectcreate {
     background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
   }
 
-
-  .basicinfos{
+  .basicinfos {
     background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
     border-radius: 30px;
   }
 
-  ion-item{
+  ion-item {
     border: 0;
   }
 
@@ -201,26 +196,23 @@ page-create-event {
     padding: 0px !important;
   }
 
-
-
 }
 
-.range-bar-active, .range-knob{
+.range-bar-active, .range-knob {
   background: $beevy-lightBlue !important;
 }
 
-.checkbox-icon{
+.checkbox-icon {
   border: 2px white !important;
   border-radius: 5px !important;
   background-color: white;
 }
 
-.checkbox-icon:checked{
+.checkbox-icon:checked {
   border: 2px white !important;
   border-radius: 5px !important;
   background-color: black !important;
 }
-
 
 ion-checkbox {
   margin-right: 15px !important;
@@ -232,58 +224,57 @@ ion-checkbox {
   }
 }
 
-
-.memberscreate{
+.memberscreate {
   padding-top: 20px !important;
   .item-inner {
     margin: 0px !important;
     padding: 0px !important;
     text-align: left;
   }
-  .memeberslabel{
+  .memeberslabel {
     margin-left: 25px;
-    position:absolute;
-    left:0;
+    position: absolute;
+    left: 0;
     top: 0;
   }
-  .membersrange{
+  .membersrange {
     margin-top: 10px;
-    position:relative;
+    position: relative;
     padding-left: 25px;
     padding-right: 25px;
   }
 }
 
-.datetime-placeholder{
-  padding:0px;
+.datetime-placeholder {
+  padding: 0px;
   font-size: 20px !important;
   color: white !important;
   text-align: center;
 }
 
-.datetime-text{
+.datetime-text {
   font-size: 20px;
   text-align: center;
 }
 
-.datetime{
-  margin:auto;
+.datetime {
+  margin: auto;
 }
 
-ion-item{
-  padding:0px !important;
+ion-item {
+  padding: 0px !important;
 }
 
-.eventtypecreate{
+.eventtypecreate {
   padding-left: 25px;
 }
 
-.alert-button{
-  .button-inner{
+.alert-button {
+  .button-inner {
     color: white;
   }
 }
 
-.item-inner{
-  padding:0px !important;
+.item-inner {
+  padding: 0px !important;
 }
