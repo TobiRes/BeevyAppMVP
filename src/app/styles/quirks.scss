@@ -5,3 +5,14 @@
 .tabbar::before {
   background-image: none !important;
 }
+
+//Fix for footer jumping up
+.footer {
+  bottom: 0 !important;
+}
+
+//Fix for page scrolling when there is no reason to scroll
+.no-scroll .scroll-content{
+  overflow: hidden;
+  padding-bottom: 0 !important;
+}
