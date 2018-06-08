@@ -79,11 +79,33 @@
             ion-button full (click)="joinEvent()">Join Event
     </button>
 
-    <div [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+    <div *ngIf="notAllowedtoSeeComments" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
       <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
         <h5>Kommentare</h5>
       </div>
-      <p>Kommentare sind nur für Teilnehmer des Events sichtbar.</p>
+      <p >Kommentare sind nur für Teilnehmer des Events sichtbar.</p>
+
+    </div>
+    <div *ngIf="noCommentsYet" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <h5>Kommentare</h5>
+      </div>
+      <p >Noch keine Kommentare zu diesem Event. Füge einen hinzu!</p>
+
+    </div>
+
+    <div *ngIf="showComments" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <h5>Kommentare</h5>
+      </div>
+      <ion-item>
+        <ion-label>{{user.username}}</ion-label>
+        <ion-input [(ngModel)]="commentBody" placeholder="..."></ion-input>
+      </ion-item>
+      <button [disabled]="!commentBody" (click)="addNewComment()">
+        kommentieren
+      </button>
+      <div *ngFor="let comment of beevyEvent.comments"><p>{{comment.commentBody}}</p></div>
 
     </div>
 

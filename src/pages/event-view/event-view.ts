@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {Storage} from "@ionic/storage";
 import {MockService} from "../../services/mock.service";
@@ -19,21 +19,31 @@ export class EventViewPage {
   beevyEvent: BeevyEvent;
   beevyEventType: string;
   showJoinButton: boolean;
+  notAllowedtoSeeComments: boolean;
+  noCommentsYet: boolean;
+  showComments:boolean;
+  commentBody: string;
 
-  private user: User;
+  user: User;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private storage: Storage,
               private alertCtrl: AlertController,
-              private mockService: MockService,
+              private loadingCtrl: LoadingController,
               private eventService: BeevyEventService,
               private commentService: CommentService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
     this.showJoinButton = this.userNotPartOfEvent();
     this.defineProjectType();
-    this.handleComments();
+
+    this.notAllowedtoSeeComments = true;
+    this.noCommentsYet = false;
+    this.showComments = false;
+
+    this.handleComments()
+      .catch(err => console.error(err));
   }
 
   ionViewDidLoad() {
@@ -41,7 +51,22 @@ export class EventViewPage {
 
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
-    this.alertOfJoin()
+    this.alertOfJoin();
+  }
+
+  addNewComment(repliedTo: string | undefined){
+    let loading = this.startLoader();
+    loading.present();
+    this.commentService.addComment(this.beevyEvent.eventID, this.user.userID, this.user.token, this.commentBody, repliedTo)
+      .then(() => this.handleComments())
+      .then(() => {
+        loading.dismissAll();
+        this.commentBody = "";
+      })
+      .catch((err) => {
+        console.error(err);
+        loading.dismissAll();
+      });
   }
 
   getDate(date: Date): string {
@@ -80,13 +105,26 @@ export class EventViewPage {
   }
 
   private handleComments() {
-    if(!this.userNotPartOfEvent()){
-      this.commentService.loadComments(this.user, this.beevyEvent)
-        .then((eventComments: EventComment[]) => {
-          this.beevyEvent.comments = eventComments;
-          console.log(this.beevyEvent);
-        })
-        .catch((err) => console.error(err));
-    }
+    return new Promise(((resolve, reject) => {
+      if(!this.userNotPartOfEvent()){
+        this.notAllowedtoSeeComments = false;
+        this.commentService.loadComments(this.user, this.beevyEvent)
+          .then((eventComments: EventComment[]) => {
+            this.beevyEvent.comments = eventComments;
+            console.log(this.beevyEvent);
+            if(!eventComments){
+              this.noCommentsYet = true;
+            }else{
+              this.showComments = true;
+            }
+            resolve();
+          })
+          .catch((err) =>reject(err));
+      }
+    }))
+  }
+
+  private startLoader() {
+    return this.loadingCtrl.create();
   }
 }
