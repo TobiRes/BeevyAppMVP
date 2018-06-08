@@ -26,6 +26,23 @@ page-event-view {
         margin: 0;
         display: inline-block;
       }
+      #idButton{
+        border-radius: 30px;
+        margin: auto;
+        height: 25px;
+        color: white;
+        border-style: solid;
+        border-width: 2px;
+        background-color: transparent;
+        -webkit-transition: 0.1s; /* Safari */
+        transition: 0.1s;
+      }
+      #idButton:active{
+        background: rgba(255,255,255,0.5);
+        -webkit-transition: 0.1s; /* Safari */
+        transition: 0.1s;
+
+      }
 
     }
     .eventTitle {

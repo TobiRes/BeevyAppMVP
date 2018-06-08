@@ -17,7 +17,7 @@
           height="12px"
         />
       </div>
-      <p>id: {{beevyEvent.eventID}} </p>
+      <button (click)="copyEventID()" [ngClass]="[changeColorOfContainer(beevyEvent.type, 'border')]" id="idButton">id kopieren</button>
     </div>
 
     <div class="eventTitle">

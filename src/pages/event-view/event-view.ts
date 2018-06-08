@@ -2,12 +2,12 @@ import {Component} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {Storage} from "@ionic/storage";
-import {MockService} from "../../services/mock.service";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
 import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
+import { Clipboard } from '@ionic-native/clipboard';
 
 @IonicPage()
 @Component({
@@ -28,11 +28,11 @@ export class EventViewPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private storage: Storage,
               private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,
               private eventService: BeevyEventService,
-              private commentService: CommentService) {
+              private commentService: CommentService,
+              private clipboard: Clipboard) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
     this.showJoinButton = this.userNotPartOfEvent();
@@ -126,5 +126,9 @@ export class EventViewPage {
 
   private startLoader() {
     return this.loadingCtrl.create();
+  }
+
+  copyEventID(){
+      this.clipboard.copy(this.beevyEvent.eventID);
   }
 }
