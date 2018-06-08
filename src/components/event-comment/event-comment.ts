@@ -1,16 +1,20 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {BeevyEvent} from "../../models/event.model";
+import {EventComment} from "../../models/comment.model";
 
 @Component({
   selector: 'event-comment',
   templateUrl: 'event-comment.html'
 })
+
 export class EventCommentComponent {
 
-  text: string;
+  @Input()
+  eventComment: EventComment;
+
 
   constructor() {
-    console.log('Hello EventCommentComponent Component');
-    this.text = 'Hello World';
+
   }
 
 }

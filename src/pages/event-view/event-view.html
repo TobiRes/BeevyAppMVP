@@ -105,8 +105,8 @@
       <button [disabled]="!commentBody" (click)="addNewComment()">
         kommentieren
       </button>
-      <div *ngFor="let comment of beevyEvent.comments"><p>{{comment.commentBody}}</p></div>
-
+      <div *ngFor="let comment of beevyEvent.comments">
+        <event-comment [eventComment]="comment"></event-comment></div>
     </div>
 
   </div>
