@@ -6,6 +6,8 @@ import {MockService} from "../../services/mock.service";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
 import {User} from "../../models/user.model";
+import {CommentService} from "../../services/comment.service";
+import {EventComment} from "../../models/comment.model";
 
 @IonicPage()
 @Component({
@@ -25,13 +27,13 @@ export class EventViewPage {
               private storage: Storage,
               private alertCtrl: AlertController,
               private mockService: MockService,
-              private eventService: BeevyEventService) {
+              private eventService: BeevyEventService,
+              private commentService: CommentService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
-    this.showJoinButton = this.checkIfUserAlreadyJoinedEvent();
-    if (this.beevyEvent.type == BeevyEventType.project) this.beevyEventType = "Projekt";
-    if (this.beevyEvent.type == BeevyEventType.activity) this.beevyEventType = "Aktivität";
-    if (this.beevyEvent.type == BeevyEventType.hangout) this.beevyEventType = "Hangout";
+    this.showJoinButton = this.userNotPartOfEvent();
+    this.defineProjectType();
+    this.handleComments();
   }
 
   ionViewDidLoad() {
@@ -66,8 +68,25 @@ export class EventViewPage {
     alert.present();
   }
 
-  private checkIfUserAlreadyJoinedEvent(): boolean {
+  private userNotPartOfEvent(): boolean {
     //TODO: Add user to registeredMembers in the front end, then get overwritten by backend
-    return(!this.beevyEvent.registeredMembers || (this.beevyEvent.registeredMembers.indexOf(this.user.userID) == -1 || this.beevyEvent.admin.userID == this.user.userID))
+    return (!this.beevyEvent.registeredMembers || !(this.beevyEvent.registeredMembers.indexOf(this.user.userID) != -1 || this.beevyEvent.admin.userID == this.user.userID));
+  }
+
+  private defineProjectType() {
+    if (this.beevyEvent.type == BeevyEventType.project) this.beevyEventType = "Projekt";
+    if (this.beevyEvent.type == BeevyEventType.activity) this.beevyEventType = "Aktivität";
+    if (this.beevyEvent.type == BeevyEventType.hangout) this.beevyEventType = "Hangout";
+  }
+
+  private handleComments() {
+    if(!this.userNotPartOfEvent()){
+      this.commentService.loadComments(this.user, this.beevyEvent)
+        .then((eventComments: EventComment[]) => {
+          this.beevyEvent.comments = eventComments;
+          console.log(this.beevyEvent);
+        })
+        .catch((err) => console.error(err));
+    }
   }
 }

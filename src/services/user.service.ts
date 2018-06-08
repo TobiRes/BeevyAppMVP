@@ -43,7 +43,7 @@ export class UserService {
   }
 
   getUserEvents(user: User) {
-    let userAccessData: SecurityUserData = this.generateUserAccessData(user);
+    let userAccessData: SecurityUserData = SecurityUtil.generateUserAccessData(user);
     this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
       .subscribe(() => {
         this.http.get(AppConfig.API_BASE_URL + "/event/" + user.userID + "/" + userAccessData.tempToken)
@@ -202,14 +202,5 @@ export class UserService {
           reject(err);
         })
     })
-  }
-
-  private generateUserAccessData(user: User): SecurityUserData {
-    return {
-      username: user.username,
-      userID: user.userID,
-      token: user.token,
-      tempToken: SecurityUtil.generateRandomToken()
-    }
   }
 }
