@@ -6,6 +6,17 @@
   background-image: none !important;
 }
 
+//Fix for button turning blue after pressing
 .button-md:hover:not(.disable-hover) {
   background: linear-gradient(to bottom right, $beevy-lightBlue-more-transparent, $beevy-blue-more-transparent) !important;
+}
+//Fix for footer jumping up
+.footer {
+  bottom: 0 !important;
+}
+
+//Fix for page scrolling when there is no reason to scroll
+.no-scroll .scroll-content{
+  overflow: hidden;
+  padding-bottom: 0 !important;
 }
