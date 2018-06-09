@@ -12,6 +12,7 @@ export class BeevyEventComponent {
   @Input()
   beevyEvent: BeevyEvent;
 
+
   @Output()
   clicked = new EventEmitter();
 

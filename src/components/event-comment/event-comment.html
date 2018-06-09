@@ -1,3 +1,7 @@
-<div>
-  {{eventComment.commentBody}}
+<div class="comment">
+  <div [ngClass]="['commentAuthor', changeColorOfContainer(type, 'border')]">{{eventComment.author}}</div>
+  <span class="commentBody">{{eventComment.commentBody}}</span>
+  <div class="unterKommentare" *ngFor="let comment of eventComment.comments">
+    <event-comment [eventComment]="comment" [type]="type" ></event-comment>
+  </div>
 </div>

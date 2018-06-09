@@ -25,6 +25,7 @@ import {RlTagInputModule} from 'angular2-tag-input';
 import {PopoverComponent} from "../components/popover/popover";
 import {CommentService} from "../services/comment.service";
 import {Clipboard} from "@ionic-native/clipboard";
+import { Keyboard } from '@ionic-native/keyboard';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {Clipboard} from "@ionic-native/clipboard";
     ToastService,
     Device,
     CommentService,
-    Clipboard
+    Clipboard,
+    Keyboard
   ]
 })
 export class AppModule {

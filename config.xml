@@ -84,4 +84,5 @@
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <engine name="android" spec="7.0.0" />
     <plugin name="cordova-clipboard" spec="^1.2.1" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
 </widget>

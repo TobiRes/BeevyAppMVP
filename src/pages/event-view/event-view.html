@@ -79,7 +79,7 @@
             ion-button full (click)="joinEvent()">Join Event
     </button>
 
-    <div *ngIf="notAllowedtoSeeComments" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+    <div *ngIf="notAllowedtoSeeComments" [ngClass]="['kommentarBoxTransparent','kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
       <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
         <h5>Kommentare</h5>
       </div>
@@ -98,15 +98,37 @@
       <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
         <h5>Kommentare</h5>
       </div>
-      <ion-item>
-        <ion-label>{{user.username}}</ion-label>
-        <ion-input [(ngModel)]="commentBody" placeholder="..."></ion-input>
-      </ion-item>
-      <button [disabled]="!commentBody" (click)="addNewComment()">
-        kommentieren
-      </button>
-      <div *ngFor="let comment of beevyEvent.comments">
-        <event-comment [eventComment]="comment"></event-comment></div>
+      <div class="eingabe">
+        <ion-item class="kommentarEingabeBox">
+          <ion-label stacked>{{user.username}}</ion-label>
+          <ion-input class="kommentarEingabe" #focusInput [(ngModel)]="commentBody" placeholder="..."></ion-input>
+        </ion-item>
+
+        <button [ngClass]="['commentButton', changeColorOfContainer(beevyEvent.type, 'full')]" [disabled]="!commentBody" (click)="addNewComment()">
+          <img
+            class="commentIcon"
+            src="../../assets/icon/paper-plane.svg"
+            alt="triangle with all three sides equal"
+            height="20px"
+          />
+        </button>
+      </div>
+
+      <div [ngClass]="['alleKommentare', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <div class="kommentare" *ngFor="let comment of beevyEvent.comments">
+          <event-comment [eventComment]="comment" [type]="beevyEvent.type" ></event-comment>
+          <div class="replyButtonBox">
+            <button class="replyButton" (click)="respondToComment(comment)">
+              <img
+                class="replyIcon"
+                src="../../assets/icon/reply.svg"
+                alt="triangle with all three sides equal"
+                height="15px"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>

@@ -173,13 +173,16 @@ page-event-view {
     .joinEventButton {
 
     }
-    .kommentarBox {
+    .kommentarBoxTransparent{
       opacity: 0.7; //opacity runter für wenn man nicht angemeldet ist
+    }
+    .kommentarBox {
       border-radius: 30px;
       border-style: solid;
       border-width: 2px;
       text-align: center;
       margin-top: 35px;
+      margin-bottom: 70px;
 
       .kommentarTitelBox {
         border-top: none;
@@ -195,7 +198,82 @@ page-event-view {
         padding-left: 5px;
         padding-right: 5px;
       }
-    }
+      .eingabe{
+        display: inline-block;
+        width: 90%;
+        padding-bottom: 5px;
+        padding-top: 5px;
+
+        .kommentarEingabeBox{
+          width: 80%;
+          border-bottom: none;
+          display: inline-block;
+          padding: none;
+
+          .item-inner{
+            border: none;
+          }
+          .label{
+            margin:0;
+            padding-right: 10px;
+            color: white;
+            //max-width: 20%;
+            font-size: 16px;
+            padding-left: 5px;
+          }
+
+          .kommentarEingabe{
+            background-color: white;
+            color: $beevy-darkBlue;
+            border-radius: 30px;
+            padding-left: 10px;
+            height: 30px;
+
+            .text-input{
+              margin:0;
+              padding-top: 5px;
+              padding-left: 5px;
+              width: 100%;
+              padding-right: 10px;
+            }
+          }
+        }
+        .commentButton{
+          border-radius: 30px;
+          opacity: 1.0;
+          height: 30px;
+          width: 18%;
+          display: inline-block;
+          vertical-align: top;
+          margin-top: 20px;
+        }
+      }
+      .alleKommentare{
+        border-bottom: none;
+        border-top-width: 2px;
+        border-top-style: solid;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .kommentare{
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 5px;
+
+
+        .replyButtonBox{
+          width: 8%;
+          min-width: 20px;
+          display: inline-block;
+          vertical-align: top;
+          .replyButton{
+            background-color: transparent;
+          }
+        }
+
+      }
+      }
+
   }
 
 }

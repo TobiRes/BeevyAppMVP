@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {Storage} from "@ionic/storage";
@@ -8,6 +8,9 @@ import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
 import { Clipboard } from '@ionic-native/clipboard';
+import { Keyboard } from '@ionic-native/keyboard';
+
+
 
 @IonicPage()
 @Component({
@@ -23,8 +26,12 @@ export class EventViewPage {
   noCommentsYet: boolean;
   showComments:boolean;
   commentBody: string;
+  currentResponseCommentID: string;
+  currentResponseCommentAuthor: string;
 
   user: User;
+
+  @ViewChild('focusInput') kommentarEingabefeld ;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -44,6 +51,10 @@ export class EventViewPage {
 
     this.handleComments()
       .catch(err => console.error(err));
+
+    this.currentResponseCommentID="";
+    this.currentResponseCommentAuthor="";
+
   }
 
   ionViewDidLoad() {
@@ -55,6 +66,12 @@ export class EventViewPage {
   }
 
   addNewComment(repliedTo: string | undefined){
+    if(this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)){
+        repliedTo = this.currentResponseCommentID;
+        this.commentBody = this.commentBody.substring(this.currentResponseCommentAuthor.length);
+    }
+
+
     let loading = this.startLoader();
     loading.present();
     this.commentService.addComment(this.beevyEvent.eventID, this.user.userID, this.user.token, this.commentBody, repliedTo)
@@ -112,7 +129,7 @@ export class EventViewPage {
           .then((eventComments: EventComment[]) => {
             this.beevyEvent.comments = eventComments;
             console.log(this.beevyEvent);
-            if(!eventComments){
+            if(eventComments== []){
               this.noCommentsYet = true;
             }else{
               this.showComments = true;
@@ -130,5 +147,13 @@ export class EventViewPage {
 
   copyEventID(){
       this.clipboard.copy(this.beevyEvent.eventID);
+  }
+  respondToComment(comment: EventComment){
+    this.currentResponseCommentAuthor ="@"+comment.author+": ";
+    this.commentBody = this.currentResponseCommentAuthor;
+    this.currentResponseCommentID = comment.commentID;
+
+    //Keyboard.show(); // for android
+    this.kommentarEingabefeld.setFocus();
   }
 }
