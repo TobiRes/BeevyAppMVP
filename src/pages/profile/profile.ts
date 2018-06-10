@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
-import {NavController, PopoverController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {PopoverComponent} from "../../components/popover/popover";
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'page-profile',
@@ -10,41 +11,14 @@ import {PopoverComponent} from "../../components/popover/popover";
 })
 export class ProfilePage {
 
+  @ViewChild(Content) content: Content;
   user: User;
   joinedEventsActive?: boolean;
-  avatar1: string="../../assets/imgs/avatar_1.svg";
-  /*avatar2: string="../../assets/imgs/avatar2.svg";
-  avatar3: string="../../assets/imgs/avatar3.svg";
-  avatar4: string="../../assets/imgs/avatar4.svg";
-  avatar5: string="../../assets/imgs/avatar5.svg";
-  avatar6: string="../../assets/imgs/avatar6.svg";
-  avatar7: string="../../assets/imgs/avatar7.svg";
-  avatar8: string="../../assets/imgs/avatar8.svg";
-  avatar9: string="../../assets/imgs/avatar9.svg";
-  avatar10: string="../../assets/imgs/avatar10.svg";
-  avatar11: string="../../assets/imgs/avatar11.svg";
-  avatar12: string="../../assets/imgs/avatar12.svg";*/
+  avatar1: string="../../assets/imgs/avatar_1.svg" + "";
 
-  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage) {
     this.joinedEventsActive = true;
-  }
-
-  ionViewDidEnter() {
-    this.loadMockUser();
-  }
-
-  private loadMockUser() {
-    this.mockService.checkIfUserExists()
-      .then((user: User) => {
-        if (!user) {
-          this.mockService.createMockUser()
-            .then(() => this.loadMockUser())
-        } else {
-          this.user = user;
-          if (this.user.currentAvatar == null) this.user.currentAvatar = this.avatar1;
-        }
-      })
-      .catch((err) => console.error(err))
+    this.storage.get("user").then((user: User) => this.user = user);
   }
 
    listJoined() {
@@ -60,5 +34,15 @@ export class ProfilePage {
     popover.present({
       ev: myEvent
     });
+    popover.onDidDismiss((avatarString: string) => {
+      console.log(avatarString);
+      if(avatarString!=null) this.user.currentAvatar=avatarString;
+      this.storage.set("user", this.user);
+    });
   }
+
+  scrollUp(){
+    this.content.scrollToTop();
+  }
+
 }

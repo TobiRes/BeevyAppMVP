@@ -59,7 +59,8 @@ export class UserService{
     return {
       username: "TestUser",
       userID: this.device.uuid ? this.device.uuid : "testID",
-      mail: "test@test.com"
+      mail: "test@test.com",
+      currentAvatar: ""
     }
   }
 

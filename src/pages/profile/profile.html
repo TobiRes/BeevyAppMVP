@@ -11,14 +11,14 @@
   <img class="beevyHeader" src="../../assets/imgs/footer.svg">
 
   <div id="avatarCircle">
-    <img class="avatarBig" src="{{user?.currentAvatar}}" (click)="presentPopover($event)">
+    <img id="avatarBig" [src]="user?.currentAvatar" (click)="presentPopover($event)">
   </div>
 
   <p class="userName">{{user?.username}}</p>
   <p class="userMail">{{user?.mail}}</p>
 
-  <button class="beevyButton joinedButton" ion-button full (click) ="listJoined()">Joined events</button>
-  <button class="beevyButton createdButton" ion-button full (click) ="listCreated()">Created events</button>
+  <button class="beevyButton joinedButton" ion-button (click) ="listJoined()">Joined events</button>
+  <button class="beevyButton createdButton" ion-button (click) ="listCreated()">Created events</button>
 
   <div class="profileEvents">
     <div *ngIf="joinedEventsActive">
@@ -36,6 +36,10 @@
         </div>
       </ion-list>
     </div>
+  </div>
+
+  <div>
+    <button class="beevyButton scrollButton" ion-button (click) ="scrollUp()"><img src="../../assets/icon/upArrow.svg"></button>
   </div>
 
 </ion-content>
