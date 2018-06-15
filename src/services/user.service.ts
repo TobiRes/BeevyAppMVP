@@ -153,7 +153,7 @@ export class UserService {
   private createUserData(registrationData: any): UnregisteredUser {
     return {
       username: registrationData.username,
-      userID: this.device.uuid ? this.device.uuid : "876435",
+      userID: this.device.uuid ? this.device.uuid : "1297332",
       mail: registrationData.mail,
     }
   }

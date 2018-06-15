@@ -14,11 +14,12 @@ export class ProfilePage {
   @ViewChild(Content) content: Content;
   user: User;
   joinedEventsActive?: boolean;
-  avatar1: string="../../assets/imgs/avatar_1.svg" + "";
 
   constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage) {
     this.joinedEventsActive = true;
-    this.storage.get("user").then((user: User) => this.user = user);
+    this.storage.get("user").then((user: User) => {
+      this.user = user;
+    });
   }
 
   listJoined() {
@@ -35,8 +36,7 @@ export class ProfilePage {
       ev: myEvent
     });
     popover.onDidDismiss((avatarString: string) => {
-      console.log(avatarString);
-      if(avatarString!=null) this.user.currentAvatar=avatarString;
+      if(avatarString) this.user.currentAvatar=avatarString;
       this.storage.set("user", this.user);
     });
   }

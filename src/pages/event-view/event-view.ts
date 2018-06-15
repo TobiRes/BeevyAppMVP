@@ -1,15 +1,12 @@
 import {Component, ViewChild} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
-import {Storage} from "@ionic/storage";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
 import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
 import { Clipboard } from '@ionic-native/clipboard';
-import { Keyboard } from '@ionic-native/keyboard';
-
 
 
 @IonicPage()
