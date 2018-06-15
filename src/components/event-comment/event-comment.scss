@@ -5,20 +5,42 @@ event-comment {
     width: 90%;
     display: inline-block;
 
-    .commentAuthor{
-      border-style: solid;
-      border-width:2px;
-
-      border-radius: 10px;
-      padding-left: 5px;
-      padding-right: 5px;
-      display: inline-block;
-    }
     .commentBody{
-      display: inline-block;
+
+      display: flex;
+      flex-direction: row;
+      margin-top: 2px;
+
+      .commentAuthor{
+        border-style: solid;
+        border-width:0px;
+        height: 22px;
+
+
+        border-radius: 15px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 7px;
+        padding-right: 7px;
+
+        display: inline-block;
+      }
+      .commentText{
+        padding-left: 5px;
+      }
     }
     .unterKommentare{
       padding-left: 40px;
+      .commentAuthor {
+        border-width: 2px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        background: transparent !important;
+
+      }
     }
   }
 }

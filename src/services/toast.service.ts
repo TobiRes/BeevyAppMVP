@@ -36,4 +36,14 @@ export class ToastService {
 
     toast.present();
   }
+
+  commentTooLong(commentLengthTooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Dein Kommentar ist leider ' + commentLengthTooMuch + " Zeichen zu lang.",
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
 }

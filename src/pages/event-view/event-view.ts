@@ -3,6 +3,7 @@ import {AlertController, IonicPage, LoadingController, NavController, NavParams}
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
+import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
@@ -25,6 +26,7 @@ export class EventViewPage {
   commentBody: string;
   currentResponseCommentID: string;
   currentResponseCommentAuthor: string;
+  commentValidated: boolean;
 
   user: User;
 
@@ -36,7 +38,8 @@ export class EventViewPage {
               private loadingCtrl: LoadingController,
               private eventService: BeevyEventService,
               private commentService: CommentService,
-              private clipboard: Clipboard) {
+              private clipboard: Clipboard,
+              private toastService: ToastService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
     this.showJoinButton = this.userNotPartOfEvent();
@@ -51,6 +54,8 @@ export class EventViewPage {
 
     this.currentResponseCommentID="";
     this.currentResponseCommentAuthor="";
+    this.commentValidated = false;
+
 
   }
 
@@ -63,24 +68,33 @@ export class EventViewPage {
   }
 
   addNewComment(repliedTo: string | undefined){
-    if(this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)){
+
+    if(this.commentBody.length >= 280) {
+      this.toastService.commentTooLong(this.commentBody.length-280);
+    }
+    else{
+
+      if(this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)){
         repliedTo = this.currentResponseCommentID;
         this.commentBody = this.commentBody.substring(this.currentResponseCommentAuthor.length);
+      }
+
+
+      let loading = this.startLoader();
+      loading.present();
+      this.commentService.addComment(this.beevyEvent.eventID, this.user.userID, this.user.token, this.commentBody, repliedTo)
+        .then(() => this.handleComments())
+        .then(() => {
+          loading.dismissAll();
+          this.commentBody = "";
+        })
+        .catch((err) => {
+          console.error(err);
+          loading.dismissAll();
+        });
+
     }
 
-
-    let loading = this.startLoader();
-    loading.present();
-    this.commentService.addComment(this.beevyEvent.eventID, this.user.userID, this.user.token, this.commentBody, repliedTo)
-      .then(() => this.handleComments())
-      .then(() => {
-        loading.dismissAll();
-        this.commentBody = "";
-      })
-      .catch((err) => {
-        console.error(err);
-        loading.dismissAll();
-      });
   }
 
   getDate(date: Date): string {

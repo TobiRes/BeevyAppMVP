@@ -201,7 +201,7 @@ page-event-view {
       .eingabe{
         display: inline-block;
         width: 90%;
-        padding-bottom: 5px;
+        padding-bottom: 0px;
         padding-top: 5px;
 
         .kommentarEingabeBox{
@@ -212,14 +212,6 @@ page-event-view {
 
           .item-inner{
             border: none;
-          }
-          .label{
-            margin:0;
-            padding-right: 10px;
-            color: white;
-            //max-width: 20%;
-            font-size: 16px;
-            padding-left: 5px;
           }
 
           .kommentarEingabe{
@@ -245,7 +237,7 @@ page-event-view {
           width: 18%;
           display: inline-block;
           vertical-align: top;
-          margin-top: 20px;
+          margin-top: 7px;
         }
       }
       .alleKommentare{
