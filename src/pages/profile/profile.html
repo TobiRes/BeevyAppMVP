@@ -10,21 +10,18 @@
 <ion-content class="main-background-gradient">
 
   <div id="avatarCircle">
-    <img class="avatarBig" src="{{user?.currentAvatar}}" (click)="presentPopover($event)">
+    <img id="avatarBig" [src]="user?.currentAvatar" (click)="presentPopover($event)">
   </div>
 
   <p class="userName">{{user?.username}}</p>
   <p class="userMail">{{user?.mail}}</p>
 
   <button class="beevyButton joinedButton"
-          [ngClass]="[joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']" ion-button full
-          (click)="listJoined()">Joined events
-  </button>
+          [ngClass]="[joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']"
+          ion-button (click) ="listJoined()">Joined events</button>
   <button class="beevyButton createdButton"
-          [ngClass]="[!joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']" ion-button full
-          (click)="listCreated()">Created events
-  </button>
-
+          [ngClass]="[!joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']"
+          ion-button (click) ="listCreated()">Created events</button>
   <div class="profileEvents">
     <div *ngIf="joinedEventsActive">
       <ion-list>
@@ -41,6 +38,9 @@
         </div>
       </ion-list>
     </div>
+  </div>
+  <div>
+    <button class="beevyButton scrollButton" ion-button (click) ="scrollUp()"><img src="../../assets/icon/upArrow.svg"></button>
   </div>
 </ion-content>
 <ion-footer>

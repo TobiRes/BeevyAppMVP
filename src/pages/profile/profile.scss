@@ -1,17 +1,18 @@
 page-profile {
 
-  .avatarBig {
-    width: 160px;
-    height: 160px;
-    margin: 20% 30% 0 30%;
-    padding: 5%;
-    border: 3px solid white;
-    border-radius: 50%;
+  #avatarBig{
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 15% auto;
   }
 
-  .avatarCircle {
-    width: 40%;
-    height: 50%;
+  #avatarCircle {
+    margin: 15% auto 5% auto;
+    border: 3px solid white;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
   }
 
   .userName {
@@ -52,5 +53,15 @@ page-profile {
 
   .profileEvents {
     margin-top: 30%;
+  }
+
+  .scrollButton{
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    padding: 5px;
+    left: 89.5%;
+    top: 83%;
+    z-index: 200;
   }
 }

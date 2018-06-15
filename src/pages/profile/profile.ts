@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {NavController, PopoverController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
-import {Storage} from "@ionic/storage";
 import {PopoverComponent} from "../../components/popover/popover";
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'page-profile',
@@ -11,18 +11,14 @@ import {PopoverComponent} from "../../components/popover/popover";
 })
 export class ProfilePage {
 
+  @ViewChild(Content) content: Content;
   user: User;
-  joinedEventsActive?: boolean = true;
-  avatar1: string = "../../assets/imgs/avatar_1.svg";
+  joinedEventsActive?: boolean;
+  avatar1: string="../../assets/imgs/avatar_1.svg" + "";
 
-  constructor(public navCtrl: NavController,
-              private mockService: MockService,
-              public popoverCtrl: PopoverController,
-              private storage: Storage) {
-  }
-
-  ionViewDidEnter() {
-    this.loadUser();
+  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage) {
+    this.joinedEventsActive = true;
+    this.storage.get("user").then((user: User) => this.user = user);
   }
 
   listJoined() {
@@ -38,19 +34,14 @@ export class ProfilePage {
     popover.present({
       ev: myEvent
     });
+    popover.onDidDismiss((avatarString: string) => {
+      console.log(avatarString);
+      if(avatarString!=null) this.user.currentAvatar=avatarString;
+      this.storage.set("user", this.user);
+    });
   }
 
-  checkClickedState() {
-    if (this.joinedEventsActive) return "beevy-info-background-more-transparent-0";
-    else return "";
-  }
-
-  private loadUser() {
-    this.storage.get("user")
-      .then((user: User) => {
-        this.user = user;
-        if (this.user.currentAvatar == null) this.user.currentAvatar = this.avatar1;
-        console.log(this.user);
-      })
+  scrollUp(){
+    this.content.scrollToTop();
   }
 }

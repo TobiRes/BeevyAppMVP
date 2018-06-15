@@ -154,7 +154,7 @@ export class UserService {
     return {
       username: registrationData.username,
       userID: this.device.uuid ? this.device.uuid : "876435",
-      mail: registrationData.mail
+      mail: registrationData.mail,
     }
   }
 

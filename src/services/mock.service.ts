@@ -152,6 +152,7 @@ export class MockService {
       userID: "testID",
       mail: "lschimpf@stud.hs-offenburg.de",
     }
+
     return this.storage.set("user", mockUser);
   }
 }
