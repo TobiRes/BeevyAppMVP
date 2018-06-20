@@ -1,0 +1,8 @@
+<ion-content padding>
+  <h3>Optionen</h3>
+  <div class="filterContainer" id="filterContainer">
+    <button *ngIf="userIsEventAdmin" class="optionsButton">Event löschen</button>
+    <button class="optionsButton">Event austreten</button>
+    <button *ngIf="userIsEventMember" class="optionsButton">Event melden</button>
+  </div>
+</ion-content>

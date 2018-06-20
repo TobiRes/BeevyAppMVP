@@ -19,6 +19,10 @@
       </div>
       <button (click)="copyEventID()" [ngClass]="[changeColorOfContainer(beevyEvent.type, 'border')]" id="idButton">id kopieren</button>
     </div>
+    <div class="optionsButton">
+      <button (click)="openOptions()" >...</button>
+
+    </div>
 
     <div class="eventTitle">
       <h1>{{beevyEvent.title}}</h1>

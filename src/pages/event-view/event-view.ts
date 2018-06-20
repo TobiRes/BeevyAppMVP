@@ -1,5 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {
+  AlertController,
+  IonicPage,
+  LoadingController,
+  Modal, ModalController,
+  ModalOptions,
+  NavController,
+  NavParams
+} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
@@ -8,6 +16,7 @@ import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
 import { Clipboard } from '@ionic-native/clipboard';
+import {SetFilters} from "../../models/setFilters.model";
 
 
 @IonicPage()
@@ -29,6 +38,8 @@ export class EventViewPage {
   commentValidated: boolean;
 
   user: User;
+  userIsEventAdmin: boolean;
+  userIsEventMember: boolean;
 
   @ViewChild('focusInput') kommentarEingabefeld ;
 
@@ -39,6 +50,7 @@ export class EventViewPage {
               private eventService: BeevyEventService,
               private commentService: CommentService,
               private clipboard: Clipboard,
+              private modalCtrl: ModalController,
               private toastService: ToastService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
@@ -56,6 +68,13 @@ export class EventViewPage {
     this.currentResponseCommentAuthor="";
     this.commentValidated = false;
 
+    if(this.user.userID == this.beevyEvent.admin.userID)
+      this.userIsEventAdmin = true;
+    else
+      this.userIsEventAdmin = false;
+
+    this.userIsEventMember = !this.userNotPartOfEvent();
+
 
   }
 
@@ -65,6 +84,8 @@ export class EventViewPage {
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
     this.alertOfJoin();
+
+    console.log(this.beevyEvent);
   }
 
   addNewComment(repliedTo: string | undefined){
@@ -166,5 +187,17 @@ export class EventViewPage {
 
     //Keyboard.show(); // for android
     this.kommentarEingabefeld.setFocus();
+  }
+
+  openOptions() {
+    const optionsModalOptions: ModalOptions = {
+      cssClass: "filterModal",
+      showBackdrop: true
+    }
+    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember}, optionsModalOptions);
+    filterModal.present();
+    filterModal.onWillDismiss((setFilter: SetFilters) => {
+
+    })
   }
 }
