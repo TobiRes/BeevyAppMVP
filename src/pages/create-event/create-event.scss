@@ -114,12 +114,6 @@ page-create-event {
     margin-right: 50px;
   }
 
-
-
-
-
-
-
   .beschreibung {
     margin-left: 25px;
     margin-right: 25px;
@@ -127,20 +121,30 @@ page-create-event {
     border-radius: 30px;
   }
 
-  .beschreibungcreate {
-    :focus {
-      transform: translate(0, -30px);
+  .beschreibungs-wrapper {
+    .label {
+      margin-right: 0;
     }
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-top: 25px;
+
+    textarea::placeholder{
+      text-indent: 0;
+      color: white;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .beschreibungcreate {
+      font-size: 20px;
+      text-align: center;
+      padding: 0 25px;
+      top: 0;
+      right: 0;
+      left: 0;
+      background-color: transparent;
+      border: 0;
+      width: 100%;
+    }
   }
-
-  .beschreibungcreate[target=_blank] {
-    background-color: black;
-  }
-
-
 
   .datecreate {
     text-align: center;

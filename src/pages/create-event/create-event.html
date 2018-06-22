@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="main-background-gradient no-scroll">
+<ion-content class="main-background-gradient">
   <div class="input-holder"></div>
   <ion-item>
     <ion-input class="titlecreate" placeholder="Name des Events" clearInput [(ngModel)]="title"></ion-input>
@@ -45,14 +45,14 @@
       </ion-item>
     </div>
 
-    <ion-item>
-      <ion-textarea class="beschreibungcreate" placeholder="Beschreibe dein Event" clearInput [(ngModel)]="description"
-                    rows="3"></ion-textarea>
+    <ion-item class="beschreibungs-wrapper">
+      <textarea class="beschreibungcreate" placeholder="Beschreibe dein Event" [(ngModel)]="description"
+                    rows="3"></textarea>
     </ion-item>
 
   </div>
 
-  <ion-item class="eventtypecreate">
+<!--  <ion-item class="eventtypecreate">
     <ion-label class="eventtypelabel">Event Typ</ion-label>
     <ion-select class="popUp" [(ngModel)]="type">
       <ion-option value="activity">Aktivität</ion-option>
@@ -79,7 +79,7 @@
       <ion-label range-left>1</ion-label>
       <ion-label range-right>100</ion-label>
     </ion-range>
-  </ion-item>
+  </ion-item>-->
   <button class="beevyButton" ion-button (click)="createBeevent()" full>Create Event</button>
 </ion-content>
 <ion-footer>
