@@ -17,10 +17,16 @@
           height="12px"
         />
       </div>
-      <button (click)="copyEventID()" [ngClass]="[changeColorOfContainer(beevyEvent.type, 'border')]" id="idButton">id kopieren</button>
     </div>
-    <div class="optionsButton">
-      <button (click)="openOptions()" >...</button>
+    <div [ngClass]="['optionsButtonDiv', changeColorOfContainer(beevyEvent.type, 'border')]">
+      <button class="optionsButton" (click)="openOptions()" >
+        <img
+          class="optionsIcon"
+          src="../../assets/icon/options.svg"
+          alt="..."
+          height="15px"
+        />
+      </button>
 
     </div>
 

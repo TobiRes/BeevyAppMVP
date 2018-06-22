@@ -177,9 +177,6 @@ export class EventViewPage {
     return this.loadingCtrl.create();
   }
 
-  copyEventID(){
-      this.clipboard.copy(this.beevyEvent.eventID);
-  }
   respondToComment(comment: EventComment){
     this.currentResponseCommentAuthor ="@"+comment.author+": ";
     this.commentBody = this.currentResponseCommentAuthor;
@@ -194,7 +191,7 @@ export class EventViewPage {
       cssClass: "filterModal",
       showBackdrop: true
     }
-    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember}, optionsModalOptions);
+    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember, eventID: this.beevyEvent.eventID}, optionsModalOptions);
     filterModal.present();
     filterModal.onWillDismiss((setFilter: SetFilters) => {
 

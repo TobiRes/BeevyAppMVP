@@ -12,7 +12,7 @@ page-event-view {
     .eventAdmin {
       position: absolute;
       top: 50px;
-      right: 10px;
+      right: 0px;
       text-align: right;
 
       #adminDiv {
@@ -45,12 +45,31 @@ page-event-view {
       }
 
     }
+    .optionsButtonDiv{
+      position: absolute;
+      top: 70px;
+      right: 0px;
+      margin-top: 2px;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 15px;
+      height: 25px;
+      .optionsButton{
+        background: transparent;
+        color: white;
+        font-size: 40px;
+        padding: 0;
+        width: 40px;
+        position: relative;
+        top:-17px;
+      }
+    }
     .eventTitle {
       text-align: center;
       h1 {
         font-size: 40px;
         margin: 0;
-        padding-top: 20px;
+        padding-top: 10px;
       }
       p {
         font-size: 20px;
