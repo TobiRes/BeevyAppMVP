@@ -26,6 +26,7 @@ export class CreateEventPage {
   tags = [];
   filter: SetFilters = {types: [], tags: []};
   possibleMemberCount: number = 1;
+  private limitMembers: boolean = false;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,
@@ -69,7 +70,7 @@ export class CreateEventPage {
         zip: this.zip,
         city: this.city
       },
-      possibleMemberCount: this.possibleMemberCount,
+      possibleMemberCount: this.limitMembers ? this.possibleMemberCount : 26,
       currentMemberCount: 0,
       tags: []
     }
@@ -86,7 +87,21 @@ export class CreateEventPage {
     lastTab.select(0);
   }
 
-  applyFilter() {
-    this.filter.tags = this.tags;
+  changeColor(type: BeevyEventType, opacity: string): string{
+    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1";
+    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
+    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
+    return "beevy-info-background-" + opacity + "-2";
+  }
+
+  changeColorTags(type: BeevyEventType, opacity: string): string{
+    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1-tags";
+    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2-tags";
+    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0-tags";
+    return "beevy-info-background-" + opacity + "-2-tags";
+  }
+
+  toggleLimit() {
+    this.limitMembers = !this.limitMembers;
   }
 }
