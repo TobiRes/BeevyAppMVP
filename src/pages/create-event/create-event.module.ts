@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
 import {CreateEventPage} from "./create-event";
+import {RlTagInputModule} from "angular2-tag-input/dist";
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import {CreateEventPage} from "./create-event";
   ],
   imports: [
     IonicPageModule.forChild(CreateEventPage),
+    RlTagInputModule
   ],
 })
 export class CreateEventPageModule {

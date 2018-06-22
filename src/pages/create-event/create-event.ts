@@ -5,6 +5,7 @@ import {User} from "../../models/user.model";
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
+import {SetFilters} from "../../models/setFilters.model";
 
 
 @Component({
@@ -22,6 +23,8 @@ export class CreateEventPage {
   street: string;
   zip: number;
   city: string;
+  tags = [];
+  filter: SetFilters = {types: [], tags: []};
   possibleMemberCount: number = 1;
 
   constructor(public navCtrl: NavController,
@@ -81,5 +84,9 @@ export class CreateEventPage {
   private jumpToHomePage() {
     let lastTab: Tabs = this.navCtrl.parent;
     lastTab.select(0);
+  }
+
+  applyFilter() {
+    this.filter.tags = this.tags;
   }
 }

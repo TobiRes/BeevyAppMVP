@@ -13,7 +13,7 @@
     <ion-input class="titlecreate" placeholder="Name des Events" clearInput [(ngModel)]="title"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input class="subtitlecreate" placeholder="Fasse dein Event kurz zusammen" clearInput
+    <ion-input class="subtitlecreate" placeholder="Untertitel des Events" clearInput
                [(ngModel)]="summary"></ion-input>
   </ion-item>
   <div class="beschreibung">
@@ -51,20 +51,30 @@
     </ion-item>
 
   </div>
+
   <ion-item class="eventtypecreate">
     <ion-label class="eventtypelabel">Event Typ</ion-label>
-    <ion-select [(ngModel)]="type">
-      <ion-option value="activity">Activität</ion-option>
+    <ion-select class="popUp" [(ngModel)]="type">
+      <ion-option value="activity">Aktivität</ion-option>
       <ion-option value="project">Projekt</ion-option>
       <ion-option value="hangout">Hangout</ion-option>
     </ion-select>
   </ion-item>
+
+  <rl-tag-input
+    [(ngModel)]="tags"
+    [addOnBlur]="false"
+    [autocomplete]="false"
+    placeholder="+ Tags"
+    class="tagInputcreate"
+  >
+  </rl-tag-input>
+
   <ion-item class="limitmemberscreate">
-    <ion-label class="limitmembers123">Limit Members?</ion-label>
-    <ion-checkbox class="checkboxcreate"></ion-checkbox>
+    <button type="button" id="limitmembers" >Teilnehmer begrenzen</button>
   </ion-item>
   <ion-item class="memberscreate">
-    <ion-label class="memeberslabel">Possible Members: &nbsp; {{possibleMemberCount}}</ion-label>
+    <ion-label class="memeberslabel">Anzahl möglicher Teilnehmer: &nbsp; {{possibleMemberCount}}</ion-label>
     <ion-range class="membersrange" min="1" max="100" [(ngModel)]="possibleMemberCount" color="secondary">
       <ion-label range-left>1</ion-label>
       <ion-label range-right>100</ion-label>

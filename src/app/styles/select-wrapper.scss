@@ -1,3 +1,52 @@
 .alert-wrapper {
-  background: linear-gradient(to bottom, $beevy-lightBlue-transparent, $beevy-blue-transparent);
+  background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
+  border-radius: 30px !important;
+  width: 100%;
+}
+
+.alert-title{
+  font-size: 30px !important;
+}
+
+.alert-radio-group{
+  border: none !important;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.alert-radio-icon{
+  border-color: $beevy-blue !important;
+}
+
+.alert-radio-inner{
+  background-color: $beevy-lightBlue !important;
+}
+
+.alert-radio-label{
+  color: white !important;
+  font-size: 20px !important;
+}
+
+.alert-button-group button{
+  background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+  border-radius: 30px !important;
+  width: 45%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  height: 40px !important;
+}
+
+.button-inner{
+  margin: 0;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.alert-button-group{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  display: flex !important;
+  justify-content: center !important;
 }
