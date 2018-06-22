@@ -10,7 +10,7 @@
 <ion-content class="main-background-gradient">
 
   <div id="avatarCircle">
-    <img id="avatarBig" [src]="user?.currentAvatar" (click)="presentPopover($event)">
+    <img id="avatarBig" [src]="avatarURL" (click)="presentPopover($event)">
   </div>
 
   <p class="userName">{{user?.username}}</p>

@@ -54,7 +54,8 @@ export class CreateEventPage {
       admin: {
         username: user.username,
         userID: user.userID,
-        token: user.token
+        token: user.token,
+        adminAvatar: user.currentAvatar
       },
       title: this.title,
       summary: this.summary,

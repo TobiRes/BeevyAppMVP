@@ -62,6 +62,7 @@ export class UserService {
           if (!user || !(user.token && user.userID)) {
             resolve(false);
           } else {
+            console.log(user);
             resolve(true);
           }
         })
@@ -155,6 +156,7 @@ export class UserService {
       username: registrationData.username,
       userID: this.device.uuid ? this.device.uuid : "1297332",
       mail: registrationData.mail,
+      currentAvatar: 'avatar_1',
     }
   }
 
