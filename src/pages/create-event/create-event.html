@@ -49,7 +49,7 @@
 
   <ion-item class="eventtypecreate"  [ngClass]="['borderRadius', changeColor(type, 'border')]">
     <ion-label style="display: none;">Event Typ</ion-label>
-    <ion-select [(ngModel)]="type" placeholder="Event Typ">
+    <ion-select class="eventtypePlaceholder" [(ngModel)]="type" placeholder="Event Typ">
       <ion-option value="activity">Aktivität</ion-option>
       <ion-option value="project">Projekt</ion-option>
       <ion-option value="hangout">Hangout</ion-option>
@@ -64,7 +64,7 @@
     </ion-item>
     <ion-item class="memberscreate" *ngIf="limitMembers">
       <ion-label class="memeberslabel">Anzahl möglicher Teilnehmer: &nbsp; {{possibleMemberCount}}</ion-label>
-      <ion-range class="membersrange" min="1" max="25" [(ngModel)]="possibleMemberCount" color="secondary">
+      <ion-range class="membersrange" min="1" max="25" [(ngModel)]="possibleMemberCount" color="first">
         <ion-label range-left>1</ion-label>
         <ion-label range-right>25</ion-label>
       </ion-range>
