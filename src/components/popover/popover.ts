@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {User} from "../../models/user.model";
-import {MockService} from "../../services/mock.service";
 import {NavController, ViewController} from "ionic-angular";
-import {ProfilePage} from "../../pages/profile/profile";
 import {Storage} from "@ionic/storage";
 
 @Component({

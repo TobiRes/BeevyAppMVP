@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {SetFilters} from "../../models/setFilters.model";
 import {DateUtil} from "../../utils/date-util";
+import {ToastService} from "../../services/toast.service";
 
 
 @IonicPage()
@@ -28,7 +29,8 @@ export class FilterModalPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private viewCtrl: ViewController) {
+              private viewCtrl: ViewController,
+              private toastService: ToastService) {
     this.resetFilterToLastOpenedState();
   }
 
@@ -50,6 +52,7 @@ export class FilterModalPage {
     this.filter.city = this.citySearch;
     this.filter.search = this.suchInput;
     this.viewCtrl.dismiss(this.filter);
+    this.toastService.filtersChanged();
   }
 
   deleteFilter() {
@@ -66,7 +69,10 @@ export class FilterModalPage {
     this.suchInput = "";
     this.citySearch = "";
     this.viewCtrl.dismiss(this.filter);
+    this.toastService.filtersResetted();
   }
+
+
 
   buttonColour(n: number): string {
     let cssClass: string = "beevy-info-background-more-transparent-" + n.toString();

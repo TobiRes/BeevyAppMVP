@@ -23,7 +23,7 @@ export class ProfilePage {
   ionViewWillEnter() {
     this.storage.get("user").then((user: User) => {
       this.user = user;
-      this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
+      //this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
     });
   }
 
@@ -41,14 +41,15 @@ export class ProfilePage {
       ev: myEvent
     });
     popover.onDidDismiss((avatarString: string) => {
-      if(avatarString) this.user.currentAvatar=avatarString;
+      if (avatarString) this.user.currentAvatar = avatarString;
       this.avatarURL = "../../assets/imgs/" + avatarString + ".svg";
       //Todo: avatarURL in Db + hier losschicken
       this.events.publish('avatarEvent', avatarString);
     });
   }
 
-  scrollUp(){
+  scrollUp() {
     this.content.scrollToTop();
   }
+
 }
