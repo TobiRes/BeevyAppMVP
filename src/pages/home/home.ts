@@ -50,7 +50,6 @@ export class HomePage {
     //TODO: Think of something better
     this.storage.get("createdEvent")
       .then((createdEvent) => {
-        console.log(createdEvent)
         if(createdEvent) {
           this.getEvents()
           this.storage.set("createdEvent", false);

@@ -22,7 +22,6 @@ export class TabsPage {
 
     this.storage.get("user").then((user: User) => {
       this.user = user;
-      console.log(this.user.currentAvatar);
     });
 
     events.subscribe('avatarEvent', (avatarString: string) => {

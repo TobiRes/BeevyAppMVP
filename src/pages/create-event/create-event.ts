@@ -42,6 +42,8 @@ export class CreateEventPage {
   validateBeevent() {
     if(this.notAllRequiredDataEntered()){
       this.toastService.notComplete();
+    } else if (this.title.length > 22){
+      this.toastService.eventTitleTooLong(this.title.length - 22);
     } else if(this.summary.length > 42) {
       this.toastService.eventSummaryTooLong(this.summary.length - 42);
     } else if(this.description.length > 500) {
