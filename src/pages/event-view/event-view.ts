@@ -191,7 +191,7 @@ export class EventViewPage {
       cssClass: "filterModal",
       showBackdrop: true
     }
-    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember, eventID: this.beevyEvent.eventID}, optionsModalOptions);
+    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember, eventID: this.beevyEvent.eventID, user: this.user}, optionsModalOptions);
     filterModal.present();
     filterModal.onWillDismiss((setFilter: SetFilters) => {
 

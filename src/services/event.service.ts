@@ -57,4 +57,45 @@ export class BeevyEventService {
         }, (err) => reject(err));
     })
   }
+
+
+  leaveBeevyEvent(eventID: string, user: User){
+    console.log(user.username+" has left "+eventID);
+  }
+
+
+  deleteBeevyEvent(eventID: string, user: User){
+    console.log(user.username+" has deleted "+ eventID);
+
+    this.storage.get("user")
+      .then((user: User) => {
+        if (!user || !(user.userID && user.token)) {
+          console.log("Can't delete event", user);
+        } else {
+          this.handleDeletingOnServerSide(eventID, user)
+            .then(() => this.userService.getUserEvents(user))
+        }
+      })
+      .catch(err => console.error(err))
+  }
+
+  private handleDeletingOnServerSide(eventID: string, user: User) {
+    let deleteEventData: JoinEventData = {
+      userID: user.userID,
+      token: user.token,
+      eventID: eventID
+    };
+    return new Promise((resolve, reject) => {
+      this.http.delete(BeevyEventService.BEEVY_EVENT_BASE_URL + "/delete", deleteEventData)
+        .subscribe(() => {
+          console.log("deleted event");
+          resolve();
+        }, (err) => reject(err));
+    })
+  }
+
+  eventMelden(eventID: string, user: User, reason: string){
+    console.log(user.username+" will "+ eventID+" melden, weil "+reason);
+  }
+
 }

@@ -3,14 +3,41 @@
   align-items: center !important;
 
   .alert-wrapper {
-    background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
-
+    background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett) !important;
+    border-radius: 30px !important;
+    .alert-head{
+      text-align: center;
+    }
     .button-inner {
       color: $beevy-blue;
     }
-
+    .alert-input-group{
+      padding:10px;
+    }
     .alert-input {
       color: $beevy-darkViolett;
+      border-style: solid;
+      border-width: 2px;
+      border-color: $beevy-blue;
+      border-radius: 30px;
+      text-align: center;
+    }
+  }
+  .alert-button-group{
+    padding:0;
+    margin:0;
+    padding-bottom: 20px;
+  }
+  .alert-button{
+    background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
+    border-radius: 30px;
+    color: white !important;
+    text-transform: none;
+    width: 45%;
+    text-align: center;
+    .button-inner{
+      color: white !important;
+      text-align: center;
     }
   }
 }
