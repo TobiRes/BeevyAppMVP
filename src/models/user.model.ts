@@ -13,6 +13,7 @@ export interface UnregisteredUser {
   username: string;
   userID: string;
   mail: string;
+  currentAvatar: string;
 }
 
 

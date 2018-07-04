@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Content, NavController, PopoverController} from 'ionic-angular';
+import {Content, Events, NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {PopoverComponent} from "../../components/popover/popover";
@@ -14,11 +14,16 @@ export class ProfilePage {
   @ViewChild(Content) content: Content;
   user: User;
   joinedEventsActive?: boolean;
+  avatarURL: string;
 
-  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage) {
+  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
     this.joinedEventsActive = true;
+  }
+
+  ionViewWillEnter() {
     this.storage.get("user").then((user: User) => {
       this.user = user;
+      //this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
     });
   }
 
@@ -36,12 +41,15 @@ export class ProfilePage {
       ev: myEvent
     });
     popover.onDidDismiss((avatarString: string) => {
-      if(avatarString) this.user.currentAvatar=avatarString;
-      this.storage.set("user", this.user);
+      if (avatarString) this.user.currentAvatar = avatarString;
+      this.avatarURL = "../../assets/imgs/" + avatarString + ".svg";
+      //Todo: avatarURL in Db + hier losschicken
+      this.events.publish('avatarEvent', avatarString);
     });
   }
 
-  scrollUp(){
+  scrollUp() {
     this.content.scrollToTop();
   }
+
 }

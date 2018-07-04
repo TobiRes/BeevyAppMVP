@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Modal, ModalController, ModalOptions, NavController} from 'ionic-angular';
+import {Modal, ModalController, ModalOptions, NavController, Toast, ToastController} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
@@ -32,7 +32,9 @@ export class HomePage {
               private eventService: BeevyEventService,
               private modalCtrl: ModalController,
               private userService: UserService,
-              private storage: Storage) {
+              private storage: Storage,
+              private toastCtrl: ToastController) {
+    //this.tabBarElement = document.querySelector('.tabbar');
     this.checkForUserStatus()
       .catch(err => console.error(err));
     this.resetFilter();

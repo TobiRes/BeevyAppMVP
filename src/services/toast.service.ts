@@ -36,4 +36,115 @@ export class ToastService {
 
     toast.present();
   }
+
+  filtersResetted() {
+    let toast = this.toastCtrl.create({
+      message: 'Filter wurden zurückgesetzt',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  filtersChanged() {
+    let toast = this.toastCtrl.create({
+      message: 'Events wurden gefiltert',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  eventTitleTooLong(tooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Der Titel deines Events ist ' + tooMuch + ' Zeichen zu lang',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  eventSummaryTooLong(tooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Die Zusammenfassung deines Events ist ' + tooMuch + ' Zeichen zu lang',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  eventDescriptionTooLong(tooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Die Beschreibung deines Events ist ' + tooMuch + ' Zeichen zu lang',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  eventStreetTooLong(tooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Die Strasse ist ' + tooMuch + ' Zeichen zu lang',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  /* eventZipWrong() {
+    let toast = this.toastCtrl.create({
+      message: 'Die Postleitzahl muss aus 5 Zahlen bestehen',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  } */
+
+
+  eventCityTooLong(tooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Der Ort ist ' + tooMuch + ' Zeichen zu lang',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  eventNotValid(){
+    let toast = this.toastCtrl.create({
+      message: 'Deine Eingaben sind nicht gültig',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  notComplete(){
+    let toast = this.toastCtrl.create({
+      message: 'Bitte fülle alle Felder aus',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
+  zipNotCorrect() {
+    let toast = this.toastCtrl.create({
+      message: 'Bitte gib eine korrekte PLZ ein',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
 }

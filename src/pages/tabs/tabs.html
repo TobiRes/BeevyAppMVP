@@ -1,5 +1,6 @@
 <ion-tabs>
   <ion-tab [root]="tab1Root" tabIcon="homewhite"></ion-tab>
   <ion-tab [root]="tab2Root" tabIcon="addEvent"></ion-tab>
-  <ion-tab [root]="tab3Root" tabIcon="profile"></ion-tab>
+  <ion-tab [root]="tab3Root" [tabIcon]="user?.currentAvatar"></ion-tab>
+  <!--<ion-tab [root]="tab3Root" tabIcon="avatar_2"></ion-tab>-->
 </ion-tabs>

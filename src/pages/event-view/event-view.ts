@@ -25,6 +25,7 @@ export class EventViewPage {
   commentBody: string;
   currentResponseCommentID: string;
   currentResponseCommentAuthor: string;
+  adminAvatarURL: string;
 
   user: User;
 
@@ -52,6 +53,7 @@ export class EventViewPage {
     this.currentResponseCommentID="";
     this.currentResponseCommentAuthor="";
 
+    this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.adminAvatar + ".svg";
   }
 
   ionViewDidLoad() {
