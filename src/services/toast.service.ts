@@ -152,9 +152,15 @@ export class ToastService {
     let toast = this.toastCtrl.create({
       message: 'Bitte achte darauf, dass deine Eingaben aussagekräftig sind',
       duration: 2000,
+    })
+  }
+
+  commentTooLong(commentLengthTooMuch: number){
+    let toast = this.toastCtrl.create({
+      message: 'Dein Kommentar ist leider ' + commentLengthTooMuch + " Zeichen zu lang.",
+      duration: 3000,
       position: 'top'
     });
-
     toast.present();
   }
 }

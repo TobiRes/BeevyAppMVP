@@ -9,15 +9,25 @@
   <div class="infoHolder">
     <div class="eventAdmin">
       <div id="adminDiv">
-        <p>{{beevyEvent.admin?.username}}</p>
         <img
           class="adminIcon"
           [src]="adminAvatarURL"
           alt="triangle with all three sides equal"
           height="12px"
         />
+        <p>{{beevyEvent.admin?.username}}</p>
       </div>
-      <button (click)="copyEventID()" [ngClass]="[changeColorOfContainer(beevyEvent.type, 'border')]" id="idButton">id kopieren</button>
+    </div>
+    <div [ngClass]="['optionsButtonDiv', changeColorOfContainer(beevyEvent.type, 'border')]">
+      <button class="optionsButton" (click)="openOptions()" >
+        <img
+          class="optionsIcon"
+          src="../../assets/icon/options.svg"
+          alt="..."
+          height="15px"
+        />
+      </button>
+
     </div>
 
     <div class="eventTitle">
@@ -100,7 +110,7 @@
       </div>
       <div class="eingabe">
         <ion-item class="kommentarEingabeBox">
-          <ion-label stacked>{{user.username}}</ion-label>
+          <!--<ion-label stacked>{{user.username}}</ion-label>-->
           <ion-input class="kommentarEingabe" #focusInput [(ngModel)]="commentBody" placeholder="..."></ion-input>
         </ion-item>
 

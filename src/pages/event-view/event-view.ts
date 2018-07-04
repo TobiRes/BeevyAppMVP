@@ -1,12 +1,22 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
+import {
+  AlertController,
+  IonicPage,
+  LoadingController,
+  Modal, ModalController,
+  ModalOptions,
+  NavController,
+  NavParams
+} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {DateUtil} from "../../utils/date-util";
 import {BeevyEventService} from "../../services/event.service";
+import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
 import { Clipboard } from '@ionic-native/clipboard';
+import {SetFilters} from "../../models/setFilters.model";
 
 
 @IonicPage()
@@ -26,8 +36,11 @@ export class EventViewPage {
   currentResponseCommentID: string;
   currentResponseCommentAuthor: string;
   adminAvatarURL: string;
+  commentValidated: boolean;
 
   user: User;
+  userIsEventAdmin: boolean;
+  userIsEventMember: boolean;
 
   @ViewChild('focusInput') kommentarEingabefeld ;
 
@@ -37,7 +50,9 @@ export class EventViewPage {
               private loadingCtrl: LoadingController,
               private eventService: BeevyEventService,
               private commentService: CommentService,
-              private clipboard: Clipboard) {
+              private clipboard: Clipboard,
+              private modalCtrl: ModalController,
+              private toastService: ToastService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
     this.showJoinButton = this.userNotPartOfEvent();
@@ -52,6 +67,15 @@ export class EventViewPage {
 
     this.currentResponseCommentID="";
     this.currentResponseCommentAuthor="";
+    this.commentValidated = false;
+
+    if(this.user.userID == this.beevyEvent.admin.userID)
+      this.userIsEventAdmin = true;
+    else
+      this.userIsEventAdmin = false;
+
+    this.userIsEventMember = !this.userNotPartOfEvent();
+
 
     this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.adminAvatar + ".svg";
   }
@@ -62,27 +86,38 @@ export class EventViewPage {
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
     this.alertOfJoin();
+
+    console.log(this.beevyEvent);
   }
 
   addNewComment(repliedTo: string | undefined){
-    if(this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)){
+
+    if(this.commentBody.length >= 280) {
+      this.toastService.commentTooLong(this.commentBody.length-280);
+    }
+    else{
+
+      if(this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)){
         repliedTo = this.currentResponseCommentID;
         this.commentBody = this.commentBody.substring(this.currentResponseCommentAuthor.length);
+      }
+
+
+      let loading = this.startLoader();
+      loading.present();
+      this.commentService.addComment(this.beevyEvent.eventID, this.user.userID, this.user.token, this.commentBody, repliedTo)
+        .then(() => this.handleComments())
+        .then(() => {
+          loading.dismissAll();
+          this.commentBody = "";
+        })
+        .catch((err) => {
+          console.error(err);
+          loading.dismissAll();
+        });
+
     }
 
-
-    let loading = this.startLoader();
-    loading.present();
-    this.commentService.addComment(this.beevyEvent.eventID, this.user.userID, this.user.token, this.commentBody, repliedTo)
-      .then(() => this.handleComments())
-      .then(() => {
-        loading.dismissAll();
-        this.commentBody = "";
-      })
-      .catch((err) => {
-        console.error(err);
-        loading.dismissAll();
-      });
   }
 
   getDate(date: Date): string {
@@ -144,9 +179,6 @@ export class EventViewPage {
     return this.loadingCtrl.create();
   }
 
-  copyEventID(){
-      this.clipboard.copy(this.beevyEvent.eventID);
-  }
   respondToComment(comment: EventComment){
     this.currentResponseCommentAuthor ="@"+comment.author+": ";
     this.commentBody = this.currentResponseCommentAuthor;
@@ -154,5 +186,17 @@ export class EventViewPage {
 
     //Keyboard.show(); // for android
     this.kommentarEingabefeld.setFocus();
+  }
+
+  openOptions() {
+    const optionsModalOptions: ModalOptions = {
+      cssClass: "filterModal",
+      showBackdrop: true
+    }
+    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember, eventID: this.beevyEvent.eventID, user: this.user}, optionsModalOptions);
+    filterModal.present();
+    filterModal.onWillDismiss((setFilter: SetFilters) => {
+
+    })
   }
 }

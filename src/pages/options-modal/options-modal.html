@@ -1,0 +1,9 @@
+<ion-content padding>
+  <h3>Optionen</h3>
+  <div class="filterContainer" id="filterContainer">
+    <button class="optionsButton" (click)="idKopieren()" >Event-ID kopieren</button>
+    <button *ngIf="userIsEventAdmin" (click)="deleteEvent()" class="optionsButton">Event löschen</button>
+    <button *ngIf="userIsEventMember" (click)="leaveEvent()" class="optionsButton">Event austreten</button>
+    <button class="optionsButton" (click)="eventMelden()" >Event melden</button>
+  </div>
+</ion-content>

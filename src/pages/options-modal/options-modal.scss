@@ -1,0 +1,30 @@
+page-options-modal {
+  h3{
+    text-align: center;
+    padding-top: 10px;
+  }
+  .filterContainer {
+    background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
+    border-radius: 30px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .optionsButton{
+      font-size: 18px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      width: 100%;
+      border-style: solid;
+      border-width: 2px;
+      background:transparent;
+      border-color: $beevy-blue-transparent;
+      margin-top: 5px;
+      margin-botton: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+}
