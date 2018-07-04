@@ -147,4 +147,14 @@ export class ToastService {
 
     toast.present();
   }
+
+  eventDataTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Bitte achte darauf, dass deine Eingaben aussagekräftig sind',
+      duration: 2000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
 }

@@ -8,6 +8,7 @@ import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
 import {FilterUtil} from "../../utils/filter-util";
 import {User} from "../../models/user.model";
+import {cr} from "@angular/core/src/render3";
 
 @Component({
   selector: 'page-home',
@@ -15,7 +16,6 @@ import {User} from "../../models/user.model";
 })
 export class HomePage {
 
-  tabBarElement: any;
   splash = true;
 
   displayedEvents: BeevyEvent[] = [];
@@ -44,6 +44,18 @@ export class HomePage {
         this.displayedEvents = this.allEvents;
         this.getEvents();
       });
+  }
+
+  ionViewDidEnter(){
+    //TODO: Think of something better
+    this.storage.get("createdEvent")
+      .then((createdEvent) => {
+        console.log(createdEvent)
+        if(createdEvent) {
+          this.getEvents()
+          this.storage.set("createdEvent", false);
+        }
+      })
   }
 
 /*  ionViewDidLoad() {

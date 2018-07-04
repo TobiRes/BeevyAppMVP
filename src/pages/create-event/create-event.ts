@@ -40,98 +40,30 @@ export class CreateEventPage {
   }
 
   validateBeevent() {
-    this.validation = 0;
-    this.completeCount = 0;
-
-   if ((typeof this.title == "string") && (this.title.length > 0)) {
-      if (this.title.length > 22) {
-        this.toastService.eventTitleTooLong(this.title.length - 22);
-      } else {
-        this.validation += 1;
-      }
+    if(this.notAllRequiredDataEntered()){
+      this.toastService.notComplete();
+    } else if(this.summary.length > 42) {
+      this.toastService.eventSummaryTooLong(this.summary.length - 42);
+    } else if(this.description.length > 500) {
+      this.toastService.eventDescriptionTooLong(this.description.length - 500);
+    } else if(isNaN(this.zip) || this.zip.toString().length != 5) {
+      this.toastService.zipNotCorrect();
+    } else if(this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 5 || this.street.length < 5){
+      this.toastService.eventDataTooShort();
+    }else if(this.street.length > 35){
+      this.toastService.eventStreetTooLong(this.street.length - 30);
+    } else if(!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)){
+      this.toastService.eventNotValid();
     } else {
-      this.completeCount += 1;
-    }
-
-    if ((typeof this.summary == "string") && (this.summary.length > 0)) {
-      if (this.summary.length > 42) {
-        this.toastService.eventSummaryTooLong(this.summary.length - 42);
-      } else {
-        this.validation += 1;
-      }
-    } else {
-      this.completeCount += 1;
-    }
-
-    if ((typeof this.description == "string") && (this.description.length > 0)) {
-      if (this.description.length > 500) {
-        this.toastService.eventDescriptionTooLong(this.description.length - 500);
-      } else {
-        this.validation += 1;
-      }
-    } else {
-      this.completeCount += 1;
-    }
-
-    if (this.type == undefined) {
-      this.completeCount += 1;
-    } else {
-      this.validation += 1;
-    }
-
-    if (this.date == undefined) {
-      this.completeCount += 1;
-    } else {
-      this.validation += 1;
-    }
-
-    if (this.time == undefined) {
-      this.completeCount += 1;
-    } else {
-      this.validation += 1;
-    }
-
-    if ((typeof this.street == "string") && (this.street.length > 0)) {
-      if (this.street.length > 30) {
-        this.toastService.eventStreetTooLong(this.street.length - 30);
-      } else {
-        this.validation += 1;
-      }
-    } else {
-      this.completeCount += 1;
-    }
-
-    if (this.zip != null) {
-      if(!isNaN(this.zip)){
-        this.validation += 1;
-      } else {
-        this.toastService.zipNotCorrect();
-      }
-    } else {
-      this.completeCount += 1;
-    }
-
-   if ((typeof this.city == "string") && (this.city.length > 0)) {
-      if (this.city.length > 30) {
-        this.toastService.eventCityTooLong(this.city.length - 30);
-      } else {
-        this.validation += 1;
-      }
-    } else {
-      this.completeCount += 1;
-    }
-
-   if(this.completeCount >0){this.toastService.notComplete();}
-
-    if(this.validation==9){
       this.createBeevent();
-    }else{
-      if(this.completeCount == 0) this.toastService.eventNotValid();
     }
   }
 
+  private notAllRequiredDataEntered() {
+    return !this.title || !this.summary || !this.description || !this.type || !this.date || !this.time || !this.street || !this.zip || !this.city;
+  }
+
   createBeevent() {
-    //TODO: Return to home page
     let loader = this.startLoading();
     loader.present();
     this.storage.get("user")
@@ -180,7 +112,11 @@ export class CreateEventPage {
 
   private jumpToHomePage() {
     let lastTab: Tabs = this.navCtrl.parent;
-    lastTab.select(0);
+    this.storage.set("createdEvent", true)
+      .then(() => {
+        lastTab.select(0);
+      })
+      .catch(err => console.error(err))
   }
 
   changeColor(type: BeevyEventType, opacity: string): string{
