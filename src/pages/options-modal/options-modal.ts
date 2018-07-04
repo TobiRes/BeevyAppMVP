@@ -3,8 +3,8 @@ import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular
 import {Clipboard} from "@ionic-native/clipboard";
 import {BeevyEventService} from "../../services/event.service";
 import {User} from "../../models/user.model";
-
-
+import {Storage} from "@ionic/storage";
+import {HomePage} from "../home/home";
 
 @IonicPage()
 @Component({
@@ -22,7 +22,8 @@ export class OptionsModalPage {
               public navParams: NavParams,
               private clipboard: Clipboard,
               private eventService: BeevyEventService,
-              private viewCtrl: ViewController) {
+              private viewCtrl: ViewController,
+              private storage: Storage) {
     this.userIsEventAdmin = this.navParams.get("userIsEventAdmin");
     this.userIsEventMember = this.navParams.get("userIsEventMember");
     this.user = this.navParams.get("user");
@@ -35,15 +36,21 @@ export class OptionsModalPage {
   }
 
   deleteEvent(){
-    this.eventService.deleteBeevyEvent(this.eventID, this.user);
-    this.viewCtrl.dismiss();
+    this.eventService.deleteBeevyEvent(this.eventID, this.user)
+      .then(() => this.viewCtrl.dismiss())
+      .then(() => this.storage.set("createdEvent", true))
+      .then(() => this.navCtrl.setRoot(HomePage))
+      .catch((err) => {
+        console.error(err);
+        this.viewCtrl.dismiss();
+      });
   }
   leaveEvent(){
     this.eventService.leaveBeevyEvent(this.eventID, this.user);
     this.viewCtrl.dismiss();
   }
   eventMelden(){
-    this.eventService.eventMelden(this.eventID, this.user, "unknown reason");
+    this.eventService.reportEvent(this.eventID, this.user, "unknown reason");
     this.viewCtrl.dismiss();
   }
 

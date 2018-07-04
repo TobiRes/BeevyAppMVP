@@ -5,6 +5,7 @@ import {AppConfig} from "../config/app-config";
 import {Storage} from "@ionic/storage";
 import {User} from "../models/user.model";
 import {UserService} from "./user.service";
+import {RequestOptions} from "@angular/http";
 
 @Injectable()
 export class BeevyEventService {
@@ -65,18 +66,21 @@ export class BeevyEventService {
 
 
   deleteBeevyEvent(eventID: string, user: User){
-    console.log(user.username+" has deleted "+ eventID);
-
-    this.storage.get("user")
-      .then((user: User) => {
-        if (!user || !(user.userID && user.token)) {
-          console.log("Can't delete event", user);
-        } else {
-          this.handleDeletingOnServerSide(eventID, user)
-            .then(() => this.userService.getUserEvents(user))
-        }
-      })
-      .catch(err => console.error(err))
+    return new Promise((resolve, reject) => {
+      this.storage.get("user")
+        .then((user: User) => {
+          if (!user || !(user.userID && user.token)) {
+            console.log("Can't delete event", user);
+          } else {
+            this.handleDeletingOnServerSide(eventID, user)
+              .then(() => {
+                this.userService.getUserEvents(user);
+                resolve();
+              })
+          }
+        })
+        .catch(err => reject(err))
+    })
   }
 
   private handleDeletingOnServerSide(eventID: string, user: User) {
@@ -86,7 +90,7 @@ export class BeevyEventService {
       eventID: eventID
     };
     return new Promise((resolve, reject) => {
-      this.http.delete(BeevyEventService.BEEVY_EVENT_BASE_URL + "/delete", deleteEventData)
+      this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/delete", deleteEventData)
         .subscribe(() => {
           console.log("deleted event");
           resolve();
@@ -94,7 +98,7 @@ export class BeevyEventService {
     })
   }
 
-  eventMelden(eventID: string, user: User, reason: string){
+  reportEvent(eventID: string, user: User, reason: string){
     console.log(user.username+" will "+ eventID+" melden, weil "+reason);
   }
 
