@@ -18,15 +18,6 @@ export class HomePage {
   tabBarElement: any;
   splash = true;
 
-  ionViewDidLoad() {
-    this.tabBarElement.style.display = 'none';
-    setTimeout(() => {
-      this.splash = false;
-      this.tabBarElement.style.display = 'flex';
-    }, 7000);
-  }
-
-
   displayedEvents: BeevyEvent[] = [];
   filteredEvents: BeevyEvent[] = [];
   allEvents: BeevyEvent[] = [];
@@ -42,7 +33,6 @@ export class HomePage {
               private modalCtrl: ModalController,
               private userService: UserService,
               private storage: Storage) {
-    this.tabBarElement = document.querySelector('.tabbar');
     this.checkForUserStatus()
       .catch(err => console.error(err));
     this.resetFilter();
@@ -53,6 +43,15 @@ export class HomePage {
         this.getEvents();
       });
   }
+
+/*  ionViewDidLoad() {
+    this.tabBarElement = document.querySelector('.tabbar');
+    this.tabBarElement.style.display = 'none';
+    setTimeout(() => {
+      this.splash = false;
+      this.tabBarElement.style.display = 'flex';
+    }, 7000);
+  }*/
 
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {

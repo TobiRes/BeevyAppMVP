@@ -1,23 +1,18 @@
 <ion-header>
   <img class="headerImage" src="assets/imgs/footer.svg">
-  <ion-navbar class="navbar">
-    <ion-title>
-      Create Beevent
-    </ion-title>
-  </ion-navbar>
 </ion-header>
 
-<ion-content class="main-background-gradient no-scroll">
+<ion-content class="main-background-gradient">
   <div class="input-holder"></div>
   <ion-item>
     <ion-input class="titlecreate" placeholder="Name des Events" clearInput [(ngModel)]="title"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input class="subtitlecreate" placeholder="Fasse dein Event kurz zusammen" clearInput
+    <ion-input class="subtitlecreate" placeholder="Untertitel des Events" clearInput
                [(ngModel)]="summary"></ion-input>
   </ion-item>
-  <div class="beschreibung">
-    <div class="basicinfos">
+  <div class="beschreibung" [ngClass]="['borderRadius', changeColor(type, 'transparent')]">
+    <div [ngClass]="['borderRadius', changeColor(type, 'full')]">
       <div class="datecreatebox">
         <ion-item>
           <ion-datetime class="datetimecreate" displayFormat="DD/MM/YY" [(ngModel)]="date"
@@ -45,32 +40,56 @@
       </ion-item>
     </div>
 
-    <ion-item>
-      <ion-textarea class="beschreibungcreate" placeholder="Beschreibe dein Event" clearInput [(ngModel)]="description"
-                    rows="3"></ion-textarea>
+    <ion-item class="beschreibungs-wrapper" >
+      <textarea class="beschreibungcreate" placeholder="Beschreibe dein Event" [(ngModel)]="description"
+                    rows="3"></textarea>
     </ion-item>
 
   </div>
-  <ion-item class="eventtypecreate">
-    <ion-label class="eventtypelabel">Event Typ</ion-label>
-    <ion-select [(ngModel)]="type">
-      <ion-option value="activity">Activität</ion-option>
+
+  <ion-item class="eventtypecreate"  [ngClass]="['borderRadius', changeColor(type, 'border')]">
+    <ion-label style="display: none;">Event Typ</ion-label>
+    <ion-select class="eventtypePlaceholder" [(ngModel)]="type" placeholder="Event Typ">
+      <ion-option value="activity">Aktivität</ion-option>
       <ion-option value="project">Projekt</ion-option>
       <ion-option value="hangout">Hangout</ion-option>
     </ion-select>
   </ion-item>
+
   <ion-item class="limitmemberscreate">
-    <ion-label class="limitmembers123">Limit Members?</ion-label>
-    <ion-checkbox class="checkboxcreate"></ion-checkbox>
-  </ion-item>
-  <ion-item class="memberscreate">
-    <ion-label class="memeberslabel">Possible Members: &nbsp; {{possibleMemberCount}}</ion-label>
-    <ion-range class="membersrange" min="1" max="100" [(ngModel)]="possibleMemberCount" color="secondary">
-      <ion-label range-left>1</ion-label>
-      <ion-label range-right>100</ion-label>
-    </ion-range>
-  </ion-item>
-  <button class="beevyButton" ion-button (click)="createBeevent()" full>Create Event</button>
+      <button type="button"
+              id="limitmembers"
+              [ngClass]="['borderRadius', changeColor(type, 'full'), limitMembers ? 'limitActive' : '']"
+              (click)="toggleLimit()">Teilnehmer begrenzen</button>
+    </ion-item>
+    <ion-item class="memberscreate" *ngIf="limitMembers">
+      <ion-label class="memeberslabel">Anzahl möglicher Teilnehmer: &nbsp; {{possibleMemberCount}}</ion-label>
+      <ion-range class="membersrange" min="1" max="25" [(ngModel)]="possibleMemberCount" color="first">
+        <ion-label range-left>1</ion-label>
+        <ion-label range-right>25</ion-label>
+      </ion-range>
+    </ion-item>
+
+  <rl-tag-input
+    [(ngModel)]="tags"
+    [addOnBlur]="false"
+    [autocomplete]="false"
+    placeholder="+ Tags"
+    class="tagInputcreate"
+    [ngClass]="['borderRadius', changeColorTags(type, 'border')]"
+  >
+  </rl-tag-input>
+
+
+  <div class="beevyButton-wrapper">
+    <button full
+            class="beevyButton"
+            (click)="createBeevent()"
+            full
+            [ngClass]="['borderRadius', changeColor(type, 'full')]">
+      Event erstellen
+    </button>
+  </div>
 </ion-content>
 <ion-footer>
   <img class="beevyFooter" src="assets/imgs/footer.svg"/>
