@@ -163,4 +163,13 @@ export class ToastService {
     });
     toast.present();
   }
+
+  reportedEvent(){
+    let toast = this.toastCtrl.create({
+      message: 'Vielen Dank. Das Beevy-Team wird sich das gemeldete Event anschauen und gegebenenfalls löschen.',
+      duration: 7000,
+      position: 'top'
+    });
+    toast.present();
+  }
 }

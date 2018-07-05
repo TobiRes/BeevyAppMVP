@@ -1,9 +1,15 @@
 <ion-content padding>
   <h3>Optionen</h3>
   <div class="filterContainer" id="filterContainer">
-    <button class="optionsButton" (click)="idKopieren()" >Event-ID kopieren</button>
-    <button *ngIf="userIsEventAdmin" (click)="deleteEvent()" class="optionsButton">Event löschen</button>
-    <button *ngIf="userIsEventMember" (click)="leaveEvent()" class="optionsButton">Event austreten</button>
-    <button class="optionsButton" (click)="eventMelden()" >Event melden</button>
+    <button class="optionsButton" *ngIf="!userWantsToReportEvent"(click)="idKopieren()" >Event-ID kopieren</button>
+    <button *ngIf="userIsEventAdmin&&!userWantsToReportEvent" (click)="deleteEvent()" class="optionsButton">Event löschen</button>
+    <button *ngIf="userIsEventMember&&!userWantsToReportEvent" (click)="leaveEvent()" class="optionsButton">Event austreten</button>
+    <button class="optionsButton" *ngIf="!userWantsToReportEvent"(click)="userWantstoReport()" >Event melden</button>
+
+    <div *ngIf="userWantsToReportEvent" class="reportEingabe">
+      <p>Warum möchtest du das Event melden?</p>
+      <textarea placeholder="Bitte hier eingeben" [(ngModel)]="reportReason" rows="3"></textarea>
+      <button class="optionsButton" (click)="reportEvent()" [disabled]="!reportReason">Abschicken</button>
+    </div>
   </div>
 </ion-content>

@@ -1,4 +1,4 @@
-import {BeevyEvent, JoinEventData} from "../models/event.model";
+import {BeevyEvent, JoinEventData, ReportData} from "../models/event.model";
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {AppConfig} from "../config/app-config";
@@ -100,6 +100,32 @@ export class BeevyEventService {
 
   reportEvent(eventID: string, user: User, reason: string){
     console.log(user.username+" will "+ eventID+" melden, weil "+reason);
+    this.storage.get("user")
+      .then((user: User) => {
+        if (!user || !(user.userID && user.token)) {
+          console.log("Can't report event", user);
+        } else {
+          this.handleReportingOnServerSide(eventID, user, reason)
+            .then(() => this.userService.getUserEvents(user))
+        }
+      })
+      .catch(err => console.error(err))
   }
+
+  private handleReportingOnServerSide(eventID: string, user: User, reason: string) {
+    let reportData: ReportData = {
+      userID: user.userID,
+      token: user.token,
+      eventID: eventID,
+      reason: reason
+    };
+    return new Promise((resolve, reject) => {
+      this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/report", reportData)
+        .subscribe(() => {
+          resolve();
+        }, (err) => reject(err));
+    })
+  }
+
 
 }
