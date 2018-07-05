@@ -17,9 +17,12 @@ export class OptionsModalPage {
   userIsEventAdmin: boolean;
   userIsEventMember: boolean;
   eventID: string;
+  eventTitle: string;
   user: User;
   userWantsToReportEvent: boolean;
   reportReason: string;
+  normaleAnzeige: boolean;
+  userWantstoLeave: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -33,6 +36,8 @@ export class OptionsModalPage {
     this.user = this.navParams.get("user");
     this.eventID = this.navParams.get("eventID");
     this.userWantsToReportEvent = false;
+    this.eventTitle = this.navParams.get("eventTitle")
+    this.normaleAnzeige = true;
   }
 
   ionViewDidLoad() {
@@ -50,12 +55,21 @@ export class OptionsModalPage {
         this.viewCtrl.dismiss();
       });
   }
+  userWantsToLeaveEvent(){
+    this.normaleAnzeige = false;
+    this.userWantstoLeave = true;
+  }
   leaveEvent(){
-    this.eventService.leaveBeevyEvent(this.eventID, this.user);
+    this.eventService.leaveEvent(this.eventID, this.user);
+    this.toastService.leftEvent(this.eventTitle);
+    this.viewCtrl.dismiss();
+  }
+  dismissOptions(){
     this.viewCtrl.dismiss();
   }
   userWantstoReport(){
     this.userWantsToReportEvent = true;
+    this.normaleAnzeige = false;
     //this.eventService.reportEvent(this.eventID, this.user, "unknown reason");
     //this.viewCtrl.dismiss();
   }
@@ -67,6 +81,7 @@ export class OptionsModalPage {
 
   idKopieren(){
     this.clipboard.copy(this.eventID);
+    this.toastService.copiedID(this.eventTitle);
     this.viewCtrl.dismiss();
   }
 

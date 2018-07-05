@@ -167,9 +167,27 @@ export class ToastService {
   reportedEvent(){
     let toast = this.toastCtrl.create({
       message: 'Vielen Dank. Das Beevy-Team wird sich das gemeldete Event anschauen und gegebenenfalls löschen.',
-      duration: 7000,
+      duration: 5000,
       position: 'top'
     });
     toast.present();
   }
+
+  leftEvent(eventTitle: string){
+    let toast = this.toastCtrl.create({
+      message: 'Du hast das "'+ eventTitle +'" verlassen.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+  copiedID(eventTitle: string){
+    let toast = this.toastCtrl.create({
+      message: 'Du hast das die ID von "'+ eventTitle +'" kopiert.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
 }

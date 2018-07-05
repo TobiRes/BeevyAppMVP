@@ -1,10 +1,26 @@
 <ion-content padding>
   <h3>Optionen</h3>
   <div class="filterContainer" id="filterContainer">
-    <button class="optionsButton" *ngIf="!userWantsToReportEvent"(click)="idKopieren()" >Event-ID kopieren</button>
-    <button *ngIf="userIsEventAdmin&&!userWantsToReportEvent" (click)="deleteEvent()" class="optionsButton">Event löschen</button>
-    <button *ngIf="userIsEventMember&&!userWantsToReportEvent" (click)="leaveEvent()" class="optionsButton">Event austreten</button>
-    <button class="optionsButton" *ngIf="!userWantsToReportEvent"(click)="userWantstoReport()" >Event melden</button>
+    <button class="optionsButton" *ngIf="normaleAnzeige"(click)="idKopieren()" >Event-ID kopieren</button>
+    <button *ngIf="userIsEventAdmin&&normaleAnzeige" (click)="deleteEvent()" class="optionsButton">Event löschen</button>
+
+    <button *ngIf="userIsEventMember&&normaleAnzeige" (click)="userWantsToLeaveEvent()" class="optionsButton">Event austreten</button>
+
+    <div *ngIf="userWantstoLeave" class="zweiterSchritt">
+      <div *ngIf="userIsEventAdmin">
+        <p>Admins können nicht aus selbsterstellten Events austreten.</p>
+        <button class="optionsButton" (click)="dismissOptions()">Ok.</button>
+      </div>
+      <div *ngIf="!userIsEventAdmin">
+        <p>Bist du dir sicher, dass du dem Event austreten möchtest? Missbrauch in Form von ständigem Ein- und
+          Austreten von Events wird vom Beevy-Team registriert und führt zum Ausschluss.
+        </p>
+        <button class="optionsButton" (click)="leaveEvent()">Ja, austreten.</button>
+        <button class="optionsButton" (click)="dismissOptions()">Nein, Teilnehmer bleiben.</button>
+      </div>
+    </div>
+
+    <button class="optionsButton" *ngIf="normaleAnzeige"(click)="userWantstoReport()" >Event melden</button>
 
     <div *ngIf="userWantsToReportEvent" class="reportEingabe">
       <p>Warum möchtest du das Event melden?</p>
