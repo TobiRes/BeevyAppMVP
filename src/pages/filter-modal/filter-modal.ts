@@ -59,7 +59,10 @@ export class FilterModalPage {
     this.setTypeFilterButtons = this.defaultTypeFilterButtons;
     this.filter.types = [true, true, true];
     this.filter.tags = [];
-    this.filter.earliestDate = new Date().toISOString();
+    var today = new Date();
+    today.setHours(today.getTimezoneOffset()/60,0,0,0);
+    console.log(today);
+    this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = this.defaultEndDate;
     this.filter.city = "";
     this.filter.search = "";
