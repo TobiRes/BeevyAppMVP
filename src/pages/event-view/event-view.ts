@@ -130,17 +130,14 @@ export class EventViewPage {
     if (oldTime.length == 4) {
       if (oldTime.charAt(1) == ":") {
         newTime = "0" + oldTime;
-        console.log(newTime);
         return newTime;
       } else {
         newTime = oldTime.substring(0, 3) + "0" + oldTime.substring(3, 5);
-        console.log(newTime);
         return newTime;
       }
     }
     if (oldTime.length == 3) {
       newTime = "0" + oldTime.substring(0, 2) + "0" + oldTime.substring(2, 4);
-      console.log(newTime);
       return newTime;
     }
     return DateUtil.getTime(date);

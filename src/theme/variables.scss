@@ -91,6 +91,12 @@ $checkbox-ios-background-color-on: #218ba1;
 $checkbox-ios-icon-border-color-off: #70e0ca;
 $checkbox-ios-icon-border-color-on: #218ba1;
 
+$loading-md-background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
+$loading-md-border-radius: 20px;
+$loading-md-spinner-color: white;
+$loading-md-text-color: white;
+
+
 @import "ionic.theme.default";
 
 // Ionicons

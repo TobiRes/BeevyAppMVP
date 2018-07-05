@@ -4,6 +4,8 @@ import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {PopoverComponent} from "../../components/popover/popover";
 import {Storage} from "@ionic/storage";
+import {BeevyEvent} from "../../models/event.model";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'page-profile',
@@ -15,8 +17,10 @@ export class ProfilePage {
   user: User;
   joinedEventsActive?: boolean;
   avatarURL: string;
+  private userExists: boolean = false;
+  private currentlyLoading: boolean = true;
 
-  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
+  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage, public events: Events, private userService: UserService,) {
     this.joinedEventsActive = true;
   }
 
@@ -52,4 +56,7 @@ export class ProfilePage {
     this.content.scrollToTop();
   }
 
+  openEventView(beevyEvent: BeevyEvent) {
+      this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent, user: this.user}, {animation: "ios-transition"});
+  }
 }
