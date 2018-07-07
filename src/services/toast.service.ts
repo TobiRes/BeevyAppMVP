@@ -97,15 +97,6 @@ export class ToastService {
     toast.present();
   }
 
-  /* eventZipWrong() {
-    let toast = this.toastCtrl.create({
-      message: 'Die Postleitzahl muss aus 5 Zahlen bestehen',
-      duration: 2000,
-      position: 'top'
-    });
-
-    toast.present();
-  } */
 
 
   eventCityTooLong(tooMuch: number){

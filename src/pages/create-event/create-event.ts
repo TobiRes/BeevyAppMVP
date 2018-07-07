@@ -52,9 +52,11 @@ export class CreateEventPage {
       this.toastService.zipNotCorrect();
     } else if(this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 5 || this.street.length < 5){
       this.toastService.eventDataTooShort();
-    }else if(this.street.length > 35){
+    }else if(this.street.length > 30){
       this.toastService.eventStreetTooLong(this.street.length - 30);
-    } else if(!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)){
+    } else if(this.city.length > 20){
+      this.toastService.eventCityTooLong(this.street.length - 20);
+    }else if(!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)){
       this.toastService.eventNotValid();
     } else {
       this.createBeevent();
