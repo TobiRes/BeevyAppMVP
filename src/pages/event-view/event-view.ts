@@ -58,14 +58,9 @@ export class EventViewPage {
     this.buildViewAccordingToEventAndUserState();
   }
 
-  ionViewDidLoad() {
-  }
-
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent);
     this.alertOfJoin();
-
-    console.log(this.beevyEvent);
   }
 
   addNewComment(repliedTo: string | undefined) {

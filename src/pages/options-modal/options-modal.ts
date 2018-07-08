@@ -55,7 +55,7 @@ export class OptionsModalPage {
         this.viewCtrl.dismiss();
       });
   }
-  
+
   userWantsToLeaveEvent(){
     this.normaleAnzeige = false;
     this.userWantstoLeave = true;
@@ -89,7 +89,7 @@ export class OptionsModalPage {
     this.viewCtrl.dismiss();
   }
 
-  idKopieren() {
+  copyID() {
     this.clipboard.copy(this.eventID);
     this.toastService.copiedID(this.eventTitle);
     this.viewCtrl.dismiss();
