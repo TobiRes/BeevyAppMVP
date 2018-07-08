@@ -30,7 +30,7 @@ export class ProfilePage {
     this.storage.get("user").then((user: User) => {
       if(user)
         this.user = user;
-      if(user.currentAvatar) {
+      if(user && user.currentAvatar) {
         this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
       } else {
         this.avatarURL = "../../assets/imgs/avatar_1.svg";
