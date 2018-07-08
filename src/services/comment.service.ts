@@ -27,6 +27,7 @@ export class CommentService {
         })
     })
   }
+
   createComment(be: BeevyEvent) {
     //return this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/create", beevent);
   }
@@ -42,7 +43,7 @@ export class CommentService {
     }
     return new Promise((resolve, reject) => {
       this.http.post(CommentService.BEEVY_COMMENT_BASE_URL, commentDTO)
-        .subscribe( () => resolve(),
+        .subscribe(() => resolve(),
           err => reject(err))
     })
   }

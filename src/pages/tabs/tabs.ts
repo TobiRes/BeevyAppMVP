@@ -21,7 +21,7 @@ export class TabsPage {
   constructor(private storage: Storage, public events: Events) {
 
     this.storage.get("user").then((user: User) => {
-      if(user && user.currentAvatar) this.currentAvatar = user.currentAvatar;
+      if (user && user.currentAvatar) this.currentAvatar = user.currentAvatar;
     });
 
     events.subscribe('avatarEvent', (avatarString: string) => {
@@ -29,7 +29,7 @@ export class TabsPage {
     });
   }
 
-  changedAvatar(avatarString: string){
+  changedAvatar(avatarString: string) {
     this.currentAvatar = avatarString;
   }
 

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {BeevyEvent, BeevyEventType} from "../../models/event.model";
+import {BeevyEventType} from "../../models/event.model";
 import {EventComment} from "../../models/comment.model";
 
 @Component({

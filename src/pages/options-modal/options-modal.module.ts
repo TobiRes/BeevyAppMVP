@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { OptionsModalPage } from './options-modal';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {OptionsModalPage} from './options-modal';
 
 @NgModule({
   declarations: [
@@ -10,4 +10,5 @@ import { OptionsModalPage } from './options-modal';
     IonicPageModule.forChild(OptionsModalPage),
   ],
 })
-export class OptionsModalPageModule {}
+export class OptionsModalPageModule {
+}

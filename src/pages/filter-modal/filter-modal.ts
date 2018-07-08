@@ -73,7 +73,6 @@ export class FilterModalPage {
   }
 
 
-
   buttonColour(n: number): string {
     let cssClass: string = "beevy-info-background-more-transparent-" + n.toString();
     if (this.filter.types[n])

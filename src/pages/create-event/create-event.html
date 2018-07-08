@@ -40,14 +40,14 @@
       </ion-item>
     </div>
 
-    <ion-item class="beschreibungs-wrapper" >
+    <ion-item class="beschreibungs-wrapper">
       <textarea class="beschreibungcreate" placeholder="Beschreibe dein Event" [(ngModel)]="description"
-                    rows="3"></textarea>
+                rows="3"></textarea>
     </ion-item>
 
   </div>
 
-  <ion-item class="eventtypecreate"  [ngClass]="['borderRadius', changeColor(type, 'border')]">
+  <ion-item class="eventtypecreate" [ngClass]="['borderRadius', changeColor(type, 'border')]">
     <ion-label style="display: none;">Event Typ</ion-label>
     <ion-select class="eventtypePlaceholder" [(ngModel)]="type" placeholder="Event Typ">
       <ion-option value="activity">Aktivität</ion-option>
@@ -57,18 +57,19 @@
   </ion-item>
 
   <ion-item class="limitmemberscreate">
-      <button type="button"
-              id="limitmembers"
-              [ngClass]="['borderRadius', changeColor(type, 'full'), limitMembers ? 'limitActive' : '']"
-              (click)="toggleLimit()">Teilnehmer begrenzen</button>
-    </ion-item>
-    <ion-item class="memberscreate" *ngIf="limitMembers">
-      <ion-label class="memeberslabel">Anzahl möglicher Teilnehmer: &nbsp; {{possibleMemberCount}}</ion-label>
-      <ion-range class="membersrange" min="1" max="25" [(ngModel)]="possibleMemberCount" color="first">
-        <ion-label range-left>1</ion-label>
-        <ion-label range-right>25</ion-label>
-      </ion-range>
-    </ion-item>
+    <button type="button"
+            id="limitmembers"
+            [ngClass]="['borderRadius', changeColor(type, 'full'), limitMembers ? 'limitActive' : '']"
+            (click)="toggleLimit()">Teilnehmer begrenzen
+    </button>
+  </ion-item>
+  <ion-item class="memberscreate" *ngIf="limitMembers">
+    <ion-label class="memeberslabel">Anzahl möglicher Teilnehmer: &nbsp; {{possibleMemberCount}}</ion-label>
+    <ion-range class="membersrange" min="1" max="25" [(ngModel)]="possibleMemberCount" color="first">
+      <ion-label range-left>1</ion-label>
+      <ion-label range-right>25</ion-label>
+    </ion-range>
+  </ion-item>
 
   <rl-tag-input
     [(ngModel)]="tags"

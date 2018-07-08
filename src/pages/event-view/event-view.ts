@@ -3,7 +3,8 @@ import {
   AlertController,
   IonicPage,
   LoadingController,
-  Modal, ModalController,
+  Modal,
+  ModalController,
   ModalOptions,
   NavController,
   NavParams
@@ -15,7 +16,7 @@ import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
-import { Clipboard } from '@ionic-native/clipboard';
+import {Clipboard} from '@ionic-native/clipboard';
 import {SetFilters} from "../../models/setFilters.model";
 
 
@@ -31,7 +32,7 @@ export class EventViewPage {
   showJoinButton: boolean;
   notAllowedtoSeeComments: boolean;
   noCommentsYet: boolean;
-  showComments:boolean;
+  showComments: boolean;
   commentBody: string;
   currentResponseCommentID: string;
   currentResponseCommentAuthor: string;
@@ -42,7 +43,7 @@ export class EventViewPage {
   userIsEventAdmin: boolean;
   userIsEventMember: boolean;
 
-  @ViewChild('focusInput') enterCommentField ;
+  @ViewChild('focusInput') enterCommentField;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -68,14 +69,14 @@ export class EventViewPage {
     console.log(this.beevyEvent);
   }
 
-  addNewComment(repliedTo: string | undefined){
+  addNewComment(repliedTo: string | undefined) {
 
-    if(this.commentBody.length >= 280) {
-      this.toastService.commentTooLong(this.commentBody.length-280);
+    if (this.commentBody.length >= 280) {
+      this.toastService.commentTooLong(this.commentBody.length - 280);
     }
-    else{
+    else {
 
-      if(this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)){
+      if (this.currentResponseCommentID != "" && this.commentBody.includes(this.currentResponseCommentAuthor)) {
         repliedTo = this.currentResponseCommentID;
         this.commentBody = this.commentBody.substring(this.currentResponseCommentAuthor.length);
       }
@@ -113,6 +114,32 @@ export class EventViewPage {
     return "beevy-info-background-" + opacity + "-0";
   }
 
+  respondToComment(comment: EventComment) {
+    this.currentResponseCommentAuthor = "@" + comment.author + ": ";
+    this.commentBody = this.currentResponseCommentAuthor;
+    this.currentResponseCommentID = comment.commentID;
+
+    //Keyboard.show(); // for android
+    this.enterCommentField.setFocus();
+  }
+
+  openOptions() {
+    const optionsModalOptions: ModalOptions = {
+      cssClass: "filterModal",
+      showBackdrop: true
+    }
+    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {
+      userIsEventAdmin: this.userIsEventAdmin,
+      userIsEventMember: this.userIsEventMember,
+      eventID: this.beevyEvent.eventID,
+      user: this.user
+    }, optionsModalOptions);
+    filterModal.present();
+    filterModal.onWillDismiss((setFilter: SetFilters) => {
+
+    })
+  }
+
   private alertOfJoin() {
     let alert = this.alertCtrl.create({
       title: 'Event beigetreten',
@@ -135,47 +162,26 @@ export class EventViewPage {
 
   private handleComments() {
     return new Promise(((resolve, reject) => {
-      if(!this.userNotPartOfEvent()){
+      if (!this.userNotPartOfEvent()) {
         this.notAllowedtoSeeComments = false;
         this.commentService.loadComments(this.user, this.beevyEvent)
           .then((eventComments: EventComment[]) => {
             this.beevyEvent.comments = eventComments;
             console.log(this.beevyEvent);
-            if(eventComments== []){
+            if (eventComments == []) {
               this.noCommentsYet = true;
-            }else{
+            } else {
               this.showComments = true;
             }
             resolve();
           })
-          .catch((err) =>reject(err));
+          .catch((err) => reject(err));
       }
     }))
   }
 
   private startLoader() {
     return this.loadingCtrl.create();
-  }
-
-  respondToComment(comment: EventComment){
-    this.currentResponseCommentAuthor ="@"+comment.author+": ";
-    this.commentBody = this.currentResponseCommentAuthor;
-    this.currentResponseCommentID = comment.commentID;
-
-    //Keyboard.show(); // for android
-    this.enterCommentField.setFocus();
-  }
-
-  openOptions() {
-    const optionsModalOptions: ModalOptions = {
-      cssClass: "filterModal",
-      showBackdrop: true
-    }
-    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {userIsEventAdmin: this.userIsEventAdmin, userIsEventMember: this.userIsEventMember, eventID: this.beevyEvent.eventID, user: this.user}, optionsModalOptions);
-    filterModal.present();
-    filterModal.onWillDismiss((setFilter: SetFilters) => {
-
-    })
   }
 
   private buildViewAccordingToEventAndUserState() {
@@ -189,17 +195,17 @@ export class EventViewPage {
     this.handleComments()
       .catch(err => console.error(err));
 
-    this.currentResponseCommentID="";
-    this.currentResponseCommentAuthor="";
+    this.currentResponseCommentID = "";
+    this.currentResponseCommentAuthor = "";
     this.commentValidated = false;
 
-    if(this.user.userID == this.beevyEvent.admin.userID)
+    if (this.user.userID == this.beevyEvent.admin.userID)
       this.userIsEventAdmin = true;
     else
       this.userIsEventAdmin = false;
 
     this.userIsEventMember = !this.userNotPartOfEvent();
-    if(this.beevyEvent.admin.avatar){
+    if (this.beevyEvent.admin.avatar) {
       this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
     } else {
       this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";

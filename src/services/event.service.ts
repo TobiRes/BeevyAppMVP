@@ -5,7 +5,6 @@ import {AppConfig} from "../config/app-config";
 import {Storage} from "@ionic/storage";
 import {User} from "../models/user.model";
 import {UserService} from "./user.service";
-import {RequestOptions} from "@angular/http";
 
 @Injectable()
 export class BeevyEventService {
@@ -44,28 +43,11 @@ export class BeevyEventService {
       .catch(err => console.error(err))
   }
 
-  private handleJoiningOnServerSide(beevent: BeevyEvent, user: User) {
-    let joinEventData: JoinEventData = {
-      userID: user.userID,
-      token: user.token,
-      eventID: beevent.eventID
-    };
-    return new Promise((resolve, reject) => {
-      this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/join", joinEventData)
-        .subscribe(() => {
-          console.log("joined event");
-          resolve();
-        }, (err) => reject(err));
-    })
+  leaveBeevyEvent(eventID: string, user: User) {
+    console.log(user.username + " has left " + eventID);
   }
 
-
-  leaveBeevyEvent(eventID: string, user: User){
-    console.log(user.username+" has left "+eventID);
-  }
-
-
-  deleteBeevyEvent(eventID: string, user: User){
+  deleteBeevyEvent(eventID: string, user: User) {
     return new Promise((resolve, reject) => {
       this.storage.get("user")
         .then((user: User) => {
@@ -83,6 +65,25 @@ export class BeevyEventService {
     })
   }
 
+  reportEvent(eventID: string, user: User, reason: string) {
+    console.log(user.username + " will " + eventID + " melden, weil " + reason);
+  }
+
+  private handleJoiningOnServerSide(beevent: BeevyEvent, user: User) {
+    let joinEventData: JoinEventData = {
+      userID: user.userID,
+      token: user.token,
+      eventID: beevent.eventID
+    };
+    return new Promise((resolve, reject) => {
+      this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/join", joinEventData)
+        .subscribe(() => {
+          console.log("joined event");
+          resolve();
+        }, (err) => reject(err));
+    })
+  }
+
   private handleDeletingOnServerSide(eventID: string, user: User) {
     let deleteEventData: JoinEventData = {
       userID: user.userID,
@@ -96,10 +97,6 @@ export class BeevyEventService {
           resolve();
         }, (err) => reject(err));
     })
-  }
-
-  reportEvent(eventID: string, user: User, reason: string){
-    console.log(user.username+" will "+ eventID+" melden, weil "+reason);
   }
 
 }

@@ -26,7 +26,7 @@ page-event-view {
         margin: 0;
         display: inline-block;
       }
-      #idButton{
+      #idButton {
         border-radius: 30px;
         margin: auto;
         height: 25px;
@@ -37,15 +37,15 @@ page-event-view {
         -webkit-transition: 0.1s; /* Safari */
         transition: 0.1s;
       }
-      #idButton:active{
-        background: rgba(255,255,255,0.5);
+      #idButton:active {
+        background: rgba(255, 255, 255, 0.5);
         -webkit-transition: 0.1s; /* Safari */
         transition: 0.1s;
 
       }
 
     }
-    .optionsButtonDiv{
+    .optionsButtonDiv {
       position: absolute;
       top: 70px;
       right: 0px;
@@ -54,14 +54,14 @@ page-event-view {
       border-width: 2px;
       border-radius: 15px;
       height: 25px;
-      .optionsButton{
+      .optionsButton {
         background: transparent;
         color: white;
         font-size: 40px;
         padding: 0;
         width: 40px;
         position: relative;
-        top:-17px;
+        top: -17px;
       }
 
     }
@@ -193,7 +193,7 @@ page-event-view {
     .joinEventButton {
 
     }
-    .kommentarBoxTransparent{
+    .kommentarBoxTransparent {
       opacity: 0.7; //opacity runter für wenn man nicht angemeldet ist
     }
     .kommentarBox {
@@ -218,31 +218,31 @@ page-event-view {
         padding-left: 5px;
         padding-right: 5px;
       }
-      .eingabe{
+      .eingabe {
         display: inline-block;
         width: 90%;
         padding-bottom: 0px;
         padding-top: 5px;
 
-        .kommentarEingabeBox{
+        .kommentarEingabeBox {
           width: 80%;
           border-bottom: none;
           display: inline-block;
           padding: none;
 
-          .item-inner{
+          .item-inner {
             border: none;
           }
 
-          .kommentarEingabe{
+          .kommentarEingabe {
             background-color: white;
             color: $beevy-darkBlue;
             border-radius: 30px;
             padding-left: 10px;
             height: 30px;
 
-            .text-input{
-              margin:0;
+            .text-input {
+              margin: 0;
               padding-top: 5px;
               padding-left: 5px;
               width: 100%;
@@ -250,7 +250,7 @@ page-event-view {
             }
           }
         }
-        .commentButton{
+        .commentButton {
           border-radius: 30px;
           opacity: 1.0;
           height: 30px;
@@ -260,31 +260,30 @@ page-event-view {
           margin-top: 7px;
         }
       }
-      .alleKommentare{
+      .alleKommentare {
         border-bottom: none;
         border-top-width: 2px;
         border-top-style: solid;
         padding-top: 10px;
         padding-bottom: 10px;
       }
-      .kommentare{
+      .kommentare {
         padding-left: 10px;
         padding-right: 10px;
         margin-bottom: 5px;
 
-
-        .replyButtonBox{
+        .replyButtonBox {
           width: 8%;
           min-width: 20px;
           display: inline-block;
           vertical-align: top;
-          .replyButton{
+          .replyButton {
             background-color: transparent;
           }
         }
 
       }
-      }
+    }
 
   }
 

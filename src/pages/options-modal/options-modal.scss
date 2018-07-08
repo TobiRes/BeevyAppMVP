@@ -1,5 +1,5 @@
 page-options-modal {
-  h3{
+  h3 {
     text-align: center;
     padding-top: 10px;
   }
@@ -11,7 +11,7 @@ page-options-modal {
     padding-right: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
-    .optionsButton{
+    .optionsButton {
       font-size: 18px;
       -webkit-border-radius: 15px;
       -moz-border-radius: 15px;
@@ -19,7 +19,7 @@ page-options-modal {
       width: 100%;
       border-style: solid;
       border-width: 2px;
-      background:transparent;
+      background: transparent;
       border-color: $beevy-blue-transparent;
       margin-top: 5px;
       margin-botton: 5px;

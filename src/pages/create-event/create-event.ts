@@ -27,9 +27,9 @@ export class CreateEventPage {
   tags = [];
   filter: SetFilters = {types: [], tags: []};
   possibleMemberCount: number = 1;
-  private limitMembers: boolean = false;
   validation: number;
   completeCount: number = 0;
+  private limitMembers: boolean = false;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,
@@ -40,31 +40,27 @@ export class CreateEventPage {
   }
 
   validateBeevent() {
-    if(this.notAllRequiredDataEntered()){
+    if (this.notAllRequiredDataEntered()) {
       this.toastService.notComplete();
-    } else if (this.title.length > 22){
+    } else if (this.title.length > 22) {
       this.toastService.eventTitleTooLong(this.title.length - 22);
-    } else if(this.summary.length > 42) {
+    } else if (this.summary.length > 42) {
       this.toastService.eventSummaryTooLong(this.summary.length - 42);
-    } else if(this.description.length > 500) {
+    } else if (this.description.length > 500) {
       this.toastService.eventDescriptionTooLong(this.description.length - 500);
-    } else if(isNaN(this.zip) || this.zip.toString().length != 5) {
+    } else if (isNaN(this.zip) || this.zip.toString().length != 5) {
       this.toastService.zipNotCorrect();
-    } else if(this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 4 || this.street.length < 5){
+    } else if (this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 4 || this.street.length < 5) {
       this.toastService.eventDataTooShort();
-    }else if(this.street.length > 30){
+    } else if (this.street.length > 30) {
       this.toastService.eventStreetTooLong(this.street.length - 30);
-    } else if(this.city.length > 20){
+    } else if (this.city.length > 20) {
       this.toastService.eventCityTooLong(this.street.length - 20);
-    }else if(!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)){
+    } else if (!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)) {
       this.toastService.eventNotValid();
     } else {
       this.createBeevent();
     }
-  }
-
-  private notAllRequiredDataEntered() {
-    return !this.title || !this.summary || !this.description || !this.type || !this.date || !this.time || !this.street || !this.zip || !this.city;
   }
 
   createBeevent() {
@@ -82,6 +78,28 @@ export class CreateEventPage {
             loader.dismissAll();
           })
       })
+  }
+
+  changeColor(type: BeevyEventType, opacity: string): string {
+    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1";
+    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
+    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
+    return "beevy-info-background-" + opacity + "-2";
+  }
+
+  changeColorTags(type: BeevyEventType, opacity: string): string {
+    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1-tags";
+    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2-tags";
+    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0-tags";
+    return "beevy-info-background-" + opacity + "-2-tags";
+  }
+
+  toggleLimit() {
+    this.limitMembers = !this.limitMembers;
+  }
+
+  private notAllRequiredDataEntered() {
+    return !this.title || !this.summary || !this.description || !this.type || !this.date || !this.time || !this.street || !this.zip || !this.city;
   }
 
   private fillEventData(user: User): BeevyEvent {
@@ -121,23 +139,5 @@ export class CreateEventPage {
         lastTab.select(0);
       })
       .catch(err => console.error(err))
-  }
-
-  changeColor(type: BeevyEventType, opacity: string): string{
-    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1";
-    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
-    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
-    return "beevy-info-background-" + opacity + "-2";
-  }
-
-  changeColorTags(type: BeevyEventType, opacity: string): string{
-    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1-tags";
-    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2-tags";
-    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0-tags";
-    return "beevy-info-background-" + opacity + "-2-tags";
-  }
-
-  toggleLimit() {
-    this.limitMembers = !this.limitMembers;
   }
 }

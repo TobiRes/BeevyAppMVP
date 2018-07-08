@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {Clipboard} from "@ionic-native/clipboard";
 import {BeevyEventService} from "../../services/event.service";
@@ -35,7 +35,7 @@ export class OptionsModalPage {
     console.log(this.userIsEventMember);
   }
 
-  deleteEvent(){
+  deleteEvent() {
     this.eventService.deleteBeevyEvent(this.eventID, this.user)
       .then(() => this.viewCtrl.dismiss())
       .then(() => this.storage.set("createdEvent", true))
@@ -45,16 +45,18 @@ export class OptionsModalPage {
         this.viewCtrl.dismiss();
       });
   }
-  leaveEvent(){
+
+  leaveEvent() {
     this.eventService.leaveBeevyEvent(this.eventID, this.user);
     this.viewCtrl.dismiss();
   }
-  eventMelden(){
+
+  eventMelden() {
     this.eventService.reportEvent(this.eventID, this.user, "unknown reason");
     this.viewCtrl.dismiss();
   }
 
-  idKopieren(){
+  idKopieren() {
     this.clipboard.copy(this.eventID);
     this.viewCtrl.dismiss();
   }

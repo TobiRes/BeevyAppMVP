@@ -125,7 +125,7 @@ page-create-event {
       margin-right: 0;
     }
 
-    textarea::placeholder{
+    textarea::placeholder {
       text-indent: 0;
       color: white;
       font-size: 20px;
@@ -177,8 +177,6 @@ page-create-event {
     font-size: 20px;
   }
 
-
-
   .borderRadius {
     //background: linear-gradient(to bottom right, $beevy-lightBlue, $beevy-blue);
     border-radius: 30px;
@@ -203,9 +201,9 @@ page-create-event {
   padding-left: 25px !important;
   padding-right: 25px !important;
   margin-bottom: 2px;
-  .item-inner{
-    .input-wrapper{
-      .label{
+  .item-inner {
+    .input-wrapper {
+      .label {
         margin-right: 0px !important;
       }
     }
@@ -213,7 +211,7 @@ page-create-event {
 
 }
 
-#limitmembers{
+#limitmembers {
   padding: 10px;
   border-radius: 30px;
   text-align: center;
@@ -251,7 +249,6 @@ page-create-event {
 .range-bar-active, .range-knob {
 }
 
-
 .datetime-placeholder {
   padding: 0px;
   font-size: 20px !important;
@@ -280,15 +277,15 @@ ion-item {
   margin: 25px 25px 12px 25px;
   height: 30px;
 
-  .select{
+  .select {
     height: 30px;
-    padding:0;
+    padding: 0;
   }
 }
 
-.eventtypePlaceholder{
-  .select-placeholder{
-    color:white;
+.eventtypePlaceholder {
+  .select-placeholder {
+    color: white;
   }
 }
 
@@ -339,7 +336,7 @@ ion-item {
     padding: 0 0 0 7px !important;
     border-radius: 30px;
     border: 2px solid !important;
-   // border-color: $beevy-lightBlue !important;
+    // border-color: $beevy-lightBlue !important;
     width: 70px !important;
   }
 }
@@ -360,7 +357,7 @@ ion-item {
   background: transparent;
 }
 
-.beevy-info-background-border-1-tags{
+.beevy-info-background-border-1-tags {
   .ng2-tag-input-field > input, .ng-valid > input, .ng-dirty > input, .ng-touched > input {
     border-color: $beevy-orange !important;
   }
@@ -369,7 +366,7 @@ ion-item {
   }
 }
 
-.beevy-info-background-border-0-tags{
+.beevy-info-background-border-0-tags {
   .ng2-tag-input-field > input, .ng-valid > input, .ng-dirty > input, .ng-touched > input {
     border-color: $beevy-lightBlue-transparent !important;
   }
@@ -378,7 +375,7 @@ ion-item {
   }
 }
 
-.beevy-info-background-border-2-tags{
+.beevy-info-background-border-2-tags {
   .ng2-tag-input-field > input, .ng-valid > input, .ng-dirty > input, .ng-touched > input {
     border-color: $beevy-pink !important;
   }
@@ -391,7 +388,7 @@ ion-item {
   text-align: center;
   margin: 0 25px;
 
-  .beevyButton{
+  .beevyButton {
     color: white;
     width: 100%;
     font-size: 20px;

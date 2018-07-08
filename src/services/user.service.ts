@@ -35,7 +35,7 @@ export class UserService {
                 this.toastService.successfullyRegistered(username);
                 resolve();
               })
-              .catch(err=> reject(err));
+              .catch(err => reject(err));
           }
         })
         .catch(err => reject(err));
@@ -77,7 +77,7 @@ export class UserService {
       avatar: user.currentAvatar
     }
     this.http.post(UserService.BEEVY_USER_BASE_URL + "/avatar", avatarDTO)
-      .subscribe( () => console.log("success"));
+      .subscribe(() => console.log("success"));
   }
 
   private createUser(): Promise<string> {

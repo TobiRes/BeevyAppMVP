@@ -1,5 +1,5 @@
 page-registration-modal {
-  .no-scroll .scroll-content{
+  .no-scroll .scroll-content {
     overflow: hidden;
   }
   .registrationContent {
@@ -13,7 +13,7 @@ page-registration-modal {
       text-align: center;
       color: white;
     }
-    .ionItemBox{
+    .ionItemBox {
       border-style: solid;
       border-width: 2px;
       border-color: $beevy-blue;
@@ -23,11 +23,11 @@ page-registration-modal {
       margin-top: 5px;
       .item {
         padding: 0px 15px;
-        border-bottom:none !important;
-        .item-inner{
-          border-bottom:none !important;
+        border-bottom: none !important;
+        .item-inner {
+          border-bottom: none !important;
         }
-        .text-input{
+        .text-input {
           margin: 0;
         }
       }

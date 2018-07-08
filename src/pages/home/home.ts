@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Modal, ModalController, ModalOptions, NavController, Toast, ToastController} from 'ionic-angular';
+import {Modal, ModalController, ModalOptions, NavController, ToastController} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
@@ -8,7 +8,6 @@ import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
 import {FilterUtil} from "../../utils/filter-util";
 import {User} from "../../models/user.model";
-import {cr} from "@angular/core/src/render3";
 
 @Component({
   selector: 'page-home',
@@ -46,30 +45,30 @@ export class HomePage {
       });
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     //TODO: Think of something better
     this.storage.get("createdEvent")
       .then((createdEvent) => {
-        if(createdEvent) {
+        if (createdEvent) {
           this.getEvents()
           this.storage.set("createdEvent", false);
         }
       })
   }
 
-/*  ionViewDidLoad() {
-    this.tabBarElement = document.querySelector('.tabbar');
-    this.tabBarElement.style.display = 'none';
-    setTimeout(() => {
-      this.splash = false;
-      this.tabBarElement.style.display = 'flex';
-    }, 7000);
-  }*/
+  /*  ionViewDidLoad() {
+      this.tabBarElement = document.querySelector('.tabbar');
+      this.tabBarElement.style.display = 'none';
+      setTimeout(() => {
+        this.splash = false;
+        this.tabBarElement.style.display = 'flex';
+      }, 7000);
+    }*/
 
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {
       this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent, user: this.user}, {animation: "ios-transition"});
-    } else if(!this.userExists && !this.currentlyLoading){
+    } else if (!this.userExists && !this.currentlyLoading) {
       this.currentlyLoading = true;
       this.userService.handleUser()
         .then(() => this.checkForUserStatus())
@@ -78,7 +77,7 @@ export class HomePage {
           this.userExists = false;
           console.error(err)
         });
-    } else if(this.currentlyLoading){
+    } else if (this.currentlyLoading) {
       //TODO: Show alert;
     }
   }

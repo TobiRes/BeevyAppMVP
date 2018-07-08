@@ -57,7 +57,7 @@ export class ToastService {
     toast.present();
   }
 
-  eventTitleTooLong(tooMuch: number){
+  eventTitleTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
       message: 'Der Titel deines Events ist ' + tooMuch + ' Zeichen zu lang',
       duration: 2000,
@@ -67,7 +67,7 @@ export class ToastService {
     toast.present();
   }
 
-  eventSummaryTooLong(tooMuch: number){
+  eventSummaryTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
       message: 'Die Zusammenfassung deines Events ist ' + tooMuch + ' Zeichen zu lang',
       duration: 2000,
@@ -77,7 +77,7 @@ export class ToastService {
     toast.present();
   }
 
-  eventDescriptionTooLong(tooMuch: number){
+  eventDescriptionTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
       message: 'Die Beschreibung deines Events ist ' + tooMuch + ' Zeichen zu lang',
       duration: 2000,
@@ -87,7 +87,7 @@ export class ToastService {
     toast.present();
   }
 
-  eventStreetTooLong(tooMuch: number){
+  eventStreetTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
       message: 'Die Strasse ist ' + tooMuch + ' Zeichen zu lang',
       duration: 2000,
@@ -98,8 +98,7 @@ export class ToastService {
   }
 
 
-
-  eventCityTooLong(tooMuch: number){
+  eventCityTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
       message: 'Der Ort ist ' + tooMuch + ' Zeichen zu lang',
       duration: 2000,
@@ -109,7 +108,7 @@ export class ToastService {
     toast.present();
   }
 
-  eventNotValid(){
+  eventNotValid() {
     let toast = this.toastCtrl.create({
       message: 'Deine Eingaben sind nicht gültig',
       duration: 2000,
@@ -119,7 +118,7 @@ export class ToastService {
     toast.present();
   }
 
-  notComplete(){
+  notComplete() {
     let toast = this.toastCtrl.create({
       message: 'Bitte fülle alle Felder aus',
       duration: 2000,
@@ -146,7 +145,7 @@ export class ToastService {
     })
   }
 
-  commentTooLong(commentLengthTooMuch: number){
+  commentTooLong(commentLengthTooMuch: number) {
     let toast = this.toastCtrl.create({
       message: 'Dein Kommentar ist leider ' + commentLengthTooMuch + " Zeichen zu lang.",
       duration: 3000,

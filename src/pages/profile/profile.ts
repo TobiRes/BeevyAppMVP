@@ -28,9 +28,9 @@ export class ProfilePage {
 
   ionViewWillEnter() {
     this.storage.get("user").then((user: User) => {
-      if(user)
+      if (user)
         this.user = user;
-      if(user && user.currentAvatar) {
+      if (user && user.currentAvatar) {
         this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
       } else {
         this.avatarURL = "../../assets/imgs/avatar_1.svg";
@@ -47,13 +47,13 @@ export class ProfilePage {
   }
 
   presentPopover(myEvent) {
-    if(this.user && this.user.token && this.user.userID){
+    if (this.user && this.user.token && this.user.userID) {
       let popover = this.popoverCtrl.create(PopoverComponent);
       popover.present({
         ev: myEvent
       });
       popover.onDidDismiss((avatarString: string) => {
-        if (avatarString && avatarString != this.user.currentAvatar){
+        if (avatarString && avatarString != this.user.currentAvatar) {
           this.user.currentAvatar = avatarString;
           this.avatarURL = "../../assets/imgs/" + avatarString + ".svg";
           this.storage.set("user", this.user).then(() => this.events.publish('avatarEvent', avatarString))

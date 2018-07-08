@@ -1,21 +1,20 @@
 event-comment {
   color: white;
   text-align: left;
-  .comment{
+  .comment {
     width: 90%;
     display: inline-block;
 
-    .commentBody{
+    .commentBody {
 
       display: flex;
       flex-direction: row;
       margin-top: 2px;
 
-      .commentAuthor{
+      .commentAuthor {
         border-style: solid;
-        border-width:0px;
+        border-width: 0px;
         height: 22px;
-
 
         border-radius: 15px;
         padding-top: 2px;
@@ -25,11 +24,11 @@ event-comment {
 
         display: inline-block;
       }
-      .commentText{
+      .commentText {
         padding-left: 5px;
       }
     }
-    .unterKommentare{
+    .unterKommentare {
       padding-left: 40px;
       .commentAuthor {
         border-width: 2px;
