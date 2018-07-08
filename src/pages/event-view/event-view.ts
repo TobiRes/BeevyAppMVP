@@ -42,7 +42,7 @@ export class EventViewPage {
   userIsEventAdmin: boolean;
   userIsEventMember: boolean;
 
-  @ViewChild('focusInput') kommentarEingabefeld ;
+  @ViewChild('focusInput') enterCommentField ;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -55,29 +55,7 @@ export class EventViewPage {
               private toastService: ToastService) {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
-    this.showJoinButton = this.userNotPartOfEvent();
-    this.defineProjectType();
-
-    this.notAllowedtoSeeComments = true;
-    this.noCommentsYet = false;
-    this.showComments = false;
-
-    this.handleComments()
-      .catch(err => console.error(err));
-
-    this.currentResponseCommentID="";
-    this.currentResponseCommentAuthor="";
-    this.commentValidated = false;
-
-    if(this.user.userID == this.beevyEvent.admin.userID)
-      this.userIsEventAdmin = true;
-    else
-      this.userIsEventAdmin = false;
-
-    this.userIsEventMember = !this.userNotPartOfEvent();
-
-
-    this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.adminAvatar + ".svg";
+    this.buildViewAccordingToEventAndUserState();
   }
 
   ionViewDidLoad() {
@@ -185,7 +163,7 @@ export class EventViewPage {
     this.currentResponseCommentID = comment.commentID;
 
     //Keyboard.show(); // for android
-    this.kommentarEingabefeld.setFocus();
+    this.enterCommentField.setFocus();
   }
 
   openOptions() {
@@ -198,5 +176,33 @@ export class EventViewPage {
     filterModal.onWillDismiss((setFilter: SetFilters) => {
 
     })
+  }
+
+  private buildViewAccordingToEventAndUserState() {
+    this.showJoinButton = this.userNotPartOfEvent();
+    this.defineProjectType();
+
+    this.notAllowedtoSeeComments = true;
+    this.noCommentsYet = false;
+    this.showComments = false;
+
+    this.handleComments()
+      .catch(err => console.error(err));
+
+    this.currentResponseCommentID="";
+    this.currentResponseCommentAuthor="";
+    this.commentValidated = false;
+
+    if(this.user.userID == this.beevyEvent.admin.userID)
+      this.userIsEventAdmin = true;
+    else
+      this.userIsEventAdmin = false;
+
+    this.userIsEventMember = !this.userNotPartOfEvent();
+    if(this.beevyEvent.admin.avatar){
+      this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
+    } else {
+      this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";
+    }
   }
 }

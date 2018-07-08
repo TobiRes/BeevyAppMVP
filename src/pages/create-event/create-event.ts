@@ -50,7 +50,7 @@ export class CreateEventPage {
       this.toastService.eventDescriptionTooLong(this.description.length - 500);
     } else if(isNaN(this.zip) || this.zip.toString().length != 5) {
       this.toastService.zipNotCorrect();
-    } else if(this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 5 || this.street.length < 5){
+    } else if(this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 4 || this.street.length < 5){
       this.toastService.eventDataTooShort();
     }else if(this.street.length > 30){
       this.toastService.eventStreetTooLong(this.street.length - 30);
@@ -90,7 +90,7 @@ export class CreateEventPage {
         username: user.username,
         userID: user.userID,
         token: user.token,
-        adminAvatar: user.currentAvatar
+        avatar: user.currentAvatar
       },
       title: this.title,
       summary: this.summary,

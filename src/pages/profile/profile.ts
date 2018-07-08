@@ -4,6 +4,7 @@ import {User} from "../../models/user.model";
 import {MockService} from "../../services/mock.service";
 import {PopoverComponent} from "../../components/popover/popover";
 import {Storage} from "@ionic/storage";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'page-profile',
@@ -16,14 +17,24 @@ export class ProfilePage {
   joinedEventsActive?: boolean;
   avatarURL: string;
 
-  constructor(public navCtrl: NavController, private mockService: MockService, public popoverCtrl: PopoverController, private storage: Storage, public events: Events) {
+  constructor(public navCtrl: NavController,
+              private mockService: MockService,
+              public popoverCtrl: PopoverController,
+              private storage: Storage,
+              private userService: UserService,
+              public events: Events) {
     this.joinedEventsActive = true;
   }
 
   ionViewWillEnter() {
     this.storage.get("user").then((user: User) => {
-      this.user = user;
-      //this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
+      if(user)
+        this.user = user;
+      if(user.currentAvatar) {
+        this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
+      } else {
+        this.avatarURL = "../../assets/imgs/avatar_1.svg";
+      }
     });
   }
 
@@ -36,16 +47,20 @@ export class ProfilePage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverComponent);
-    popover.present({
-      ev: myEvent
-    });
-    popover.onDidDismiss((avatarString: string) => {
-      if (avatarString) this.user.currentAvatar = avatarString;
-      this.avatarURL = "../../assets/imgs/" + avatarString + ".svg";
-      //Todo: avatarURL in Db + hier losschicken
-      this.events.publish('avatarEvent', avatarString);
-    });
+    if(this.user && this.user.token && this.user.userID){
+      let popover = this.popoverCtrl.create(PopoverComponent);
+      popover.present({
+        ev: myEvent
+      });
+      popover.onDidDismiss((avatarString: string) => {
+        if (avatarString && avatarString != this.user.currentAvatar){
+          this.user.currentAvatar = avatarString;
+          this.avatarURL = "../../assets/imgs/" + avatarString + ".svg";
+          this.storage.set("user", this.user).then(() => this.events.publish('avatarEvent', avatarString))
+          this.userService.updateUserAvatar(this.user);
+        }
+      });
+    }
   }
 
   scrollUp() {

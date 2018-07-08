@@ -22,7 +22,7 @@ export interface Admin {
   username: string;
   userID: string;
   token?: string;
-  adminAvatar?: string;
+  avatar?: string;
 }
 
 export interface JoinEventData {

@@ -8,14 +8,19 @@
 </ion-header>
 
 
-<ion-content onscroll="scrollFunction()" class="main-background-gradient" >
+<ion-content class="main-background-gradient" >
 
   <div id="avatarCircle">
     <img id="avatarBig" [src]="avatarURL" (click)="presentPopover($event)">
   </div>
-
-  <p class="userName">{{user?.username}}</p>
-  <p class="userMail">{{user?.mail}}</p>
+  <div *ngIf="user?.username && user?.mail">
+    <p class="userName">{{user?.username}}</p>
+    <p class="userMail">{{user?.mail}}</p>
+  </div>
+  <div *ngIf="!user?.username || !user?.mail">
+    <p class="userName">Nicht registriert</p>
+    <p class="userMail">Bitte regestriere dich, um alle Funktionen zu nutzen.</p>
+  </div>
 
   <button class="beevyButton joinedButton"
           [ngClass]="[joinedEventsActive ? 'beevy-info-background-more-transparent-0' : '']"

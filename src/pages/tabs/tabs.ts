@@ -16,12 +16,20 @@ export class TabsPage {
   tab1Root = HomePage;
   tab2Root = CreateEventPage;
   tab3Root = ProfilePage;
+  currentAvatar: string = "../../assets/imgs/avatar_1.svg";
   user: User;
 
   constructor(private storage: Storage, public events: Events) {
 
     this.storage.get("user").then((user: User) => {
       this.user = user;
+      if(user.currentAvatar){
+        this.currentAvatar = user.currentAvatar;
+      } else {
+        this.currentAvatar = "../../assets/imgs/avatar_1.svg";
+        this.user.currentAvatar = this.currentAvatar;
+        this.storage.set("user", user);
+      }
     });
 
     events.subscribe('avatarEvent', (avatarString: string) => {
@@ -31,7 +39,7 @@ export class TabsPage {
   }
 
   changedAvatar(avatarString: string){
-    this.user.currentAvatar = avatarString;
+    this.currentAvatar = avatarString;
   }
 
 }

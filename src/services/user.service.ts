@@ -70,11 +70,17 @@ export class UserService {
     })
   }
 
-  private createUser(): Promise<string> {
-    //TODO: Make it possible to resend email. Maybe handle in .catch down below
-    //TODO: What if is already in use?
-    //TODO: What if wrong token?
+  updateUserAvatar(user: User) {
+    let avatarDTO = {
+      userID: user.userID,
+      token: user.token,
+      avatar: user.currentAvatar
+    }
+    this.http.post(UserService.BEEVY_USER_BASE_URL + "/avatar", avatarDTO)
+      .subscribe( () => console.log("success"));
+  }
 
+  private createUser(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.storage.get("unregisteredUser")
         .then((unregUser: UnregisteredUser) => {
