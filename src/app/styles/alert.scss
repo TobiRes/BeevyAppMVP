@@ -7,6 +7,13 @@
     border-radius: 30px !important;
     .alert-head{
       text-align: center;
+      margin-bottom:0;
+      padding-bottom:5px;
+    }
+    .alert-message{
+      height:0 !important;
+      padding:0 !important;
+      max-height: 0!important;
     }
     .button-inner {
       color: $beevy-blue;
@@ -21,6 +28,9 @@
       border-color: $beevy-blue;
       border-radius: 30px;
       text-align: center;
+      margin-top:0;
+      background-color: transparent;
+      min-height: 40px;
     }
   }
   .alert-button-group{
@@ -40,8 +50,13 @@
       text-align: center;
     }
   }
+  .alert-button-default-ios{
+    margin-top: 5px;
+    border: none;
+  }
 }
 
 .alert-md .alert-input {
   color: white !important;
 }
+

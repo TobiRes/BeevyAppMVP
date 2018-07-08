@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Tabs, ViewController} from 'ionic-angular';
 import {Clipboard} from "@ionic-native/clipboard";
 import {BeevyEventService} from "../../services/event.service";
 import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {Storage} from "@ionic/storage";
 import {HomePage} from "../home/home";
+import {BeevyEvent} from "../../models/event.model";
 
 @IonicPage()
 @Component({
@@ -62,8 +63,19 @@ export class OptionsModalPage {
   leaveEvent(){
     this.eventService.leaveEvent(this.eventID, this.user);
     this.toastService.leftEvent(this.eventTitle);
+    //this.jumpToHomePage();
     this.viewCtrl.dismiss();
   }
+
+  private jumpToHomePage() {
+    let lastTab: Tabs = this.navCtrl.parent;
+    this.storage.set("createdEvent", true)
+      .then(() => {
+        lastTab.select(0);
+      })
+      .catch(err => console.error(err))
+  }
+
   dismissOptions(){
     this.viewCtrl.dismiss();
   }

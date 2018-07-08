@@ -98,20 +98,31 @@ ion-refresher {
 }
 
 //FooterHeaderButton
-
+.footer{
+  height: 10vh;
+  max-height: 90px;
+}
 .beevyFooter {
   position: fixed;
-  bottom: -30px;
   z-index: 1;
   width: 100%;
+  height: 100%;
 }
-
+.header{
+  height: 10vh;
+  max-height: 80px;
+}
 .beevyHeader {
-  transform: rotate(180deg);
-  position: fixed;
-  top: -50px;
+  //transform: rotate(180deg);
+  position: absolute;
   z-index: 1;
   width: 100%;
+  height: 100% !important;
+}
+.headerImage{
+  position: absolute;
+  height: 100%;
+  top: -2vh;
 }
 
 .beevyButton {
