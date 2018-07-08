@@ -162,7 +162,9 @@ export class HomePage {
   private resetFilter() {
     this.filter = {};
     this.filter.tags = [];
-    this.filter.earliestDate = new Date().toISOString();
+    var today = new Date();
+    today.setHours(today.getTimezoneOffset()/60,0,0,0);
+    this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = "2018-12-31T24:24:24.335Z";
     this.filter.types = [true, true, true];
     this.filter.city = "";

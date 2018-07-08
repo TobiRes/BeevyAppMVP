@@ -1,4 +1,4 @@
-import {BeevyEvent, JoinEventData} from "../models/event.model";
+import {BeevyEvent, JoinEventData, ReportData} from "../models/event.model";
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {AppConfig} from "../config/app-config";
@@ -47,10 +47,38 @@ export class BeevyEventService {
     console.log(user.username + " has left " + eventID);
   }
 
-  deleteBeevyEvent(eventID: string, user: User) {
+  leaveEvent(eventID: string, user: User){
+    console.log(user.username+" has left "+eventID);
+    this.storage.get("user")
+      .then((user: User) => {
+        if (!user || !(user.userID && user.token)) {
+          console.log("Can't report event", user);
+        } else {
+          this.handleLeavingOnServerSide(eventID, user)
+            .then(() => this.userService.getUserEvents(user))
+        }
+      })
+      .catch(err => console.error(err))
+  }
+
+  private handleLeavingOnServerSide(eventID: string, user: User) {
+    let leaveEventData: JoinEventData = {
+      userID: user.userID,
+      token: user.token,
+      eventID: eventID
+    };
     return new Promise((resolve, reject) => {
-      this.storage.get("user")
-        .then((user: User) => {
+      this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/leave", leaveEventData)
+        .subscribe(() => {
+          console.log("left event");
+          resolve();
+        }, (err) => reject(err));
+    })
+  }
+
+
+  deleteBeevyEvent(eventID: string, user: User){
+    return new Promise((resolve, reject) => {
           if (!user || !(user.userID && user.token)) {
             console.log("Can't delete event", user);
           } else {
@@ -61,12 +89,6 @@ export class BeevyEventService {
               })
           }
         })
-        .catch(err => reject(err))
-    })
-  }
-
-  reportEvent(eventID: string, user: User, reason: string) {
-    console.log(user.username + " will " + eventID + " melden, weil " + reason);
   }
 
   private handleJoiningOnServerSide(beevent: BeevyEvent, user: User) {
@@ -99,4 +121,32 @@ export class BeevyEventService {
     })
   }
 
+  reportEvent(eventID: string, user: User, reason: string){
+    console.log(user.username+" will "+ eventID+" melden, weil "+reason);
+    this.storage.get("user")
+      .then((user: User) => {
+        if (!user || !(user.userID && user.token)) {
+          console.log("Can't report event", user);
+        } else {
+          this.handleReportingOnServerSide(eventID, user, reason)
+            .then(() => console.log("Reported Event"))
+        }
+      })
+      .catch(err => console.error(err))
+  }
+
+  private handleReportingOnServerSide(eventID: string, user: User, reason: string) {
+    let reportData: ReportData = {
+      userID: user.userID,
+      token: user.token,
+      eventID: eventID,
+      reason: reason
+    };
+    return new Promise((resolve, reject) => {
+      this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/report", reportData)
+        .subscribe(() => {
+          resolve();
+        }, (err) => reject(err));
+    })
+  }
 }

@@ -17,7 +17,6 @@ import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
 import {Clipboard} from '@ionic-native/clipboard';
-import {SetFilters} from "../../models/setFilters.model";
 
 
 @IonicPage()
@@ -128,16 +127,13 @@ export class EventViewPage {
       cssClass: "filterModal",
       showBackdrop: true
     }
-    const filterModal: Modal = this.modalCtrl.create("OptionsModalPage", {
+    const additionalOptionsModal: Modal = this.modalCtrl.create("OptionsModalPage", {
       userIsEventAdmin: this.userIsEventAdmin,
       userIsEventMember: this.userIsEventMember,
       eventID: this.beevyEvent.eventID,
       user: this.user
     }, optionsModalOptions);
-    filterModal.present();
-    filterModal.onWillDismiss((setFilter: SetFilters) => {
-
-    })
+    additionalOptionsModal.present();
   }
 
   private alertOfJoin() {
@@ -194,7 +190,6 @@ export class EventViewPage {
 
     this.handleComments()
       .catch(err => console.error(err));
-
     this.currentResponseCommentID = "";
     this.currentResponseCommentAuthor = "";
     this.commentValidated = false;
@@ -211,4 +206,5 @@ export class EventViewPage {
       this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";
     }
   }
+
 }

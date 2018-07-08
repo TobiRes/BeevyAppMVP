@@ -31,6 +31,13 @@ export interface JoinEventData {
   token: string;
 }
 
+export interface ReportData {
+  userID: string;
+  eventID: string;
+  token: string;
+  reason: string;
+}
+
 export enum BeevyEventType {
   activity = <any> "activity",
   project = <any> "project",

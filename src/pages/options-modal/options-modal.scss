@@ -26,5 +26,31 @@ page-options-modal {
       padding-top: 5px;
       padding-bottom: 5px;
     }
+    .zweiterSchritt{
+      p{
+        text-align:center;
+        margin-top:0;
+      }
+    }
+    .reportEingabe{
+      p{
+        text-align:center;
+        margin-bottom: 5px;
+        margin-top:0;
+      }
+      textarea{
+        width: 100%;
+        text-align: center;
+        background: transparent;
+        color: white;
+        border-width: 2px;
+        border-color: $beevy-blue-transparent;
+        border-radius: 15px;
+        padding-top:5px;
+      }
+      textarea::placeholder{
+        color: white;
+      }
+    }
   }
 }
