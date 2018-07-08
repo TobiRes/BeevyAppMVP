@@ -24,7 +24,7 @@ export class CreateEventPage {
   street: string;
   zip: number;
   city: string;
-  tags = [];
+  tags: string[] = [];
   filter: SetFilters = {types: [], tags: []};
   possibleMemberCount: number = 1;
   validation: number;
@@ -54,6 +54,8 @@ export class CreateEventPage {
       this.toastService.eventDataTooShort();
     } else if (this.street.length > 30) {
       this.toastService.eventStreetTooLong(this.street.length - 30);
+    } else if((this.tags && this.tags.length > 10) || this.tagsTooLong()) {
+      this.toastService.tagsTooLong();
     } else if (this.city.length > 20) {
       this.toastService.eventCityTooLong(this.street.length - 20);
     } else if (!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)) {
@@ -63,6 +65,17 @@ export class CreateEventPage {
     }
   }
 
+  private tagsTooLong(): boolean {
+    let tagChecker: boolean = false;
+    if(this.tags){
+      this.tags.forEach((tag: string) => {
+        if(tag.length < 3 || tag.length > 15){
+          tagChecker = true;
+        }
+      })
+    }
+    return tagChecker;
+  }
   createBeevent() {
     let loader = this.startLoading();
     loader.present();
@@ -122,7 +135,7 @@ export class CreateEventPage {
       },
       possibleMemberCount: this.limitMembers ? this.possibleMemberCount : 26,
       currentMemberCount: 0,
-      tags: []
+      tags: this.tags
     }
   }
 

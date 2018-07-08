@@ -134,7 +134,6 @@ export class ToastService {
       duration: 2000,
       position: 'top'
     });
-
     toast.present();
   }
 
@@ -143,6 +142,7 @@ export class ToastService {
       message: 'Bitte achte darauf, dass deine Eingaben aussagekräftig sind',
       duration: 2000,
     })
+    toast.present();
   }
 
   commentTooLong(commentLengthTooMuch: number) {
@@ -180,4 +180,12 @@ export class ToastService {
     toast.present();
   }
 
+  tagsTooLong() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Tags eine sinnvolle Länge haben und du nicht mehr als 10 hinzugefügt hast.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
 }

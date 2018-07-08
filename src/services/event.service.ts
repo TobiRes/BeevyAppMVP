@@ -122,7 +122,6 @@ export class BeevyEventService {
   }
 
   reportEvent(eventID: string, user: User, reason: string){
-    console.log(user.username+" will "+ eventID+" melden, weil "+reason);
     this.storage.get("user")
       .then((user: User) => {
         if (!user || !(user.userID && user.token)) {
@@ -130,6 +129,7 @@ export class BeevyEventService {
         } else {
           this.handleReportingOnServerSide(eventID, user, reason)
             .then(() => console.log("Reported Event"))
+            .catch((err) => console.error(err));
         }
       })
       .catch(err => console.error(err))

@@ -80,8 +80,6 @@ export class OptionsModalPage {
   userWantstoReport(){
     this.userWantsToReportEvent = true;
     this.normaleAnzeige = false;
-    //this.eventService.reportEvent(this.eventID, this.user, "unknown reason");
-    //this.viewCtrl.dismiss();
   }
   reportEvent(){
     this.eventService.reportEvent(this.eventID, this.user, this.reportReason);

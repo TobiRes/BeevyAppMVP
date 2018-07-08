@@ -31,8 +31,7 @@ export class HomePage {
               private eventService: BeevyEventService,
               private modalCtrl: ModalController,
               private userService: UserService,
-              private storage: Storage,
-              private toastCtrl: ToastController) {
+              private storage: Storage) {
     //this.tabBarElement = document.querySelector('.tabbar');
     this.checkForUserStatus()
       .catch(err => console.error(err));
@@ -173,12 +172,14 @@ export class HomePage {
 
   //Filter checking
   private checkForTagMatch(eventTags: string[]): boolean {
-    if (this.filter.tags.length < 1 || !this.filter.tags)
+    if (!this.filter.tags || this.filter.tags.length < 1)
       return true;
     else {
       for (let i = 0; i < this.filter.tags.length; i++) {
-        for (let i2 = 0; i2 < eventTags.length; i2++) {
-          if (this.filter.tags[i].toLowerCase() == eventTags[i2].toLowerCase()) return true;
+        if(eventTags){
+          for (let i2 = 0; i2 < eventTags.length; i2++) {
+            if (this.filter.tags[i].toLowerCase() == eventTags[i2].toLowerCase()) return true;
+          }
         }
       }
     }
