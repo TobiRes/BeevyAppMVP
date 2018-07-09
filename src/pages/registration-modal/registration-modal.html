@@ -6,7 +6,7 @@
 
 
 <ion-content padding class="no-scroll">
-  <div class="dataSecurityHint" *ngIf="!registrationProcess">
+  <div class="" *ngIf="showSecurityHint">
     <div>
       Um dich zu registrieren, musst du zuerst unsere Datenschutz-Richtlinien akzeptieren. Bitte lies diese sorgfältig durch.
     </div>
@@ -63,7 +63,7 @@
       <button class="actionsButton" ion-button (click)="startRegistration()" [disabled]="!privacyPolicyAccept">Registrieren</button>
     </div>
   </div>
-  <div class="registrationContent" *ngIf="registrationProcess && !enterConfirmationCode">
+  <div class="registrationContent" *ngIf="registrationProcess">
     <div class="description">
       Um alle Funktionen der App zu nutzen, musst du dich mit deiner Hochschul-Email registrieren!
     </div>
@@ -87,7 +87,7 @@
   </div>
   <div class="enterConfirmation" *ngIf="enterConfirmationCode">
     <div class="description">
-      Wir haben eine E-Mail mit einem Registrierungs-Code an {{mail}} geschickt. Dies kann ein paar Minuten dauern.
+      Wir haben eine E-Mail mit einem Registrierungs-Code an {{email}} geschickt. Dies kann ein paar Minuten dauern.
     </div>
     <div>
       <div class="ionItemBox">
@@ -98,7 +98,17 @@
       </div>
     </div>
     <div class="button-wrapper halfButton">
-      <button class="actionsButton" ion-button (click)="confirmRegistration()" [disabled]="registrationCode.length < 5">Registrieren</button>
+      <button class="actionsButton" ion-button (click)="confirmRegistration()" [disabled]="registrationCode?.length != 5">Registrieren</button>
+    </div>
+  </div>
+  <div class="failedRegistration" *ngIf="failedRegistration">
+    <div class="description">
+      Hoppla, da ist wohl etwas schiefgelaufen. Möchtest du den Code nochmal eingeben?<br>
+      Überprüfe auch, ob deine Mail-Adresse richtig ist ({{email}}!
+    </div>
+    <div class="button-wrapper halfButton">
+      <button class="actionsButton" ion-button (click)="reenterCode()">Erneut eingeben</button>
+      <button class="actionsButton" ion-button (click)="restartRegistration()">Mail ändern</button>
     </div>
   </div>
 </ion-content>

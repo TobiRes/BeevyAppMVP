@@ -30,8 +30,7 @@ export class UserService {
             resolve();
           else{
             this.handleUserRegistration()
-              .then((username: string) => {
-                this.toastService.successfullyRegistered(username);
+              .then(() => {
                 resolve();
               })
               .catch((err)=> reject(err))
@@ -64,7 +63,7 @@ export class UserService {
   private createTemporaryUserData(username: string, mail: string): UnregisteredUser {
     return {
       username: username,
-      userID: this.device.uuid ? this.device.uuid : "122349342",
+      userID: this.device.uuid ? this.device.uuid : "122342",
       mail: mail,
       currentAvatar: "avatar_1",
     }

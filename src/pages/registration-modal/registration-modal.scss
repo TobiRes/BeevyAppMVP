@@ -11,7 +11,7 @@ page-registration-modal {
   .no-scroll .scroll-content {
     overflow: hidden;
   }
-  .registrationContent {
+  .registrationContent, .enterConfirmation, .failedRegistration, .dataSecurityHint {
     background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
     border-radius: 30px;
     height: 100%;

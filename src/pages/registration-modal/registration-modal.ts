@@ -15,9 +15,11 @@ export class RegistrationModalPage {
 
   name: string = "";
   email: string = "";
+  showSecurityHint: boolean = true;
   privacyPolicyAccept: boolean = false;
   registrationProcess: boolean = false;
   enterConfirmationCode: boolean = false;
+  failedRegistration: boolean = false;
   registrationCode: string;
   private unregisteredUser: User;
 
@@ -31,6 +33,7 @@ export class RegistrationModalPage {
   }
 
   startRegistration() {
+    this.showSecurityHint = false;
     this.registrationProcess = true;
     /*if (this.validateData()) {
       this.viewCtrl.dismiss({username: this.name, mail: this.email})
@@ -44,6 +47,7 @@ export class RegistrationModalPage {
       this.userService.registerUserOnServer(this.name, this.email)
         .then((unregisteredUser: User) => {
           this.unregisteredUser = unregisteredUser;
+          this.registrationProcess = false;
           this.enterConfirmationCode = true;
           loadingSpinner.dismissAll();
         })
@@ -60,16 +64,32 @@ export class RegistrationModalPage {
     loadingSpinner.present();
     this.userService.confirmRegistrationOnServer(this.unregisteredUser, this.registrationCode)
       .then((registeredUser: User) => {
+        this.enterConfirmationCode = false;
         this.storage.set("user", registeredUser);
         loadingSpinner.dismissAll();
+        this.toastService.successfullyRegistered(registeredUser.username);
+        this.viewCtrl.dismiss();
       })
       .catch(err => {
-        //TODO: "Da ist was schief gelaufen! Nochmal versuchen"
-        //TODO: Resend Code
-        //TODO: Handle Interrupted Registration
+        //TODO: Wrap in Methods "showScreenXXX()"
+        //TODO: Handle lowercase
+        //TODO: Jump Back in registration process
+        this.enterConfirmationCode = false;
+        this.failedRegistration = true;
         console.error(err);
         loadingSpinner.dismissAll();
       })
+  }
+
+  reenterCode(){
+    this.failedRegistration = false;
+    this.enterConfirmationCode = true;
+  }
+
+  restartRegistration(){
+    this.failedRegistration = false;
+    this.registrationProcess = true;
+    this.enterConfirmationCode = false;
   }
 
   isDisabled() {
