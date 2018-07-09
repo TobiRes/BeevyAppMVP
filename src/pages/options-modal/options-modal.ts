@@ -23,6 +23,7 @@ export class OptionsModalPage {
   reportReason: string;
   normaleAnzeige: boolean;
   userWantstoLeave: boolean;
+  userWantstoDelete: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,6 +37,7 @@ export class OptionsModalPage {
     this.user = this.navParams.get("user");
     this.eventID = this.navParams.get("eventID");
     this.userWantsToReportEvent = false;
+    this.userWantstoDelete = false;
     this.eventTitle = this.navParams.get("eventTitle")
     this.normaleAnzeige = true;
   }
@@ -43,6 +45,11 @@ export class OptionsModalPage {
   ionViewDidLoad() {
     console.log(this.userIsEventAdmin);
     console.log(this.userIsEventMember);
+  }
+
+  userWantstoDeleteEvent(){
+    this.normaleAnzeige = false;
+    this.userWantstoDelete = true;
   }
 
   deleteEvent() {

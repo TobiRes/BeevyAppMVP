@@ -2,8 +2,21 @@
   <h3>Optionen</h3>
   <div class="filterContainer" id="filterContainer">
     <button class="optionsButton" *ngIf="normaleAnzeige"(click)="copyID()" >Event-ID kopieren</button>
-    <button *ngIf="userIsEventAdmin&&normaleAnzeige" (click)="deleteEvent()" class="optionsButton">Event löschen</button>
 
+    <!--Delete Event -->
+    <button *ngIf="userIsEventAdmin&&normaleAnzeige" (click)="userWantstoDeleteEvent()" class="optionsButton">Event löschen</button>
+
+    <div *ngIf="userWantstoDelete" class="zweiterSchritt">
+      <p>Das Löschen eines Events ist dem Admin vorbehalten.
+        Bist du dir sicher, dass du dieses Event löschen möchtest?
+        Die Teilnehmer des Events werden benachrichtigt.
+        Missbrauch in Form von häufigem und unnötigem Löschen werden vom Beevy-Team registriert und führt zum Ausschluss.
+      </p>
+      <button class="optionsButton" (click)="deleteEvent()">Ja, trotzdem löschen.</button>
+      <button class="optionsButton" (click)="dismissOptions()">Nein, nicht löschen.</button>
+    </div>
+
+    <!--Leave Event-->
     <button *ngIf="userIsEventMember&&normaleAnzeige" (click)="userWantsToLeaveEvent()" class="optionsButton">Event austreten</button>
 
     <div *ngIf="userWantstoLeave" class="zweiterSchritt">
@@ -20,6 +33,8 @@
       </div>
     </div>
 
+
+    <!--Report Event-->
     <button class="optionsButton" *ngIf="normaleAnzeige"(click)="userWantstoReport()" >Event melden</button>
 
     <div *ngIf="userWantsToReportEvent" class="reportEingabe">
@@ -28,4 +43,5 @@
       <button class="optionsButton" (click)="reportEvent()" [disabled]="!reportReason">Abschicken</button>
     </div>
   </div>
+
 </ion-content>
