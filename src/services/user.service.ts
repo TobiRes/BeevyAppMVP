@@ -22,6 +22,68 @@ export class UserService {
               private toastService: ToastService) {
   }
 
+  checkForUserStateAndHandleRegistration(): Promise<any>{
+    return new Promise<any>((resolve, reject) => {
+      this.checkIfUserExists()
+        .then((userExists: boolean) => {
+          if(userExists)
+            resolve();
+          else{
+            this.handleUserRegistration()
+              .then((username: string) => {
+                this.toastService.successfullyRegistered(username);
+                resolve();
+              })
+              .catch((err)=> reject(err))
+          }
+        })
+        .catch((err) => reject(err))
+    })
+  }
+
+  registerUserOnServer(username: string, mail: string): Promise<User> {
+    return new Promise(((resolve, reject) => {
+      let newUser: User = this.createTemporaryUserData(username,mail);
+      this.http.post(UserService.BEEVY_USER_BASE_URL + "/register", newUser)
+        .subscribe(() => resolve(newUser), err => reject(err))
+    }))
+  }
+
+  confirmRegistrationOnServer(newUser: User, token: string) {
+    return new Promise((resolve, reject) => {
+      this.http.get(UserService.BEEVY_USER_BASE_URL + "/" + newUser.username + "/" + newUser.userID + "/" + token)
+        .subscribe((userToken: any) => {
+          newUser.token = userToken.token;
+          resolve(newUser);
+        }, err => {
+          reject(err);
+        })
+    })
+  }
+
+  private createTemporaryUserData(username: string, mail: string): UnregisteredUser {
+    return {
+      username: username,
+      userID: this.device.uuid ? this.device.uuid : "122349342",
+      mail: mail,
+      currentAvatar: "avatar_1",
+    }
+  }
+
+  private handleUserRegistration(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      const registrationModalOption = {
+        cssClass: "registrationModal",
+        showBackdrop: false
+      }
+      const registrationModal: Modal = this.modalCtrl.create("RegistrationModalPage", {}, registrationModalOption);
+      registrationModal.present();
+      registrationModal.onWillDismiss(() => {
+          resolve();
+      })
+    })
+  }
+
   handleUser() {
     return new Promise(((resolve, reject) => {
       this.checkIfUserExists()
@@ -160,7 +222,7 @@ export class UserService {
   private createUserData(registrationData: any): UnregisteredUser {
     return {
       username: registrationData.username,
-      userID: this.device.uuid ? this.device.uuid : "1229342",
+      userID: this.device.uuid ? this.device.uuid : "122349342",
       mail: registrationData.mail,
       currentAvatar: "avatar_1",
     }

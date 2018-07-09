@@ -3,7 +3,6 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
-import { timer } from 'rxjs/observable/timer';
 import {UserService} from "../services/user.service";
 
 @Component({
@@ -17,7 +16,7 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, userService: UserService) {
     platform.ready().then(() => {
-      userService.handleUser()
+      userService.checkForUserStateAndHandleRegistration()
         .catch(err => console.error(err));
       statusBar.styleDefault();
       splashScreen.hide();
