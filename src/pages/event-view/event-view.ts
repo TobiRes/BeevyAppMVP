@@ -94,7 +94,7 @@ export class EventViewPage {
   }
 
   getDate(date: Date): string {
-    return DateUtil.getWeekdayfull(new Date(date).getDay()) + " " + DateUtil.getDayMonthYearOfDate(date);
+    return DateUtil.getWeekdayfull(new Date(date).getDay()) + ", " + DateUtil.getDayMonthYearOfDate(date);
   }
 
   getTime(date: Date): string {
@@ -118,6 +118,7 @@ export class EventViewPage {
   }
 
   openOptions() {
+    console.log("open");
     const optionsModalOptions: ModalOptions = {
       cssClass: "filterModal",
       showBackdrop: true
