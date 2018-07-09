@@ -37,6 +37,7 @@ export class EventViewPage {
   currentResponseCommentAuthor: string;
   adminAvatarURL: string;
   commentValidated: boolean;
+  showEventFullJoinButton: boolean;
 
   user: User;
   userIsEventAdmin: boolean;
@@ -177,7 +178,8 @@ export class EventViewPage {
   }
 
   private buildViewAccordingToEventAndUserState() {
-    this.showJoinButton = this.userNotPartOfEvent();
+    this.showJoinButton = this.userNotPartOfEvent() && !this.checkIfMembersFull();
+    this.showEventFullJoinButton = this.checkIfMembersFull();
     this.defineProjectType();
 
     this.notAllowedtoSeeComments = true;
@@ -201,6 +203,9 @@ export class EventViewPage {
     } else {
       this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";
     }
+  }
+  private checkIfMembersFull(){
+    return (this.beevyEvent.currentMemberCount==this.beevyEvent.possibleMemberCount);
   }
 
 }
