@@ -82,8 +82,9 @@ page-filter-modal {
 
   //Dateanzeige
   .dateInputs {
-    margin-left: 20px;
     padding-top: 10px;
+    width: 100%;
+    margin-left: 5%;
   }
 
   .dateInput {
@@ -97,6 +98,9 @@ page-filter-modal {
 
   .dateInputLabel {
     color: white !important;
+    padding-right: 2px !important;
+    text-align: right;
+    min-width: 35px;
   }
 
   .dateInput button {
@@ -116,9 +120,15 @@ page-filter-modal {
   .dateInput .datetime-text {
     background: linear-gradient(to bottom right, $beevy-orange, $beevy-pink);
     border-radius: 30px;
-    padding: 5px 20px 5px 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
     position: relative;
     right: 0;
+  }
+  .datetime-text{
+    max-wdith: 100%;
   }
 
   //Ort
