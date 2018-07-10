@@ -30,14 +30,43 @@ export class RegistrationModalPage {
               private loadingCtrl: LoadingController,
               private storage: Storage,
               private toastService: ToastService) {
+    this.reenterLastRegistrationState();
   }
 
   startRegistration() {
     this.showSecurityHint = false;
     this.registrationProcess = true;
+    this.saveCurrentRegistrationState();
     /*if (this.validateData()) {
       this.viewCtrl.dismiss({username: this.name, mail: this.email})
     }*/
+  }
+
+  saveCurrentRegistrationState(){
+    this.storage.set("registrationState", {
+      showSecurityHint: this.showSecurityHint,
+      registrationProcess: this.registrationProcess,
+      enterConfirmationCode: this.enterConfirmationCode,
+      failedRegistration: this.failedRegistration,
+      uregisteredUser: this.unregisteredUser,
+      email: this.email,
+      name: this.name
+    });
+  }
+
+  reenterLastRegistrationState(){
+    this.storage.get("registrationState")
+      .then((registrationState: any) => {
+        if(registrationState){
+          this.showSecurityHint = registrationState.showSecurityHint;
+          this.registrationProcess = registrationState.registrationProcess;
+          this.enterConfirmationCode = registrationState.enterConfirmationCode;
+          this.failedRegistration = registrationState.failedRegistration;
+          this.unregisteredUser = registrationState.uregisteredUser;
+          this.email = registrationState.email;
+          this.name = registrationState.name;
+        }
+      })
   }
 
   register() {
@@ -49,10 +78,12 @@ export class RegistrationModalPage {
           this.unregisteredUser = unregisteredUser;
           this.registrationProcess = false;
           this.enterConfirmationCode = true;
+          this.saveCurrentRegistrationState();
           loadingSpinner.dismissAll();
         })
         .catch((err) => {
           this.enterConfirmationCode = false;
+          this.saveCurrentRegistrationState();
           loadingSpinner.dismissAll();
           console.log(err);
         })
@@ -76,6 +107,7 @@ export class RegistrationModalPage {
         //TODO: Jump Back in registration process
         this.enterConfirmationCode = false;
         this.failedRegistration = true;
+        this.saveCurrentRegistrationState();
         console.error(err);
         loadingSpinner.dismissAll();
       })

@@ -6,8 +6,8 @@
 
 
 <ion-content padding class="no-scroll">
-  <div class="" *ngIf="showSecurityHint">
-    <div>
+  <div class="dataSecurityHint" *ngIf="showSecurityHint">
+    <div class="description">
       Um dich zu registrieren, musst du zuerst unsere Datenschutz-Richtlinien akzeptieren. Bitte lies diese sorgfältig durch.
     </div>
     <ion-scroll scrollY="true">
@@ -97,8 +97,13 @@
         </ion-item>
       </div>
     </div>
-    <div class="button-wrapper halfButton">
-      <button class="actionsButton" ion-button (click)="confirmRegistration()" [disabled]="registrationCode?.length != 5">Registrieren</button>
+    <div class="two-buttons">
+      <div class="button-wrapper halfButton">
+        <button class="actionsButton" ion-button (click)="restartRegistration()" [disabled]="registrationCode?.length != 5">E-Mail ändern</button>
+      </div>
+      <div class="button-wrapper halfButton">
+        <button class="actionsButton" ion-button (click)="confirmRegistration()" [disabled]="registrationCode?.length != 5">Registrieren</button>
+      </div>
     </div>
   </div>
   <div class="failedRegistration" *ngIf="failedRegistration">
@@ -106,9 +111,13 @@
       Hoppla, da ist wohl etwas schiefgelaufen. Möchtest du den Code nochmal eingeben?<br>
       Überprüfe auch, ob deine Mail-Adresse richtig ist ({{email}}!
     </div>
-    <div class="button-wrapper halfButton">
-      <button class="actionsButton" ion-button (click)="reenterCode()">Erneut eingeben</button>
-      <button class="actionsButton" ion-button (click)="restartRegistration()">Mail ändern</button>
+    <div class="two-buttons">
+      <div class="button-wrapper halfButton">
+        <button class="actionsButton" ion-button (click)="reenterCode()">Erneut eingeben</button>
+      </div>
+      <div class="button-wrapper halfButton">
+        <button class="actionsButton" ion-button (click)="restartRegistration()">Mail ändern</button>
+      </div>
     </div>
   </div>
 </ion-content>
