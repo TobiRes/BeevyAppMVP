@@ -1,9 +1,6 @@
 <ion-header>
   <img class="headerImage" src="../../assets/imgs/footer.svg">
   <ion-navbar class="navbar">
-    <ion-title>
-      Profil
-    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -34,7 +31,7 @@
     <div *ngIf="joinedEventsActive">
       <ion-list>
         <div *ngFor="let event of user?.userEvents?.joinedEvents">
-          <beevy-event [beevyEvent]="event"></beevy-event>
+          <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>
         </div>
       </ion-list>
     </div>
@@ -42,7 +39,7 @@
     <div *ngIf="!joinedEventsActive">
       <ion-list>
         <div *ngFor="let event of user?.userEvents?.createdEvents">
-          <beevy-event [beevyEvent]="event"></beevy-event>
+          <beevy-event [beevyEvent]="event" (clicked)="openEventView($event)"></beevy-event>
         </div>
       </ion-list>
     </div>

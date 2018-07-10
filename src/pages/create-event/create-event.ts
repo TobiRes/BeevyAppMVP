@@ -144,6 +144,7 @@ export class CreateEventPage {
   private startLoading() {
     return this.loadingCtrl.create({
       spinner: 'crescent',
+      content: `Einen Moment bitte`,
     });
   }
 

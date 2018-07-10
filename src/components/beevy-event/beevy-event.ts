@@ -9,6 +9,7 @@ import {NavController} from "ionic-angular";
 })
 export class BeevyEventComponent {
 
+
   @Input()
   beevyEvent: BeevyEvent;
 
@@ -29,6 +30,21 @@ export class BeevyEventComponent {
   }
 
   getTime(date: Date): string {
+    let oldTime = DateUtil.getTime(date);
+    let newTime: string;
+    if (oldTime.length == 4) {
+      if (oldTime.charAt(1) == ":") {
+        newTime = "0" + oldTime;
+        return newTime;
+      } else {
+        newTime = oldTime.substring(0, 3) + "0" + oldTime.substring(3, 5);
+        return newTime;
+      }
+    }
+    if (oldTime.length == 3) {
+      newTime = "0" + oldTime.substring(0, 2) + "0" + oldTime.substring(2, 4);
+      return newTime;
+    }
     return DateUtil.getTime(date);
   }
 

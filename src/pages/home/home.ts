@@ -22,6 +22,7 @@ export class HomePage {
   filteredEvents: BeevyEvent[] = [];
   allEvents: BeevyEvent[] = [];
   filter: SetFilters = {types: [true, true, true], tags: []};
+  tabBarElement: any;
 
   private userExists: boolean = false;
   private currentlyLoading: boolean = true;
