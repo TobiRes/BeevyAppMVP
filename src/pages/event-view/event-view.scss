@@ -11,9 +11,9 @@ page-event-view {
 
     .eventAdmin {
       position: absolute;
-      top: 50px;
-      right: 0px;
-      text-align: right;
+      top: 70px;
+      left: 0px;
+      text-align: left;
 
       #adminDiv {
         position: relative;
@@ -26,28 +26,11 @@ page-event-view {
         margin: 0;
         display: inline-block;
       }
-      #idButton {
-        border-radius: 30px;
-        margin: auto;
-        height: 25px;
-        color: white;
-        border-style: solid;
-        border-width: 2px;
-        background-color: transparent;
-        -webkit-transition: 0.1s; /* Safari */
-        transition: 0.1s;
-      }
-      #idButton:active {
-        background: rgba(255, 255, 255, 0.5);
-        -webkit-transition: 0.1s; /* Safari */
-        transition: 0.1s;
-
-      }
 
     }
     .optionsButtonDiv {
       position: absolute;
-      top: 70px;
+      top: 60px;
       right: 0px;
       margin-top: 2px;
       border-style: solid;
@@ -61,16 +44,26 @@ page-event-view {
         padding: 0;
         width: 40px;
         position: relative;
-        top: -17px;
+        top: 0;
+        height: 23px;
+        .optionsIcon{
+          position: absolute;
+          top:3px;
+          left:13px;
+        }
       }
 
+    }
+    .eventInformationen{
+      position:relative;
+      top:20px;
     }
     .eventTitle {
       text-align: center;
       h1 {
-        font-size: 40px;
+        font-size: 35px;
         margin: 0;
-        padding-top: 10px;
+        padding-top: 0px;
       }
       p {
         font-size: 20px;
@@ -85,12 +78,12 @@ page-event-view {
       text-align: center;
       border-radius: 30px;
       height: 120px;
-      padding-top: 8px;
+      padding-top: 14px;
       margin-top: 15px;
       width: 100% !important;
 
       .eventDate {
-        font-size: 30px;
+        font-size: 25px;
         margin: 0;
       }
 

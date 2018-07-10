@@ -24,6 +24,7 @@ export class OptionsModalPage {
   reportReason: string;
   normaleAnzeige: boolean;
   userWantstoLeave: boolean;
+  userWantstoDelete: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -37,6 +38,7 @@ export class OptionsModalPage {
     this.user = this.navParams.get("user");
     this.eventID = this.navParams.get("eventID");
     this.userWantsToReportEvent = false;
+    this.userWantstoDelete = false;
     this.eventTitle = this.navParams.get("eventTitle")
     this.normaleAnzeige = true;
   }
@@ -46,11 +48,14 @@ export class OptionsModalPage {
     console.log(this.userIsEventMember);
   }
 
+  userWantstoDeleteEvent(){
+    this.normaleAnzeige = false;
+    this.userWantstoDelete = true;
+  }
+
   deleteEvent() {
     this.eventService.deleteBeevyEvent(this.eventID, this.user)
-      .then(() => this.viewCtrl.dismiss())
-      .then(() => this.storage.set("createdEvent", true))
-      .then(() => this.navCtrl.setRoot(HomePage))
+      .then(() => this.jumpToHomePage())
       .catch((err) => {
         console.error(err);
         this.viewCtrl.dismiss();

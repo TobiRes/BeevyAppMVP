@@ -28,120 +28,122 @@
       </button>
 
     </div>
+    <div class="eventInformationen">
+      <div class="eventTitle">
+        <h1>{{beevyEvent.title}}</h1>
+        <p>{{beevyEvent.summary}}</p>
+      </div>
 
-    <div class="eventTitle">
-      <h1>{{beevyEvent.title}}</h1>
-      <p>{{beevyEvent.summary}}</p>
-    </div>
-
-    <div>
-      <div [ngClass]="['beevy-event-time-info', changeColorOfContainer(beevyEvent.type, 'full')]">
-        <div>
-          <p class="eventDate">{{getDate(beevyEvent.date)}}</p>
+      <div>
+        <div [ngClass]="['beevy-event-time-info', changeColorOfContainer(beevyEvent.type, 'full')]">
+          <div>
+            <p class="eventDate">{{getDate(beevyEvent.date)}}</p>
+          </div>
+          <div class="timeBox">
+            <p class="eventTime">{{getTime(beevyEvent.date)}}</p>
+          </div>
+          <div class="locationBox"><p class="eventCity">
+            <img
+              class="locationIcon"
+              src="../../assets/icon/location.svg"
+              alt="triangle with all three sides equal"
+              height="12px"
+            />
+            {{beevyEvent.address.zip}}
+            {{beevyEvent.address.city}}<br>
+            {{beevyEvent.address.street}}
+          </p></div>
         </div>
-        <div class="timeBox">
-          <p class="eventTime">{{getTime(beevyEvent.date)}}</p>
+      </div>
+      <p class="fliessText">{{beevyEvent.description}}</p>
+
+
+      <div id="extraInfoLine">
+
+        <div [ngClass]="['eventType', changeColorOfContainer(beevyEvent.type, 'border')]">
+          <p>{{beevyEventType}}</p>
         </div>
-        <div class="locationBox"><p class="eventCity">
-          <img
-            class="locationIcon"
-            src="../../assets/icon/location.svg"
-            alt="triangle with all three sides equal"
-            height="12px"
-          />
-          {{beevyEvent.address.zip}}
-          {{beevyEvent.address.city}}<br>
-          {{beevyEvent.address.street}}
-        </p></div>
+
+        <div id="eventTagsdiv">
+          <ion-list class="eventTags">
+            <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeLeft">-->
+            <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]"
+                 *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
+            <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeRight">-->
+          </ion-list>
+        </div>
+        <div [ngClass]="['eventMembers', changeColorOfContainer(beevyEvent.type, 'border')]">
+          <p>
+            <img
+              class="adminIcon"
+              src="../../assets/icon/ninja-white.svg"
+              alt="triangle with all three sides equal"
+              height="12px"
+            />
+            {{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}
+          </p>
+        </div>
       </div>
-    </div>
-    <p class="fliessText">{{beevyEvent.description}}</p>
+      <button *ngIf="showJoinButton"
+              [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
+              ion-button full (click)="joinEvent()">Join Event
+      </button>
 
+      <div *ngIf="notAllowedtoSeeComments"
+           [ngClass]="['kommentarBoxTransparent','kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+          <h5>Kommentare</h5>
+        </div>
+        <p>Kommentare sind nur für Teilnehmer des Events sichtbar.</p>
 
-    <div id="extraInfoLine">
-
-      <div [ngClass]="['eventType', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <p>{{beevyEventType}}</p>
       </div>
+      <div *ngIf="noCommentsYet" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+          <h5>Kommentare</h5>
+        </div>
+        <p>Noch keine Kommentare zu diesem Event. Füge einen hinzu!</p>
 
-      <div id="eventTagsdiv">
-        <ion-list class="eventTags">
-          <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeLeft">-->
-          <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]"
-               *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
-          <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeRight">-->
-        </ion-list>
-      </div>
-      <div [ngClass]="['eventMembers', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <p>
-          <img
-            class="adminIcon"
-            src="../../assets/icon/ninja-white.svg"
-            alt="triangle with all three sides equal"
-            height="12px"
-          />
-          {{beevyEvent.currentMemberCount}}/{{beevyEvent.possibleMemberCount}}
-        </p>
-      </div>
-    </div>
-    <button *ngIf="showJoinButton"
-            [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
-            ion-button full (click)="joinEvent()">Join Event
-    </button>
-
-    <div *ngIf="notAllowedtoSeeComments"
-         [ngClass]="['kommentarBoxTransparent','kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
-      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <h5>Kommentare</h5>
-      </div>
-      <p>Kommentare sind nur für Teilnehmer des Events sichtbar.</p>
-
-    </div>
-    <div *ngIf="noCommentsYet" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
-      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <h5>Kommentare</h5>
-      </div>
-      <p>Noch keine Kommentare zu diesem Event. Füge einen hinzu!</p>
-
-    </div>
-
-    <div *ngIf="showComments" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
-      <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <h5>Kommentare</h5>
-      </div>
-      <div class="eingabe">
-        <ion-item class="kommentarEingabeBox">
-          <!--<ion-label stacked>{{user.username}}</ion-label>-->
-          <ion-input class="kommentarEingabe" #focusInput [(ngModel)]="commentBody" placeholder="..."></ion-input>
-        </ion-item>
-
-        <button [ngClass]="['commentButton', changeColorOfContainer(beevyEvent.type, 'full')]" [disabled]="!commentBody"
-                (click)="addNewComment()">
-          <img
-            class="commentIcon"
-            src="../../assets/icon/paper-plane.svg"
-            alt="triangle with all three sides equal"
-            height="20px"
-          />
-        </button>
       </div>
 
-      <div [ngClass]="['alleKommentare', changeColorOfContainer(beevyEvent.type, 'border')]">
-        <div class="kommentare" *ngFor="let comment of beevyEvent.comments">
-          <event-comment [eventComment]="comment" [type]="beevyEvent.type"></event-comment>
-          <div class="replyButtonBox">
-            <button class="replyButton" (click)="respondToComment(comment)">
-              <img
-                class="replyIcon"
-                src="../../assets/icon/reply.svg"
-                alt="triangle with all three sides equal"
-                height="15px"
-              />
-            </button>
+      <div *ngIf="showComments" [ngClass]="['kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+        <div [ngClass]="['kommentarTitelBox', changeColorOfContainer(beevyEvent.type, 'border')]">
+          <h5>Kommentare</h5>
+        </div>
+        <div class="eingabe">
+          <ion-item class="kommentarEingabeBox">
+            <!--<ion-label stacked>{{user.username}}</ion-label>-->
+            <ion-input class="kommentarEingabe" #focusInput [(ngModel)]="commentBody" placeholder="..."></ion-input>
+          </ion-item>
+
+          <button [ngClass]="['commentButton', changeColorOfContainer(beevyEvent.type, 'full')]" [disabled]="!commentBody"
+                  (click)="addNewComment()">
+            <img
+              class="commentIcon"
+              src="../../assets/icon/paper-plane.svg"
+              alt="triangle with all three sides equal"
+              height="20px"
+            />
+          </button>
+        </div>
+
+        <div [ngClass]="['alleKommentare', changeColorOfContainer(beevyEvent.type, 'border')]">
+          <div class="kommentare" *ngFor="let comment of beevyEvent.comments">
+            <event-comment [eventComment]="comment" [type]="beevyEvent.type"></event-comment>
+            <div class="replyButtonBox">
+              <button class="replyButton" (click)="respondToComment(comment)">
+                <img
+                  class="replyIcon"
+                  src="../../assets/icon/reply.svg"
+                  alt="triangle with all three sides equal"
+                  height="15px"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
 
   </div>
 </ion-content>
