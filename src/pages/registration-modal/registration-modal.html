@@ -10,18 +10,17 @@
     <div class="description">
       Um dich zu registrieren, musst du zuerst unsere Datenschutz-Richtlinien akzeptieren. Bitte lies diese sorgfältig durch.
     </div>
-    <ion-scroll scrollY="true">
-      <div>
+    <!--<ion-scroll scrollY="true">-->
+    <div class="datenschutzScroll">
         <h1>Datennutzung und Datenschutz</h1>
         <p>
           Kontakt:<br>
-          <br>
           Tobias Reski<br>
           Wilhelmstraße 10<br>
           77654 Offenburg<br>
           tobias.reski@gmail.com<br>
           01749755453<br>
-
+          <br>
           Folgende Daten werden erhoben:<br>
           Hochschul E-Mail zur Identifikation als HS-Offenburg Student. Diese E-Mail Adresse ist für andere Nutzer nicht sichtbar.<br>
           Nutzername zur Identifikation gegenüber anderer Nutzer.<br>
@@ -53,14 +52,14 @@
           https://policies.google.com/privacy
           weitere Informationen an und zwar insbesondere zu den Möglichkeiten der Unterbindung der Datennutzung.<br>
         </p>
-      </div>
-    </ion-scroll>
-    <ion-item>
-      <ion-label>Ich habe die Richtlinien gelesen und erkläre mich mit ihnen Einverstanden.</ion-label>
+    </div>
+    <!--</ion-scroll>-->
+    <ion-item class="checkboxLabel">
+      <ion-label>Ich habe die Richtlinien gelesen <br>und erkläre mich mit ihnen einverstanden.</ion-label>
       <ion-checkbox [(ngModel)]="privacyPolicyAccept"></ion-checkbox>
     </ion-item>
-    <div class="button-wrapper halfButton">
-      <button class="actionsButton" ion-button (click)="startRegistration()" [disabled]="!privacyPolicyAccept">Registrieren</button>
+    <div class="button-wrapper untersterButton halfButton">
+      <button class="beevyButton" ion-button (click)="startRegistration()" [disabled]="!privacyPolicyAccept">Registrieren</button>
     </div>
   </div>
   <div class="registrationContent" *ngIf="registrationProcess">
@@ -81,7 +80,7 @@
         </ion-item>
       </div>
     </div>
-    <div class="button-wrapper halfButton">
+    <div class="button-wrapper untersterButton halfButton">
       <button class="actionsButton" ion-button (click)="register()" [disabled]="isDisabled()">Registrieren</button>
     </div>
   </div>
@@ -89,19 +88,20 @@
     <div class="description">
       Wir haben eine E-Mail mit einem Registrierungs-Code an {{email}} geschickt. Dies kann ein paar Minuten dauern.
     </div>
+
     <div>
       <div class="ionItemBox">
         <ion-item>
-          <ion-label>Registrierungs-Code</ion-label>
-          <ion-input [(ngModel)]="registrationCode"></ion-input>
+          <ion-input placeholder="Registrierungscode" [(ngModel)]="registrationCode"></ion-input>
         </ion-item>
       </div>
     </div>
+
     <div class="two-buttons">
       <div class="button-wrapper halfButton">
-        <button class="actionsButton" ion-button (click)="restartRegistration()" [disabled]="registrationCode?.length != 5">E-Mail ändern</button>
+        <button class="actionsButton" ion-button (click)="restartRegistration()">E-Mail ändern</button>
       </div>
-      <div class="button-wrapper halfButton">
+      <div class="button-wrapper untersterButton halfButton">
         <button class="actionsButton" ion-button (click)="confirmRegistration()" [disabled]="registrationCode?.length != 5">Registrieren</button>
       </div>
     </div>
@@ -115,7 +115,7 @@
       <div class="button-wrapper halfButton">
         <button class="actionsButton" ion-button (click)="reenterCode()">Erneut eingeben</button>
       </div>
-      <div class="button-wrapper halfButton">
+      <div class="button-wrapper untersterButton halfButton">
         <button class="actionsButton" ion-button (click)="restartRegistration()">Mail ändern</button>
       </div>
     </div>

@@ -1,7 +1,87 @@
 page-registration-modal {
+
+  .header{
+    top:0;
+    .toolbar{
+      margin-top:5px;
+      .title{
+        width: 100%;
+        padding:0;
+      }
+    }
+  }
   .dataSecurityHint {
+    background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
+    border-radius: 30px;
+    height: 100%;
+    margin-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    .beevyButton{
+      color: white;
+      margin: 0;
+      width: 100%;
+      margin-top: 5px;
+      margin-bottom: 20px;
+    }
+    .description{
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      color: white;
+    }
+    .checkbox{
+      margin-right: 10px !important;
+
+    }
+    .checkbox-md{
+
+    }
+    @supports not (-webkit-overflow-scrolling: touch) {
+      .checkbox-checked .checkbox-inner {
+        position: absolute;
+        top: 9px;
+        left: 13px;
+      }
+      /* CSS for other than iOS devices */
+    }
+    @supports (-webkit-overflow-scrolling: touch) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .checkboxLabel{
+      border: none;
+      .item-inner{
+        border: none;
+        font-size: 15px;
+      }
+    }
     ion-scroll {
-      height: 10%;
+      height: 20%;
+      width: 100%;
+      font-size: 10px;
+
+      h1{
+        font-size: 10px;
+      }
+    }
+    //.checkbox-checked .checkbox-inner { position: absolute; top: 9px; left: 13px; height: 11px; width: 5px; }
+    .datenschutzScroll{
+      height: 10vh;
+      width: 100%;
+      overflow-y: scroll;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top:10px;
+      font-size:13px;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 15px;
+      border-color: $beevy-blue-transparent;
+      h1{
+        font-size: 15px;
+      }
     }
   }
 
@@ -10,12 +90,14 @@ page-registration-modal {
   .no-scroll .scroll-content {
     overflow: hidden;
   }
-  .registrationContent, .enterConfirmation, .failedRegistration, .dataSecurityHint {
+  .registrationContent, .enterConfirmation, .failedRegistration{
     background: linear-gradient(to bottom right, $beevy-darkBlue, $beevy-darkViolett);
     border-radius: 30px;
     height: 100%;
     margin-top: 50px;
-
+    .untersterButton{
+      margin-bottom: 20px;
+    }
     .description {
       padding: 25px 15px 20px 15px;
       text-align: center;
@@ -36,7 +118,10 @@ page-registration-modal {
           border-bottom: none !important;
         }
         .text-input {
-          margin: 0;
+          text-align: center;
+        }
+        .text-input::placeholder{
+          color: rgba(255,255,255,0.6);
         }
       }
 
