@@ -55,14 +55,14 @@ export class HomePage {
       })
   }
 
-  /*  ionViewDidLoad() {
-      this.tabBarElement = document.querySelector('.tabbar');
-      this.tabBarElement.style.display = 'none';
-      setTimeout(() => {
-        this.splash = false;
-        this.tabBarElement.style.display = 'flex';
-      }, 7000);
-    }*/
+  ionViewDidLoad() {
+    this.tabBarElement = document.querySelector('.tabbar');
+    this.tabBarElement.style.display = 'none';
+    setTimeout(() => {
+      this.splash = false;
+      this.tabBarElement.style.display = 'flex';
+    }, 7000);
+  }
 
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {
