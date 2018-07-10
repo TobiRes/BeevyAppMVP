@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Modal, ModalController, ModalOptions, NavController, ToastController} from 'ionic-angular';
+import {Modal, ModalController, ModalOptions, NavController} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
@@ -8,6 +8,7 @@ import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
 import {FilterUtil} from "../../utils/filter-util";
 import {User} from "../../models/user.model";
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-home',
@@ -32,7 +33,6 @@ export class HomePage {
               private modalCtrl: ModalController,
               private userService: UserService,
               private storage: Storage) {
-    //this.tabBarElement = document.querySelector('.tabbar');
     this.checkForUserStatus()
       .catch(err => console.error(err));
     this.resetFilter();

@@ -6,6 +6,7 @@ import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {Storage} from "@ionic/storage";
 import {HomePage} from "../home/home";
+import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -70,7 +71,7 @@ export class OptionsModalPage {
   private jumpToHomePage() {
     this.viewCtrl.dismiss()
       .then(() => this.storage.set("createdEvent", true))
-      .then(() => this.navCtrl.setRoot(HomePage))
+      .then(() => this.navCtrl.setRoot(TabsPage))
       .catch(err => console.error(err));
   }
 
