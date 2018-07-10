@@ -59,12 +59,23 @@ export class EventViewPage {
   }
 
   joinEvent() {
-    this.eventService.joinBeevyEvent(this.beevyEvent);
-    this.alertOfJoin();
+    this.eventService.joinBeevyEvent(this.beevyEvent, this.user)
+      .then((user: User) => {
+        this.user = user;
+        this.user.userEvents.joinedEvents.forEach((event: BeevyEvent) => {
+          if(event.eventID = this.beevyEvent.eventID){
+            this.beevyEvent = event;
+            this.alertOfJoin();
+            this.buildViewAccordingToEventAndUserState();
+          }
+        })
+      })
+      .catch(() => {
+        this.failedToJoin();
+      });
   }
 
   addNewComment(repliedTo: string | undefined) {
-
     if (this.commentBody.length >= 280) {
       this.toastService.commentTooLong(this.commentBody.length - 280);
     }
@@ -126,6 +137,7 @@ export class EventViewPage {
       userIsEventAdmin: this.userIsEventAdmin,
       userIsEventMember: this.userIsEventMember,
       eventID: this.beevyEvent.eventID,
+      eventTitle: this.beevyEvent.title,
       user: this.user
     }, optionsModalOptions);
     additionalOptionsModal.present();
@@ -140,8 +152,16 @@ export class EventViewPage {
     alert.present();
   }
 
+  private failedToJoin() {
+    let alert = this.alertCtrl.create({
+      title: 'Hoppla!',
+      subTitle: 'Da ist wohl etwas schief gelaufen. Versuche es später nochmal!',
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
   private userNotPartOfEvent(): boolean {
-    //TODO: Add user to registeredMembers in the front end, then get overwritten by backend
     return (!this.beevyEvent.registeredMembers || !(this.beevyEvent.registeredMembers.indexOf(this.user.userID) != -1 || this.beevyEvent.admin.userID == this.user.userID));
   }
 

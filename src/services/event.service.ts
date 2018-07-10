@@ -3,8 +3,10 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {AppConfig} from "../config/app-config";
 import {Storage} from "@ionic/storage";
-import {User} from "../models/user.model";
+import {User, UserEvents} from "../models/user.model";
 import {UserService} from "./user.service";
+import {SecurityUserData} from "../models/security-user-data.model";
+import {SecurityUtil} from "../utils/security-util";
 
 @Injectable()
 export class BeevyEventService {
@@ -30,17 +32,26 @@ export class BeevyEventService {
     return this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/create", beevent);
   }
 
-  joinBeevyEvent(beevent: BeevyEvent) {
-    this.storage.get("user")
-      .then((user: User) => {
-        if (!user || !(user.userID && user.token)) {
-          console.log("Can't join event", user);
-        } else {
-          this.handleJoiningOnServerSide(beevent, user)
-            .then(() => this.userService.getUserEvents(user))
-        }
-      })
-      .catch(err => console.error(err))
+  joinBeevyEvent(beevent: BeevyEvent, user: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      if (!user || !(user.userID && user.token)) {
+        reject();
+        console.log("Can't join event", user);
+      } else {
+        this.handleJoiningOnServerSide(beevent, user)
+          .then(() => {
+            this.userService.getUserEvents(user)
+              .then((user: User) => {
+                resolve(user);
+              })
+              .catch(() => console.log("Couldn't get user events"));
+          })
+          .catch((err) => {
+            reject();
+            console.error(err);
+          })
+      }
+    })
   }
 
   leaveEvent(eventID: string, user: User){
@@ -76,7 +87,8 @@ export class BeevyEventService {
           } else {
             this.handleDeletingOnServerSide(eventID, user)
               .then(() => {
-                this.userService.getUserEvents(user);
+                this.userService.getUserEvents(user)
+                  .catch(() => console.log("Couldn't get user events"));
                 resolve();
               })
           }

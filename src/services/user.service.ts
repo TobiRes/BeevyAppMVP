@@ -104,16 +104,23 @@ export class UserService {
   }
 
   getUserEvents(user: User) {
-    let userAccessData: SecurityUserData = SecurityUtil.generateUserAccessData(user);
-    this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
-      .subscribe(() => {
-        this.http.get(AppConfig.API_BASE_URL + "/event/" + user.userID + "/" + userAccessData.tempToken)
-          .subscribe((userEvents: UserEvents) => {
-            let updatedUser: User = user;
-            updatedUser.userEvents = userEvents;
-            this.storage.set("user", updatedUser);
-          }, err => console.error(err));
-      })
+    return new Promise(((resolve, reject) => {
+      let userAccessData: SecurityUserData = SecurityUtil.generateUserAccessData(user);
+      this.http.post(UserService.BEEVY_USER_BASE_URL + "/access", userAccessData)
+        .subscribe(() => {
+          this.http.get(AppConfig.API_BASE_URL + "/event/" + user.userID + "/" + userAccessData.tempToken)
+            .subscribe((userEvents: UserEvents) => {
+              let updatedUser: User = user;
+              updatedUser.userEvents = userEvents;
+              this.storage.set("user", updatedUser)
+                .then(() => resolve(updatedUser))
+                .catch(() => reject());
+            }, err => {
+              console.error(err);
+              reject();
+            });
+        })
+    }))
   }
 
   checkIfUserExists(): Promise<boolean> {

@@ -76,6 +76,7 @@ export class CreateEventPage {
     }
     return tagChecker;
   }
+
   createBeevent() {
     let loader = this.startLoading();
     loader.present();
@@ -84,7 +85,8 @@ export class CreateEventPage {
         let beevent: BeevyEvent = this.fillEventData(user);
         this.eventService.createBeevyEvents(beevent)
           .subscribe(() => {
-            this.userService.getUserEvents(user);
+            this.userService.getUserEvents(user)
+              .catch(() => console.log("Couldn't get user events"));
             this.jumpToHomePage();
             loader.dismissAll()
           }, () => {
