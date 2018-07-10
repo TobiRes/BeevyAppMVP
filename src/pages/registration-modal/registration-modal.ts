@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, LoadingController, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, NavParams, ViewController} from 'ionic-angular';
 import {ToastService} from "../../services/toast.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
@@ -29,6 +29,7 @@ export class RegistrationModalPage {
               private userService: UserService,
               private loadingCtrl: LoadingController,
               private storage: Storage,
+              private alertCtrl: AlertController,
               private toastService: ToastService) {
     this.reenterLastRegistrationState();
   }
@@ -85,6 +86,7 @@ export class RegistrationModalPage {
           this.enterConfirmationCode = false;
           this.saveCurrentRegistrationState();
           loadingSpinner.dismissAll();
+          this.alertOfFailure();
           console.log(err);
         })
     }
@@ -152,5 +154,14 @@ export class RegistrationModalPage {
     return this.loadingCtrl.create({
       spinner: 'crescent',
     });
+  }
+
+  private alertOfFailure() {
+    let alert = this.alertCtrl.create({
+      title: 'Hoppla!',
+      subTitle: 'Da ist etwas schief gelaufen. Bitte versuche es später nochmal!',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

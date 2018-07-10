@@ -69,7 +69,7 @@ export class HomePage {
       this.navCtrl.push("EventViewPage", {beevyEvent: beevyEvent, user: this.user}, {animation: "ios-transition"});
     } else if (!this.userExists && !this.currentlyLoading) {
       this.currentlyLoading = true;
-      this.userService.handleUser()
+      this.userService.checkForUserStateAndHandleRegistration()
         .then(() => this.checkForUserStatus())
         .catch(err => {
           this.currentlyLoading = false;
