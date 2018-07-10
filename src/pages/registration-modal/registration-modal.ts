@@ -133,11 +133,19 @@ export class RegistrationModalPage {
     if (this.name.length < 3) {
       this.toastService.nameNotLongEnough();
       return false;
-    } else if (this.email.indexOf("@stud.hs-offenburg.de") < 0 && this.email.indexOf("@hs-offenburg.de") < 0) {
+    } else if (this.name.length > 15) {
+      this.toastService.nameTooLong();
+    } else if(this.mailNotCorrect()){
       this.toastService.wrongEmail();
       return false;
     }
     return true;
+  }
+
+  private mailNotCorrect(): boolean{
+    let name: string = this.email.substring(0, this.email.indexOf("@"));
+    return this.email.indexOf("@stud.hs-offenburg.de") < 0 && this.email.indexOf("@hs-offenburg.de") < 0 || name.length < 4;
+
   }
 
   private createSpinner() {

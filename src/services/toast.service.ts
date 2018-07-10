@@ -17,6 +17,16 @@ export class ToastService {
     toast.present();
   }
 
+  nameTooLong() {
+    let toast = this.toastCtrl.create({
+      message: 'Dein Name darf höchstens 15 Buchstaben lang sein',
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.present();
+  }
+
   wrongEmail() {
     let toast = this.toastCtrl.create({
       message: 'Bitte nutze eine korrekte HS-Offenburg Email.',

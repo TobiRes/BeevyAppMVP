@@ -43,22 +43,14 @@ export class BeevyEventService {
       .catch(err => console.error(err))
   }
 
-  leaveBeevyEvent(eventID: string, user: User) {
-    console.log(user.username + " has left " + eventID);
-  }
-
   leaveEvent(eventID: string, user: User){
-    console.log(user.username+" has left "+eventID);
-    this.storage.get("user")
-      .then((user: User) => {
-        if (!user || !(user.userID && user.token)) {
-          console.log("Can't report event", user);
-        } else {
-          this.handleLeavingOnServerSide(eventID, user)
-            .then(() => this.userService.getUserEvents(user))
-        }
-      })
-      .catch(err => console.error(err))
+      if (!user || !(user.userID && user.token)) {
+        console.log("Can't report event", user);
+      } else {
+        this.handleLeavingOnServerSide(eventID, user)
+          .then(() => this.userService.getUserEvents(user))
+          .catch((err) => console.error(err))
+      }
   }
 
   private handleLeavingOnServerSide(eventID: string, user: User) {
