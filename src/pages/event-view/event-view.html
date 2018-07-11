@@ -64,14 +64,6 @@
           <p>{{beevyEventType}}</p>
         </div>
 
-        <div id="eventTagsdiv">
-          <ion-list class="eventTags">
-            <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeLeft">-->
-            <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]"
-                 *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
-            <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeRight">-->
-          </ion-list>
-        </div>
         <div [ngClass]="['eventMembers', changeColorOfContainer(beevyEvent.type, 'border')]">
           <p>
             <img

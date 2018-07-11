@@ -97,6 +97,17 @@ $loading-md-spinner-color: white;
 $loading-md-text-color: white;
 
 
+$checkbox-ios-background-color-off: rgba(33, 139, 161, 0.5);
+$checkbox-ios-background-color-on: #70e0ca;
+
+$checkbox-md-icon-background-color-off: rgba(33, 139, 161, 0.5);
+$checkbox-md-icon-background-color-on: #70e0ca;
+$checkbox-md-icon-size: 30px;
+$checkbox-md-icon-size: 30px;
+$checkbox-md-icon-border-style: none;
+$checkbox-md-icon-border-radius: 15px;
+
+
 @import "ionic.theme.default";
 
 // Ionicons
@@ -111,5 +122,3 @@ $loading-md-text-color: white;
 
 @import "roboto";
 @import "noto-sans";
-
-

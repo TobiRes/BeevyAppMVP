@@ -14,7 +14,6 @@ export interface BeevyEvent {
   registeredMembers?: string[];
   possibleMemberCount: number;
   currentMemberCount?: number;
-  tags?: string[];
   comments?: EventComment[];
 }
 

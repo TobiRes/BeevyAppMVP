@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Content, Events, NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
-import {MockService} from "../../services/mock.service";
 import {PopoverComponent} from "../../components/popover/popover";
 import {Storage} from "@ionic/storage";
 import {BeevyEvent} from "../../models/event.model";
@@ -17,11 +16,8 @@ export class ProfilePage {
   user: User;
   joinedEventsActive?: boolean;
   avatarURL: string;
-  private userExists: boolean = false;
-  private currentlyLoading: boolean = true;
 
   constructor(public navCtrl: NavController,
-              private mockService: MockService,
               public popoverCtrl: PopoverController,
               private storage: Storage,
               private userService: UserService,

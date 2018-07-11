@@ -13,9 +13,8 @@ import {ToastService} from "../../services/toast.service";
 export class FilterModalPage {
 
   type: string;
-  filter: SetFilters = {types: [], tags: []};
+  filter: SetFilters = {types: []};
 
-  tags = [];
   earliestDate: string;
   lastDate: string;
   suchInput: string;
@@ -46,7 +45,6 @@ export class FilterModalPage {
   }
 
   applyFilter() {
-    this.filter.tags = this.tags;
     this.filter.earliestDate = this.earliestDate;
     this.filter.lastDate = this.lastDate;
     this.filter.city = this.citySearch;
@@ -58,15 +56,13 @@ export class FilterModalPage {
   deleteFilter() {
     this.setTypeFilterButtons = this.defaultTypeFilterButtons;
     this.filter.types = [true, true, true];
-    this.filter.tags = [];
-    var today = new Date();
+    let today = new Date();
     today.setHours(today.getTimezoneOffset()/60,0,0,0);
     console.log(today);
     this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = this.defaultEndDate;
     this.filter.city = "";
     this.filter.search = "";
-    this.tags = [];
     this.earliestDate = this.defaultStartDate;
     this.lastDate = this.defaultEndDate;
     this.suchInput = "";
@@ -106,7 +102,6 @@ export class FilterModalPage {
   private resetFilterToLastOpenedState() {
     this.filter = this.navParams.get("filter");
     this.setTypeFilterButtons = this.filter.types;
-    this.tags = this.filter.tags;
     this.suchInput = this.filter.search;
     this.citySearch = this.filter.city;
     if (this.filter.earliestDate) {

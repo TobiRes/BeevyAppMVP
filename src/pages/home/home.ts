@@ -1,14 +1,12 @@
 import {Component} from '@angular/core';
 import {Modal, ModalController, ModalOptions, NavController} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
-import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
 import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
 import {FilterUtil} from "../../utils/filter-util";
 import {User} from "../../models/user.model";
-import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-home',
@@ -21,7 +19,7 @@ export class HomePage {
   displayedEvents: BeevyEvent[] = [];
   filteredEvents: BeevyEvent[] = [];
   allEvents: BeevyEvent[] = [];
-  filter: SetFilters = {types: [true, true, true], tags: []};
+  filter: SetFilters = {types: [true, true, true]};
   tabBarElement: any;
 
   private userExists: boolean = false;
@@ -29,7 +27,6 @@ export class HomePage {
   private user: User;
 
   constructor(public navCtrl: NavController,
-              private mockService: MockService,
               private eventService: BeevyEventService,
               private modalCtrl: ModalController,
               private userService: UserService,
@@ -115,8 +112,7 @@ export class HomePage {
   }
 
   checkIfEventPassesFilter(event: BeevyEvent) {
-    return (this.checkForTagMatch(event.tags)
-      && this.checkForSearchMatch(event)
+    return (this.checkForSearchMatch(event)
       && this.checkForDateMatch(event.date)
       && this.checkForCityMatch(event.address.city)
       && this.checkForTypeMatch(event.type));
@@ -169,22 +165,6 @@ export class HomePage {
     this.filter.types = [true, true, true];
     this.filter.city = "";
     this.filter.search = "";
-  }
-
-  //Filter checking
-  private checkForTagMatch(eventTags: string[]): boolean {
-    if (!this.filter.tags || this.filter.tags.length < 1)
-      return true;
-    else {
-      for (let i = 0; i < this.filter.tags.length; i++) {
-        if(eventTags){
-          for (let i2 = 0; i2 < eventTags.length; i2++) {
-            if (this.filter.tags[i].toLowerCase() == eventTags[i2].toLowerCase()) return true;
-          }
-        }
-      }
-    }
-    return false;
   }
 
   private checkForSearchMatch(event: BeevyEvent): boolean {
