@@ -20,7 +20,7 @@ export class HomePage {
   filteredEvents: BeevyEvent[] = [];
   allEvents: BeevyEvent[] = [];
   filter: SetFilters = {types: [true, true, true]};
-  tabBarElement: any;
+  //tabBarElement: any;
 
   private userExists: boolean = false;
   private currentlyLoading: boolean = true;
@@ -53,6 +53,7 @@ export class HomePage {
       })
   }
 
+/*
   ionViewDidLoad() {
     this.tabBarElement = document.querySelector('.tabbar');
     this.tabBarElement.style.display = 'none';
@@ -61,6 +62,7 @@ export class HomePage {
       this.tabBarElement.style.display = 'flex';
     }, 7000);
   }
+*/
 
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {
