@@ -33,7 +33,7 @@ import { Keyboard } from '@ionic-native/keyboard';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: true }),
     IonicStorageModule.forRoot(),
     ComponentsModule,
     HomePageModule,

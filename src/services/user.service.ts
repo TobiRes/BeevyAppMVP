@@ -63,7 +63,7 @@ export class UserService {
   private createTemporaryUserData(username: string, mail: string): UnregisteredUser {
     return {
       username: username,
-      userID: this.device.uuid ? this.device.uuid : "122342",
+      userID: SecurityUtil.generateRandomToken(),
       mail: mail,
       currentAvatar: "avatar_1",
     }

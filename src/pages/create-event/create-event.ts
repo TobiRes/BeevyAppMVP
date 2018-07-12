@@ -25,9 +25,8 @@ export class CreateEventPage {
   zip: number;
   city: string;
   possibleMemberCount: number = 1;
-  validation: number;
-  completeCount: number = 0;
   private limitMembers: boolean = false;
+  private buttonDisabled: boolean = true;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,
@@ -35,6 +34,16 @@ export class CreateEventPage {
               private userService: UserService,
               private loadingCtrl: LoadingController,
               private toastService: ToastService) {
+  }
+
+  ionViewDidEnter(){
+    this.storage.get("user")
+      .then((user: User) => {
+        if(user && user.userID && user.token) {
+          this.buttonDisabled = false;
+        }
+      })
+      .catch((err) => console.error(err))
   }
 
   validateBeevent() {
@@ -84,13 +93,6 @@ export class CreateEventPage {
     if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
     if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
     return "beevy-info-background-" + opacity + "-2";
-  }
-
-  changeColorTags(type: BeevyEventType, opacity: string): string {
-    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1-tags";
-    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2-tags";
-    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0-tags";
-    return "beevy-info-background-" + opacity + "-2-tags";
   }
 
   toggleLimit() {

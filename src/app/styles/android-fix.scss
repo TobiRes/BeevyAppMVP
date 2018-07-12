@@ -13,3 +13,25 @@
   height: 50%;
 }
 
+.enterConfirmation .description {
+  padding: 10px 15px;
+}
+
+page-filter-modal .dateInput .dateInputLabel {
+  overflow: visible;
+  margin-right: 0;
+}
+
+page-filter-modal .dateInput .datetime-text {
+  padding: 5px 10px !important;
+}
+
+page-filter-modal .dateInputs {
+  margin-left: 0;
+  text-align: center;
+}
+
+page-filter-modal .dateInput .datetime {
+  margin-left: 0 !important;
+  overflow: visible !important;
+}

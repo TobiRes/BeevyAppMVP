@@ -75,6 +75,7 @@
     <button full
             class="beevyButton"
             (click)="validateBeevent()"
+            [disabled]="buttonDisabled"
             full
             [ngClass]="['borderRadius', changeColor(type, 'full')]">
       Event erstellen
