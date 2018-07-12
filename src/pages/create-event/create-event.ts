@@ -5,7 +5,6 @@ import {User} from "../../models/user.model";
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
-import {SetFilters} from "../../models/setFilters.model";
 import {ToastService} from "../../services/toast.service";
 
 
@@ -25,8 +24,8 @@ export class CreateEventPage {
   zip: number;
   city: string;
   possibleMemberCount: number = 1;
+  buttonDisabled: boolean = true;
   private limitMembers: boolean = false;
-  private buttonDisabled: boolean = true;
 
   constructor(public navCtrl: NavController,
               private storage: Storage,

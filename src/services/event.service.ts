@@ -3,10 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from "@angular/core";
 import {AppConfig} from "../config/app-config";
 import {Storage} from "@ionic/storage";
-import {User, UserEvents} from "../models/user.model";
+import {User} from "../models/user.model";
 import {UserService} from "./user.service";
-import {SecurityUserData} from "../models/security-user-data.model";
-import {SecurityUtil} from "../utils/security-util";
 
 @Injectable()
 export class BeevyEventService {

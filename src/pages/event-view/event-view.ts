@@ -16,8 +16,6 @@ import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {CommentService} from "../../services/comment.service";
 import {EventComment} from "../../models/comment.model";
-import {Clipboard} from '@ionic-native/clipboard';
-
 
 @IonicPage()
 @Component({
@@ -50,7 +48,6 @@ export class EventViewPage {
               private loadingCtrl: LoadingController,
               private eventService: BeevyEventService,
               private commentService: CommentService,
-              private clipboard: Clipboard,
               private modalCtrl: ModalController,
               private toastService: ToastService) {
     this.beevyEvent = this.navParams.get("beevyEvent");

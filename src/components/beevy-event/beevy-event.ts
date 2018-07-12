@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {DateUtil} from "../../utils/date-util";
-import {NavController} from "ionic-angular";
 
 @Component({
   selector: 'beevy-event',
@@ -17,7 +16,7 @@ export class BeevyEventComponent {
   @Output()
   clicked = new EventEmitter();
 
-  constructor(private navCtrl: NavController) {
+  constructor() {
 
   }
 

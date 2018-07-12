@@ -1,12 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Storage} from "@ionic/storage";
 import {UnregisteredUser, User, UserEvents} from "../models/user.model";
-import {Device} from "@ionic-native/device";
 import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "../config/app-config";
 import {SecurityUserData} from "../models/security-user-data.model";
-import {AlertController, Modal, ModalController} from "ionic-angular";
-import {ToastService} from "./toast.service";
+import {Modal, ModalController} from "ionic-angular";
 import {SecurityUtil} from "../utils/security-util";
 
 @Injectable()
@@ -15,11 +13,8 @@ export class UserService {
   private static BEEVY_USER_BASE_URL = AppConfig.API_BASE_URL + "/user";
 
   constructor(private storage: Storage,
-              private device: Device,
               private http: HttpClient,
-              private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
-              private toastService: ToastService) {
+              private modalCtrl: ModalController) {
   }
 
   checkForUserStateAndHandleRegistration(): Promise<any>{
