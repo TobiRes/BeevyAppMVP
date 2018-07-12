@@ -232,9 +232,9 @@ export class EventViewPage {
 
     this.userIsEventMember = !this.userNotPartOfEvent();
     if (this.beevyEvent.admin.avatar) {
-      this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
+      this.adminAvatarURL = "assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
     } else {
-      this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";
+      this.adminAvatarURL = "assets/imgs/avatar_1.svg";
     }
   }
 
