@@ -24,6 +24,7 @@ import {PopoverComponent} from "../components/popover/popover";
 import {CommentService} from "../services/comment.service";
 import {Clipboard} from "@ionic-native/clipboard";
 import { Keyboard } from '@ionic-native/keyboard';
+import {AndroidFullScreen} from "@ionic-native/android-full-screen";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { Keyboard } from '@ionic-native/keyboard';
     Device,
     CommentService,
     Clipboard,
-    Keyboard
+    Keyboard,
+    AndroidFullScreen
   ]
 })
 export class AppModule {

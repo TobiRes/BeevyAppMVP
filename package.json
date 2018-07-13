@@ -21,6 +21,7 @@
     "@angular/http": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
+    "@ionic-native/android-full-screen": "^4.9.1",
     "@ionic-native/clipboard": "^4.7.0",
     "@ionic-native/core": "4.6.0",
     "@ionic-native/device": "^4.7.0",
@@ -61,7 +62,8 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-clipboard": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-statusbar": {}
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-fullscreen": {}
     },
     "platforms": [
       "android"
