@@ -11,16 +11,14 @@ import {Keyboard} from "@ionic-native/keyboard";
 })
 export class MyApp {
   rootPage: any = TabsPage;
-  filter: string[] = ["Videospiele", "Kunst", "Unterhaltung", "Projekte"];
 
-  showSplash = true;
-
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, userService: UserService, private keyboard: Keyboard) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, userService: UserService, keyboard: Keyboard) {
     platform.ready().then(() => {
-      this.keyboard.disableScroll(false);
+      keyboard.disableScroll(false);
       userService.checkForUserStateAndHandleRegistration()
         .catch(err => console.error(err));
-      statusBar.styleDefault();
+      statusBar.overlaysWebView(true);
+      statusBar.hide();
       splashScreen.hide();
 
     });
