@@ -21,6 +21,7 @@ export class FilterModalPage {
   citySearch: string;
   defaultTypeFilterButtons: boolean[] = [true, true, true];
   setTypeFilterButtons: boolean[] = [true, true, true];
+  enteredTags: string[] = ["hey", "nein", "du"];
 
   //Default dates for datepicker
   defaultStartDate: string = new Date().toISOString();

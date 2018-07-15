@@ -38,6 +38,15 @@
       </ion-item>
     </div>
 
+    <div class="tagsWrapper">
+      <div class="enteredTags" *ngFor="let tag of enteredtags">
+        <tag [text]="tag"></tag>
+      </div>
+      <div class="tagInputwrapper">
+        <input class="tagInput" placeholder="+Tags" type="text">
+      </div>
+    </div>
+
     <ion-item class="ortInput">
       <ion-label fixed class="dateInputLabel">Ort</ion-label>
       <ion-input [(ngModel)]="citySearch"></ion-input>
