@@ -35,6 +35,7 @@ export class EventViewPage {
   currentResponseCommentAuthor: string;
   adminAvatarURL: string;
   commentValidated: boolean;
+  showEventFullJoinButton: boolean;
 
   user: User;
   userIsEventAdmin: boolean;
@@ -209,30 +210,34 @@ export class EventViewPage {
   }
 
   private buildViewAccordingToEventAndUserState() {
-    this.showJoinButton = this.userNotPartOfEvent();
-    this.defineProjectType();
+      this.showJoinButton = this.userNotPartOfEvent() && !this.checkIfMembersFull();
+      this.showEventFullJoinButton = this.checkIfMembersFull();
+      this.defineProjectType();
 
-    this.notAllowedtoSeeComments = true;
-    this.noCommentsYet = false;
-    this.showComments = false;
+      this.notAllowedtoSeeComments = true;
+      this.noCommentsYet = false;
+      this.showComments = false;
 
-    this.handleComments()
-      .catch(err => console.error(err));
-    this.currentResponseCommentID = "";
-    this.currentResponseCommentAuthor = "";
-    this.commentValidated = false;
+      this.handleComments()
+        .catch(err => console.error(err));
+      this.currentResponseCommentID = "";
+      this.currentResponseCommentAuthor = "";
+      this.commentValidated = false;
 
-    if (this.user.userID == this.beevyEvent.admin.userID)
-      this.userIsEventAdmin = true;
-    else
-      this.userIsEventAdmin = false;
+      if (this.user.userID == this.beevyEvent.admin.userID)
+        this.userIsEventAdmin = true;
+      else
+        this.userIsEventAdmin = false;
 
-    this.userIsEventMember = !this.userNotPartOfEvent();
-    if (this.beevyEvent.admin.avatar) {
-      this.adminAvatarURL = "assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
-    } else {
-      this.adminAvatarURL = "assets/imgs/avatar_1.svg";
+      this.userIsEventMember = !this.userNotPartOfEvent();
+      if (this.beevyEvent.admin.avatar) {
+        this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
+      } else {
+        this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";
+      }
     }
-  }
+  private checkIfMembersFull(){
+      return (this.beevyEvent.currentMemberCount==this.beevyEvent.possibleMemberCount);
+    }
 
 }

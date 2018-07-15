@@ -80,6 +80,10 @@
               [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
               ion-button full (click)="joinEvent()">Join Event
       </button>
+      <button *ngIf="showEventFullJoinButton"
+              [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'transparent')]"
+              ion-button full >Teilnehmerbegrenzung erreicht
+      </button>
 
       <div *ngIf="notAllowedtoSeeComments"
            [ngClass]="['kommentarBoxTransparent','kommentarBox', changeColorOfContainer(beevyEvent.type, 'border')]">
