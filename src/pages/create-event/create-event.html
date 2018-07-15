@@ -56,6 +56,18 @@
     </ion-select>
   </ion-item>
 
+  <div class="tagsWrapper">
+    <div [ngClass]="['enteredTags', changeColor(type, 'more-transparent')]" *ngFor="let tag of enteredTags">
+      <tag [tagText]="tag"></tag>
+      <button [ngClass]="[changeColor(type, 'full')]"(click)="deleteTag(tag)"><span>x</span></button>
+    </div>
+    <div [ngClass]="['tagInputwrapper', changeColor(type, 'border')]">
+      <input class="tagInput" placeholder="+Tags" type="text" [(ngModel)]="enterTag">
+      <button [ngClass]="[changeColor(type, 'full')]" (click)="addTag()">+</button>
+    </div>
+  </div>
+
+
   <ion-item class="limitmemberscreate">
     <button type="button"
             id="limitmembers"

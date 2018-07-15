@@ -21,6 +21,8 @@ export class FilterModalPage {
   citySearch: string;
   defaultTypeFilterButtons: boolean[] = [true, true, true];
   setTypeFilterButtons: boolean[] = [true, true, true];
+  enteredTags: string[] = [];
+  enterTag: string;
 
   //Default dates for datepicker
   defaultStartDate: string = new Date().toISOString();
@@ -49,6 +51,7 @@ export class FilterModalPage {
     this.filter.lastDate = this.lastDate;
     this.filter.city = this.citySearch;
     this.filter.search = this.suchInput;
+    this.filter.tags = this.enteredTags;
     this.viewCtrl.dismiss(this.filter);
     this.toastService.filtersChanged();
   }
@@ -69,6 +72,8 @@ export class FilterModalPage {
     this.citySearch = "";
     this.viewCtrl.dismiss(this.filter);
     this.toastService.filtersResetted();
+    this.filter.tags = [];
+    this.enteredTags = [];
   }
 
 
@@ -103,6 +108,7 @@ export class FilterModalPage {
     this.filter = this.navParams.get("filter");
     this.setTypeFilterButtons = this.filter.types;
     this.suchInput = this.filter.search;
+    this.enteredTags = this.filter.tags;
     this.citySearch = this.filter.city;
     if (this.filter.earliestDate) {
       this.earliestDate = this.filter.earliestDate;
@@ -113,6 +119,28 @@ export class FilterModalPage {
       this.lastDate = this.filter.lastDate;
     } else {
       this.lastDate = this.defaultEndDate;
+    }
+  }
+
+  addTag(){
+    var alreadyTag = false;
+    for(var i=0; this.enteredTags!=null &&i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==this.enterTag){
+        alreadyTag = true;
+      }
+    }
+    if(this.enterTag.length>1 && this.enterTag.length<= 15 && !alreadyTag){
+      if(this.enteredTags!= null)
+      this.enteredTags[this.enteredTags.length] = this.enterTag;
+      else
+        this.enteredTags[0] = this.enterTag;
+    }
+    this.enterTag = "";
+  }
+  deleteTag(tag: string){
+    for(var i=0; i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==tag)
+        this.enteredTags.splice(i,1);
     }
   }
 }
