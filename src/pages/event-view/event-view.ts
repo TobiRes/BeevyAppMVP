@@ -53,6 +53,7 @@ export class EventViewPage {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
     this.buildViewAccordingToEventAndUserState();
+    console.log(this.beevyEvent.tags);
   }
 
   joinEvent() {
