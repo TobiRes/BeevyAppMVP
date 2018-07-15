@@ -187,9 +187,9 @@ export class HomePage {
     return !(FilterUtil.eventTypeDoesNotMatchFilteredEventTypes(this.filter.types, eventType));
   }
   private checkForTagMatch(tags: string[]):boolean {
-    if(this.filter.tags.length<1)
+    if(this.filter.tags.length == null || this.filter.tags.length<1)
       return true;
-    if(tags.length<1)
+    if(tags == null || tags.length<1)
       return false;
     var match = false;
     for(var i=0; i<tags.length; i++){

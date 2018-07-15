@@ -25,6 +25,10 @@ export class CreateEventPage {
   city: string;
   possibleMemberCount: number = 1;
   buttonDisabled: boolean = true;
+  enteredTags: string[] = [];
+  enterTag: string;
+
+
   private limitMembers: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -120,6 +124,7 @@ export class CreateEventPage {
         zip: this.zip,
         city: this.city
       },
+      tags: this.enteredTags,
       possibleMemberCount: this.limitMembers ? this.possibleMemberCount : 26,
       currentMemberCount: 0
     }
@@ -139,5 +144,28 @@ export class CreateEventPage {
         lastTab.select(0);
       })
       .catch(err => console.error(err))
+  }
+
+
+  addTag(){
+    var alreadyTag = false;
+    for(var i=0; this.enteredTags!=null &&i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==this.enterTag){
+        alreadyTag = true;
+      }
+    }
+    if(this.enterTag.length>1 && this.enterTag.length<= 15 && !alreadyTag){
+      if(this.enteredTags!= null)
+        this.enteredTags[this.enteredTags.length] = this.enterTag;
+      else
+        this.enteredTags[0] = this.enterTag;
+    }
+    this.enterTag = "";
+  }
+  deleteTag(tag: string){
+    for(var i=0; i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==tag)
+        this.enteredTags.splice(i,1);
+    }
   }
 }
