@@ -117,7 +117,8 @@ export class HomePage {
     return (this.checkForSearchMatch(event)
       && this.checkForDateMatch(event.date)
       && this.checkForCityMatch(event.address.city)
-      && this.checkForTypeMatch(event.type));
+      && this.checkForTypeMatch(event.type)
+      && this.checkForTagMatch(event.tags));
   }
 
   private getEvents() {
@@ -184,6 +185,21 @@ export class HomePage {
 
   private checkForTypeMatch(eventType: BeevyEventType): boolean {
     return !(FilterUtil.eventTypeDoesNotMatchFilteredEventTypes(this.filter.types, eventType));
+  }
+  private checkForTagMatch(tags: string[]):boolean {
+    if(this.filter.tags.length<1)
+      return true;
+    if(tags.length<1)
+      return false;
+    var match = false;
+    for(var i=0; i<tags.length; i++){
+      for(var i2=0; i2<this.filter.tags.length; i2++){
+        if(tags[i] == this.filter.tags[i2]){
+          match = true;
+        }
+      }
+    }
+    return match;
   }
 }
 

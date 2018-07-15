@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 /**
  * Generated class for the TagComponent component.
@@ -12,11 +12,10 @@ import { Component } from '@angular/core';
 })
 export class TagComponent {
 
-  tagText: string;
+  @Input()
+  tagText: String;
 
   constructor() {
-    console.log('Hello TagComponent Component');
-    this.tagText = 'Hello World';
   }
 
 }
