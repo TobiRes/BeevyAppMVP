@@ -34,7 +34,7 @@ import {AndroidFullScreen} from "@ionic-native/android-full-screen";
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: true }),
+    IonicModule.forRoot(MyApp, { scrollAssist: false, autoFocusAssist: true, backButtonText: '',}),
     IonicStorageModule.forRoot(),
     ComponentsModule,
     HomePageModule,

@@ -183,7 +183,7 @@ export class ToastService {
   }
   copiedID(eventTitle: string){
     let toast = this.toastCtrl.create({
-      message: 'Du hast das die ID von "'+ eventTitle +'" kopiert.',
+      message: 'Du hast die ID von "'+ eventTitle +'" kopiert. Deine Freunde können damit das Event in der Suchfunktion finden!',
       duration: 3000,
       position: 'top'
     });

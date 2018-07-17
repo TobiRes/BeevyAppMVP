@@ -62,7 +62,7 @@ export class EventViewPage {
       .then((user: User) => {
         this.user = user;
         this.user.userEvents.joinedEvents.forEach((event: BeevyEvent) => {
-          if(event.eventID = this.beevyEvent.eventID){
+          if(event.eventID == this.beevyEvent.eventID){
             this.beevyEvent = event;
             this.alertOfJoin();
             this.buildViewAccordingToEventAndUserState();
@@ -232,9 +232,9 @@ export class EventViewPage {
 
       this.userIsEventMember = !this.userNotPartOfEvent();
       if (this.beevyEvent.admin.avatar) {
-        this.adminAvatarURL = "../../assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
+        this.adminAvatarURL = "assets/imgs/" + this.beevyEvent.admin.avatar + ".svg";
       } else {
-        this.adminAvatarURL = "../../assets/imgs/avatar_1.svg";
+        this.adminAvatarURL = "assets/imgs/avatar_1.svg";
       }
     }
   private checkIfMembersFull(){
