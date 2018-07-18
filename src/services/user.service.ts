@@ -4,7 +4,7 @@ import {UnregisteredUser, User, UserEvents} from "../models/user.model";
 import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "../config/app-config";
 import {SecurityUserData} from "../models/security-user-data.model";
-import {Modal, ModalController} from "ionic-angular";
+import {AlertController, Modal, ModalController} from "ionic-angular";
 import {SecurityUtil} from "../utils/security-util";
 
 @Injectable()
@@ -14,7 +14,46 @@ export class UserService {
 
   constructor(private storage: Storage,
               private http: HttpClient,
+              private alertCtrl: AlertController,
               private modalCtrl: ModalController) {
+  }
+
+
+  showAlertWhenTheAppIsLaunchedForTheFirstTime() {
+    return new Promise(((resolve, reject) => {
+      this.storage.get("alreadyUsed")
+        .then((alreadyUsed: boolean) =>{
+          if(alreadyUsed){
+            resolve();
+          } else {
+            this.presentFirstTimeAlert()
+              .then(() => this.storage.set("alreadyUsed", true))
+              .then(() => resolve())
+              .catch((err) => reject(err))
+          }
+        })
+    }))
+  }
+
+  presentFirstTimeAlert(){
+    return new Promise((resolve => {
+      let alert = this.alertCtrl.create({
+        title: 'Hallo!',
+        message: '<p>Wir freuen uns, dass du unsere App installiert hast! Die App wurde für Studierende der Hochschule Offenburg enwtickelt.' +
+        ' Sie befindet sich noch am Anfang der Entwicklung, weswegen Fehler vorkommen können. Wir arbeiten weiter an der Verbesserung, hab Geduld mit uns!<br><br>' +
+        'Falls du Verbesserungsvorschläge oder Feedback hast, kannst du gerne eine E-mail an tobias.reski@gmail.com schicken!',
+        buttons: [
+          {
+            text: 'Alles klar',
+            role: 'cancel',
+            handler: () => {
+              resolve();
+            }
+          }
+        ]
+      });
+      alert.present();
+    }))
   }
 
   checkForUserStateAndHandleRegistration(): Promise<any>{
@@ -121,4 +160,5 @@ export class UserService {
     this.http.post(UserService.BEEVY_USER_BASE_URL + "/avatar", avatarDTO)
       .subscribe(() => console.log("success"));
   }
+
 }

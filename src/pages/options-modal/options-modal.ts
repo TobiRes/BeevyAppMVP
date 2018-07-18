@@ -51,6 +51,11 @@ export class OptionsModalPage {
       });
   }
 
+  userWantstoDeleteEvent(){
+    this.normaleAnzeige = false;
+    this.userWantstoDelete = true;
+  }
+
   userWantsToLeaveEvent(){
     this.normaleAnzeige = false;
     this.userWantstoLeave = true;

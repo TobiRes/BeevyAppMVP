@@ -9,17 +9,13 @@
   }
 }
 
-.dataSecurityHint .datenschutzScroll {
-  height: 50%;
-}
-
 .enterConfirmation .description {
-  padding: 10px 15px;
+  padding: 10px 15px !important;
 }
 
 page-filter-modal .dateInput .dateInputLabel {
-  overflow: visible;
-  margin-right: 0;
+  overflow: visible !important;
+  margin-right: 0 !important;
 }
 
 page-filter-modal .dateInput .datetime-text {
@@ -38,4 +34,8 @@ page-filter-modal .dateInput .datetime {
 
 .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
   background-image: none !important;
+}
+
+.alert-md .alert-message {
+  color: white !important;
 }

@@ -56,6 +56,26 @@ export class EventViewPage {
     this.buildViewAccordingToEventAndUserState();
   }
 
+  userWantsToJoinEvent() {
+      let alert = this.alertCtrl.create({
+        title: 'Beitreten?',
+        message: 'Möchtest du beitreten? Zu häufiges Verlassen eines Events kann zum Ausschluss führen.',
+        buttons: [
+          {
+            text: 'Abbrechen',
+            role: 'cancel',
+            handler: () => {}
+          },
+          {
+            text: 'Beitreten',
+            handler: () => {
+              this.joinEvent();
+            }
+          }
+        ]
+      });
+      alert.present();
+  }
   joinEvent() {
     this.eventService.joinBeevyEvent(this.beevyEvent, this.user)
       .then((user: User) => {

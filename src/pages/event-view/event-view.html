@@ -85,7 +85,7 @@
       </div>
       <button *ngIf="showJoinButton"
               [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
-              ion-button full (click)="joinEvent()">Join Event
+              ion-button full (click)="userWantsToJoinEvent()">Event Beitreten
       </button>
       <button *ngIf="showEventFullJoinButton"
               [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'transparent')]"

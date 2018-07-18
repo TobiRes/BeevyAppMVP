@@ -16,7 +16,8 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, userService: UserService, keyboard: Keyboard, androidFullScreen: AndroidFullScreen) {
     platform.ready().then(() => {
       keyboard.disableScroll(false);
-      userService.checkForUserStateAndHandleRegistration()
+      userService.showAlertWhenTheAppIsLaunchedForTheFirstTime()
+        .then(() => userService.checkForUserStateAndHandleRegistration())
         .catch(err => console.error(err));
       statusBar.overlaysWebView(true);
       statusBar.hide();

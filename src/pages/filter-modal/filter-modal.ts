@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {SetFilters} from "../../models/setFilters.model";
 import {DateUtil} from "../../utils/date-util";
-import {ToastService} from "../../services/toast.service";
 
 
 @IonicPage()
@@ -19,7 +18,6 @@ export class FilterModalPage {
   lastDate: string;
   suchInput: string;
   citySearch: string;
-  defaultTypeFilterButtons: boolean[] = [false, false, false];
   setTypeFilterButtons: boolean[] = [true, true, true];
   enteredTags: string[] = [];
   enterTag: string;
@@ -30,8 +28,7 @@ export class FilterModalPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private viewCtrl: ViewController,
-              private toastService: ToastService) {
+              private viewCtrl: ViewController) {
     this.resetFilterToLastOpenedState();
   }
 
