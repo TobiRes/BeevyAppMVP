@@ -117,7 +117,7 @@ export class HomePage {
     return (this.checkForSearchMatch(event)
       && this.checkForDateMatch(event.date)
       && this.checkForCityMatch(event.address.city)
-      && this.checkForTypeMatch(event.type)
+      && !this.checkForTypeMatch(event.type)
       && this.checkForTagMatch(event.tags));
   }
 
@@ -165,7 +165,7 @@ export class HomePage {
     today.setHours(today.getTimezoneOffset()/60,0,0,0);
     this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = "2018-12-31T24:24:24.335Z";
-    this.filter.types = [true, true, true];
+    this.filter.types = [false, false, false];
     this.filter.city = "";
     this.filter.search = "";
   }

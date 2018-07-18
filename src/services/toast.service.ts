@@ -47,25 +47,6 @@ export class ToastService {
     toast.present();
   }
 
-  filtersResetted() {
-    let toast = this.toastCtrl.create({
-      message: 'Filter wurden zurückgesetzt',
-      duration: 2000,
-      position: 'top'
-    });
-
-    toast.present();
-  }
-
-  filtersChanged() {
-    let toast = this.toastCtrl.create({
-      message: 'Events wurden gefiltert',
-      duration: 2000,
-      position: 'top'
-    });
-
-    toast.present();
-  }
 
   eventTitleTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
@@ -120,7 +101,7 @@ export class ToastService {
 
   eventNotValid() {
     let toast = this.toastCtrl.create({
-      message: 'Deine Eingaben sind nicht gültig',
+      message: 'Achte darauf, gültige Eingaben zu machen. Nur die PLZ sollte aus Zahlen bestehen.',
       duration: 2000,
       position: 'top'
     });
@@ -193,6 +174,51 @@ export class ToastService {
   tagsTooLong() {
     let toast = this.toastCtrl.create({
       message: 'Achte darauf, dass deine Tags eine sinnvolle Länge haben und du nicht mehr als 10 hinzugefügt hast.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventTitleTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Titel mindestens 3 Zeichen lang ist!',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventDescriptionTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Beschreibung mindestens 15 Zeichen lang ist!',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventSummaryTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Zusammenfassung mindestens 10 Zeichen lang ist!',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventCityTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Stadt mindestens 4 Zeichen lang ist!',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventStreetTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Straße mindestens 5 Zeichen lang ist!',
       duration: 3000,
       position: 'top'
     });

@@ -35,3 +35,7 @@ page-filter-modal .dateInput .datetime {
   margin-left: 0 !important;
   overflow: visible !important;
 }
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+  background-image: none !important;
+}

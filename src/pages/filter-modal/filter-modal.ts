@@ -19,7 +19,7 @@ export class FilterModalPage {
   lastDate: string;
   suchInput: string;
   citySearch: string;
-  defaultTypeFilterButtons: boolean[] = [true, true, true];
+  defaultTypeFilterButtons: boolean[] = [false, false, false];
   setTypeFilterButtons: boolean[] = [true, true, true];
   enteredTags: string[] = [];
   enterTag: string;
@@ -53,15 +53,13 @@ export class FilterModalPage {
     this.filter.search = this.suchInput;
     this.filter.tags = this.enteredTags;
     this.viewCtrl.dismiss(this.filter);
-    this.toastService.filtersChanged();
   }
 
   deleteFilter() {
-    this.setTypeFilterButtons = this.defaultTypeFilterButtons;
-    this.filter.types = [true, true, true];
+    this.setTypeFilterButtons = [false, false, false];
+    this.filter.types = [false, false, false];
     let today = new Date();
     today.setHours(today.getTimezoneOffset()/60,0,0,0);
-    console.log(today);
     this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = this.defaultEndDate;
     this.filter.city = "";
@@ -71,7 +69,6 @@ export class FilterModalPage {
     this.suchInput = "";
     this.citySearch = "";
     this.viewCtrl.dismiss(this.filter);
-    this.toastService.filtersResetted();
     this.filter.tags = [];
     this.enteredTags = [];
   }
@@ -79,7 +76,7 @@ export class FilterModalPage {
 
   buttonColour(n: number): string {
     let cssClass: string = "beevy-info-background-more-transparent-" + n.toString();
-    if (this.filter.types[n])
+    if (!this.filter.types[n])
       cssClass = "beevy-info-background-full-" + n.toString();
     return cssClass;
   }

@@ -60,9 +60,17 @@ export class CreateEventPage {
       this.toastService.eventDescriptionTooLong(this.description.length - 500);
     } else if (isNaN(this.zip) || this.zip.toString().length != 5) {
       this.toastService.zipNotCorrect();
-    } else if (this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 4 || this.street.length < 5) {
-      this.toastService.eventDataTooShort();
-    } else if (this.street.length > 30) {
+    } else if (this.title.length < 3) {
+      this.toastService.eventTitleTooShort();
+    } else if (this.description.length < 15) {
+      this.toastService.eventDescriptionTooShort();
+    }else if (this.summary.length < 10) {
+      this.toastService.eventSummaryTooShort();
+    }else if (this.city.length < 4) {
+      this.toastService.eventCityTooShort();
+    }else if (this.street.length < 5) {
+      this.toastService.eventStreetTooShort();
+    }else if (this.street.length > 30) {
       this.toastService.eventStreetTooLong(this.street.length - 30);
     } else if (this.city.length > 20) {
       this.toastService.eventCityTooLong(this.street.length - 20);
