@@ -200,7 +200,7 @@ export class ToastService {
 
   eventSummaryTooShort() {
     let toast = this.toastCtrl.create({
-      message: 'Achte darauf, dass deine Zusammenfassung mindestens 10 Zeichen lang ist!',
+      message: 'Achte darauf, dass dein Untertitel mindestens 10 Zeichen lang ist!',
       duration: 3000,
       position: 'top'
     });

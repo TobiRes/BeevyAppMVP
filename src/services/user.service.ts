@@ -105,7 +105,6 @@ export class UserService {
           if (!user || !(user.token && user.userID)) {
             resolve(false);
           } else {
-            console.log(user);
             resolve(true);
           }
         })

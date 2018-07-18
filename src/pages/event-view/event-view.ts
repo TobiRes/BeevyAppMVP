@@ -54,7 +54,6 @@ export class EventViewPage {
     this.beevyEvent = this.navParams.get("beevyEvent");
     this.user = this.navParams.get("user");
     this.buildViewAccordingToEventAndUserState();
-    console.log(this.beevyEvent.tags);
   }
 
   joinEvent() {
@@ -143,7 +142,6 @@ export class EventViewPage {
   }
 
   openOptions() {
-    console.log("open");
     const optionsModalOptions: ModalOptions = {
       cssClass: "filterModal",
       showBackdrop: true
@@ -193,7 +191,6 @@ export class EventViewPage {
         this.commentService.loadComments(this.user, this.beevyEvent)
           .then((eventComments: EventComment[]) => {
             this.beevyEvent.comments = eventComments;
-            console.log(this.beevyEvent);
             if (eventComments == []) {
               this.noCommentsYet = true;
             } else {

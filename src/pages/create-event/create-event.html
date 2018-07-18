@@ -15,7 +15,7 @@
     <div [ngClass]="['borderRadius', changeColor(type, 'full')]">
       <div class="datecreatebox">
         <ion-item>
-          <ion-datetime class="datetimecreate" displayFormat="DD/MM/YY" [(ngModel)]="date"
+          <ion-datetime class="datetimecreate" displayFormat="DD/MM/YY" [min]="defaultStartDate" [max]="defaultEndDate" [(ngModel)]="date"
                         placeholder="Datum"></ion-datetime>
         </ion-item>
       </div>

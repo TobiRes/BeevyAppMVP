@@ -6,6 +6,7 @@ import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
 import {ToastService} from "../../services/toast.service";
+import {DateUtil} from "../../utils/date-util";
 
 
 @Component({
@@ -27,6 +28,8 @@ export class CreateEventPage {
   buttonDisabled: boolean = true;
   enteredTags: string[] = [];
   enterTag: string;
+  defaultStartDate: string = new Date().toISOString();
+  defaultEndDate: string = DateUtil.getLastPossibleDateInTheFuture();
 
 
   private limitMembers: boolean = false;
@@ -91,6 +94,7 @@ export class CreateEventPage {
           .subscribe(() => {
             this.userService.getUserEvents(user)
               .catch(() => console.log("Couldn't get user events"));
+            this.clearEnteredData();
             this.jumpToHomePage();
             loader.dismissAll()
           }, () => {
@@ -175,5 +179,21 @@ export class CreateEventPage {
       if(this.enteredTags[i]==tag)
         this.enteredTags.splice(i,1);
     }
+  }
+
+  private clearEnteredData() {
+    this.title = "";
+    this.summary = "";
+    this.description = "";
+    this.zip = null;
+    this.date = null;
+    this.time = null;
+    this.city = "";
+    this.possibleMemberCount = 1;
+    this.buttonDisabled = true;
+    this.enteredTags = [];
+    this.enterTag = "";
+    this.type = BeevyEventType.hangout;
+    this.date = new Date();
   }
 }

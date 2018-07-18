@@ -20,7 +20,6 @@ export class BeevyEventService {
     return new Promise((resolve => {
       this.http.get(BeevyEventService.BEEVY_EVENT_BASE_URL)
         .subscribe((existingEvents: BeevyEvent[]) => {
-          console.log(existingEvents)
           resolve(existingEvents);
         })
     }))
@@ -71,7 +70,6 @@ export class BeevyEventService {
     return new Promise((resolve, reject) => {
       this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/leave", leaveEventData)
         .subscribe(() => {
-          console.log("left event");
           resolve();
         }, (err) => reject(err));
     })
@@ -102,7 +100,6 @@ export class BeevyEventService {
     return new Promise((resolve, reject) => {
       this.http.post(BeevyEventService.BEEVY_EVENT_BASE_URL + "/join", joinEventData)
         .subscribe(() => {
-          console.log("joined event");
           resolve();
         }, (err) => reject(err));
     })

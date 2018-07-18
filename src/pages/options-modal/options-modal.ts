@@ -42,16 +42,6 @@ export class OptionsModalPage {
     this.normaleAnzeige = true;
   }
 
-  ionViewDidLoad() {
-    console.log(this.userIsEventAdmin);
-    console.log(this.userIsEventMember);
-  }
-
-  userWantstoDeleteEvent(){
-    this.normaleAnzeige = false;
-    this.userWantstoDelete = true;
-  }
-
   deleteEvent() {
     this.eventService.deleteBeevyEvent(this.eventID, this.user)
       .then(() => this.jumpToHomePage())
