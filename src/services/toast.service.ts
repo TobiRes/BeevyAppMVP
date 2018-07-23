@@ -19,7 +19,7 @@ export class ToastService {
 
   nameTooLong() {
     let toast = this.toastCtrl.create({
-      message: 'Dein Name darf höchstens 15 Buchstaben lang sein',
+      message: 'Dein Name darf höchstens 15 Buchstaben lang sein.',
       duration: 3000,
       position: 'top'
     });
@@ -47,29 +47,10 @@ export class ToastService {
     toast.present();
   }
 
-  filtersResetted() {
-    let toast = this.toastCtrl.create({
-      message: 'Filter wurden zurückgesetzt',
-      duration: 2000,
-      position: 'top'
-    });
-
-    toast.present();
-  }
-
-  filtersChanged() {
-    let toast = this.toastCtrl.create({
-      message: 'Events wurden gefiltert',
-      duration: 2000,
-      position: 'top'
-    });
-
-    toast.present();
-  }
 
   eventTitleTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
-      message: 'Der Titel deines Events ist ' + tooMuch + ' Zeichen zu lang',
+      message: 'Der Titel deines Events ist ' + tooMuch + ' Zeichen zu lang.',
       duration: 2000,
       position: 'top'
     });
@@ -79,7 +60,7 @@ export class ToastService {
 
   eventSummaryTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
-      message: 'Die Zusammenfassung deines Events ist ' + tooMuch + ' Zeichen zu lang',
+      message: 'Die Zusammenfassung deines Events ist ' + tooMuch + ' Zeichen zu lang.',
       duration: 2000,
       position: 'top'
     });
@@ -89,7 +70,7 @@ export class ToastService {
 
   eventDescriptionTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
-      message: 'Die Beschreibung deines Events ist ' + tooMuch + ' Zeichen zu lang',
+      message: 'Die Beschreibung deines Events ist ' + tooMuch + ' Zeichen zu lang.',
       duration: 2000,
       position: 'top'
     });
@@ -99,7 +80,7 @@ export class ToastService {
 
   eventStreetTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
-      message: 'Die Strasse ist ' + tooMuch + ' Zeichen zu lang',
+      message: 'Die Strasse ist ' + tooMuch + ' Zeichen zu lang.',
       duration: 2000,
       position: 'top'
     });
@@ -110,7 +91,7 @@ export class ToastService {
 
   eventCityTooLong(tooMuch: number) {
     let toast = this.toastCtrl.create({
-      message: 'Der Ort ist ' + tooMuch + ' Zeichen zu lang',
+      message: 'Der Ort ist ' + tooMuch + ' Zeichen zu lang.',
       duration: 2000,
       position: 'top'
     });
@@ -120,7 +101,7 @@ export class ToastService {
 
   eventNotValid() {
     let toast = this.toastCtrl.create({
-      message: 'Deine Eingaben sind nicht gültig',
+      message: 'Achte darauf, gültige Eingaben zu machen. Nur die PLZ sollte aus Zahlen bestehen.',
       duration: 2000,
       position: 'top'
     });
@@ -130,7 +111,7 @@ export class ToastService {
 
   notComplete() {
     let toast = this.toastCtrl.create({
-      message: 'Bitte fülle alle Felder aus',
+      message: 'Bitte fülle alle Felder aus.',
       duration: 2000,
       position: 'top'
     });
@@ -140,7 +121,7 @@ export class ToastService {
 
   zipNotCorrect() {
     let toast = this.toastCtrl.create({
-      message: 'Bitte gib eine korrekte PLZ ein',
+      message: 'Bitte gib eine korrekte PLZ ein.',
       duration: 2000,
       position: 'top'
     });
@@ -149,7 +130,7 @@ export class ToastService {
 
   eventDataTooShort() {
     let toast = this.toastCtrl.create({
-      message: 'Bitte achte darauf, dass deine Eingaben aussagekräftig sind',
+      message: 'Bitte achte darauf, dass deine Eingaben aussagekräftig sind.',
       duration: 2000,
     })
     toast.present();
@@ -183,7 +164,7 @@ export class ToastService {
   }
   copiedID(eventTitle: string){
     let toast = this.toastCtrl.create({
-      message: 'Du hast das die ID von "'+ eventTitle +'" kopiert.',
+      message: 'Du hast die ID von "'+ eventTitle +'" kopiert. Deine Freunde können damit das Event in der Suchfunktion finden.',
       duration: 3000,
       position: 'top'
     });
@@ -193,6 +174,51 @@ export class ToastService {
   tagsTooLong() {
     let toast = this.toastCtrl.create({
       message: 'Achte darauf, dass deine Tags eine sinnvolle Länge haben und du nicht mehr als 10 hinzugefügt hast.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventTitleTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Titel mindestens 3 Zeichen lang ist.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventDescriptionTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Beschreibung mindestens 15 Zeichen lang ist.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventSummaryTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass dein Untertitel mindestens 10 Zeichen lang ist.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventCityTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Stadt mindestens 4 Zeichen lang ist.',
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  eventStreetTooShort() {
+    let toast = this.toastCtrl.create({
+      message: 'Achte darauf, dass deine Straße mindestens 5 Zeichen lang ist.',
       duration: 3000,
       position: 'top'
     });

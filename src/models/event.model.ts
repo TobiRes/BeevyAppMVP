@@ -9,12 +9,12 @@ export interface BeevyEvent {
   description: string;
   type: BeevyEventType;
   date: Date;
+  tags?: string[];
   endDate?: Date;
   address: Address;
   registeredMembers?: string[];
   possibleMemberCount: number;
   currentMemberCount?: number;
-  tags?: string[];
   comments?: EventComment[];
 }
 

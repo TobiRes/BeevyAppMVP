@@ -15,7 +15,7 @@
     <div [ngClass]="['borderRadius', changeColor(type, 'full')]">
       <div class="datecreatebox">
         <ion-item>
-          <ion-datetime class="datetimecreate" displayFormat="DD/MM/YY" [(ngModel)]="date"
+          <ion-datetime class="datetimecreate" displayFormat="DD/MM/YY" [min]="defaultStartDate" [max]="defaultEndDate" [(ngModel)]="date"
                         placeholder="Datum"></ion-datetime>
         </ion-item>
       </div>
@@ -56,6 +56,18 @@
     </ion-select>
   </ion-item>
 
+  <div class="tagsWrapper">
+    <div [ngClass]="['enteredTags', changeColor(type, 'more-transparent')]" *ngFor="let tag of enteredTags">
+      <tag [tagText]="tag"></tag>
+      <button [ngClass]="[changeColor(type, 'full')]"(click)="deleteTag(tag)"><span>x</span></button>
+    </div>
+    <div [ngClass]="['tagInputwrapper', changeColor(type, 'border')]">
+      <input class="tagInput" placeholder="+Tags" type="text" [(ngModel)]="enterTag">
+      <button [ngClass]="[changeColor(type, 'full')]" (click)="addTag()">+</button>
+    </div>
+  </div>
+
+
   <ion-item class="limitmemberscreate">
     <button type="button"
             id="limitmembers"
@@ -71,21 +83,11 @@
     </ion-range>
   </ion-item>
 
-  <rl-tag-input
-    [(ngModel)]="tags"
-    [addOnBlur]="false"
-    [autocomplete]="false"
-    placeholder="+ Tags"
-    class="tagInputcreate"
-    [ngClass]="['borderRadius', changeColorTags(type, 'border')]"
-  >
-  </rl-tag-input>
-
-
   <div class="beevyButton-wrapper">
     <button full
             class="beevyButton"
             (click)="validateBeevent()"
+            [disabled]="buttonDisabled"
             full
             [ngClass]="['borderRadius', changeColor(type, 'full')]">
       Event erstellen

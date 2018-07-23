@@ -5,8 +5,8 @@ import {User} from "../../models/user.model";
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
-import {SetFilters} from "../../models/setFilters.model";
 import {ToastService} from "../../services/toast.service";
+import {DateUtil} from "../../utils/date-util";
 
 
 @Component({
@@ -24,11 +24,14 @@ export class CreateEventPage {
   street: string;
   zip: number;
   city: string;
-  tags: string[] = [];
-  filter: SetFilters = {types: [], tags: []};
   possibleMemberCount: number = 1;
-  validation: number;
-  completeCount: number = 0;
+  buttonDisabled: boolean = true;
+  enteredTags: string[] = [];
+  enterTag: string;
+  defaultStartDate: string = new Date().toISOString();
+  defaultEndDate: string = DateUtil.getLastPossibleDateInTheFuture();
+
+
   private limitMembers: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -37,6 +40,16 @@ export class CreateEventPage {
               private userService: UserService,
               private loadingCtrl: LoadingController,
               private toastService: ToastService) {
+  }
+
+  ionViewDidEnter(){
+    this.storage.get("user")
+      .then((user: User) => {
+        if(user && user.userID && user.token) {
+          this.buttonDisabled = false;
+        }
+      })
+      .catch((err) => console.error(err))
   }
 
   validateBeevent() {
@@ -50,12 +63,18 @@ export class CreateEventPage {
       this.toastService.eventDescriptionTooLong(this.description.length - 500);
     } else if (isNaN(this.zip) || this.zip.toString().length != 5) {
       this.toastService.zipNotCorrect();
-    } else if (this.title.length < 3 || this.description.length < 15 || this.summary.length < 10 || this.city.length < 4 || this.street.length < 5) {
-      this.toastService.eventDataTooShort();
-    } else if (this.street.length > 30) {
+    } else if (this.title.length < 3) {
+      this.toastService.eventTitleTooShort();
+    } else if (this.description.length < 15) {
+      this.toastService.eventDescriptionTooShort();
+    }else if (this.summary.length < 10) {
+      this.toastService.eventSummaryTooShort();
+    }else if (this.city.length < 4) {
+      this.toastService.eventCityTooShort();
+    }else if (this.street.length < 5) {
+      this.toastService.eventStreetTooShort();
+    }else if (this.street.length > 30) {
       this.toastService.eventStreetTooLong(this.street.length - 30);
-    } else if((this.tags && this.tags.length > 10) || this.tagsTooLong()) {
-      this.toastService.tagsTooLong();
     } else if (this.city.length > 20) {
       this.toastService.eventCityTooLong(this.street.length - 20);
     } else if (!isNaN(this.title as any) || !isNaN(this.summary as any) || !isNaN(this.description as any) || !isNaN(this.street as any) || !isNaN(this.city as any)) {
@@ -63,18 +82,6 @@ export class CreateEventPage {
     } else {
       this.createBeevent();
     }
-  }
-
-  private tagsTooLong(): boolean {
-    let tagChecker: boolean = false;
-    if(this.tags){
-      this.tags.forEach((tag: string) => {
-        if(tag.length < 3 || tag.length > 15){
-          tagChecker = true;
-        }
-      })
-    }
-    return tagChecker;
   }
 
   createBeevent() {
@@ -87,6 +94,7 @@ export class CreateEventPage {
           .subscribe(() => {
             this.userService.getUserEvents(user)
               .catch(() => console.log("Couldn't get user events"));
+            this.clearEnteredData();
             this.jumpToHomePage();
             loader.dismissAll()
           }, () => {
@@ -100,13 +108,6 @@ export class CreateEventPage {
     if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2";
     if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0";
     return "beevy-info-background-" + opacity + "-2";
-  }
-
-  changeColorTags(type: BeevyEventType, opacity: string): string {
-    if (this.type == BeevyEventType.activity) return "beevy-info-background-" + opacity + "-1-tags";
-    if (this.type == BeevyEventType.hangout) return "beevy-info-background-" + opacity + "-2-tags";
-    if (this.type == BeevyEventType.project) return "beevy-info-background-" + opacity + "-0-tags";
-    return "beevy-info-background-" + opacity + "-2-tags";
   }
 
   toggleLimit() {
@@ -135,9 +136,9 @@ export class CreateEventPage {
         zip: this.zip,
         city: this.city
       },
+      tags: this.enteredTags,
       possibleMemberCount: this.limitMembers ? this.possibleMemberCount : 26,
-      currentMemberCount: 0,
-      tags: this.tags
+      currentMemberCount: 0
     }
   }
 
@@ -155,5 +156,44 @@ export class CreateEventPage {
         lastTab.select(0);
       })
       .catch(err => console.error(err))
+  }
+
+
+  addTag(){
+    var alreadyTag = false;
+    for(var i=0; this.enteredTags!=null &&i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==this.enterTag){
+        alreadyTag = true;
+      }
+    }
+    if(this.enterTag.length>1 && this.enterTag.length<= 15 && !alreadyTag){
+      if(this.enteredTags!= null)
+        this.enteredTags[this.enteredTags.length] = this.enterTag;
+      else
+        this.enteredTags[0] = this.enterTag;
+    }
+    this.enterTag = "";
+  }
+  deleteTag(tag: string){
+    for(var i=0; i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==tag)
+        this.enteredTags.splice(i,1);
+    }
+  }
+
+  private clearEnteredData() {
+    this.title = "";
+    this.summary = "";
+    this.description = "";
+    this.zip = null;
+    this.date = null;
+    this.time = null;
+    this.city = "";
+    this.possibleMemberCount = 1;
+    this.buttonDisabled = true;
+    this.enteredTags = [];
+    this.enterTag = "";
+    this.type = BeevyEventType.hangout;
+    this.date = new Date();
   }
 }

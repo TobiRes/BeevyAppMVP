@@ -1,14 +1,12 @@
 import {Component} from '@angular/core';
 import {Modal, ModalController, ModalOptions, NavController} from 'ionic-angular';
 import {BeevyEvent, BeevyEventType} from "../../models/event.model";
-import {MockService} from "../../services/mock.service";
 import {BeevyEventService} from "../../services/event.service";
 import {UserService} from "../../services/user.service";
 import {Storage} from "@ionic/storage";
 import {SetFilters} from "../../models/setFilters.model";
 import {FilterUtil} from "../../utils/filter-util";
 import {User} from "../../models/user.model";
-import {TabsPage} from "../tabs/tabs";
 
 @Component({
   selector: 'page-home',
@@ -21,15 +19,14 @@ export class HomePage {
   displayedEvents: BeevyEvent[] = [];
   filteredEvents: BeevyEvent[] = [];
   allEvents: BeevyEvent[] = [];
-  filter: SetFilters = {types: [true, true, true], tags: []};
-  tabBarElement: any;
+  filter: SetFilters = {types: [true, true, true]};
+  //tabBarElement: any;
 
   private userExists: boolean = false;
   private currentlyLoading: boolean = true;
   private user: User;
 
   constructor(public navCtrl: NavController,
-              private mockService: MockService,
               private eventService: BeevyEventService,
               private modalCtrl: ModalController,
               private userService: UserService,
@@ -56,6 +53,7 @@ export class HomePage {
       })
   }
 
+/*
   ionViewDidLoad() {
     this.tabBarElement = document.querySelector('.tabbar');
     this.tabBarElement.style.display = 'none';
@@ -64,6 +62,7 @@ export class HomePage {
       this.tabBarElement.style.display = 'flex';
     }, 7000);
   }
+*/
 
   openEventView(beevyEvent: BeevyEvent) {
     if (this.userExists) {
@@ -115,11 +114,11 @@ export class HomePage {
   }
 
   checkIfEventPassesFilter(event: BeevyEvent) {
-    return (this.checkForTagMatch(event.tags)
-      && this.checkForSearchMatch(event)
+    return (this.checkForSearchMatch(event)
       && this.checkForDateMatch(event.date)
       && this.checkForCityMatch(event.address.city)
-      && this.checkForTypeMatch(event.type));
+      && !this.checkForTypeMatch(event.type)
+      && this.checkForTagMatch(event.tags));
   }
 
   private getEvents() {
@@ -166,25 +165,9 @@ export class HomePage {
     today.setHours(today.getTimezoneOffset()/60,0,0,0);
     this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = "2018-12-31T24:24:24.335Z";
-    this.filter.types = [true, true, true];
+    this.filter.types = [false, false, false];
     this.filter.city = "";
     this.filter.search = "";
-  }
-
-  //Filter checking
-  private checkForTagMatch(eventTags: string[]): boolean {
-    if (!this.filter.tags || this.filter.tags.length < 1)
-      return true;
-    else {
-      for (let i = 0; i < this.filter.tags.length; i++) {
-        if(eventTags){
-          for (let i2 = 0; i2 < eventTags.length; i2++) {
-            if (this.filter.tags[i].toLowerCase() == eventTags[i2].toLowerCase()) return true;
-          }
-        }
-      }
-    }
-    return false;
   }
 
   private checkForSearchMatch(event: BeevyEvent): boolean {
@@ -202,6 +185,21 @@ export class HomePage {
 
   private checkForTypeMatch(eventType: BeevyEventType): boolean {
     return !(FilterUtil.eventTypeDoesNotMatchFilteredEventTypes(this.filter.types, eventType));
+  }
+  private checkForTagMatch(tags: string[]):boolean {
+    if(this.filter.tags.length == null || this.filter.tags.length<1)
+      return true;
+    if(tags == null || tags.length<1)
+      return false;
+    var match = false;
+    for(var i=0; i<tags.length; i++){
+      for(var i2=0; i2<this.filter.tags.length; i2++){
+        if(tags[i] == this.filter.tags[i2]){
+          match = true;
+        }
+      }
+    }
+    return match;
   }
 }
 

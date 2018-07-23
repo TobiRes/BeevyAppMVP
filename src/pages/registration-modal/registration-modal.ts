@@ -4,6 +4,7 @@ import {ToastService} from "../../services/toast.service";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
 import {Storage} from "@ionic/storage";
+import {Keyboard} from "@ionic-native/keyboard";
 
 
 @IonicPage()
@@ -30,8 +31,16 @@ export class RegistrationModalPage {
               private loadingCtrl: LoadingController,
               private storage: Storage,
               private alertCtrl: AlertController,
+              private keyboard: Keyboard,
               private toastService: ToastService) {
     this.reenterLastRegistrationState();
+  }
+
+  ionViewDidEnter(){
+    this.keyboard.onKeyboardShow()
+      .subscribe(() => {
+        this.keyboard.disableScroll(true);
+      })
   }
 
   startRegistration() {

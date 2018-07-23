@@ -1,5 +1,5 @@
 <ion-header>
-  <img class="headerImage" src="../../assets/imgs/footer.svg">
+  <img class="headerImage" src="assets/imgs/footer.svg">
   <ion-navbar class="navbar">
   </ion-navbar>
 </ion-header>
@@ -21,7 +21,7 @@
       <button class="optionsButton" (click)="openOptions()">
         <img
           class="optionsIcon"
-          src="../../assets/icon/options.svg"
+          src="assets/icon/options.svg"
           alt="..."
           height="15px"
         />
@@ -45,7 +45,7 @@
           <div class="locationBox"><p class="eventCity">
             <img
               class="locationIcon"
-              src="../../assets/icon/location.svg"
+              src="assets/icon/location.svg"
               alt="triangle with all three sides equal"
               height="12px"
             />
@@ -66,17 +66,16 @@
 
         <div id="eventTagsdiv">
           <ion-list class="eventTags">
-            <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeLeft">-->
             <div [ngClass]="['singleTag', changeColorOfContainer(beevyEvent.type, 'transparent')]"
-                 *ngFor="let tag of beevyEvent.tags"><p>{{tag}}</p></div>
-            <!--<img src="../../assets/imgs/transparenz_ende_tags.png" class="tagsFade" id="tagsFadeRight">-->
+                 *ngFor="let tagtext of beevyEvent.tags"><p>{{tagtext}}</p></div>
           </ion-list>
         </div>
+
         <div [ngClass]="['eventMembers', changeColorOfContainer(beevyEvent.type, 'border')]">
           <p>
             <img
               class="adminIcon"
-              src="../../assets/icon/ninja-white.svg"
+              src="assets/icon/ninja-white.svg"
               alt="triangle with all three sides equal"
               height="12px"
             />
@@ -86,7 +85,11 @@
       </div>
       <button *ngIf="showJoinButton"
               [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'full')]"
-              ion-button full (click)="joinEvent()">Join Event
+              ion-button full (click)="userWantsToJoinEvent()">Event Beitreten
+      </button>
+      <button *ngIf="showEventFullJoinButton"
+              [ngClass]="['joinEventButton','beevyButton-withoutColor', changeColorOfContainer(beevyEvent.type, 'transparent')]"
+              ion-button full >Teilnehmerbegrenzung erreicht
       </button>
 
       <div *ngIf="notAllowedtoSeeComments"
@@ -119,7 +122,7 @@
                   (click)="addNewComment()">
             <img
               class="commentIcon"
-              src="../../assets/icon/paper-plane.svg"
+              src="assets/icon/paper-plane.svg"
               alt="triangle with all three sides equal"
               height="20px"
             />
@@ -133,7 +136,7 @@
               <button class="replyButton" (click)="respondToComment(comment)">
                 <img
                   class="replyIcon"
-                  src="../../assets/icon/reply.svg"
+                  src="assets/icon/reply.svg"
                   alt="triangle with all three sides equal"
                   height="15px"
                 />
@@ -148,5 +151,5 @@
   </div>
 </ion-content>
 <ion-footer>
-  <img class="beevyFooter" src="../../assets/imgs/footer.svg"/>
+  <img class="beevyFooter" src="assets/imgs/footer.svg"/>
 </ion-footer>

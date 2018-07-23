@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {Content, Events, NavController, PopoverController} from 'ionic-angular';
 import {User} from "../../models/user.model";
-import {MockService} from "../../services/mock.service";
 import {PopoverComponent} from "../../components/popover/popover";
 import {Storage} from "@ionic/storage";
 import {BeevyEvent} from "../../models/event.model";
@@ -17,11 +16,8 @@ export class ProfilePage {
   user: User;
   joinedEventsActive?: boolean;
   avatarURL: string;
-  private userExists: boolean = false;
-  private currentlyLoading: boolean = true;
 
   constructor(public navCtrl: NavController,
-              private mockService: MockService,
               public popoverCtrl: PopoverController,
               private storage: Storage,
               private userService: UserService,
@@ -34,9 +30,9 @@ export class ProfilePage {
       if (user)
         this.user = user;
       if (user && user.currentAvatar) {
-        this.avatarURL = "../../assets/imgs/" + user.currentAvatar + ".svg";
+        this.avatarURL = "assets/imgs/" + user.currentAvatar + ".svg";
       } else {
-        this.avatarURL = "../../assets/imgs/avatar_1.svg";
+        this.avatarURL = "assets/imgs/avatar_1.svg";
       }
     });
   }
@@ -58,7 +54,7 @@ export class ProfilePage {
       popover.onDidDismiss((avatarString: string) => {
         if (avatarString && avatarString != this.user.currentAvatar) {
           this.user.currentAvatar = avatarString;
-          this.avatarURL = "../../assets/imgs/" + avatarString + ".svg";
+          this.avatarURL = "assets/imgs/" + avatarString + ".svg";
           this.storage.set("user", this.user).then(() => this.events.publish('avatarEvent', avatarString))
           this.userService.updateUserAvatar(this.user);
         }

@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {SetFilters} from "../../models/setFilters.model";
 import {DateUtil} from "../../utils/date-util";
-import {ToastService} from "../../services/toast.service";
 
 
 @IonicPage()
@@ -13,15 +12,15 @@ import {ToastService} from "../../services/toast.service";
 export class FilterModalPage {
 
   type: string;
-  filter: SetFilters = {types: [], tags: []};
+  filter: SetFilters = {types: []};
 
-  tags = [];
   earliestDate: string;
   lastDate: string;
   suchInput: string;
   citySearch: string;
-  defaultTypeFilterButtons: boolean[] = [true, true, true];
   setTypeFilterButtons: boolean[] = [true, true, true];
+  enteredTags: string[] = [];
+  enterTag: string;
 
   //Default dates for datepicker
   defaultStartDate: string = new Date().toISOString();
@@ -29,8 +28,7 @@ export class FilterModalPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private viewCtrl: ViewController,
-              private toastService: ToastService) {
+              private viewCtrl: ViewController) {
     this.resetFilterToLastOpenedState();
   }
 
@@ -46,39 +44,36 @@ export class FilterModalPage {
   }
 
   applyFilter() {
-    this.filter.tags = this.tags;
     this.filter.earliestDate = this.earliestDate;
     this.filter.lastDate = this.lastDate;
     this.filter.city = this.citySearch;
     this.filter.search = this.suchInput;
+    this.filter.tags = this.enteredTags;
     this.viewCtrl.dismiss(this.filter);
-    this.toastService.filtersChanged();
   }
 
   deleteFilter() {
-    this.setTypeFilterButtons = this.defaultTypeFilterButtons;
-    this.filter.types = [true, true, true];
-    this.filter.tags = [];
-    var today = new Date();
+    this.setTypeFilterButtons = [false, false, false];
+    this.filter.types = [false, false, false];
+    let today = new Date();
     today.setHours(today.getTimezoneOffset()/60,0,0,0);
-    console.log(today);
     this.filter.earliestDate = today.toISOString();
     this.filter.lastDate = this.defaultEndDate;
     this.filter.city = "";
     this.filter.search = "";
-    this.tags = [];
     this.earliestDate = this.defaultStartDate;
     this.lastDate = this.defaultEndDate;
     this.suchInput = "";
     this.citySearch = "";
     this.viewCtrl.dismiss(this.filter);
-    this.toastService.filtersResetted();
+    this.filter.tags = [];
+    this.enteredTags = [];
   }
 
 
   buttonColour(n: number): string {
     let cssClass: string = "beevy-info-background-more-transparent-" + n.toString();
-    if (this.filter.types[n])
+    if (!this.filter.types[n])
       cssClass = "beevy-info-background-full-" + n.toString();
     return cssClass;
   }
@@ -106,8 +101,8 @@ export class FilterModalPage {
   private resetFilterToLastOpenedState() {
     this.filter = this.navParams.get("filter");
     this.setTypeFilterButtons = this.filter.types;
-    this.tags = this.filter.tags;
     this.suchInput = this.filter.search;
+    this.enteredTags = this.filter.tags;
     this.citySearch = this.filter.city;
     if (this.filter.earliestDate) {
       this.earliestDate = this.filter.earliestDate;
@@ -118,6 +113,28 @@ export class FilterModalPage {
       this.lastDate = this.filter.lastDate;
     } else {
       this.lastDate = this.defaultEndDate;
+    }
+  }
+
+  addTag(){
+    var alreadyTag = false;
+    for(var i=0; this.enteredTags!=null &&i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==this.enterTag){
+        alreadyTag = true;
+      }
+    }
+    if(this.enterTag.length>1 && this.enterTag.length<= 15 && !alreadyTag){
+      if(this.enteredTags!= null)
+      this.enteredTags[this.enteredTags.length] = this.enterTag;
+      else
+        this.enteredTags[0] = this.enterTag;
+    }
+    this.enterTag = "";
+  }
+  deleteTag(tag: string){
+    for(var i=0; i<this.enteredTags.length; i++){
+      if(this.enteredTags[i]==tag)
+        this.enteredTags.splice(i,1);
     }
   }
 }

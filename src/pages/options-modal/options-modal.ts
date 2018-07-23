@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import {IonicPage, NavController, NavParams, Tabs, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {Clipboard} from "@ionic-native/clipboard";
 import {BeevyEventService} from "../../services/event.service";
 import {ToastService} from "../../services/toast.service";
 import {User} from "../../models/user.model";
 import {Storage} from "@ionic/storage";
-import {HomePage} from "../home/home";
 import {TabsPage} from "../tabs/tabs";
 
 @IonicPage()
@@ -43,16 +42,6 @@ export class OptionsModalPage {
     this.normaleAnzeige = true;
   }
 
-  ionViewDidLoad() {
-    console.log(this.userIsEventAdmin);
-    console.log(this.userIsEventMember);
-  }
-
-  userWantstoDeleteEvent(){
-    this.normaleAnzeige = false;
-    this.userWantstoDelete = true;
-  }
-
   deleteEvent() {
     this.eventService.deleteBeevyEvent(this.eventID, this.user)
       .then(() => this.jumpToHomePage())
@@ -60,6 +49,11 @@ export class OptionsModalPage {
         console.error(err);
         this.viewCtrl.dismiss();
       });
+  }
+
+  userWantstoDeleteEvent(){
+    this.normaleAnzeige = false;
+    this.userWantstoDelete = true;
   }
 
   userWantsToLeaveEvent(){

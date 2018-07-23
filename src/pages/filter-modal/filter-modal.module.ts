@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {IonicPageModule} from 'ionic-angular';
 import {FilterModalPage} from './filter-modal';
-import {RlTagInputModule} from 'angular2-tag-input';
+import {ComponentsModule} from "../../components/components.module";
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import {RlTagInputModule} from 'angular2-tag-input';
   ],
   imports: [
     IonicPageModule.forChild(FilterModalPage),
-    RlTagInputModule
+    ComponentsModule
   ],
 })
 export class FilterModalPageModule {

@@ -23,6 +23,7 @@
 @import "styles/alert.scss";
 @import "styles/header.scss";
 @import "styles/select-wrapper";
+@import "styles/android-fix";
 
 //GENERAL
 @font-face {
@@ -73,6 +74,7 @@ p, h1, h2, h3, h4, h5, h6 {
 //menuIcon
 .menuIcon {
   color: white;
+  font-size: 1.6em;
 }
 
 .toolbar-content {

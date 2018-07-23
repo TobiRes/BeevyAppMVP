@@ -1,0 +1,41 @@
+.toolbar-content-md {
+  padding-bottom: 5px;
+}
+
+.checkboxLabel {
+  margin-top: 5px;
+  .label-md {
+    margin: 0;
+  }
+}
+
+.enterConfirmation .description {
+  padding: 10px 15px !important;
+}
+
+page-filter-modal .dateInput .dateInputLabel {
+  overflow: visible !important;
+  margin-right: 0 !important;
+}
+
+page-filter-modal .dateInput .datetime-text {
+  padding: 5px 10px !important;
+}
+
+page-filter-modal .dateInputs {
+  margin-left: 0;
+  text-align: center;
+}
+
+page-filter-modal .dateInput .datetime {
+  margin-left: 0 !important;
+  overflow: visible !important;
+}
+
+.header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+  background-image: none !important;
+}
+
+.alert-md .alert-message {
+  color: white !important;
+}

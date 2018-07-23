@@ -1,12 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Storage} from "@ionic/storage";
 import {UnregisteredUser, User, UserEvents} from "../models/user.model";
-import {Device} from "@ionic-native/device";
 import {HttpClient} from "@angular/common/http";
 import {AppConfig} from "../config/app-config";
 import {SecurityUserData} from "../models/security-user-data.model";
 import {AlertController, Modal, ModalController} from "ionic-angular";
-import {ToastService} from "./toast.service";
 import {SecurityUtil} from "../utils/security-util";
 
 @Injectable()
@@ -15,11 +13,47 @@ export class UserService {
   private static BEEVY_USER_BASE_URL = AppConfig.API_BASE_URL + "/user";
 
   constructor(private storage: Storage,
-              private device: Device,
               private http: HttpClient,
-              private modalCtrl: ModalController,
               private alertCtrl: AlertController,
-              private toastService: ToastService) {
+              private modalCtrl: ModalController) {
+  }
+
+
+  showAlertWhenTheAppIsLaunchedForTheFirstTime() {
+    return new Promise(((resolve, reject) => {
+      this.storage.get("alreadyUsed")
+        .then((alreadyUsed: boolean) =>{
+          if(alreadyUsed){
+            resolve();
+          } else {
+            this.presentFirstTimeAlert()
+              .then(() => this.storage.set("alreadyUsed", true))
+              .then(() => resolve())
+              .catch((err) => reject(err))
+          }
+        })
+    }))
+  }
+
+  presentFirstTimeAlert(){
+    return new Promise((resolve => {
+      let alert = this.alertCtrl.create({
+        title: 'Hallo!',
+        message: '<p>Wir freuen uns, dass du unsere App installiert hast! Die App wurde für Studierende der Hochschule Offenburg enwtickelt.' +
+        ' Sie befindet sich noch am Anfang der Entwicklung, weswegen Fehler vorkommen können. Wir arbeiten weiter an der Verbesserung, hab Geduld mit uns!<br><br>' +
+        'Falls du Verbesserungsvorschläge oder Feedback hast, kannst du gerne eine E-mail an tobias.reski@gmail.com schicken!',
+        buttons: [
+          {
+            text: 'Alles klar',
+            role: 'cancel',
+            handler: () => {
+              resolve();
+            }
+          }
+        ]
+      });
+      alert.present();
+    }))
   }
 
   checkForUserStateAndHandleRegistration(): Promise<any>{
@@ -63,7 +97,7 @@ export class UserService {
   private createTemporaryUserData(username: string, mail: string): UnregisteredUser {
     return {
       username: username,
-      userID: this.device.uuid ? this.device.uuid : "89263023",
+      userID: SecurityUtil.generateRandomToken(),
       mail: mail,
       currentAvatar: "avatar_1",
     }
@@ -110,7 +144,6 @@ export class UserService {
           if (!user || !(user.token && user.userID)) {
             resolve(false);
           } else {
-            console.log(user);
             resolve(true);
           }
         })
@@ -127,4 +160,5 @@ export class UserService {
     this.http.post(UserService.BEEVY_USER_BASE_URL + "/avatar", avatarDTO)
       .subscribe(() => console.log("success"));
   }
+
 }

@@ -12,29 +12,18 @@
   <div class="filterContainer" id="filterContainer">
     <div class="buttonContainer">
       <button id="typeButton0"
-              [ngClass]="['typeButton', buttonColour(0), setTypeFilterButtons[0] ? 'filter-button-active' : 'filter-button-inactive']"
+              [ngClass]="['typeButton', buttonColour(0), setTypeFilterButtons[0] ? 'filter-button-inactive' : 'filter-button-active']"
               (click)="setType(0, 'typeButton0')">Projekt
       </button>
       <button id="typeButton1"
-              [ngClass]="['typeButton', buttonColour(1), setTypeFilterButtons[1] ? 'filter-button-active' : 'filter-button-inactive']"
+              [ngClass]="['typeButton', buttonColour(1), setTypeFilterButtons[1] ? 'filter-button-inactive' : 'filter-button-active']"
               (click)="setType(1, 'typeButton1')">Aktivität
       </button>
       <button id="typeButton2"
-              [ngClass]="['typeButton', buttonColour(2), setTypeFilterButtons[2] ? 'filter-button-active' : 'filter-button-inactive']"
+              [ngClass]="['typeButton', buttonColour(2), setTypeFilterButtons[2] ? 'filter-button-inactive' : 'filter-button-active']"
               (click)="setType(2, 'typeButton2')">Hangout
       </button>
     </div>
-
-
-    <rl-tag-input
-      [(ngModel)]="tags"
-      [addOnBlur]="false"
-      [autocomplete]="false"
-      placeholder="+ Tags"
-      class="tagInput"
-    >
-    </rl-tag-input>
-
 
     <div class="dateInputs">
       <ion-item class="dateInput">
@@ -47,6 +36,17 @@
         <ion-datetime displayFormat="DD/MM/YY" [min]="getDateAfterChosenStartDate()" [max]="defaultEndDate"
                       [(ngModel)]="lastDate"></ion-datetime>
       </ion-item>
+    </div>
+
+    <div class="tagsWrapper">
+      <div class="enteredTags" *ngFor="let tag of enteredTags">
+        <tag [tagText]="tag"></tag>
+        <button (click)="deleteTag(tag)"><span>x</span></button>
+      </div>
+      <div class="tagInputwrapper">
+        <input class="tagInput" placeholder="+Tags" type="text" [(ngModel)]="enterTag">
+        <button (click)="addTag()">+</button>
+      </div>
     </div>
 
     <ion-item class="ortInput">
