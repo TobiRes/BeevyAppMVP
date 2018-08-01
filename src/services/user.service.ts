@@ -141,16 +141,33 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.storage.get("user")
         .then((user: User) => {
+          console.log(user);
           if (!user || !(user.token && user.userID)) {
             resolve(false);
           } else {
             this.checkIfUserExistsInBackend(user.userID)
               .then(() => resolve(true))
-              .catch(() => resolve(false))
+              .catch(() => {
+                this.resetCurrentRegistrationState();
+                resolve(false);
+              })
           }
         })
         .catch(err => reject(err));
     })
+  }
+
+  private resetCurrentRegistrationState(){
+    this.storage.set("registrationState", {
+      showSecurityHint: true,
+      privacyPolicyAccept: false,
+      registrationProcess: false,
+      enterConfirmationCode: false,
+      failedRegistration: false,
+      uregisteredUser: null,
+      email: "",
+      name: ""
+    });
   }
 
   updateUserAvatar(user: User) {
