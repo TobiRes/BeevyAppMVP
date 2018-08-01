@@ -61,7 +61,7 @@ export class UserService {
       this.checkIfUserExists()
         .then((userExists: boolean) => {
           if(userExists)
-            resolve();
+              resolve()
           else{
             this.handleUserRegistration()
               .then(() => {
@@ -144,7 +144,9 @@ export class UserService {
           if (!user || !(user.token && user.userID)) {
             resolve(false);
           } else {
-            resolve(true);
+            this.checkIfUserExistsInBackend(user.userID)
+              .then(() => resolve(true))
+              .catch(() => resolve(false))
           }
         })
         .catch(err => reject(err));
@@ -161,4 +163,11 @@ export class UserService {
       .subscribe(() => console.log("success"));
   }
 
+  private checkIfUserExistsInBackend(userID: string): Promise<any> {
+    return new Promise<any>(((resolve, reject) => {
+      this.http.get(UserService.BEEVY_USER_BASE_URL + "/state/" + userID)
+        .subscribe(() => resolve()
+        ,() => reject())
+    }))
+  }
 }

@@ -52,6 +52,19 @@ export class RegistrationModalPage {
     }*/
   }
 
+  resetCurrentRegistrationState(){
+    this.storage.set("registrationState", {
+      showSecurityHint: true,
+      privacyPolicyAccept: false,
+      registrationProcess: false,
+      enterConfirmationCode: false,
+      failedRegistration: false,
+      uregisteredUser: null,
+      email: "",
+      name: ""
+    });
+  }
+
   saveCurrentRegistrationState(){
     this.storage.set("registrationState", {
       showSecurityHint: this.showSecurityHint,
@@ -110,6 +123,7 @@ export class RegistrationModalPage {
         this.storage.set("user", registeredUser);
         loadingSpinner.dismissAll();
         this.toastService.successfullyRegistered(registeredUser.username);
+        this.resetCurrentRegistrationState();
         this.viewCtrl.dismiss();
       })
       .catch(err => {
